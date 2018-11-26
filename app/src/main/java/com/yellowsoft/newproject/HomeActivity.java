@@ -48,6 +48,8 @@ public class HomeActivity extends AppCompatActivity {
 	private GoogleSignInClient mGoogleSignInClient;
 	private FirebaseAuth mAuth;
 
+	LinearLayout linearLayout;
+
 	LinearLayout menu_btn,home_btn,home,track_btn,track,shop_btn,shop,scheme_btn,scheme,account_btn,account;
 	LinearLayout ll_userdetails,orders_ll_toolbar;
 
