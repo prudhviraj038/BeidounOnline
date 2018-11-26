@@ -23,7 +23,8 @@
             android:layout_height="28dp"
             android:layout_weight="1"
             android:adjustViewBounds="true"
-            android:src="@drawable/menu" />
+            android:src="@drawable/menu"
+            android:tint="@color/colorBlack" />
     </LinearLayout>
 
     <LinearLayout
@@ -40,7 +41,7 @@
             android:layout_centerInParent="true"
             android:gravity="center"
             android:text="text one"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/colorBlack"
             android:textSize="18sp"
             android:textStyle="normal"
             app:font_name="Gothambook" />
@@ -51,7 +52,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:text="TextTwo"
-            android:textColor="@color/colorWhite"
+            android:textColor="@color/colorBlack"
             android:textSize="18sp"
             app:font_name="Gothamlight" />
     </LinearLayout>
