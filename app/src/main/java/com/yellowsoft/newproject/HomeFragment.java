@@ -23,7 +23,7 @@ public class HomeFragment extends Fragment {
 	HomeAdapter homeAdapter;
 	ListView home_list;
 	ArrayList<MenuItem> menuItems = new ArrayList<>();
-	RelativeLayout vechile_tracking,buygps,scheme,myaccount;
+	RelativeLayout vechile_tracking;
 	/*@Override
 	public void onAttach(Context context) {
 		super.onAttach(context);
@@ -65,51 +65,7 @@ public class HomeFragment extends Fragment {
 
 			}
 		});
-		buygps = (RelativeLayout)view.findViewById(R.id.rl_buygps);
-		buygps.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				((HomeActivity)getActivity()).buyGPStracker();
-			}
-		});
 
-		scheme =(RelativeLayout)view.findViewById(R.id.rl_referalscheme);
-		scheme.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				String memberid = Session.getUserid(getActivity());
-				String membercode = Session.getMemberCode(getActivity());
-				if (memberid.equals("0")){
-
-					((HomeActivity)getActivity()).schemeSelected();
-				}
-				else {
-					if (Session.getMemberCode(getContext()).equals("")){
-						((HomeActivity)getActivity()).schemeSelected();
-					}
-					else {
-						Intent intent = new Intent(getActivity(),MyreferalsActivity.class);
-						startActivity(intent);
-						//getActivity().finish();
-					}
-				}
-			}
-		});
-
-		myaccount = (RelativeLayout)view.findViewById(R.id.rl_myaccount);
-		myaccount.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				String memberid = Session.getUserid(getActivity());
-				if (memberid.equals("0")) {
-
-					Intent intent = new Intent(getActivity(), LoginActivity.class);
-					startActivity(intent);
-				} else {
-					((HomeActivity) getActivity()).accountfrg();
-				}
-			}
-		});
 
 
 
