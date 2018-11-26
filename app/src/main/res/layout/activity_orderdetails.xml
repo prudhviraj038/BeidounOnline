@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal">
+
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar_orderdetails"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="?attr/colorPrimary"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme" />
+
+        <com.yellowsoft.newproject.CustomTextView
+            android:id="@+id/order_number_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/toolbar_orderdetails"
+            android:layout_margin="5dp"
+            android:gravity="center_horizontal"
+            android:text="1"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            app:font_name="Gothambook" />
+
+        <ListView
+            android:id="@+id/order_his_lv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/order_number_tv" />
+
+        <View
+            android:id="@+id/view11"
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/toolbar_orderdetails"
+            android:background="@drawable/shadow" />
+    </RelativeLayout>
+</LinearLayout>

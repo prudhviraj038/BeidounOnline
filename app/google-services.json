@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1066548264661",
+    "firebase_url": "https://my-cop-39275.firebaseio.com",
+    "project_id": "my-cop-39275",
+    "storage_bucket": "my-cop-39275.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1066548264661:android:cd811cd85fa2af77",
+        "android_client_info": {
+          "package_name": "in.develapps.beidoun"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1066548264661-m2rou4nlhqpalhtomjhag94u77u2vl00.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBx_j9XPhwGl8hMu5YnN0VaoIf2e1FXXyk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
