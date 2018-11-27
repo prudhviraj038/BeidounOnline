@@ -69,7 +69,7 @@ public class ProductActivity extends AppCompatActivity {
 		product_code_tv = (TextView)findViewById(R.id.product_code_tv);
 		//save_tv = (TextView)findViewById(R.id.save_tv);
 
-
+/*
 		addtobag_ll = (LinearLayout) findViewById(R.id.addtobag_ll);
 		size_ll = (LinearLayout) findViewById(R.id.size_ll);
 		editor_ll = (LinearLayout) findViewById(R.id.editor_ll);
@@ -79,9 +79,9 @@ public class ProductActivity extends AppCompatActivity {
 
 
 		discount_price = (TextView)findViewById(R.id.discounted_price);
-		title = (TextView)findViewById(R.id.mycop_title_tv);
+		//title = (TextView)findViewById(R.id.mycop_title_tv);
 		originalprice_tv = (TextView)findViewById(R.id.strikeprice_product_tv);
-		description_tv = (TextView)findViewById(R.id.description_tv);
+		description_tv = (TextView)findViewById(R.id.description_tv);*/
 
 		//product = (ProductsData)(getIntent().getSerializableExtra("product"));
 
@@ -89,15 +89,15 @@ public class ProductActivity extends AppCompatActivity {
 
 
 		//product title
-		title.setText(product.product_title);
+		/*title.setText(product.product_title);
 		originalprice_tv.setText(product.discountprice);
 		discount_price.setText(product.originalprice);
 		description_tv.setText(Html.fromHtml(product.description));
 
-		/*for (int i =0;i<product.images.size();i++) {
+		*//*for (int i =0;i<product.images.size();i++) {
 			Log.e("sliderimagers",""+product.images.get(i).image_url);
 			slidingImage_data.add(new SlidingImage_Data(product.images.get(i).image_url));
-		}*/
+		}*//*
 		//Log.e("product",""+product.description);
 		//String s=getIntent().getStringExtra("product");
 		//Log.e("product",""+s);
@@ -119,7 +119,7 @@ public class ProductActivity extends AppCompatActivity {
 		Toolbar toolbar = (Toolbar)findViewById(R.id.product_toolbar);
 		setSupportActionBar(toolbar);
 		setupActionBar();
-		setupHeader();
+		setupHeader();*/
 
 		//increase button & decrease button
 	/*	quantity = (TextView)findViewById(R.id.quantity_tv);

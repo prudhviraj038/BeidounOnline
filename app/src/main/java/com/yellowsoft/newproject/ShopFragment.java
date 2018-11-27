@@ -51,10 +51,10 @@ public class ShopFragment extends Fragment {
 		//
 		//CallProductdetails();
 
-		title = (TextView) view.findViewById(R.id.mycop_title_tv);
+		//title = (TextView) view.findViewById(R.id.mycop_title_tv);
 		striketext = (TextView) view.findViewById(R.id.strike_tv);
 		//striketext.setPaintFlags(striketext.getPaintFlags()| Paint.STRIKE_THRU_TEXT_FLAG);
-		quantity = (TextView) view.findViewById(R.id.quantity_tv);
+		//quantity = (TextView) view.findViewById(R.id.quantity_tv);
 		discount_price = (TextView) view.findViewById(R.id.discounted_price);
 		originalprice_tv = (TextView) view.findViewById(R.id.strikeprice_product_tv);
 		description_tv = (TextView) view.findViewById(R.id.description_tv);
@@ -64,8 +64,8 @@ public class ShopFragment extends Fragment {
 		indicator_tab = (TabLayout) view.findViewById(R.id.indicator);
 
 
-		increase_btn = (RelativeLayout) view.findViewById(R.id.rl_increase);
-		decrease_btn = (RelativeLayout) view.findViewById(R.id.rl_decrease);
+		//increase_btn = (RelativeLayout) view.findViewById(R.id.rl_increase);
+		//decrease_btn = (RelativeLayout) view.findViewById(R.id.rl_decrease);
 		i = Integer.parseInt(quantity.getText().toString());
 		decrease_btn.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -93,7 +93,7 @@ public class ShopFragment extends Fragment {
 		});
 		final Intent intent = new Intent(getContext(), CartActivity.class);
 
-		cart_btn = (LinearLayout) view.findViewById(R.id.addtocart_ll_btn);
+		//cart_btn = (LinearLayout) view.findViewById(R.id.addtocart_ll_btn);
 		cart_btn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -111,7 +111,7 @@ public class ShopFragment extends Fragment {
 			}
 		});
 
-		itemdesc_btn = (LinearLayout) view.findViewById(R.id.itemdesc_ll_btn);
+		//itemdesc_btn = (LinearLayout) view.findViewById(R.id.itemdesc_ll_btn);
 		itemdesc_text = (LinearLayout) view.findViewById(R.id.itemdesc_ll);
 
 

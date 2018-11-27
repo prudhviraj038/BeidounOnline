@@ -1,6 +1,7 @@
 package com.yellowsoft.newproject;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,6 +36,14 @@ public class Sales_Adapter extends RecyclerView.Adapter<Sales_Adapter.MyViewHold
 
 		//holder.imageView.setImageResource(R.drawable.sales);
 		Picasso.get().load(data.get(position).image).into(holder.imageView);
+
+		holder.imageView.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(context,ProductActivity.class);
+				context.startActivity(intent);
+			}
+		});
 
 
 	}
