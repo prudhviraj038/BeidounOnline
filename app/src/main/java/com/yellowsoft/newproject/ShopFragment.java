@@ -70,7 +70,7 @@ public class ShopFragment extends Fragment {
 		View view = inflater.inflate(R.layout.activity_product, container, false);
 		Log.e("shopfragment", "shopfragment");
 		//
-		CallProductdetails();
+		//CallProductdetails();
 
 		title = (TextView) view.findViewById(R.id.mycop_title_tv);
 		striketext = (TextView) view.findViewById(R.id.strike_tv);
@@ -186,98 +186,98 @@ public class ShopFragment extends Fragment {
 	}
 
 	//product request
-	public void CallProductdetails() {
-
-		final ProgressDialog progressDialog = new ProgressDialog(getActivity());
-		progressDialog.setMessage("Please Wait....");
-		progressDialog.show();
-		progressDialog.setCancelable(false);
-		String URL = Session.BASE_URL + "api/products.php";
-
-		StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
-			@Override
-			public void onResponse(String response) {
-				Log.e("res", response);
-				if (progressDialog != null && progressDialog.isShowing()) {
-					progressDialog.dismiss();
-				}
-				try {
-
-					JSONArray jsonArray = new JSONArray(response);
-					Log.e("jsonArray", "" + jsonArray.toString());
-
-					String producttitle = jsonArray.getJSONObject(0).getString("title");
-					Log.e("pagetitletitle", "" + producttitle);
-					title.setText(producttitle);
-
-
-					String price = jsonArray.getJSONObject(0).getString("price");
-					Log.e("price", "" + price);
-					discount_price.setText(price);
-					Session.setPrice(getContext(), price);
-
-
-					String discount = jsonArray.getJSONObject(0).getString("discount");
-					Log.e("discount", "" + discount);
-					String givenprice = discount + price;
-					int i = Integer.parseInt(discount) + Integer.parseInt(price);
-					originalprice_tv.setText("" + i);
-
-					String quantitys = jsonArray.getJSONObject(0).getString("quantity");
-					Log.e("quantity", "" + quantitys);
-					quantity.setText(quantitys);
-
-
-					String description = jsonArray.getJSONObject(0).getString("description");
-					Log.e("description", "" + description);
-					description_tv.setText(Html.fromHtml("<p>" + description + "</p>"));
-
-					String images = jsonArray.getJSONObject(0).getString("images");
-					Log.e("images", "" + images);
-
-					JSONArray jsonArray1 = new JSONArray(images);
-					Log.e("jsonarray1", "" + jsonArray1);
-					Log.e("jsonarray1length", "" + jsonArray1.length());
-					//	Log.e("imagessssss",""+jsonArray1.getJSONObject(0).getString("image"));
-
-					if (jsonArray1.length() > 1) {
-						Log.e("length", "length");
-						for (int j = 0; j <= jsonArray1.length(); j++) {
-							//slidingImage_data.add(new SlidingImage_Data(jsonArray.getJSONObject(j).getString("image")));
-							String s = jsonArray1.getString(j);
-							Log.e("s", "" + s);
-							slidingImage_data.add(new SlidingImage_Data(s));
-							Log.e("imagessssss", "" + jsonArray1.getString(j));
-
-						}
-
-					}
-
-
-				} catch (JSONException e) {
-					e.printStackTrace();
-				}
-				slidingPageAdapter.notifyDataSetChanged();
-			}
-		},
-				new Response.ErrorListener() {
-					@Override
-					public void onErrorResponse(VolleyError error) {
-						Log.e("error", "" + error);
-						if (progressDialog != null)
-							progressDialog.dismiss();
-						//Snackbar.make(gmail_btn, error.toString(), Snackbar.LENGTH_SHORT).show();
-					}
-				}) {
-			@Override
-			protected Map<String, String> getParams() {
-				Map<String, String> parameters = new HashMap<String, String>();
-				//parameters.put("email",u_name.getText().toString());
-				//	parameters.put("password",password.getText().toString());
-				return parameters;
-			}
-		};
-		ApplicationController.getInstance().addToRequestQueue(stringRequest);
-//		slidingPageAdapter.notifyDataSetChanged();
-	}
+//	public void CallProductdetails() {
+//
+//		final ProgressDialog progressDialog = new ProgressDialog(getActivity());
+//		progressDialog.setMessage("Please Wait....");
+//		progressDialog.show();
+//		progressDialog.setCancelable(false);
+//		String URL = Session.BASE_URL + "api/products.php";
+//
+//		StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
+//			@Override
+//			public void onResponse(String response) {
+//				Log.e("res", response);
+//				if (progressDialog != null && progressDialog.isShowing()) {
+//					progressDialog.dismiss();
+//				}
+//				try {
+//
+//					JSONArray jsonArray = new JSONArray(response);
+//					Log.e("jsonArray", "" + jsonArray.toString());
+//
+//					String producttitle = jsonArray.getJSONObject(0).getString("title");
+//					Log.e("pagetitletitle", "" + producttitle);
+//					title.setText(producttitle);
+//
+//
+//					String price = jsonArray.getJSONObject(0).getString("price");
+//					Log.e("price", "" + price);
+//					discount_price.setText(price);
+//					Session.setPrice(getContext(), price);
+//
+//
+//					String discount = jsonArray.getJSONObject(0).getString("discount");
+//					Log.e("discount", "" + discount);
+//					String givenprice = discount + price;
+//					int i = Integer.parseInt(discount) + Integer.parseInt(price);
+//					originalprice_tv.setText("" + i);
+//
+//					String quantitys = jsonArray.getJSONObject(0).getString("quantity");
+//					Log.e("quantity", "" + quantitys);
+//					quantity.setText(quantitys);
+//
+//
+//					String description = jsonArray.getJSONObject(0).getString("description");
+//					Log.e("description", "" + description);
+//					description_tv.setText(Html.fromHtml("<p>" + description + "</p>"));
+//
+//					String images = jsonArray.getJSONObject(0).getString("images");
+//					Log.e("images", "" + images);
+//
+//					JSONArray jsonArray1 = new JSONArray(images);
+//					Log.e("jsonarray1", "" + jsonArray1);
+//					Log.e("jsonarray1length", "" + jsonArray1.length());
+//					//	Log.e("imagessssss",""+jsonArray1.getJSONObject(0).getString("image"));
+//
+//					if (jsonArray1.length() > 1) {
+//						Log.e("length", "length");
+//						for (int j = 0; j <= jsonArray1.length(); j++) {
+//							//slidingImage_data.add(new SlidingImage_Data(jsonArray.getJSONObject(j).getString("image")));
+//							String s = jsonArray1.getString(j);
+//							Log.e("s", "" + s);
+//							slidingImage_data.add(new SlidingImage_Data(s));
+//							Log.e("imagessssss", "" + jsonArray1.getString(j));
+//
+//						}
+//
+//					}
+//
+//
+//				} catch (JSONException e) {
+//					e.printStackTrace();
+//				}
+//				slidingPageAdapter.notifyDataSetChanged();
+//			}
+//		},
+//				new Response.ErrorListener() {
+//					@Override
+//					public void onErrorResponse(VolleyError error) {
+//						Log.e("error", "" + error);
+//						if (progressDialog != null)
+//							progressDialog.dismiss();
+//						//Snackbar.make(gmail_btn, error.toString(), Snackbar.LENGTH_SHORT).show();
+//					}
+//				}) {
+//			@Override
+//			protected Map<String, String> getParams() {
+//				Map<String, String> parameters = new HashMap<String, String>();
+//				//parameters.put("email",u_name.getText().toString());
+//				//	parameters.put("password",password.getText().toString());
+//				return parameters;
+//			}
+//		};
+//		ApplicationController.getInstance().addToRequestQueue(stringRequest);
+////		slidingPageAdapter.notifyDataSetChanged();
+//	}
 }

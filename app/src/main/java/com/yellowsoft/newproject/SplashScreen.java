@@ -40,7 +40,8 @@ public class SplashScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splashscreen);
 
-
+        Intent i = new Intent(SplashScreen.this, HomeActivity.class);
+        startActivity(i);
 
 
         try {
@@ -57,7 +58,7 @@ public class SplashScreen extends AppCompatActivity {
         }
         if(getSupportActionBar()!=null)
             getSupportActionBar().hide();
-        callSettings();
+        //callSettings();
 
 
         new Handler().postDelayed(new Runnable() {

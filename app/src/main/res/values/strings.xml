@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MY COP</string>
+    <string name="app_name">Beidoun</string>
     <string name="referals"><![CDATA[Returns & Refunds]]></string>
     <string name="terms"><![CDATA[Terms & Conditions]]></string>
     <string name="tracksolidmainframestring"><u>http://tracksolid.com/mainFrame</u></string>
@@ -35,4 +35,5 @@
 
     <string name="default_web_client_ids">1066548264661-m2rou4nlhqpalhtomjhag94u77u2vl00.apps.googleusercontent.com</string>
     <string name="warnings">Note: All you Cash back amount will be deposited in the above bank details. We are not responsible for any wrong account details submitted by you.  మీకు వచ్చే  క్యాష్ బ్యాక్ ఎమౌంట్ మీరు ఎంటర్ చేసిన బ్యాంక్ అకౌంట్ లో జమ చేయ బడతాయి. మీరు అకౌంట్ డిటైల్స్ తప్పుగా ఎంటర్ చేస్తే మాకు బాధ్యత లేదు.</string>
+    <string name="forget_password"><u>Forget password?</u></string>
 </resources>

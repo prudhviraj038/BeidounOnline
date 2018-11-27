@@ -34,9 +34,9 @@ public class MyAccountFragment extends Fragment {
 	@Nullable
 	@Override
 	public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-		View view = inflater.inflate(R.layout.fragment_myaccount, container, false);
+		View view = inflater.inflate(R.layout.activity_login, container, false);
 
-		listView = (ListView)view.findViewById(R.id.lv_myaccount);
+		/*listView = (ListView)view.findViewById(R.id.lv_myaccount);
 		share_img = (ImageView)view.findViewById(R.id.share_img);
 		share_img.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -129,7 +129,7 @@ public class MyAccountFragment extends Fragment {
 				}
 
 			}
-		});
+		});*/
 		return view;
 	}
 	public static MyAccountFragment newInstance(int someInt) {

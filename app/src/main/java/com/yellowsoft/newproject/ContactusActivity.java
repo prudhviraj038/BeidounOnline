@@ -92,7 +92,7 @@ public class ContactusActivity extends AppCompatActivity{
 		});
 
 		topselect_popup = (LinearLayout)findViewById(R.id.topselect_popup);
-//		final Typeface face= Typeface.createFromAsset(ContactusActivity.this.getAssets(), "fonts/gothamroundedmedium.otf");
+
 
 		//popup background onclick closes popup
 		topic_bg = (LinearLayout)findViewById(R.id.topic_ll_bg);

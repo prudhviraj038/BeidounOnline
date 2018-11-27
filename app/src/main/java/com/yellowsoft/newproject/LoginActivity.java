@@ -112,6 +112,7 @@ public class LoginActivity extends AppCompatActivity {
 		finish();
 	}
 
+/*
 	@Override
 	protected void onStart() {
 		super.onStart();
@@ -124,12 +125,13 @@ public class LoginActivity extends AppCompatActivity {
 			Log.e("currentUser","= null");
 		}
 	}
+*/
 
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
-		u_name = (EditText) findViewById(R.id.et_usrnmane);
+		/*u_name = (EditText) findViewById(R.id.et_usrnmane);
 
 
 		password = (EditText)findViewById(R.id.et_password);
@@ -161,7 +163,7 @@ public class LoginActivity extends AppCompatActivity {
 
 		//generating keyhash
 
-		/*try {
+		*//*try {
 			PackageInfo info = getPackageManager().getPackageInfo(
 					getPackageName(),
 					PackageManager.GET_SIGNATURES);
@@ -176,7 +178,7 @@ public class LoginActivity extends AppCompatActivity {
 		}
 		catch (NoSuchAlgorithmException e) {
 
-		}*/
+		}*//*
 
 		final FirebaseUser currentUser = mAuth.getCurrentUser();
 		GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -240,7 +242,7 @@ public class LoginActivity extends AppCompatActivity {
 
 												if (object.has("email")){
 
-                                                   /* alertDialog.setTitle("Alert");
+                                                   *//* alertDialog.setTitle("Alert");
 
                                                     // Setting Dialog Message
                                                     alertDialog.setMessage("Unable to get your facebook email id.");
@@ -250,7 +252,7 @@ public class LoginActivity extends AppCompatActivity {
                                                             dialog.dismiss();
                                                         }
                                                     });
-                                                    alertDialog.show();*/
+                                                    alertDialog.show();*//*
 
 
 													ApplicationController.getInstance().fbEmail = object.getString("email");
@@ -369,7 +371,7 @@ public class LoginActivity extends AppCompatActivity {
 				finish();
 			}
 		});
-
+*/
 		Toolbar toolbar = (Toolbar) findViewById(R.id.login_toolbar);
 		setSupportActionBar(toolbar);
 		setupActionBar();

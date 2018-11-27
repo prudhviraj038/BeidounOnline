@@ -61,10 +61,10 @@ public class ProductActivity extends AppCompatActivity {
 		discount_price.setText(product.originalprice);
 		description_tv.setText(Html.fromHtml(product.description));
 
-		for (int i =0;i<product.images.size();i++) {
+		/*for (int i =0;i<product.images.size();i++) {
 			Log.e("sliderimagers",""+product.images.get(i).image_url);
 			slidingImage_data.add(new SlidingImage_Data(product.images.get(i).image_url));
-		}
+		}*/
 		//Log.e("product",""+product.description);
 		//String s=getIntent().getStringExtra("product");
 		//Log.e("product",""+s);

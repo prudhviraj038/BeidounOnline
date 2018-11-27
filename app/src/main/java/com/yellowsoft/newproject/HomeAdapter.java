@@ -60,20 +60,20 @@ public class HomeAdapter extends BaseAdapter {
 
         View rowView;
 
-        rowView = inflater.inflate(R.layout.services_item, null);
+        rowView = inflater.inflate(R.layout.categories_item, null);
 
 
 
 
-        holder.cur_symbol=(TextView) rowView.findViewById(R.id.menu_iem);
-        holder.cur_symbol.setText(menuItems.get(position).title);
+      //  holder.cur_symbol=(TextView) rowView.findViewById(R.id.menu_iem);
+        //holder.cur_symbol.setText(menuItems.get(position).title);
 
-        holder.cur_name=(TextView)rowView.findViewById(R.id.menu_iem2);
-        holder.cur_name.setText(menuItems.get(position).title_ar);
+        //holder.cur_name=(TextView)rowView.findViewById(R.id.menu_iem2);
+       // holder.cur_name.setText(menuItems.get(position).title_ar);
 
 
-        holder.country_flag = (ImageView) rowView.findViewById(R.id.menu_icon_home);
-        holder.country_flag.setImageResource(menuItems.get(position).icon);
+       // holder.country_flag = (ImageView) rowView.findViewById(R.id.menu_icon_home);
+       // holder.country_flag.setImageResource(menuItems.get(position).icon);
 
         //Picasso.with(context).load(categories.get(position).icon).into(holder.country_flag);
 

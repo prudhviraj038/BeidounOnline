@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#FFFFFF</color>
-    <color name="colorPrimaryDark">#047c7b</color>
+    <color name="colorPrimary">#ffffff</color>
+    <color name="colorPrimaryDark">#FFFFFF</color>
     <color name="colorAccent">#00777d</color>
     <color name="colorTransparent">#00000000</color>
     <color name="colorBlack">#000000</color>
@@ -10,5 +10,6 @@
     <color name="tabtransparentcolor">#67a3a2</color>
     <color name="themeDarkColor">#00777d</color>
     <color name="redColor">#ff6347</color>
+    <color name="buttonColor">#b87354</color>
     <color name="greenColor">#0d8f00</color>
 </resources>

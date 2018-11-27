@@ -182,8 +182,6 @@ public class TrackFragment extends Fragment {
 		tabone = (LinearLayout)view.findViewById(R.id.tab_one);
 		tabtwo = (LinearLayout)view.findViewById(R.id.tab_two);
 
-		final  Typeface face= Typeface.createFromAsset(getActivity().getAssets(), "fonts/gothamroundedmedium.otf");
-		final  Typeface face2= Typeface.createFromAsset(getActivity().getAssets(), "fonts/gothamroundedlight.otf");
 
 		publictab = (RelativeLayout)view.findViewById(R.id.public_tab);
 		personaltab = (RelativeLayout)view.findViewById(R.id.personal_tab);
@@ -191,17 +189,17 @@ public class TrackFragment extends Fragment {
 		if (mViewflipper.getDisplayedChild()==0){
 			tabindicator_one.setVisibility(View.VISIBLE);
 			tabindicator_two.setVisibility(View.INVISIBLE);
-			tv_public.setTypeface(face);
+			//tv_public.setTypeface(face);
 			setShadowColor(tv_public,tv_personal);
-			tv_personal.setTypeface(face2);
+			//tv_personal.setTypeface(face2);
 			tabone.setBackgroundColor(getResources().getColor(R.color.tabtransparentcolor));
 			tabtwo.setBackgroundColor(getResources().getColor(R.color.colorTransparent));
 		}
 		else {
 			tabindicator_two.setVisibility(View.VISIBLE);
 			tabindicator_one.setVisibility(View.INVISIBLE);
-			tv_public.setTypeface(face2);
-			tv_personal.setTypeface(face);
+			//tv_public.setTypeface(face2);
+			//tv_personal.setTypeface(face);
 			setShadowColor(tv_personal,tv_public);
 			tabone.setBackgroundColor(getResources().getColor(R.color.colorTransparent));
 			tabtwo.setBackgroundColor(getResources().getColor(R.color.tabtransparentcolor));
@@ -213,9 +211,9 @@ public class TrackFragment extends Fragment {
 				mViewflipper.setDisplayedChild(0);
 				tabindicator_one.setVisibility(View.VISIBLE);
 				tabindicator_two.setVisibility(View.INVISIBLE);
-				tv_public.setTypeface(face);
+				//tv_public.setTypeface(face);
 				setShadowColor(tv_public,tv_personal);
-				tv_personal.setTypeface(face2);
+				//tv_personal.setTypeface(face2);
 				mViewflipper.setInAnimation(getContext(),R.anim.slide_in_from_right);
 				mViewflipper.setOutAnimation(getContext(),R.anim.slide_out_to_left);
 				tabone.setBackgroundColor(getResources().getColor(R.color.tabtransparentcolor));
@@ -229,8 +227,8 @@ public class TrackFragment extends Fragment {
 				mViewflipper.setDisplayedChild(1);
 				tabindicator_two.setVisibility(View.VISIBLE);
 				tabindicator_one.setVisibility(View.INVISIBLE);
-				tv_public.setTypeface(face2);
-				tv_personal.setTypeface(face);
+				//tv_public.setTypeface(face2);
+				//tv_personal.setTypeface(face);
 				setShadowColor(tv_personal,tv_public);
 				mViewflipper.setInAnimation(getContext(),R.anim.slide_in_from_left);
 				mViewflipper.setOutAnimation(getContext(),R.anim.slide_out_to_right);
