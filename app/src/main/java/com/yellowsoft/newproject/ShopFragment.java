@@ -1,18 +1,12 @@
 package com.yellowsoft.newproject;
 
 
-import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.Paint;
-import android.graphics.Typeface;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,23 +15,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.ViewFlipper;
-
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class ShopFragment extends Fragment {
 	ViewPager viewPager;
@@ -77,7 +56,7 @@ public class ShopFragment extends Fragment {
 		//striketext.setPaintFlags(striketext.getPaintFlags()| Paint.STRIKE_THRU_TEXT_FLAG);
 		quantity = (TextView) view.findViewById(R.id.quantity_tv);
 		discount_price = (TextView) view.findViewById(R.id.discounted_price);
-		originalprice_tv = (TextView) view.findViewById(R.id.originalprice_tv);
+		originalprice_tv = (TextView) view.findViewById(R.id.strikeprice_product_tv);
 		description_tv = (TextView) view.findViewById(R.id.description_tv);
 
 		viewPager = (ViewPager) view.findViewById(R.id.image_slider);

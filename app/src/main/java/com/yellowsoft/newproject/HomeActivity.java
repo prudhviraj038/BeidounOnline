@@ -38,7 +38,7 @@ import java.util.ArrayList;
 public class HomeActivity extends AppCompatActivity {
 
 	ListView lv_one,lv_two;
-	TextView page_title_one,page_title_two,btn_edit,logout,usr_name;
+	TextView btn_edit,logout,usr_name;
 	TextView membercode;
 	private static int SPLASH_TIME_OUT = 3000;
 
@@ -206,8 +206,7 @@ public class HomeActivity extends AppCompatActivity {
 				resetAllColors();
 				changebg(home_tv,home_img);
 				mViewPager.setCurrentItem(0);
-				page_title_two.setVisibility(View.GONE);
-				page_title_one.setText("BEIDOUN");
+
 				//orders_ll_toolbar.setVisibility(View.INVISIBLE);
 
 
@@ -216,10 +215,7 @@ public class HomeActivity extends AppCompatActivity {
 
 		if (mViewPager.getCurrentItem()==0){
 			changebg(home_tv,home_img);
-			page_title_one.setText("BEIDOUN");
-			page_title_two.setVisibility(View.GONE);
-			//home_tv.setTextColor(getResources().getColor(R.color.buttonColor));
-			//orders_ll_toolbar.setVisibility(View.INVISIBLE);
+
 		}
 
 		track_btn = (LinearLayout)findViewById(R.id.ll_track);
@@ -231,9 +227,7 @@ public class HomeActivity extends AppCompatActivity {
 				changebg(brands_tv,track_img);
 				mViewPager.setCurrentItem(0);
 
-				page_title_two.setVisibility(View.VISIBLE);
-				page_title_one.setText("BRANDS");
-				page_title_two.setText("");
+
 				//lorders_ll_toolbar.setVisibility(View.INVISIBLE);
 			}
 		});
@@ -246,9 +240,7 @@ public class HomeActivity extends AppCompatActivity {
 				resetAllColors();
 				changebg(bag_tv,shop_img);
 				mViewPager.setCurrentItem(0);
-				page_title_two.setVisibility(View.VISIBLE);
-				page_title_one.setText("BAG");
-				page_title_two.setText("");
+
 
 				//orders_ll_toolbar.setVisibility(View.VISIBLE);
 			}
@@ -265,10 +257,9 @@ public class HomeActivity extends AppCompatActivity {
 
 					//((HomeActivity)getActivity()).schemeSelected();
 					mViewPager.setCurrentItem(3);
-					page_title_two.setVisibility(View.VISIBLE);
-					page_title_one.setText("CATEGORIES");
 
-					page_title_two.setText("");
+
+
 
 					resetAllColors();
 					changebg(categores_tv,scheme_img);
@@ -290,9 +281,8 @@ public class HomeActivity extends AppCompatActivity {
 					resetAllColors();
 					changebg(account_tv, account_img);
 					mViewPager.setCurrentItem(4);
-					page_title_two.setVisibility(View.VISIBLE);
-					page_title_one.setText("ACCOUNT");
-					page_title_two.setText("");
+
+
 
 
 
@@ -367,9 +357,7 @@ public class HomeActivity extends AppCompatActivity {
 			resetAllColors();
 			changebg(bag_tv,shop_img);
 			mViewPager.setCurrentItem(2);
-			page_title_two.setVisibility(View.VISIBLE);
-			page_title_one.setText("BAG");
-			page_title_two.setText("");
+
 			orders_ll_toolbar.setVisibility(View.VISIBLE);
 		}
 
@@ -406,8 +394,7 @@ public class HomeActivity extends AppCompatActivity {
 		});*/
 
 
-		page_title_one = (TextView) v.findViewById(R.id.page_title_one);
-		page_title_two  = (TextView)v.findViewById(R.id.page_title_two);
+
 
 
 		menu_btn = (LinearLayout) v.findViewById(R.id.btn_menu_container);
@@ -445,12 +432,6 @@ public class HomeActivity extends AppCompatActivity {
 
 	}
 	private void setupHeader(){
-		page_title_two.setVisibility(View.GONE);
-		//shop_img.setVisibility(View.VISIBLE);
-		//back_btn.setVisibility(View.GONE);
-		//btn_edit.setVisibility(View.VISIBLE);
-		//btn_edit.setText("Search");
-		//page_title.setText("Home");
 
 	}
 	public void showLoginLayout(){
@@ -497,20 +478,14 @@ public class HomeActivity extends AppCompatActivity {
 
 	public void vehicleTrackingSelected(){
 		mViewPager.setCurrentItem(1);
-		page_title_two.setVisibility(View.VISIBLE);
-		resetAllColors();
-		//changebg(track_btn,track_img);
-		page_title_one.setText("BRANDS");
-		page_title_two.setText("");
+
 		orders_ll_toolbar.setVisibility(View.INVISIBLE);
 	}
 	public void buyGPStracker(){
 		resetAllColors();
 		//changebg(shop_btn,shop_img);
 		mViewPager.setCurrentItem(2);
-		page_title_two.setVisibility(View.VISIBLE);
-		page_title_one.setText("BAG");
-		page_title_two.setText("");
+
 		orders_ll_toolbar.setVisibility(View.VISIBLE);
 	}
 
@@ -518,18 +493,14 @@ public class HomeActivity extends AppCompatActivity {
 		resetAllColors();
 		//changebg(scheme_btn,scheme_img);
 		mViewPager.setCurrentItem(3);
-		page_title_two.setVisibility(View.VISIBLE);
-		page_title_one.setText("CATEGORIES");
-		page_title_two.setText("");
+
 		orders_ll_toolbar.setVisibility(View.INVISIBLE);
 	}
 	public void accountfrg(){
 		resetAllColors();
 		//changebg(account_btn,account_img);
 		mViewPager.setCurrentItem(4);
-		page_title_two.setVisibility(View.VISIBLE);
-		page_title_one.setText("ACCOUNT");
-		page_title_two.setText("");
+
 		orders_ll_toolbar.setVisibility(View.INVISIBLE);
 	}
 

@@ -47,7 +47,7 @@ public class ProductActivity extends AppCompatActivity {
 
 		discount_price = (TextView)findViewById(R.id.discounted_price);
 		title = (TextView)findViewById(R.id.mycop_title_tv);
-		originalprice_tv = (TextView)findViewById(R.id.originalprice_tv);
+		originalprice_tv = (TextView)findViewById(R.id.strikeprice_product_tv);
 		description_tv = (TextView)findViewById(R.id.description_tv);
 
 		product = (ProductsData)(getIntent().getSerializableExtra("product"));

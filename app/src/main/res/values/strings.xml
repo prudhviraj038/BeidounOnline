@@ -36,4 +36,10 @@
     <string name="default_web_client_ids">1066548264661-m2rou4nlhqpalhtomjhag94u77u2vl00.apps.googleusercontent.com</string>
     <string name="warnings">Note: All you Cash back amount will be deposited in the above bank details. We are not responsible for any wrong account details submitted by you.  మీకు వచ్చే  క్యాష్ బ్యాక్ ఎమౌంట్ మీరు ఎంటర్ చేసిన బ్యాంక్ అకౌంట్ లో జమ చేయ బడతాయి. మీరు అకౌంట్ డిటైల్స్ తప్పుగా ఎంటర్ చేస్తే మాకు బాధ్యత లేదు.</string>
     <string name="forget_password"><u>Forget password?</u></string>
+    <string name="price_match"><u>PRICE MATCH</u></string>
+    <string name="size_guide"><u>Size guide</u></string>
+    <string name="add_to_wishlist"><u>Add to wishlist</u></string>
+    <string name="cyber_sale"><u>Cyber Sale</u></string>
+    <string name="bags"><u>Bags</u></string>
+    <string name="shoes_bags"><![CDATA[Shoes & Bags]]></string>
 </resources>

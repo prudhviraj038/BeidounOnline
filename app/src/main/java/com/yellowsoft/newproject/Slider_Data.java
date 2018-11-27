@@ -1,10 +1,12 @@
 package com.yellowsoft.newproject;
 
+import java.io.Serializable;
+
 /**
  * Created by sriven on 4/26/2018.
  */
 
-public class Slider_Data {
+public class Slider_Data implements Serializable {
 
     int image;
     String title,subtitle,price,strikePrice,discount;

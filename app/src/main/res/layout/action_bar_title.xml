@@ -27,6 +27,13 @@
             android:adjustViewBounds="true"
             android:src="@drawable/menu_icon"
             android:tint="@color/colorBlack" />
+
+        <ImageView
+            android:id="@+id/btn_back"
+            android:layout_width="40dp"
+            android:layout_height="28dp"
+            android:src="@drawable/leftarrow"
+            android:visibility="gone" />
     </LinearLayout>
 
     <LinearLayout
@@ -35,6 +42,14 @@
         android:layout_centerInParent="true"
         android:gravity="center_horizontal"
         android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:adjustViewBounds="false"
+            android:src="@drawable/logo" />
 
         <com.yellowsoft.newproject.CustomTextView
             android:id="@+id/page_title_one"
@@ -46,6 +61,7 @@
             android:textColor="@color/colorBlack"
             android:textSize="20sp"
             android:textStyle="bold"
+            android:visibility="gone"
             app:font_name="Gothambook" />
 
         <com.yellowsoft.newproject.CustomTextView
