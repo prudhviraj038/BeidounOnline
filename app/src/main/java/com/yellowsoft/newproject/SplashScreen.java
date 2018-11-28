@@ -33,15 +33,13 @@ import java.util.Map;
 
 public class SplashScreen extends AppCompatActivity {
 
-    private static int SPLASH_TIME_OUT = 3000;
+    private static int SPLASH_TIME_OUT = 1000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splashscreen);
 
-        Intent i = new Intent(SplashScreen.this, HomeActivity.class);
-        startActivity(i);
 
 
         try {
@@ -73,6 +71,8 @@ public class SplashScreen extends AppCompatActivity {
                 // This method will be executed once the timer is over
                 // Start your app main activity
 
+                Intent i = new Intent(SplashScreen.this, HomeActivity.class);
+                startActivity(i);
 
                 // close this activity
                 finish();

@@ -9,8 +9,8 @@ import android.graphics.Typeface;
 
 public class TypeFactory {
 
-    private String A_ROUND= "fonts/PortraitLight.ttf";
-    private String A_LIGHT="fonts/PortraitRegular.ttf";
+    private String A_ROUND= "fonts/PortraitRegular.ttf";
+    private String A_LIGHT="fonts/PortraitLight.ttf";
     private String A_REGULAR= "fonts/Roboto-Regular.ttf";
     private String A_MEDIUM= "fonts/MarrSansRegular.ttf";
 

@@ -21,8 +21,6 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/product_toolbar"
         android:layout_alignParentStart="true"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
         android:orientation="vertical">
 
         <LinearLayout
@@ -31,13 +29,15 @@
             android:layout_weight="1"
             android:orientation="vertical">
 
-            <ScrollView
+            <android.support.v4.widget.NestedScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
                     android:gravity="center_horizontal"
                     android:orientation="vertical">
 
@@ -233,7 +233,8 @@
                             <com.yellowsoft.newproject.CustomTextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="EARN" />
+                                android:text="EARN"
+                                android:textSize="12sp" />
 
                             <com.yellowsoft.newproject.CustomTextView
                                 android:id="@+id/amberpoints_tv"
@@ -241,13 +242,15 @@
                                 android:layout_height="match_parent"
                                 android:layout_marginLeft="5dp"
                                 android:layout_marginRight="5dp"
-                                android:text="60" />
+                                android:text="60"
+                                android:textSize="12sp" />
 
                             <com.yellowsoft.newproject.CustomTextView
                                 android:id="@+id/customTextView92"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="AMBER POINTS" />
+                                android:text="AMBER POINTS"
+                                android:textSize="12sp" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -272,7 +275,8 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="5dp"
                                 android:layout_marginRight="5dp"
-                                android:text="@string/price_match" />
+                                android:text="@string/price_match"
+                                android:textSize="12sp" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -287,7 +291,9 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:text="SIZE" />
+                                android:text="SIZE"
+                                android:textColor="@android:color/black"
+                                android:textSize="12sp" />
 
                             <com.yellowsoft.newproject.CustomTextView
                                 android:id="@+id/sizeguide_tv"
@@ -295,7 +301,9 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:gravity="end"
-                                android:text="@string/size_guide" />
+                                android:text="@string/size_guide"
+                                android:textColor="@android:color/black"
+                                android:textSize="12sp" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -354,6 +362,8 @@
                             android:id="@+id/addtobag_ll"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp"
                             android:background="@color/buttonColor"
                             android:gravity="center"
                             android:orientation="horizontal">
@@ -421,7 +431,8 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Size And Fit"
-                                    android:textSize="16sp" />
+                                    android:textColor="@android:color/black"
+                                    android:textSize="12sp" />
 
                                 <LinearLayout
                                     android:id="@+id/space2"
@@ -471,7 +482,8 @@
                                     android:layout_height="wrap_content"
                                     android:layout_margin="5dp"
                                     android:text="description"
-                                    android:textSize="13sp"
+                                    android:textColor="@android:color/black"
+                                    android:textSize="12sp"
                                     android:visibility="visible" />
                             </LinearLayout>
                         </LinearLayout>
@@ -495,7 +507,8 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Editor's Advice"
-                                    android:textSize="16sp" />
+                                    android:textColor="@android:color/black"
+                                    android:textSize="12sp" />
 
                                 <LinearLayout
                                     android:id="@+id/space2"
@@ -545,7 +558,8 @@
                                     android:layout_height="wrap_content"
                                     android:layout_margin="5dp"
                                     android:text="description"
-                                    android:textSize="13sp"
+                                    android:textColor="@android:color/black"
+                                    android:textSize="12sp"
                                     android:visibility="visible" />
                             </LinearLayout>
                         </LinearLayout>
@@ -569,7 +583,8 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Design Details"
-                                    android:textSize="16sp" />
+                                    android:textColor="@android:color/black"
+                                    android:textSize="12sp" />
 
                                 <LinearLayout
                                     android:id="@+id/space2"
@@ -619,7 +634,8 @@
                                     android:layout_height="wrap_content"
                                     android:layout_margin="5dp"
                                     android:text="description"
-                                    android:textSize="13sp"
+                                    android:textColor="@android:color/black"
+                                    android:textSize="12sp"
                                     android:visibility="visible" />
                             </LinearLayout>
                         </LinearLayout>
@@ -635,13 +651,17 @@
                                 android:id="@+id/product_code_title"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Product Code : " />
+                                android:text="Product Code : "
+                                android:textColor="@android:color/black"
+                                android:textSize="12sp" />
 
                             <com.yellowsoft.newproject.CustomTextView
                                 android:id="@+id/product_code_tv"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="2342344" />
+                                android:text="2342344"
+                                android:textColor="@android:color/black"
+                                android:textSize="12sp" />
                         </LinearLayout>
 
                     </LinearLayout>
@@ -739,7 +759,7 @@
                     </LinearLayout>
 
                 </LinearLayout>
-            </ScrollView>
+            </android.support.v4.widget.NestedScrollView>
         </LinearLayout>
 
 
