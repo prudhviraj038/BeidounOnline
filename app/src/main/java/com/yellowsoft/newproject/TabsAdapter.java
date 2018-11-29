@@ -11,6 +11,7 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 public class TabsAdapter extends FragmentStatePagerAdapter {
 
    public   ShopFragment shopFragment;
+   public   ProductFragment productFragment;
 
 
     public TabsAdapter(FragmentManager fm, HomeActivity activity) {
@@ -66,8 +67,18 @@ public class TabsAdapter extends FragmentStatePagerAdapter {
 
         }
         case 6:{
-            ProductFragment productFragment = ProductFragment.newInstance(position);
+            if (productFragment==null){
+                 productFragment = ProductFragment.newInstance(position);
+            }
+
             return productFragment;
+        }
+
+        case 7:{
+
+            WhishListFragment whishListFragment = WhishListFragment.newInstance(position);
+            return whishListFragment;
+
         }
 
         default: {

@@ -49,6 +49,12 @@ public class Shop_Adapter extends RecyclerView.Adapter<Shop_Adapter.MyViewHolder
 		holder.title_tv.setText(data.get(position).title);
 		holder.subtitle_tv.setText(data.get(position).subtitle);
 
+		holder.imageView.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				((HomeActivity)context).getproductDetails(data.get(position));
+			}
+		});
 
 		holder.like.setOnClickListener(new View.OnClickListener() {
 			@Override

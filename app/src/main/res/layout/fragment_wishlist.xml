@@ -6,30 +6,31 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:id="@+id/empty_cart_ll"
+        android:id="@+id/empty_wishlist_ll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_horizontal|center"
         android:orientation="vertical"
-        android:visibility="gone">
+        android:visibility="visible">
 
         <ImageView
             android:id="@+id/imageView32"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_height="75dp"
             android:layout_margin="15dp"
-            android:src="@drawable/bag_icon_black" />
+            android:adjustViewBounds="false"
+            android:src="@drawable/like" />
 
         <com.yellowsoft.newproject.CustomTextView
             android:id="@+id/customTextView66"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Your Shopping bag is currenty empty"
+            android:text="Your WishList is currenty empty"
             android:textColor="@android:color/black"
             android:textSize="16sp" />
 
         <com.yellowsoft.newproject.CustomTextView
-            android:id="@+id/shopping_ll_cart"
+            android:id="@+id/shopping_ll_wishlist"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
@@ -43,11 +44,11 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/cart_items_ll"
+        android:id="@+id/wishlist_items_ll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:visibility="visible">
+        android:visibility="gone">
 
         <LinearLayout
             android:id="@+id/cart_ll"

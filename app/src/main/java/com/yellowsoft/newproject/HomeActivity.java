@@ -8,6 +8,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -32,12 +33,13 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
 public class HomeActivity extends AppCompatActivity {
 
-	ListView lv_one,lv_two;
+	ListView lv_menu;
 	TextView btn_edit,logout,usr_name;
 	TextView membercode;
 	private static int SPLASH_TIME_OUT = 3000;
@@ -49,8 +51,7 @@ public class HomeActivity extends AppCompatActivity {
 	private GoogleSignInClient mGoogleSignInClient;
 	private FirebaseAuth mAuth;
 
-	LinearLayout linearLayout;
-	LinearLayout linearLayout2;
+
 
 	LinearLayout menu_btn,home_btn,home,track_btn,track,shop_btn,shop,scheme_btn,scheme,account_btn,account;
 	LinearLayout ll_userdetails,orders_ll_toolbar;
@@ -61,7 +62,7 @@ public class HomeActivity extends AppCompatActivity {
 	CustomViewPager mViewPager;
 
 	ImageView home_img,track_img,shop_img,scheme_img,btn_back;
-	ImageView account_img,fbbtn,gmbtn,twbtn,btn_cart;
+	ImageView account_img,btn_like;
 	ImageView youtube_btn;
 
 	@Override
@@ -80,14 +81,7 @@ public class HomeActivity extends AppCompatActivity {
 		setContentView(R.layout.activity_home);
 
 
-		lv_one = (ListView)findViewById(R.id.lv_menu);
-		//ll_login_ = (LinearLayout)findViewById(R.id.login_ll_);
-		ll_details_ = (LinearLayout)findViewById(R.id.details_ll);
-		//logout = (TextView)findViewById(R.id.tv_logout);
-		usr_name = (TextView)findViewById(R.id.usr_name);
-
-		membercode = (TextView)findViewById(R.id.membercode_tv);
-
+		lv_menu = (ListView)findViewById(R.id.lv_menu);
 
 
 
@@ -101,88 +95,10 @@ public class HomeActivity extends AppCompatActivity {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 		// [START initialize_auth]
 		mAuth = FirebaseAuth.getInstance();
 		// [END initialize_auth]
 
-		//social links
-		fbbtn = (ImageView)findViewById(R.id.fb_btn);
-		gmbtn = (ImageView)findViewById(R.id.gm_btn);
-		twbtn = (ImageView)findViewById(R.id.tw_btn);
-		youtube_btn = (ImageView)findViewById(R.id.youtube_img_btn);
-
-		fbbtn.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				try {
-					String fb= ApplicationController.getInstance().settings.getString("facebook");
-					startActivity(new Intent(Intent.ACTION_VIEW).setData(Uri.parse(fb)));
-				} catch (JSONException e) {
-					e.printStackTrace();
-				}
-				mDrawerLayout.closeDrawer(GravityCompat.START);
-
-			}
-		});
-
-		gmbtn.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-
-				try {
-					String fb= ApplicationController.getInstance().settings.getString("google");
-					startActivity(new Intent(Intent.ACTION_VIEW).setData(Uri.parse(fb)));
-				} catch (JSONException e) {
-					e.printStackTrace();
-				}
-				mDrawerLayout.closeDrawer(GravityCompat.START);
-
-				//startActivity(new Intent(Intent.ACTION_VIEW).setData(Uri.parse("https://www.googleplus.com")));
-				//google,twitter,youtube
-			}
-		});
-
-		twbtn.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-
-				try {
-					String fb= ApplicationController.getInstance().settings.getString("twitter");
-					startActivity(new Intent(Intent.ACTION_VIEW).setData(Uri.parse(fb)));
-				} catch (JSONException e) {
-					e.printStackTrace();
-				}
-				mDrawerLayout.closeDrawer(GravityCompat.START);
-
-				//startActivity(new Intent(Intent.ACTION_VIEW).setData(Uri.parse("https://www.twitter.com")));
-			}
-		});
-
-		youtube_btn.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-
-				try {
-					String fb= ApplicationController.getInstance().settings.getString("youtube");
-					startActivity(new Intent(Intent.ACTION_VIEW).setData(Uri.parse(fb)));
-				} catch (JSONException e) {
-					e.printStackTrace();
-				}
-				mDrawerLayout.closeDrawer(GravityCompat.START);
-				//startActivity(new Intent(Intent.ACTION_VIEW).setData(Uri.parse("https://www.youtube.com")));
-			}
-		});
 
 		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 		setSupportActionBar(toolbar);
@@ -307,25 +223,39 @@ public class HomeActivity extends AppCompatActivity {
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.dl_menu);
 
 		ArrayList<MenuItem> menuItems = new ArrayList<>();
-		if(Session.getMemberCode(HomeActivity.this).equals("")) {
+
+		menuItems.add(new MenuItem("Home", "", R.drawable.home));
+		menuItems.add(new MenuItem("My Addresses", "", R.drawable.myprofile));
+		menuItems.add(new MenuItem("Past Orders", "", R.drawable.myreferals));
+		menuItems.add(new MenuItem("Change Language", "", R.drawable.change));
+		menuItems.add(new MenuItem("Offers","",R.drawable.offers));
+		menuItems.add(new MenuItem("Customer Care","",R.drawable.contact));
+		menuItems.add(new MenuItem("About","",R.drawable.about));
+		menuItems.add(new MenuItem("Log Out","",R.drawable.logout));
+
+
+		/*if(Session.getMemberCode(HomeActivity.this).equals("")) {
 			menuItems.add(new MenuItem("My Orders", "", R.drawable.myorders));
 			menuItems.add(new MenuItem("My Profile", "", R.drawable.myprofile));
 		}
 		else {
-			menuItems.add(new MenuItem("My Orders", "", R.drawable.myorders));
-			menuItems.add(new MenuItem("My Profile", "", R.drawable.myprofile));
-			menuItems.add(new MenuItem("My Referrals", "", R.drawable.myreferals));
-			menuItems.add(new MenuItem("My Earnings", "", R.drawable.myernings));
-			menuItems.add(new MenuItem("My Noitifications","",R.drawable.notification));
+			menuItems.add(new MenuItem("Home", "", R.drawable.myorders));
+			menuItems.add(new MenuItem("My Addresses", "", R.drawable.myprofile));
+			menuItems.add(new MenuItem("Past Orders", "", R.drawable.myreferals));
+			menuItems.add(new MenuItem("Change Language", "", R.drawable.myernings));
+			menuItems.add(new MenuItem("Offers","",R.drawable.notification));
+			menuItems.add(new MenuItem("Customer Care","",R.drawable.notification));
+			menuItems.add(new MenuItem("About","",R.drawable.notification));
+			menuItems.add(new MenuItem("Log Out","",R.drawable.notification));
 
 
-		}
+		}*/
 
 		MenuAdapter menuAdapter = new MenuAdapter(this,menuItems);
-		lv_one.setAdapter(menuAdapter);
+		lv_menu.setAdapter(menuAdapter);
 
 		//menu one onclick
-		lv_one.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+		lv_menu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 				if (position==0){
@@ -387,7 +317,14 @@ public class HomeActivity extends AppCompatActivity {
 			}
 		});
 		//cart button on click
-		btn_cart = (ImageView)v.findViewById(R.id.btn_cart);
+		btn_like = (ImageView)v.findViewById(R.id.btn_like);
+
+		btn_like.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+
+			}
+		});
 
 		btn_back = (ImageView)v.findViewById(R.id.btn_back_title);
 		btn_back.setOnClickListener(new View.OnClickListener() {
@@ -495,26 +432,30 @@ public class HomeActivity extends AppCompatActivity {
 	public void insta_shop(String id,String title){
 
 		mViewPager.setCurrentItem(1);
-
-		tabsAdapter.shopFragment.setParamentersBrands(id);
-		tabsAdapter.shopFragment.setParamentersCategories(id);
-
+		tabsAdapter.shopFragment.setParamentersBrands(id,title);
+		tabsAdapter.shopFragment.setParamentersCategories(id,title);
 		menu_btn.setVisibility(View.GONE);
 		btn_back.setVisibility(View.VISIBLE);
 
 	}
 
 
-	public void getproductDetails(){
 
-		//Toast.makeText(HomeActivity.this,"safsfs",Toast.LENGTH_LONG).show();
+
+	public void getproductDetails(Shop_Data data){
+
 		mViewPager.setCurrentItem(6);
-
-
 		menu_btn.setVisibility(View.GONE);
 		btn_back.setVisibility(View.VISIBLE);
 
+		tabsAdapter.productFragment.productDetails(data);
+
 	}
+
+
+
+
+
 
 	public void schemeSelected(){
 		resetAllColors();
@@ -529,6 +470,14 @@ public class HomeActivity extends AppCompatActivity {
 		mViewPager.setCurrentItem(4);
 
 		orders_ll_toolbar.setVisibility(View.INVISIBLE);
+	}
+
+
+
+
+	public void Shopping(){
+
+		mViewPager.setCurrentItem(0);
 	}
 
 

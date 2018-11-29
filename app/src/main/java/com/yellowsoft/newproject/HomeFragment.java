@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -72,18 +73,23 @@ public class HomeFragment extends Fragment {
 		rv_one = (RecyclerView) view.findViewById(R.id.rv_one);
 		slider_rv = (RecyclerView) view.findViewById(R.id.slider_rv);
 		rv_two = (RecyclerView)view.findViewById(R.id.rv_two);
+/*
 
 		insta_shopnow_tv = (TextView)view.findViewById(R.id.insta_shopnow_tv);
 		insta_shopnow_tv.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				((HomeActivity)getActivity()).insta_shop("0","Shop");
+				((HomeActivity)getActivity()).insta_shop("3","Shop");
 			}
 		});
+*/
 
 		rv_one.setNestedScrollingEnabled(true);
 		slider_rv.setNestedScrollingEnabled(true);
-		rv_two.setNestedScrollingEnabled(true);
+		//0rv_two.setNestedScrollingEnabled(true);
+
+		ViewCompat.setNestedScrollingEnabled(rv_one, false);
+
 
 		indicator_tab=(TabLayout)view.findViewById(R.id.indicator);
 
@@ -104,6 +110,8 @@ public class HomeFragment extends Fragment {
 		home_data1.add(new Slider_Data(R.drawable.slider_img_two,"GIANVITO ROSSI","White Buckled Strap Sandals","150","40","90"));
 		home_data1.add(new Slider_Data(R.drawable.slider_img_one,"SELF - PORTRAIT","Check Firll Midi Dress","150","40","90"));
 
+
+
 		slider_adapter = new Slider_Adapter(getContext(),home_data1);
 		slider_rv.setAdapter(slider_adapter);
 
@@ -120,21 +128,20 @@ public class HomeFragment extends Fragment {
 		home_data.add(new Home_data(R.drawable.sales));
 		home_data.add(new Home_data(R.drawable.sales));
 		home_data.add(new Home_data(R.drawable.sales));
+		home_data.add(new Home_data(R.drawable.sales));
+		home_data.add(new Home_data(R.drawable.sales));
+		home_data.add(new Home_data(R.drawable.sales));
+		home_data.add(new Home_data(R.drawable.sales));
+		home_data.add(new Home_data(R.drawable.sales));
+		home_data.add(new Home_data(R.drawable.sales));
+		home_data.add(new Home_data(R.drawable.sales));
+		home_data.add(new Home_data(R.drawable.sales));
+		home_data.add(new Home_data(R.drawable.sales));
 
 		sales_adapter = new Sales_Adapter(getContext(),home_data);
 		rv_one.setAdapter(sales_adapter);
 
 
-		rv_two.setLayoutManager(new GridLayoutManager(getContext(),2));
-
-		home_data2.add(new Home_data(R.drawable.sales));
-
-		home_data2.add(new Home_data(R.drawable.sales));
-		home_data2.add(new Home_data(R.drawable.sales));
-		home_data2.add(new Home_data(R.drawable.sales));
-
-		sales_adapter = new Sales_Adapter(getContext(),home_data2);
-		rv_two.setAdapter(sales_adapter);
 
 
 

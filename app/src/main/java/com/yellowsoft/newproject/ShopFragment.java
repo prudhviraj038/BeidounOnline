@@ -36,7 +36,7 @@ import java.util.Map;
 
 public class ShopFragment extends Fragment {
 
-	TextView title, description_tv;
+	TextView title, description_tv,noof_results_tv;
 	RecyclerView shop_rv;
 
 	ArrayList<Shop_Data> shopData= new ArrayList<Shop_Data>();
@@ -70,6 +70,7 @@ public class ShopFragment extends Fragment {
 		//CallProductdetails();
 
 		title = (TextView)view.findViewById(R.id.tilte_shop_frag);
+		noof_results_tv = (TextView)view.findViewById(R.id.noof_results_tv);
 
 		grid_img = (ImageView)view.findViewById(R.id.grid_img);
 		vertical_img = (ImageView)view.findViewById(R.id.vertical_img);
@@ -120,6 +121,7 @@ public class ShopFragment extends Fragment {
 		});
 
 		shop_rv = (RecyclerView)view.findViewById(R.id.rv_shop);
+		shop_rv.setNestedScrollingEnabled(false);
 
 		shop_adapter = new Shop_Adapter(getContext(),shopData);
 
@@ -171,23 +173,25 @@ public class ShopFragment extends Fragment {
 		return view;
 	}
 
-	public void setParamentersBrands(String brandId){
+	public void setParamentersBrands(String brandId,String titles){
 
         if (brandId.equals("0")){
             instagram_ll.setVisibility(View.GONE);
         }
 
+        title.setText(""+titles);
 
 		this.brandid = brandId ;
 		callProducts("brands",brandId);
 
 	}
 
-	public void setParamentersCategories(String categories){
+	public void setParamentersCategories(String categories,String titles){
 
         if (categories.equals("0")){
             instagram_ll.setVisibility(View.GONE);
         }
+		title.setText(""+titles);
 
 		this.categoryid = categories ;
 		callProducts("category",categories);
@@ -215,6 +219,8 @@ public class ShopFragment extends Fragment {
 					JSONArray jsonArray = new JSONArray(response);
 					Log.e("jsonarraryLength",""+jsonArray.length());
 					Log.e("jsonArray", "" + jsonArray.toString());
+
+					//noof_results_tv.setText(""+jsonArray.length()+" ");
 
 
 

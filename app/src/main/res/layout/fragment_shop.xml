@@ -23,7 +23,8 @@
             android:gravity="center"
             android:padding="3dp"
             android:text="Filer by"
-            android:textColor="@android:color/black" />
+            android:textColor="@android:color/black"
+            android:textSize="12sp" />
 
         <com.yellowsoft.newproject.CustomTextView
             android:id="@+id/customTextView94"
@@ -36,7 +37,8 @@
             android:padding="3dp"
             android:singleLine="true"
             android:text="Sort by Beidoun picks"
-            android:textColor="@android:color/black" />
+            android:textColor="@android:color/black"
+            android:textSize="12sp" />
     </LinearLayout>
 
     <android.support.v4.widget.NestedScrollView
@@ -105,43 +107,6 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/filter_ll"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginBottom="15dp"
-                    android:orientation="horizontal"
-                    android:visibility="gone">
-
-                    <com.yellowsoft.newproject.CustomTextView
-                        android:id="@+id/customTextView89"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/corners_grey"
-                        android:gravity="center"
-                        android:padding="3dp"
-                        android:text="Filer by"
-                        android:textColor="@android:color/black" />
-
-                    <com.yellowsoft.newproject.CustomTextView
-                        android:id="@+id/customTextView94"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/corners_grey"
-                        android:gravity="center"
-                        android:padding="3dp"
-                        android:singleLine="true"
-                        android:text="Sort by Beidoun picks"
-                        android:textColor="@android:color/black" />
-                </LinearLayout>
-
-                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
@@ -151,7 +116,8 @@
                         android:layout_height="match_parent"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:visibility="gone">
 
                         <com.yellowsoft.newproject.CustomTextView
                             android:id="@+id/tilte_shop_frag"
@@ -190,7 +156,8 @@
                         android:layout_marginTop="5dp"
                         android:layout_marginRight="5dp"
                         android:layout_marginBottom="5dp"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:visibility="gone">
 
                         <com.yellowsoft.newproject.CustomTextView
                             android:id="@+id/noof_results_tv"

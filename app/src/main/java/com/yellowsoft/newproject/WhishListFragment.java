@@ -2,37 +2,25 @@ package com.yellowsoft.newproject;
 
 
 import android.app.ProgressDialog;
-import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.InputFilter;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.EditorInfo;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -42,32 +30,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class CartFragment extends Fragment {
-
-	TextView quantity,page_title,total_tv,price_cart_tv,subtotal_tv,discount_tv;
-	TextView discount_tv_payment,shippingcharge_tv,referalmoney_payment;
-
-	LinearLayout empty_cart_ll,apply_ll_btn;
-	LinearLayout menu_btn,back_btn,coupencode_ll;
-	LinearLayout cart_items_ll;
-
-	Cart_Adapter cart_adapter;
-	ArrayList<Cart_Data> cart_data = new ArrayList<>();
+public class WhishListFragment extends Fragment {
 
 
-	Integer cartquantity;
-	ProductsData product;
-	ImageView back;
+	TextView shopping;
 
-	EditText coupon_code;
-	int subtotal;
-	int discount_int = 0;
-	String coupon_code_str = "";
-
-	RecyclerView cart_rv;
-
-	public static CartFragment newInstance(int someInt) {
-		CartFragment myFragment = new CartFragment();
+	public static WhishListFragment newInstance(int someInt) {
+		WhishListFragment myFragment = new WhishListFragment();
 
 		Bundle args = new Bundle();
 		args.putInt("someInt", someInt);
@@ -78,44 +47,24 @@ public class CartFragment extends Fragment {
 
 	@Override
 	public View onCreateView(final LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-		View view = inflater.inflate(R.layout.fragment_cart, container, false);
+		View view = inflater.inflate(R.layout.fragment_wishlist, container, false);
 
 
+
+		shopping = (TextView)view.findViewById(R.id.shopping_ll_wishlist);
+
+		shopping.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+
+			}
+		});
 
 		/*coupencode_ll = (LinearLayout)view. findViewById(R.id.coupencode_ll);
 		total_tv = (TextView)view. findViewById(R.id.total_tv);
 		subtotal_tv = (TextView)view.findViewById(R.id.subtotal_tv);
 		discount_tv = (TextView)view.findViewById(R.id.discount_tv);*/
 		//quantity.setText(cartquantity.toString());
-
-		empty_cart_ll = (LinearLayout)view.findViewById(R.id.empty_cart_ll);
-		cart_items_ll = (LinearLayout)view.findViewById(R.id.cart_items_ll);
-
-
-
-		cart_rv = (RecyclerView)view.findViewById(R.id.cart_rv);
-
-		LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
-		linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-
-		cart_rv.setLayoutManager(linearLayoutManager);
-
-
-
-		cart_data.add(new Cart_Data("456","https:\\/\\/beidounonline.com\\/uploads\\/collections\\/51517215687.jpg","Gold Watch","This is a gold watch","ddd"));
-		cart_data.add(new Cart_Data("456","https:\\/\\/beidounonline.com\\/uploads\\/collections\\/51517215687.jpg","Gold Watch","This is a gold watch","ddd"));
-		cart_data.add(new Cart_Data("456","https:\\/\\/beidounonline.com\\/uploads\\/collections\\/51517215687.jpg","Gold Watch","This is a gold watch","ddd"));
-		cart_data.add(new Cart_Data("456","https:\\/\\/beidounonline.com\\/uploads\\/collections\\/51517215687.jpg","Gold Watch","This is a gold watch","ddd"));
-		cart_data.add(new Cart_Data("456","https:\\/\\/beidounonline.com\\/uploads\\/collections\\/51517215687.jpg","Gold Watch","This is a gold watch","ddd"));
-
-
-
-
-		cart_adapter = new Cart_Adapter(getActivity(),cart_data);
-
-		cart_rv.setAdapter(cart_adapter);
-
-
 
 /*
 
@@ -201,80 +150,7 @@ return  view;
 
 	}
 
-public void CallCoupenService(final String coupen, final String total){
 
-		final ProgressDialog progressDialog = new ProgressDialog(getActivity());
-		progressDialog.setMessage("Please Wait....");
-		progressDialog.show();
-		progressDialog.setCancelable(false);
-		String URL = Session.BASE_URL+"api/coupon-check.php";
-
-		StringRequest stringRequest = new StringRequest(Request.Method.POST, URL,new Response.Listener<String>() {
-			@Override
-			public void onResponse(String response) {
-				Log.e("resCartActivity",response);
-				if(progressDialog!=null) {
-					progressDialog.dismiss();
-				}
-				try {
-					JSONObject jsonObject=new JSONObject(response);
-					String reply=jsonObject.getString("status");
-					Log.e("status",""+reply);
-					if(reply.equals("Success")) {
-
-						Snackbar.make(discount_tv,"Coupon code applied successfully",Snackbar.LENGTH_SHORT).show();
-						String discount = jsonObject.getString("discount_value");
-						Log.e("discount",""+discount);
-
-						discount_tv.setText(""+discount);
-
-						//Log.e("totalss",""+totalss);
-
-						discount_int = Integer.parseInt(discount);
-						//totals = addShippingCharges-Integer.parseInt(discount);
-
-						Log.e("subtotal",""+subtotal);
-
-						//total_tv.setText(""+totals);
-
-						//Log.e("total",""+totals);
-
-						//Session.setTotalPrice(pay.this,""+totals);
-
-
-						coupon_code_str = coupon_code.getText().toString();
-						Log.e("coupen_code",coupon_code_str);
-
-					}
-					else {
-						Snackbar.make(discount_tv,"Invalid Coupon Code",Snackbar.LENGTH_SHORT).show();
-					}
-
-
-					} catch (JSONException e) {
-					e.printStackTrace();
-				}
-			}
-		},
-				new Response.ErrorListener() {
-					@Override
-					public void onErrorResponse(VolleyError error) {
-						if(progressDialog!=null)
-							progressDialog.dismiss();
-						//Toast.makeText(hs.this,"Internet error",Toast.LENGTH_SHORT).show();
-						//Snackbar.make(gmail_btn, error.toString(), Snackbar.LENGTH_SHORT).show();
-					}
-				}){
-			@Override
-			protected Map<String,String> getParams(){
-				Map<String,String> parameters = new HashMap<String, String>();
-				parameters.put("coupon",coupen);
-				parameters.put("cart_total",total);
-				return parameters;
-			}
-		};
-		ApplicationController.getInstance().addToRequestQueue(stringRequest);
-	}
 	//
 	/*public void CallCoupenService(final String coupen, final String total){
 

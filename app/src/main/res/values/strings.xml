@@ -41,5 +41,5 @@
     <string name="add_to_wishlist"><u>Add to wishlist</u></string>
     <string name="cyber_sale"><u>Cyber Sale</u></string>
     <string name="bags"><u>Bags</u></string>
-    <string name="shoes_bags"><![CDATA[Shoes & Bags]]></string>
+    <string name="shoes_bags"><u><![CDATA[Shoes & Bags]]></u></string>
 </resources>

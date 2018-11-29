@@ -4,17 +4,27 @@ package com.yellowsoft.newproject;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
 
 public class ProductFragment extends Fragment {
 
 
 	TextView save_tv,title_tv_product,subtitle_product_tv,price_product_tv,strikeprice_product_tv,discount_product_tv,amberpoints_tv;
-	TextView pricematch_tv,sizeguide_tv,addtowishlist_tv,product_code_tv;
+	TextView pricematch_tv,sizeguide_tv,addtowishlist_tv,product_code_tv,description_tv_editor;
+
+	ImageView product_img;
+
+	Shop_Data shop_data;
 
 
 	public static ProductFragment newInstance(int someInt) {
@@ -35,21 +45,54 @@ public class ProductFragment extends Fragment {
 
 
 
-		save_tv = (TextView)view.findViewById(R.id.save_tv);
-		title_tv_product = (TextView)view.findViewById(R.id.title_tv_product);
-		subtitle_product_tv = (TextView)view.findViewById(R.id.subtitle_product_tv);
-		price_product_tv = (TextView)view.findViewById(R.id.price_product_tv);
-		discount_product_tv = (TextView)view.findViewById(R.id.discount_product_tv);
-		amberpoints_tv = (TextView)view.findViewById(R.id.amberpoints_tv);
-		pricematch_tv = (TextView)view.findViewById(R.id.pricematch_tv);
-		sizeguide_tv = (TextView)view.findViewById(R.id.sizeguide_tv);
-		addtowishlist_tv = (TextView)view.findViewById(R.id.addtowishlist_tv);
-		product_code_tv = (TextView)view.findViewById(R.id.product_code_tv);
+		save_tv = (TextView) view.findViewById(R.id.save_tv);
+		title_tv_product = (TextView) view.findViewById(R.id.title_tv_product);
+		subtitle_product_tv = (TextView) view.findViewById(R.id.subtitle_product_tv);
+		price_product_tv = (TextView) view.findViewById(R.id.price_product_tv);
+		description_tv_editor = (TextView) view.findViewById(R.id.description_tv_editor);
+
+		strikeprice_product_tv = (TextView) view.findViewById(R.id.strikeprice_product_tv);
+		amberpoints_tv = (TextView) view.findViewById(R.id.amberpoints_tv);
+		pricematch_tv = (TextView) view.findViewById(R.id.pricematch_tv);
+		sizeguide_tv = (TextView) view.findViewById(R.id.sizeguide_tv);
+		addtowishlist_tv = (TextView) view.findViewById(R.id.addtowishlist_tv);
+		product_code_tv = (TextView) view.findViewById(R.id.product_code_tv);
+
+		product_img = (ImageView)  view.findViewById(R.id.product_img);
+
+
+
+		//discount_product_tv.setText(shop_data.);
+		//amberpoints_tv.setText(shop_data.);
+		//pricematch_tv.setText(shop_data.title);
+		//sizeguide_tv.setText(shop_data.title);
+		//addtowishlist_tv.setText(shop_data.title);
+		//product_code_tv.setText(shop_data.);
+
+
 
 
 		return view;
 	}
 
+	public void productDetails(Shop_Data data){
+
+
+		title_tv_product.setText(data.title);
+		subtitle_product_tv.setText(data.subtitle);
+		price_product_tv.setText(data.price);
+		strikeprice_product_tv.setText(data.old_price);
+		description_tv_editor.setText(Html.fromHtml(data.description));
+
+
+		Log.e("prices",""+data.price+"   "+data.old_price);
+		Log.e("imageURL",""+data.product_images.get(0).image_url);
+
+		Picasso.get().load(data.product_images.get(0).image_url).into(product_img);
+
+
+
+	}
 
 
 	//product request

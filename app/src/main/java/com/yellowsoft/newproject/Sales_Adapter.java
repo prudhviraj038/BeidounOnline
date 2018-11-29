@@ -42,7 +42,7 @@ public class Sales_Adapter extends RecyclerView.Adapter<Sales_Adapter.MyViewHold
 			public void onClick(View v) {
 
 
-                ((HomeActivity)context).getproductDetails();
+                ((HomeActivity)context).insta_shop("344","Shop");
 
 
 			}
