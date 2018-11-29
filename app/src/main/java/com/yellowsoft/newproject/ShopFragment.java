@@ -69,6 +69,8 @@ public class ShopFragment extends Fragment {
 		//
 		//CallProductdetails();
 
+		title = (TextView)view.findViewById(R.id.tilte_shop_frag);
+
 		grid_img = (ImageView)view.findViewById(R.id.grid_img);
 		vertical_img = (ImageView)view.findViewById(R.id.vertical_img);
 
@@ -211,6 +213,7 @@ public class ShopFragment extends Fragment {
 				try {
 
 					JSONArray jsonArray = new JSONArray(response);
+					Log.e("jsonarraryLength",""+jsonArray.length());
 					Log.e("jsonArray", "" + jsonArray.toString());
 
 
@@ -229,7 +232,7 @@ public class ShopFragment extends Fragment {
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}
-				//slidingPageAdapter.notifyDataSetChanged();
+				shop_adapter.notifyDataSetChanged();
 			}
 		},
 				new Response.ErrorListener() {

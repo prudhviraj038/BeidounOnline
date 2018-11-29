@@ -77,7 +77,7 @@ public class HomeFragment extends Fragment {
 		insta_shopnow_tv.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				((HomeActivity)getActivity()).insta_shop("0");
+				((HomeActivity)getActivity()).insta_shop("0","Shop");
 			}
 		});
 

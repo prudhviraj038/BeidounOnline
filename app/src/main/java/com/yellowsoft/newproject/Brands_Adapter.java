@@ -42,7 +42,7 @@ public class Brands_Adapter extends RecyclerView.Adapter<Brands_Adapter.MyViewHo
 			public void onClick(View v) {
 
 
-                ((HomeActivity)context).insta_shop(data.get(position).id);
+                ((HomeActivity)context).insta_shop(data.get(position).id,data.get(position).title);
 
 
 

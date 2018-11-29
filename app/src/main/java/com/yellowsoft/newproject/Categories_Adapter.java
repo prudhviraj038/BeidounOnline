@@ -40,7 +40,7 @@ public class Categories_Adapter extends RecyclerView.Adapter<Categories_Adapter.
 		holder.imageView.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				((HomeActivity)context).insta_shop(data.get(position).id);
+				((HomeActivity)context).insta_shop(data.get(position).id,data.get(position).title);
 			}
 		});
 

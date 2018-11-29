@@ -47,19 +47,20 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_margin="10dp"
                 android:orientation="vertical">
 
                 <LinearLayout
                     android:id="@+id/instagram_ll"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:visibility="gone">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -111,7 +112,8 @@
                     android:layout_marginTop="15dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginBottom="15dp"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:visibility="gone">
 
                     <com.yellowsoft.newproject.CustomTextView
                         android:id="@+id/customTextView89"
@@ -152,7 +154,7 @@
                         android:orientation="horizontal">
 
                         <com.yellowsoft.newproject.CustomTextView
-                            android:id="@+id/tilte_shop"
+                            android:id="@+id/tilte_shop_frag"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Instagram Shop"

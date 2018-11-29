@@ -13,12 +13,12 @@ import java.util.ArrayList;
 public class Shop_Data implements Serializable {
 
     public ArrayList<RequestImages> product_images;
-    String title,subtitle,price,id,image,old_price,quantity,about,about_ar,category,brand,images,description,description_ar;
+
+    String title,subtitle,price,id,old_price,quantity,about,about_ar,category,brand,images,description,description_ar;
 
 
     // Context context;
-    public Shop_Data(String image, String title, String subtitle, String price) {
-        this.image = image;
+    public Shop_Data( String title, String subtitle, String price) {
         this.title = title;
         this.subtitle = subtitle;
         this.price = price;
@@ -41,6 +41,8 @@ public class Shop_Data implements Serializable {
             this.description = jsonObject.getString("description");
             this.description_ar = jsonObject.getString("description_ar");
 
+
+            product_images = new ArrayList<>();
 
             if (jsonObject.getJSONArray("images").length()>0){
 

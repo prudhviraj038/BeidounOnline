@@ -492,7 +492,7 @@ public class HomeActivity extends AppCompatActivity {
 	}
 
 
-	public void insta_shop(String id){
+	public void insta_shop(String id,String title){
 
 		mViewPager.setCurrentItem(1);
 

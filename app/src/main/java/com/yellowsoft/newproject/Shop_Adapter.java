@@ -21,6 +21,7 @@ public class Shop_Adapter extends RecyclerView.Adapter<Shop_Adapter.MyViewHolder
 	Context context;
 	ArrayList<Shop_Data> data;
 
+
 	public Shop_Adapter(Context context, ArrayList<Shop_Data> data){
 		this.context=context;
 		this.data=data;
@@ -36,7 +37,11 @@ public class Shop_Adapter extends RecyclerView.Adapter<Shop_Adapter.MyViewHolder
 	public void onBindViewHolder(MyViewHolder holder,final int position){
 
 		holder.imageView.setImageResource(R.drawable.sales);
-		Picasso.get().load(data.get(position).image).into(holder.imageView);
+
+		if (data.get(position).product_images.size()>0) {
+			Picasso.get().load(data.get(position).product_images.get(0).image_url).placeholder(R.drawable.place_holder).into(holder.imageView);
+		}
+		//Picasso.get().load(data.get(position).images).into(holder.imageView);
 
 
 		holder.price_tv.setText(data.get(position).price);
