@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
@@ -16,17 +15,17 @@ import java.util.ArrayList;
  * Created by sriven on 6/1/2018.
  */
 
-public class Categories_Adapter extends RecyclerView.Adapter<Categories_Adapter.MyViewHolder> {
+public class Brands_Adapter extends RecyclerView.Adapter<Brands_Adapter.MyViewHolder> {
 	Context context;
 	ArrayList<Brands_Data> data;
 
-	public Categories_Adapter(Context context, ArrayList<Brands_Data> data){
+	public Brands_Adapter(Context context, ArrayList<Brands_Data> data){
 		this.context=context;
 		this.data=data;
 	}
 	@Override
 	public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewtype){
-		View v= LayoutInflater.from(parent.getContext()).inflate(R.layout.categories_item,parent,false);
+		View v= LayoutInflater.from(parent.getContext()).inflate(R.layout.brands_item,parent,false);
 		MyViewHolder myViewHolder=new MyViewHolder(v);
 
 		return myViewHolder;
@@ -37,13 +36,19 @@ public class Categories_Adapter extends RecyclerView.Adapter<Categories_Adapter.
 		//holder.imageView.setImageResource(R.drawable.sales);
 		Picasso.get().load(data.get(position).images).into(holder.imageView);
 
+
 		holder.imageView.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				((HomeActivity)context).insta_shop(data.get(position).id);
+
+
+                ((HomeActivity)context).insta_shop(data.get(position).id);
+
+
+
+
 			}
 		});
-
 
 
 	}
@@ -60,7 +65,7 @@ public class Categories_Adapter extends RecyclerView.Adapter<Categories_Adapter.
 		public MyViewHolder(View itemView){
 			super(itemView);
 
-			imageView = (ImageView) itemView.findViewById(R.id.categories_img_item);
+			imageView = (ImageView) itemView.findViewById(R.id.brands_img);
 
 
 

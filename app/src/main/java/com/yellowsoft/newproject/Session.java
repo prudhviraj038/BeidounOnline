@@ -13,7 +13,7 @@ import android.widget.Toast;
 public class Session {
 
     static String SESSION_ID="session_id";
-    public static final String BASE_URL = "http://app.mycop.in/";
+    public static final String BASE_URL = "https://beidounonline.com/";
     static String DEVICE_ID="device_id";
     static String USER_ID="user_id";
     static String USER_mobile="user_mobile";

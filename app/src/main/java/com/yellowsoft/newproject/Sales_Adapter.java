@@ -40,8 +40,11 @@ public class Sales_Adapter extends RecyclerView.Adapter<Sales_Adapter.MyViewHold
 		holder.imageView.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent(context,ProductActivity.class);
-				context.startActivity(intent);
+
+
+                ((HomeActivity)context).getproductDetails();
+
+
 			}
 		});
 

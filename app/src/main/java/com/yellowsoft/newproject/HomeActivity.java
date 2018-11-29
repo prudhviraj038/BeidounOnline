@@ -60,14 +60,17 @@ public class HomeActivity extends AppCompatActivity {
 	TabsAdapter tabsAdapter;
 	CustomViewPager mViewPager;
 
-	ImageView home_img,track_img,shop_img,scheme_img;
+	ImageView home_img,track_img,shop_img,scheme_img,btn_back;
 	ImageView account_img,fbbtn,gmbtn,twbtn,btn_cart;
 	ImageView youtube_btn;
 
 	@Override
 	public void onBackPressed() {
 		super.onBackPressed();
-		finish();
+		if (mViewPager.getCurrentItem()!=0){
+			mViewPager.setCurrentItem(0);
+		}
+		//finish();
 
 	}
 
@@ -225,7 +228,7 @@ public class HomeActivity extends AppCompatActivity {
 			public void onClick(View v) {
 				resetAllColors();
 				changebg(brands_tv,track_img);
-				mViewPager.setCurrentItem(0);
+				mViewPager.setCurrentItem(2);
 
 
 				//lorders_ll_toolbar.setVisibility(View.INVISIBLE);
@@ -239,7 +242,7 @@ public class HomeActivity extends AppCompatActivity {
 			public void onClick(View v) {
 				resetAllColors();
 				changebg(bag_tv,shop_img);
-				mViewPager.setCurrentItem(0);
+				mViewPager.setCurrentItem(3);
 
 
 				//orders_ll_toolbar.setVisibility(View.VISIBLE);
@@ -256,7 +259,7 @@ public class HomeActivity extends AppCompatActivity {
 
 
 					//((HomeActivity)getActivity()).schemeSelected();
-					mViewPager.setCurrentItem(3);
+					mViewPager.setCurrentItem(4);
 
 
 
@@ -280,7 +283,7 @@ public class HomeActivity extends AppCompatActivity {
 
 					resetAllColors();
 					changebg(account_tv, account_img);
-					mViewPager.setCurrentItem(4);
+					mViewPager.setCurrentItem(5);
 
 
 
@@ -361,7 +364,7 @@ public class HomeActivity extends AppCompatActivity {
 			orders_ll_toolbar.setVisibility(View.VISIBLE);
 		}
 
-
+		//btn_back.setVisibility(View.GONE);
 	}
 	private void setupActionBar() {
 		//set action bar
@@ -385,6 +388,19 @@ public class HomeActivity extends AppCompatActivity {
 		});
 		//cart button on click
 		btn_cart = (ImageView)v.findViewById(R.id.btn_cart);
+
+		btn_back = (ImageView)v.findViewById(R.id.btn_back_title);
+		btn_back.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				if (mViewPager.getCurrentItem()!=0){
+					mViewPager.setCurrentItem(0);
+					btn_back.setVisibility(View.GONE);
+					menu_btn.setVisibility(View.VISIBLE);
+				}
+			}
+		});
+		//btn_back.setVisibility(View.GONE);
 		/*btn_cart.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -434,16 +450,16 @@ public class HomeActivity extends AppCompatActivity {
 	private void setupHeader(){
 
 	}
-	public void showLoginLayout(){
+	/*public void showLoginLayout(){
 		ll_login_.setVisibility(View.VISIBLE);
 		logout.setVisibility(View.GONE);
 		ll_details_.setVisibility(View.GONE);
-	}
-	public void hideLoginLayout(){
+	}*/
+	/*public void hideLoginLayout(){
 		ll_login_.setVisibility(View.GONE);
 		logout.setVisibility(View.VISIBLE);
 		ll_details_.setVisibility(View.VISIBLE);
-	}
+	}*/
 	public  void changebg(TextView l,ImageView i){
 		//l.setBackgroundResource(R.drawable.rounded_corners_white);
 		l.setTextColor(getResources().getColor(R.color.buttonColor));
@@ -476,17 +492,28 @@ public class HomeActivity extends AppCompatActivity {
 	}
 
 
-	public void vehicleTrackingSelected(){
+	public void insta_shop(String id){
+
 		mViewPager.setCurrentItem(1);
 
-		orders_ll_toolbar.setVisibility(View.INVISIBLE);
-	}
-	public void buyGPStracker(){
-		resetAllColors();
-		//changebg(shop_btn,shop_img);
-		mViewPager.setCurrentItem(2);
+		tabsAdapter.shopFragment.setParamentersBrands(id);
+		tabsAdapter.shopFragment.setParamentersCategories(id);
 
-		orders_ll_toolbar.setVisibility(View.VISIBLE);
+		menu_btn.setVisibility(View.GONE);
+		btn_back.setVisibility(View.VISIBLE);
+
+	}
+
+
+	public void getproductDetails(){
+
+		//Toast.makeText(HomeActivity.this,"safsfs",Toast.LENGTH_LONG).show();
+		mViewPager.setCurrentItem(6);
+
+
+		menu_btn.setVisibility(View.GONE);
+		btn_back.setVisibility(View.VISIBLE);
+
 	}
 
 	public void schemeSelected(){
@@ -526,13 +553,13 @@ int resume_count = 0;
 			//home.performClick();
 
 			if(Session.getUserid(HomeActivity.this).equals("0")) {
-				showLoginLayout();
+			//	showLoginLayout();
 				Log.e("memberid","0");
 
 			}
 			else {
 
-				hideLoginLayout();
+				//hideLoginLayout();
 
 			}
 			if (mViewPager.getCurrentItem()==2){

@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -28,6 +29,8 @@ public class MyAccountFragment extends Fragment {
 
 	String playstorelink;
 	LinearLayout referralcode_ll;
+
+	EditText et_usrname,et_password;
 
 	ImageView share_img;
 
@@ -143,29 +146,6 @@ public class MyAccountFragment extends Fragment {
 	}
 
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-		Log.e("buygpsclicke","frag");
-
-        if(requestCode==888){
-            if(resultCode==RESULT_OK){
-				((HomeActivity) getActivity()).buyGPStracker();
-                //shop_btn.performClick();
-                Log.e("buygpsclick","frag");
-
-                try {
-
-					((HomeActivity) getActivity()).shop_btn.performClick();
-				}catch (Exception ex){
-                	ex.printStackTrace();
-				}
-
-            }
-
-        }
-
-    }
+    
 
 }

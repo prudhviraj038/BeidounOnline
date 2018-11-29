@@ -12,6 +12,7 @@ import org.json.JSONObject;
 public class Home_data {
 
     int image;
+    String images;
 
 
     // Context context;
@@ -19,6 +20,14 @@ public class Home_data {
         this.image = image;
 
 
+    }
+
+    public Home_data(JSONObject jsonObject){
+        try {
+            this.images = jsonObject.getString("image");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
 

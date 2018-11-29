@@ -1,6 +1,5 @@
 package com.yellowsoft.newproject;
 
-import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,8 +9,6 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.text.Html;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -52,7 +49,7 @@ public class ProductActivity extends AppCompatActivity {
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_product);
+		setContentView(R.layout.product_fragment);
 
 
 
@@ -151,7 +148,7 @@ public class ProductActivity extends AppCompatActivity {
 			}
 		});*/
 
-	/*	final Intent intent = new Intent(ProductActivity.this,CartActivity.class);
+	/*	final Intent intent = new Intent(ProductActivity.this,df.class);
 
 		//add to cart button
 		cart_btn = (LinearLayout)findViewById(R.id.addtocart_ll_btn);

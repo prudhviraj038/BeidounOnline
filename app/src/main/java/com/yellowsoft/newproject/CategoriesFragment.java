@@ -1,24 +1,16 @@
 package com.yellowsoft.newproject;
 
-
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
-import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -33,16 +25,54 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ProductsFragment extends Fragment {
+public class CategoriesFragment extends Fragment {
 
-	TextView title,originalprice_tv,description_tv;
-	RecyclerView products_recycler;
-	Products_Adapter products_adapter;
-	Integer i;
-	ArrayList<ProductsData> productsData = new ArrayList<ProductsData>();
+	RecyclerView categories_rv;
+	Categories_Adapter categories_adapter;
+	ArrayList<Brands_Data> brands_data = new ArrayList<>();
 
-	public static ProductsFragment newInstance(int someInt) {
-		ProductsFragment myFragment = new ProductsFragment();
+
+	@Override
+	public void onStart() {
+		super.onStart();
+		String memberid = Session.getUserid(getActivity());
+		String membercode = Session.getMemberCode(getActivity());
+
+
+
+	}
+
+	@Nullable
+	@Override
+	public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+		View view = inflater.inflate(R.layout.fragment_categories, container, false);
+		Log.e("categories","categories");
+		callCategories();
+
+		categories_rv = (RecyclerView)view.findViewById(R.id.categories_rv);
+
+		LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+		linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+		categories_rv.setLayoutManager(linearLayoutManager);
+/*
+		home_data.add(new Home_data(R.drawable.categories));
+		home_data.add(new Home_data(R.drawable.c2));
+		home_data.add(new Home_data(R.drawable.c3));
+		home_data.add(new Home_data(R.drawable.c2));
+		home_data.add(new Home_data(R.drawable.c3));
+		home_data.add(new Home_data(R.drawable.c2));
+		home_data.add(new Home_data(R.drawable.c3));*/
+
+
+		categories_adapter = new Categories_Adapter(getContext(),brands_data);
+		categories_rv.setAdapter(categories_adapter);
+
+
+
+		return view;
+	}
+	public static CategoriesFragment newInstance(int someInt) {
+		CategoriesFragment myFragment = new CategoriesFragment();
 
 		Bundle args = new Bundle();
 		args.putInt("someInt", someInt);
@@ -50,35 +80,19 @@ public class ProductsFragment extends Fragment {
 
 		return myFragment;
 	}
-	@Nullable
-	@Override
-	public View onCreateView(final LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-		View view = inflater.inflate(R.layout.fragment_products, container, false);
-		CallProductdetails();
 
 
 
-		products_recycler = (RecyclerView)view.findViewById(R.id.products_recycler);
-		GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(),2);
-		products_recycler.setLayoutManager(gridLayoutManager);
-
-		products_adapter = new Products_Adapter(getActivity(),productsData);
-		products_recycler.setAdapter(products_adapter);
 
 
 
-		return view;
-	}
-
-
-	//product request
-	public void CallProductdetails(){
+	public void callCategories(){
 
 		final ProgressDialog progressDialog = new ProgressDialog(getActivity());
 		progressDialog.setMessage("Please Wait....");
 		progressDialog.show();
 		progressDialog.setCancelable(false);
-		String URL = Session.BASE_URL+"api/products.php";
+		String URL = Session.BASE_URL+"api/category.php";
 
 		StringRequest stringRequest = new StringRequest(Request.Method.POST, URL,new Response.Listener<String>() {
 			@Override
@@ -93,20 +107,21 @@ public class ProductsFragment extends Fragment {
 					Log.e("jsonArray",""+jsonArray.toString());
 					for (int i = 0;i<jsonArray.length();i++){
 						JSONObject jsonObject = jsonArray.getJSONObject(i);
-						Log.e("jsonobject",""+jsonObject);
+						Log.e("jsonobject",""+jsonObject.getString("image"));
 						Log.e("jsonobjectLength",""+jsonObject.length());
-						ProductsData products_Data = new ProductsData(jsonObject);
-						productsData.add(products_Data);
+						Brands_Data temp = new Brands_Data(jsonObject);
+						brands_data.add(temp);
+						//productsData.add(products_Data);
 					}
-					products_adapter.notifyDataSetChanged();
+					categories_adapter.notifyDataSetChanged();
 					//Log.e("jsonobject",""+jsonArray.getJSONObject())
 
 					//JSONObject jsonObject = new JSONObject(jsonArray.getJSONObject(0));
 
 
-				//	Log.e("imagessssss",""+jsonArray1.getJSONObject(0).getString("image"));
+					//	Log.e("imagessssss",""+jsonArray1.getJSONObject(0).getString("image"));
 
-					/*if (jsonArray1.length()>1){
+				/*	if (jsonArray1.length()>1){
 						Log.e("length","length");
 						for (int j=0;j<=jsonArray1.length();j++){
 							//slidingImage_data.add(new SlidingImage_Data(jsonArray.getJSONObject(j).getString("image")));
@@ -123,7 +138,7 @@ public class ProductsFragment extends Fragment {
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}
-			//	slidingPageAdapter.notifyDataSetChanged();
+				//	slidingPageAdapter.notifyDataSetChanged();
 			}
 		},
 				new Response.ErrorListener() {
@@ -139,11 +154,13 @@ public class ProductsFragment extends Fragment {
 			protected Map<String,String> getParams(){
 				Map<String,String> parameters = new HashMap<String, String>();
 				//parameters.put("email",u_name.getText().toString());
-			//	parameters.put("password",password.getText().toString());
+				//	parameters.put("password",password.getText().toString());
 				return parameters;
 			}
 		};
 		ApplicationController.getInstance().addToRequestQueue(stringRequest);
 //		slidingPageAdapter.notifyDataSetChanged();
 	}
+
+
 }

@@ -98,7 +98,9 @@
                                 android:id="@+id/customTextView88"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="SAVE" />
+                                android:text="SAVE"
+                                android:textColor="@color/buttonColor"
+                                android:textSize="11sp" />
 
                             <com.yellowsoft.newproject.CustomTextView
                                 android:id="@+id/save_tv"
@@ -106,15 +108,16 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="5dp"
                                 android:layout_marginRight="5dp"
-                                android:text="40%" />
+                                android:text="40%"
+                                android:textColor="@color/buttonColor"
+                                android:textSize="11sp" />
                         </LinearLayout>
 
                         <com.yellowsoft.newproject.CustomTextView
                             android:id="@+id/title_tv_product"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="15dp"
-                            android:layout_marginBottom="5dp"
+                            android:layout_marginTop="10dp"
                             android:text="Title"
                             android:textColor="@android:color/black"
                             android:textSize="20sp"
@@ -124,9 +127,9 @@
                             android:id="@+id/subtitle_product_tv"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
+                            android:layout_marginTop="5dp"
                             android:layout_marginBottom="10dp"
-                            android:text="com.yellowsoft.newproject.CustomTextView" />
+                            android:text="subtitle" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -212,13 +215,15 @@
                                     android:id="@+id/discount_product_tv"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="40" />
+                                    android:text="40"
+                                    android:textSize="12sp" />
 
                                 <com.yellowsoft.newproject.CustomTextView
                                     android:id="@+id/customTextView90"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="% OFF" />
+                                    android:text="% OFF"
+                                    android:textSize="12sp" />
                             </LinearLayout>
 
                         </LinearLayout>
@@ -226,7 +231,6 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
                             android:layout_marginBottom="5dp"
                             android:orientation="horizontal">
 
@@ -266,8 +270,8 @@
                             <ImageView
                                 android:id="@+id/imageView25"
                                 android:layout_width="15dp"
-                                android:layout_height="15dp"
-                                app:srcCompat="@drawable/bag_icon" />
+                                android:layout_height="10dp"
+                                android:src="@drawable/pricematch" />
 
                             <com.yellowsoft.newproject.CustomTextView
                                 android:id="@+id/pricematch_tv"
@@ -276,13 +280,13 @@
                                 android:layout_marginLeft="5dp"
                                 android:layout_marginRight="5dp"
                                 android:text="@string/price_match"
-                                android:textSize="12sp" />
+                                android:textSize="11sp" />
                         </LinearLayout>
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
+                            android:layout_marginTop="10dp"
                             android:layout_marginBottom="5dp"
                             android:orientation="horizontal">
 
@@ -320,12 +324,13 @@
                                 android:layout_height="wrap_content"
                                 android:layout_margin="5dp"
                                 android:layout_weight="1"
-                                android:text="Select Size" />
+                                android:text="Select Size"
+                                android:textSize="12sp" />
 
                             <ImageView
                                 android:id="@+id/imageView26"
-                                android:layout_width="25dp"
-                                android:layout_height="20dp"
+                                android:layout_width="15dp"
+                                android:layout_height="15dp"
                                 android:layout_margin="5dp"
                                 android:src="@drawable/downarrow" />
                         </LinearLayout>

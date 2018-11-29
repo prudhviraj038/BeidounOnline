@@ -1,18 +1,23 @@
 package com.yellowsoft.newproject;
 
+
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.InputFilter;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -32,210 +37,126 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 
-public class CartActivity extends AppCompatActivity {
+public class CartFragment extends Fragment {
 
 	TextView quantity,page_title,total_tv,price_cart_tv,subtotal_tv,discount_tv;
-	TextView productTitle,productPrice,totalProductPrice;
 	TextView discount_tv_payment,shippingcharge_tv,referalmoney_payment;
 
 	LinearLayout prdcheckout_btn,apply_ll_btn;
 	LinearLayout menu_btn,back_btn,coupencode_ll;
-	LinearLayout usescheme_money_ll;
+
+	Cart_Adapter cart_adapter;
+	ArrayList<Cart_Data> cart_data = new ArrayList<>();
 
 
 	Integer cartquantity;
 	ProductsData product;
-	ImageView back,product_image;
+	ImageView back;
 
 	EditText coupon_code;
 	int subtotal;
-	int totalss,addShippingCharges;
-	int totals;
 	int discount_int = 0;
-	int  shippingcharges_int;
-
-	CheckBox checkBox;
-
 	String coupon_code_str = "";
-	boolean schemeAmtUsed;
 
-	String scheme_amt="0";
+	RecyclerView cart_rv;
 
-	@Override
-	public void onBackPressed() {
-		super.onBackPressed();
-		finish();
+	public static CartFragment newInstance(int someInt) {
+		CartFragment myFragment = new CartFragment();
 
+		Bundle args = new Bundle();
+		args.putInt("someInt", someInt);
+		myFragment.setArguments(args);
+
+		return myFragment;
 	}
 
 	@Override
-	protected void onStart() {
-		super.onStart();
-
-	}
-
-	@Override
-	protected void onCreate(@Nullable Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_cart);
-
-		callReferalMoney();
-
-		checkBox = (CheckBox) findViewById(R.id.checkBox);
-
-		coupencode_ll = (LinearLayout) findViewById(R.id.coupencode_ll);
-		usescheme_money_ll = (LinearLayout) findViewById(R.id.usescheme_money_ll);
-
-		productPrice = (TextView) findViewById(R.id.product_price_tv_item);
-		totalProductPrice = (TextView) findViewById(R.id.totalprice_tv_item);
-		productTitle = (TextView) findViewById(R.id.producttitle_tv_item);
-		quantity = (TextView) findViewById(R.id.quantity_tv_cart_item);
-		total_tv = (TextView) findViewById(R.id.total_tv);
-
-		product_image = (ImageView)findViewById(R.id.product_img_item);
+	public View onCreateView(final LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+		View view = inflater.inflate(R.layout.fragment_cart, container, false);
 
 
-		subtotal_tv = (TextView)findViewById(R.id.subtotal_tv);
-		discount_tv = (TextView)findViewById(R.id.discount_tv);
-		shippingcharge_tv = (TextView)findViewById(R.id.shippingcharge_tv);
 
-		discount_tv_payment = (TextView)findViewById(R.id.discount_tv_payment);
-		referalmoney_payment = (TextView)findViewById(R.id.referalmoney_payment);
+		/*coupencode_ll = (LinearLayout)view. findViewById(R.id.coupencode_ll);
+		total_tv = (TextView)view. findViewById(R.id.total_tv);
+		subtotal_tv = (TextView)view.findViewById(R.id.subtotal_tv);
+		discount_tv = (TextView)view.findViewById(R.id.discount_tv);*/
+		//quantity.setText(cartquantity.toString());
 
-		product = (ProductsData)getIntent().getSerializableExtra("product");
 
-		cartquantity = Integer.parseInt(getIntent().getStringExtra("quantity"));
 
-		quantity.setText(cartquantity.toString());
+		cart_rv = (RecyclerView)view.findViewById(R.id.cart_rv);
 
-		if (product.images.size()>1){
+		LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+		linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 
-			Picasso.get().load(product.images.get(0).image_url).into(product_image);
+		cart_rv.setLayoutManager(linearLayoutManager);
 
-			}
 
-		productPrice.setText(product.originalprice);
 
-		productTitle.setText(product.product_title);
-
-		//
-		Log.e("producttitle",product.product_title);
+		cart_data.add(new Cart_Data("456","https:\\/\\/beidounonline.com\\/uploads\\/collections\\/51517215687.jpg","Gold Watch","This is a gold watch","ddd"));
+		cart_data.add(new Cart_Data("456","https:\\/\\/beidounonline.com\\/uploads\\/collections\\/51517215687.jpg","Gold Watch","This is a gold watch","ddd"));
+		cart_data.add(new Cart_Data("456","https:\\/\\/beidounonline.com\\/uploads\\/collections\\/51517215687.jpg","Gold Watch","This is a gold watch","ddd"));
+		cart_data.add(new Cart_Data("456","https:\\/\\/beidounonline.com\\/uploads\\/collections\\/51517215687.jpg","Gold Watch","This is a gold watch","ddd"));
+		cart_data.add(new Cart_Data("456","https:\\/\\/beidounonline.com\\/uploads\\/collections\\/51517215687.jpg","Gold Watch","This is a gold watch","ddd"));
 
 
 
 
-		coupon_code = (EditText)findViewById(R.id.ed_couponcode);
+		cart_adapter = new Cart_Adapter(getActivity(),cart_data);
+
+		cart_rv.setAdapter(cart_adapter);
+
+
+
+/*
+
+		coupon_code = (EditText)view.findViewById(R.id.ed_couponcode);
 		coupon_code.setFilters(new InputFilter[] {new InputFilter.AllCaps()});
 		coupon_code.setOnEditorActionListener(new TextView.OnEditorActionListener() {
 			@Override
 			public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
 				if (actionId == EditorInfo.IME_ACTION_DONE){
-					CallCoupenService(coupon_code.getText().toString(),total_tv.getText().toString());
+					//CallCoupenService(coupon_code.getText().toString(),total_tv.getText().toString());
 
 				}
 				return false;
 			}
 		});
 
+*/
 
-		apply_ll_btn = (LinearLayout)findViewById(R.id.apply_ll_btn);
+		/*apply_ll_btn = (LinearLayout)view.findViewById(R.id.apply_ll_btn);
 		apply_ll_btn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				CallCoupenService(coupon_code.getText().toString(),total_tv.getText().toString());
+				//CallCoupenService(coupon_code.getText().toString(),total_tv.getText().toString());
 			}
 		});
 
 
-		//item total
-		final Integer itemTotal;
-
-		itemTotal = cartquantity*Integer.parseInt(product.originalprice);
-		totalProductPrice.setText(""+itemTotal);
-		subtotal_tv.setText(itemTotal.toString());
-
-		subtotal = itemTotal;
-
-		discount_tv.setText("0");
-
-		//checkbox
-		checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-			@Override
-			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-				if (isChecked){
 
 
+		discount_tv.setText("0");*/
 
-					schemeAmtUsed=true;
-					coupencode_ll.setVisibility(View.GONE);
-
-					//callReferalMoney();
-					discount_tv.setText(""+scheme_amt);
-					totals=addShippingCharges-Integer.parseInt(scheme_amt);
-
-					coupon_code_str="";
-					coupon_code.setText("");
-
-					discount_int=0;
-
-					total_tv.setText(""+totals);
-
-				}
-				else {
-					schemeAmtUsed=false;
-
-					coupencode_ll.setVisibility(View.VISIBLE);
-					discount_tv.setText("0");
-
-					total_tv.setText(""+addShippingCharges);
-					//schemeAmtUsed  = false;\
-					discount_int =0;
-
-				}
-			}
-		});
 
 
         //    getting shipping charges
 
 
-		final String shippingcharges;
-		try {
-
-			shippingcharges = ApplicationController.getInstance().settings.getString("shipping_charges");
-
-			Log.e("shippingcharges",""+shippingcharges);
-			shippingcharge_tv.setText(""+shippingcharges);
-
-			shippingcharges_int = Integer.parseInt(shippingcharges);
-			addShippingCharges = subtotal+Integer.parseInt(shippingcharges);
-			totals = addShippingCharges;
-			total_tv.setText(""+addShippingCharges);
 
 
-
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
-
-
-
-		Toolbar toolbar = (Toolbar)findViewById(R.id.cart_toolBar);
-		setSupportActionBar(toolbar);
-		setupActionBar();
-		setupHeader();
-
-		prdcheckout_btn = (LinearLayout)findViewById(R.id.proceedtocheckout_ll_btn);
-		prdcheckout_btn.setOnClickListener(new View.OnClickListener() {
+		//prdcheckout_btn = (LinearLayout)view.findViewById(R.id.proceedtocheckout_ll_btn);
+	/*	prdcheckout_btn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				int total_to_send;
 				total_to_send = subtotal+shippingcharges_int;
-				Intent intent1  = new Intent(CartActivity.this,CheckoutActivity.class);
+				Intent intent1  = new Intent(Pay.this,CheckoutActivity.class);
 				intent1.putExtra("product",product);
 
 				intent1.putExtra("price",subtotal);
@@ -269,55 +190,89 @@ public class CartActivity extends AppCompatActivity {
 				startActivity(intent1);
 			}
 		});
+*/
 
 
-
-
+return  view;
 
 	}
-	private void setupActionBar() {
-//set action bar
-		getSupportActionBar().setHomeButtonEnabled(false);
-		getSupportActionBar().setDisplayShowTitleEnabled(false);
-		getSupportActionBar().setDisplayShowCustomEnabled(true);
-		getSupportActionBar().setIcon(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
-		ActionBar.LayoutParams layoutParams = new ActionBar.LayoutParams(ActionBar.LayoutParams.MATCH_PARENT,
-				ActionBar.LayoutParams.MATCH_PARENT);
-		LayoutInflater inflater = getLayoutInflater();
-		View v = inflater.inflate(R.layout.action_bar_login,null);
 
-		page_title = (TextView) v.findViewById(R.id.page_title);
-		back_btn = (LinearLayout)v.findViewById(R.id.btn_back_container);
+public void CallCoupenService(final String coupen, final String total){
 
-		back = (ImageView)v.findViewById(R.id.btn_back);
-		back.setOnClickListener(new View.OnClickListener() {
+		final ProgressDialog progressDialog = new ProgressDialog(getActivity());
+		progressDialog.setMessage("Please Wait....");
+		progressDialog.show();
+		progressDialog.setCancelable(false);
+		String URL = Session.BASE_URL+"api/coupon-check.php";
+
+		StringRequest stringRequest = new StringRequest(Request.Method.POST, URL,new Response.Listener<String>() {
 			@Override
-			public void onClick(View v) {
+			public void onResponse(String response) {
+				Log.e("resCartActivity",response);
+				if(progressDialog!=null) {
+					progressDialog.dismiss();
+				}
+				try {
+					JSONObject jsonObject=new JSONObject(response);
+					String reply=jsonObject.getString("status");
+					Log.e("status",""+reply);
+					if(reply.equals("Success")) {
+
+						Snackbar.make(discount_tv,"Coupon code applied successfully",Snackbar.LENGTH_SHORT).show();
+						String discount = jsonObject.getString("discount_value");
+						Log.e("discount",""+discount);
+
+						discount_tv.setText(""+discount);
+
+						//Log.e("totalss",""+totalss);
+
+						discount_int = Integer.parseInt(discount);
+						//totals = addShippingCharges-Integer.parseInt(discount);
+
+						Log.e("subtotal",""+subtotal);
+
+						//total_tv.setText(""+totals);
+
+						//Log.e("total",""+totals);
+
+						//Session.setTotalPrice(pay.this,""+totals);
 
 
-				finish();
+						coupon_code_str = coupon_code.getText().toString();
+						Log.e("coupen_code",coupon_code_str);
+
+					}
+					else {
+						Snackbar.make(discount_tv,"Invalid Coupon Code",Snackbar.LENGTH_SHORT).show();
+					}
+
+
+					} catch (JSONException e) {
+					e.printStackTrace();
+				}
 			}
-		});
-
-		menu_btn = (LinearLayout) v.findViewById(R.id.btn_menu_container);
-
-		getSupportActionBar().setCustomView(v, layoutParams);
-		Toolbar parent = (Toolbar) v.getParent();
-
-		parent.setContentInsetsAbsolute(0, 0);
-
-
+		},
+				new Response.ErrorListener() {
+					@Override
+					public void onErrorResponse(VolleyError error) {
+						if(progressDialog!=null)
+							progressDialog.dismiss();
+						//Toast.makeText(hs.this,"Internet error",Toast.LENGTH_SHORT).show();
+						//Snackbar.make(gmail_btn, error.toString(), Snackbar.LENGTH_SHORT).show();
+					}
+				}){
+			@Override
+			protected Map<String,String> getParams(){
+				Map<String,String> parameters = new HashMap<String, String>();
+				parameters.put("coupon",coupen);
+				parameters.put("cart_total",total);
+				return parameters;
+			}
+		};
+		ApplicationController.getInstance().addToRequestQueue(stringRequest);
 	}
-	private void setupHeader(){
-		page_title.setText("CART");
-		//btn_edit.setVisibility(View.VISIBLE);
-		//btn_edit.setText("Search");
-		//page_title.setText("Home");
-	}
-
-
 	//
-	public void CallCoupenService(final String coupen, final String total){
+	/*public void CallCoupenService(final String coupen, final String total){
 
 		final ProgressDialog progressDialog = new ProgressDialog(this);
 		progressDialog.setMessage("Please Wait....");
@@ -355,7 +310,7 @@ public class CartActivity extends AppCompatActivity {
 
 						Log.e("total",""+totals);
 
-						Session.setTotalPrice(CartActivity.this,""+totals);
+						Session.setTotalPrice(pay.this,""+totals);
 
 
 						coupon_code_str = coupon_code.getText().toString();
@@ -377,7 +332,7 @@ public class CartActivity extends AppCompatActivity {
 					public void onErrorResponse(VolleyError error) {
 						if(progressDialog!=null)
 							progressDialog.dismiss();
-						Toast.makeText(CartActivity.this,"Internet error",Toast.LENGTH_SHORT).show();
+						Toast.makeText(hs.this,"Internet error",Toast.LENGTH_SHORT).show();
 						//Snackbar.make(gmail_btn, error.toString(), Snackbar.LENGTH_SHORT).show();
 					}
 				}){
@@ -428,14 +383,14 @@ public class CartActivity extends AppCompatActivity {
 						scheme_amt = String.valueOf(reply);
 
 
-						/*if (schemeAmtUsed==true){
+						*//*if (schemeAmtUsed==true){
 
 
-						}*/
-					/*	else {
+						}*//*
+					*//*	else {
 							discount_tv.setText("0");
 							discount_int = 0;
-						}*/
+						}*//*
 
 						//subtotal_tv.setText(reply);
 					}
@@ -456,15 +411,15 @@ public class CartActivity extends AppCompatActivity {
 					public void onErrorResponse(VolleyError error) {
 						if(progressDialog!=null)
 							progressDialog.dismiss();
-						Toast.makeText(CartActivity.this,"Internet error",Toast.LENGTH_SHORT).show();
+						Toast.makeText(sd.this,"Internet error",Toast.LENGTH_SHORT).show();
 						// /Snackbar.make(gmail_btn, error.toString(), Snackbar.LENGTH_SHORT).show();
 					}
 				}){
 			@Override
 			protected Map<String,String> getParams(){
 				Map<String,String> parameters = new HashMap<String, String>();
-				parameters.put("member_id",Session.getUserid(CartActivity.this));
-				Log.e("memberid",Session.getUserid(CartActivity.this));
+				parameters.put("member_id",Session.getUserid(sdf.this));
+				Log.e("memberid",Session.getUserid(CartsdfActivity.this));
 
 
 
@@ -472,5 +427,5 @@ public class CartActivity extends AppCompatActivity {
 			}
 		};
 		ApplicationController.getInstance().addToRequestQueue(stringRequest);
-	}
+	}*/
 }

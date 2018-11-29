@@ -11,6 +11,15 @@
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/btn_back_title"
+        android:layout_width="30dp"
+        android:layout_height="20dp"
+        android:layout_centerVertical="true"
+        android:src="@drawable/leftarrow"
+        android:visibility="gone" />
+
     <LinearLayout
         android:id="@+id/btn_menu_container"
         android:layout_width="wrap_content"
@@ -28,12 +37,6 @@
             android:src="@drawable/menu_icon"
             android:tint="@color/colorBlack" />
 
-        <ImageView
-            android:id="@+id/btn_back"
-            android:layout_width="40dp"
-            android:layout_height="28dp"
-            android:src="@drawable/leftarrow"
-            android:visibility="gone" />
     </LinearLayout>
 
     <LinearLayout

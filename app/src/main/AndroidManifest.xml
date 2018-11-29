@@ -51,7 +51,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".SignupActivity" android:windowSoftInputMode="stateHidden" android:screenOrientation="portrait"   />
-        <activity android:name=".CartActivity" android:windowSoftInputMode="stateHidden" android:screenOrientation="portrait"  />
+
         <activity android:name=".CheckoutActivity" android:windowSoftInputMode="stateHidden" android:screenOrientation="portrait"  />
         <activity android:name=".PaymentActivity" android:windowSoftInputMode="stateHidden"  android:screenOrientation="portrait" />
         <activity android:name=".ThankyouActivity" android:windowSoftInputMode="stateHidden" android:screenOrientation="portrait"  />

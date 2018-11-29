@@ -1,12 +1,17 @@
 package com.yellowsoft.newproject;
 
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,22 +21,35 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ShopFragment extends Fragment {
-	ViewPager viewPager;
-	TextView striketext, quantity, title, discount_price, originalprice_tv, description_tv;
-	TabLayout indicator_tab;
 
-	SlidingImageAdapter slidingPageAdapter;
-	Integer i;
+	TextView title, description_tv;
+	RecyclerView shop_rv;
 
-	ArrayList<SlidingImage_Data> slidingImage_data = new ArrayList<SlidingImage_Data>();
-	int showdes = 1;
-	RelativeLayout decrease_btn, increase_btn;
+	ArrayList<Shop_Data> shopData= new ArrayList<Shop_Data>();
+	Shop_Adapter shop_adapter;
 
-	LinearLayout itemdesc_btn, itemdesc_text, cart_btn;
-	ImageView up_img, down_img;
+	LinearLayout filter,filter_top;
+	LinearLayout  instagram_ll;
+	ImageView grid_img, vertical_img;
+
+	boolean grid=true;
+	boolean vertical;
+
+	String brandid,categoryid;
 
 	public static ShopFragment newInstance(int someInt) {
 		ShopFragment myFragment = new ShopFragment();
@@ -46,84 +64,83 @@ public class ShopFragment extends Fragment {
 	@Nullable
 	@Override
 	public View onCreateView(final LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-		View view = inflater.inflate(R.layout.activity_product, container, false);
+		View view = inflater.inflate(R.layout.fragment_shop, container, false);
 		Log.e("shopfragment", "shopfragment");
 		//
 		//CallProductdetails();
 
-		//title = (TextView) view.findViewById(R.id.mycop_title_tv);
-		striketext = (TextView) view.findViewById(R.id.strike_tv);
-		//striketext.setPaintFlags(striketext.getPaintFlags()| Paint.STRIKE_THRU_TEXT_FLAG);
-		//quantity = (TextView) view.findViewById(R.id.quantity_tv);
-		discount_price = (TextView) view.findViewById(R.id.discounted_price);
-		originalprice_tv = (TextView) view.findViewById(R.id.strikeprice_product_tv);
-		description_tv = (TextView) view.findViewById(R.id.description_tv);
-
-		viewPager = (ViewPager) view.findViewById(R.id.image_slider);
-
-		indicator_tab = (TabLayout) view.findViewById(R.id.indicator);
+		grid_img = (ImageView)view.findViewById(R.id.grid_img);
+		vertical_img = (ImageView)view.findViewById(R.id.vertical_img);
 
 
-		//increase_btn = (RelativeLayout) view.findViewById(R.id.rl_increase);
-		//decrease_btn = (RelativeLayout) view.findViewById(R.id.rl_decrease);
-		i = Integer.parseInt(quantity.getText().toString());
-		decrease_btn.setOnClickListener(new View.OnClickListener() {
+		instagram_ll = (LinearLayout)view.findViewById(R.id.instagram_ll);
+		filter = (LinearLayout)view.findViewById(R.id.filter_ll);
+		filter_top = (LinearLayout)view.findViewById(R.id.filter_ll_top);
+
+		grid_img.setColorFilter(getResources().getColor(R.color.colorlightGrey));
+		vertical_img.setColorFilter(getResources().getColor(R.color.colorlightGrey));
+
+
+
+
+
+		final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+		linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+
+		final GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),2);
+
+
+
+
+
+
+
+		grid_img.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				String _stringVal;
-				if (i > 1) {
-					i = i - 1;
-					_stringVal = String.valueOf(i);
-					quantity.setText(_stringVal);
-				} else {
-					Log.d("src", "Value can't be less than 0");
-				}
-			}
-		});
-		increase_btn.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				String _stringVal;
-
-				Log.d("src", "Increasing value...");
-				i = i + 1;
-				_stringVal = String.valueOf(i);
-				quantity.setText(_stringVal);
-			}
-		});
-		final Intent intent = new Intent(getContext(), CartActivity.class);
-
-		//cart_btn = (LinearLayout) view.findViewById(R.id.addtocart_ll_btn);
-		cart_btn.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				//
-				// Toast.makeText(getContext(),"go to cart",Toast.LENGTH_LONG).show();
-
-				String q, p;
-				q = quantity.getText().toString();
-				intent.putExtra("quantity", q);
-
-				intent.putExtra("discountedPrice", discount_price.toString());
-				startActivity(intent);
-				//getActivity().finish();
-
+				grid=true;
+				vertical=false;
+				grid_img.setColorFilter(getResources().getColor(R.color.colorBlack));
+				vertical_img.setColorFilter(getResources().getColor(R.color.colorlightGrey));
+				shop_rv.setLayoutManager(gridLayoutManager);
 			}
 		});
 
-		//itemdesc_btn = (LinearLayout) view.findViewById(R.id.itemdesc_ll_btn);
-		itemdesc_text = (LinearLayout) view.findViewById(R.id.itemdesc_ll);
+		vertical_img.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				vertical=true;
+				grid=false;
+				grid_img.setColorFilter(getResources().getColor(R.color.colorlightGrey));
+				vertical_img.setColorFilter(getResources().getColor(R.color.colorBlack));
+				shop_rv.setLayoutManager(linearLayoutManager);
+			}
+		});
+
+		shop_rv = (RecyclerView)view.findViewById(R.id.rv_shop);
+
+		shop_adapter = new Shop_Adapter(getContext(),shopData);
 
 
-	/*	slidingImage_data.add(new SlidingImage_Data(R.drawable.product1));
-		slidingImage_data.add(new SlidingImage_Data(R.drawable.product2));
-		slidingImage_data.add(new SlidingImage_Data(R.drawable.product3));*/
 
-		slidingPageAdapter = new SlidingImageAdapter(getActivity(), slidingImage_data);
 
-		viewPager.setAdapter(slidingPageAdapter);
 
-		indicator_tab.setupWithViewPager(viewPager, true);
+		shop_rv.setAdapter(shop_adapter);
+
+		shop_rv.setLayoutManager(gridLayoutManager);
+
+		if (grid==true){
+			shop_rv.setLayoutManager(gridLayoutManager);
+			grid_img.setColorFilter(getResources().getColor(R.color.colorBlack));
+			vertical_img.setColorFilter(getResources().getColor(R.color.colorlightGrey));
+		}
+		else {
+			shop_rv.setLayoutManager(linearLayoutManager);
+		}
+
+
+
+
 /*
 		final Handler handler = new Handler();
 
@@ -152,111 +169,94 @@ public class ShopFragment extends Fragment {
 		return view;
 	}
 
-	public void showDescription() {
-		itemdesc_text.setVisibility(View.VISIBLE);
-		up_img.setVisibility(View.GONE);
-		down_img.setVisibility(View.VISIBLE);
+	public void setParamentersBrands(String brandId){
+
+        if (brandId.equals("0")){
+            instagram_ll.setVisibility(View.GONE);
+        }
+
+
+		this.brandid = brandId ;
+		callProducts("brands",brandId);
+
 	}
 
-	public void closeDescription() {
-		itemdesc_text.setVisibility(View.GONE);
-		down_img.setVisibility(View.GONE);
-		up_img.setVisibility(View.VISIBLE);
+	public void setParamentersCategories(String categories){
+
+        if (categories.equals("0")){
+            instagram_ll.setVisibility(View.GONE);
+        }
+
+		this.categoryid = categories ;
+		callProducts("category",categories);
+
 	}
 
-	//product request
-//	public void CallProductdetails() {
-//
-//		final ProgressDialog progressDialog = new ProgressDialog(getActivity());
-//		progressDialog.setMessage("Please Wait....");
-//		progressDialog.show();
-//		progressDialog.setCancelable(false);
-//		String URL = Session.BASE_URL + "api/products.php";
-//
-//		StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
-//			@Override
-//			public void onResponse(String response) {
-//				Log.e("res", response);
-//				if (progressDialog != null && progressDialog.isShowing()) {
-//					progressDialog.dismiss();
-//				}
-//				try {
-//
-//					JSONArray jsonArray = new JSONArray(response);
-//					Log.e("jsonArray", "" + jsonArray.toString());
-//
-//					String producttitle = jsonArray.getJSONObject(0).getString("title");
-//					Log.e("pagetitletitle", "" + producttitle);
-//					title.setText(producttitle);
-//
-//
-//					String price = jsonArray.getJSONObject(0).getString("price");
-//					Log.e("price", "" + price);
-//					discount_price.setText(price);
-//					Session.setPrice(getContext(), price);
-//
-//
-//					String discount = jsonArray.getJSONObject(0).getString("discount");
-//					Log.e("discount", "" + discount);
-//					String givenprice = discount + price;
-//					int i = Integer.parseInt(discount) + Integer.parseInt(price);
-//					originalprice_tv.setText("" + i);
-//
-//					String quantitys = jsonArray.getJSONObject(0).getString("quantity");
-//					Log.e("quantity", "" + quantitys);
-//					quantity.setText(quantitys);
-//
-//
-//					String description = jsonArray.getJSONObject(0).getString("description");
-//					Log.e("description", "" + description);
-//					description_tv.setText(Html.fromHtml("<p>" + description + "</p>"));
-//
-//					String images = jsonArray.getJSONObject(0).getString("images");
-//					Log.e("images", "" + images);
-//
-//					JSONArray jsonArray1 = new JSONArray(images);
-//					Log.e("jsonarray1", "" + jsonArray1);
-//					Log.e("jsonarray1length", "" + jsonArray1.length());
-//					//	Log.e("imagessssss",""+jsonArray1.getJSONObject(0).getString("image"));
-//
-//					if (jsonArray1.length() > 1) {
-//						Log.e("length", "length");
-//						for (int j = 0; j <= jsonArray1.length(); j++) {
-//							//slidingImage_data.add(new SlidingImage_Data(jsonArray.getJSONObject(j).getString("image")));
-//							String s = jsonArray1.getString(j);
-//							Log.e("s", "" + s);
-//							slidingImage_data.add(new SlidingImage_Data(s));
-//							Log.e("imagessssss", "" + jsonArray1.getString(j));
-//
-//						}
-//
-//					}
-//
-//
-//				} catch (JSONException e) {
-//					e.printStackTrace();
-//				}
-//				slidingPageAdapter.notifyDataSetChanged();
-//			}
-//		},
-//				new Response.ErrorListener() {
-//					@Override
-//					public void onErrorResponse(VolleyError error) {
-//						Log.e("error", "" + error);
-//						if (progressDialog != null)
-//							progressDialog.dismiss();
-//						//Snackbar.make(gmail_btn, error.toString(), Snackbar.LENGTH_SHORT).show();
-//					}
-//				}) {
-//			@Override
-//			protected Map<String, String> getParams() {
-//				Map<String, String> parameters = new HashMap<String, String>();
-//				//parameters.put("email",u_name.getText().toString());
-//				//	parameters.put("password",password.getText().toString());
-//				return parameters;
-//			}
-//		};
-//		ApplicationController.getInstance().addToRequestQueue(stringRequest);
-////		slidingPageAdapter.notifyDataSetChanged();
-//	}
+
+	public void callProducts(final String type, final String id) {
+
+		final ProgressDialog progressDialog = new ProgressDialog(getActivity());
+		progressDialog.setMessage("Please Wait....");
+		progressDialog.show();
+		progressDialog.setCancelable(false);
+		String URL = Session.BASE_URL + "api/products.php";
+
+		StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
+			@Override
+			public void onResponse(String response) {
+				Log.e("res", response);
+				if (progressDialog != null && progressDialog.isShowing()) {
+					progressDialog.dismiss();
+				}
+				try {
+
+					JSONArray jsonArray = new JSONArray(response);
+					Log.e("jsonArray", "" + jsonArray.toString());
+
+
+
+					for (int i=0;i<=jsonArray.length();i++){
+						JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+						Shop_Data temp = new Shop_Data(jsonObject);
+						shopData.add(temp);
+					}
+
+
+
+
+
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+				//slidingPageAdapter.notifyDataSetChanged();
+			}
+		},
+				new Response.ErrorListener() {
+					@Override
+					public void onErrorResponse(VolleyError error) {
+						Log.e("error", "" + error);
+						if (progressDialog != null)
+							progressDialog.dismiss();
+						//Snackbar.make(gmail_btn, error.toString(), Snackbar.LENGTH_SHORT).show();
+					}
+				}) {
+			@Override
+			protected Map<String, String> getParams() {
+				Map<String, String> parameters = new HashMap<String, String>();
+
+			if (type.equals("brands")){
+				parameters.put("brand_id",id);
+			}
+			else {
+				parameters.put("category_id",id);
+			}
+
+				//	parameters.put("password",password.getText().toString());
+				return parameters;
+			}
+		};
+		ApplicationController.getInstance().addToRequestQueue(stringRequest);
+//		slidingPageAdapter.notifyDataSetChanged();
+	}
 }

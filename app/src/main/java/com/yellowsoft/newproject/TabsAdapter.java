@@ -10,7 +10,7 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 
 public class TabsAdapter extends FragmentStatePagerAdapter {
 
-
+   public   ShopFragment shopFragment;
 
 
     public TabsAdapter(FragmentManager fm, HomeActivity activity) {
@@ -32,27 +32,42 @@ public class TabsAdapter extends FragmentStatePagerAdapter {
 
         }
         case 1:{
-            TrackFragment trackFragment = TrackFragment.newInstance(position);
+            if (shopFragment==null) {
+                 shopFragment = ShopFragment.newInstance(position);
+            }
 
-            return trackFragment;
+            return shopFragment;
         }
 
         case 2:{
-            ProductsFragment productsFragment = ProductsFragment.newInstance(position);
+            BrandsFragment productsFragment = BrandsFragment.newInstance(position);
 
             return  productsFragment;
 
         }
 
         case 3:{
-            SchemeFragment schemeFragment = SchemeFragment.newInstance(position);
-            return schemeFragment;
+            CartFragment cartFragment = CartFragment.newInstance(position);
+            return cartFragment;
         }
 
         case 4:{
+            CategoriesFragment schemeFragment = CategoriesFragment.newInstance(position);
+            return schemeFragment;
+
+
+        }
+
+
+        case 5:{
             MyAccountFragment myAccountFragment = MyAccountFragment.newInstance(position);
             return myAccountFragment;
 
+
+        }
+        case 6:{
+            ProductFragment productFragment = ProductFragment.newInstance(position);
+            return productFragment;
         }
 
         default: {
@@ -68,6 +83,6 @@ public class TabsAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-        return 5;
+        return 7;
     }
 }

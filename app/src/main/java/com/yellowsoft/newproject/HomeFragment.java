@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -24,6 +25,8 @@ public class HomeFragment extends Fragment {
 	RecyclerView rv_one,rv_two;
 	ArrayList<MenuItem> menuItems = new ArrayList<>();
 	RelativeLayout vechile_tracking;
+
+	TextView insta_shopnow_tv;
 
 	Sales_Adapter sales_adapter;
 	Slider_Adapter slider_adapter;
@@ -69,6 +72,14 @@ public class HomeFragment extends Fragment {
 		rv_one = (RecyclerView) view.findViewById(R.id.rv_one);
 		slider_rv = (RecyclerView) view.findViewById(R.id.slider_rv);
 		rv_two = (RecyclerView)view.findViewById(R.id.rv_two);
+
+		insta_shopnow_tv = (TextView)view.findViewById(R.id.insta_shopnow_tv);
+		insta_shopnow_tv.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				((HomeActivity)getActivity()).insta_shop("0");
+			}
+		});
 
 		rv_one.setNestedScrollingEnabled(true);
 		slider_rv.setNestedScrollingEnabled(true);
