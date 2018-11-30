@@ -322,7 +322,7 @@ public class HomeActivity extends AppCompatActivity {
 		btn_like.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-
+				mViewPager.setCurrentItem(7);
 			}
 		});
 
@@ -331,6 +331,7 @@ public class HomeActivity extends AppCompatActivity {
 			@Override
 			public void onClick(View v) {
 				if (mViewPager.getCurrentItem()!=0){
+					int page= mViewPager.getCurrentItem();
 					mViewPager.setCurrentItem(0);
 					btn_back.setVisibility(View.GONE);
 					menu_btn.setVisibility(View.VISIBLE);
@@ -359,24 +360,7 @@ public class HomeActivity extends AppCompatActivity {
 			}
 		});
 
-		/*back_btn = (LinearLayout) v.findViewById(R.id.btn_back_container);
-		back_btn.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View view) {
-				onBackPressed();
-			}
-		});
-*/
-		/*btn_edit = (TextView) v.findViewById(R.id.tv_edit);
-		btn_edit.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View view) {
-				Intent intent = new Intent(HomeActivity.this,Payments.class);//delete Payments and add ActivitySearch
-				startActivity(intent);
-			}
 
-		});
-*/
 		getSupportActionBar().setCustomView(v, layoutParams);
 		Toolbar parent = (Toolbar) v.getParent();
 
@@ -387,16 +371,7 @@ public class HomeActivity extends AppCompatActivity {
 	private void setupHeader(){
 
 	}
-	/*public void showLoginLayout(){
-		ll_login_.setVisibility(View.VISIBLE);
-		logout.setVisibility(View.GONE);
-		ll_details_.setVisibility(View.GONE);
-	}*/
-	/*public void hideLoginLayout(){
-		ll_login_.setVisibility(View.GONE);
-		logout.setVisibility(View.VISIBLE);
-		ll_details_.setVisibility(View.VISIBLE);
-	}*/
+
 	public  void changebg(TextView l,ImageView i){
 		//l.setBackgroundResource(R.drawable.rounded_corners_white);
 		l.setTextColor(getResources().getColor(R.color.buttonColor));
@@ -453,6 +428,27 @@ public class HomeActivity extends AppCompatActivity {
 	}
 
 
+
+
+	public void signupFragment(){
+
+		mViewPager.setCurrentItem(8);
+		menu_btn.setVisibility(View.GONE);
+		btn_back.setVisibility(View.VISIBLE);
+
+	//	tabsAdapter.productFragment.productDetails(data);
+
+	}
+
+	public void accountFragment(){
+
+		mViewPager.setCurrentItem(9);
+		menu_btn.setVisibility(View.GONE);
+		btn_back.setVisibility(View.VISIBLE);
+
+		//	tabsAdapter.productFragment.productDetails(data);
+
+	}
 
 
 

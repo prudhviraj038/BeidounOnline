@@ -44,8 +44,8 @@
                     <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="250dp"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginBottom="10dp">
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="15dp">
 
                         <android.support.v4.view.ViewPager
                             android:id="@+id/image_slider"
@@ -88,12 +88,13 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
+                                android:singleLine="true"
                                 android:text="Title"
                                 android:textColor="@android:color/black"
-                                android:textSize="20sp" />
+                                android:textSize="16sp" />
 
                             <LinearLayout
-                                android:layout_width="wrap_content"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:gravity="end"
@@ -101,7 +102,7 @@
 
                                 <ImageView
                                     android:id="@+id/imageView27"
-                                    android:layout_width="30dp"
+                                    android:layout_width="20dp"
                                     android:layout_height="30dp"
                                     android:layout_marginRight="5dp"
                                     android:src="@drawable/like" />
@@ -114,7 +115,9 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
                             android:layout_marginBottom="10dp"
-                            android:text="subtitle" />
+                            android:singleLine="true"
+                            android:text="subtitle"
+                            android:visibility="gone" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -134,7 +137,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="219"
                                     android:textColor="@color/buttonColor"
-                                    android:textSize="16sp" />
+                                    android:textSize="15sp" />
 
                                 <com.yellowsoft.newproject.CustomTextView
                                     android:id="@+id/discounted_price"
@@ -144,7 +147,7 @@
                                     android:layout_marginRight="5dp"
                                     android:text="KWD"
                                     android:textColor="@color/buttonColor"
-                                    android:textSize="16sp" />
+                                    android:textSize="15sp" />
                             </LinearLayout>
 
                             <RelativeLayout
@@ -190,207 +193,8 @@
 
                             </RelativeLayout>
 
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="5dp"
-                                android:layout_marginRight="5dp"
-                                android:orientation="horizontal"
-                                android:visibility="gone">
-
-                                <com.yellowsoft.newproject.CustomTextView
-                                    android:id="@+id/discount_product_tv"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="40"
-                                    android:textSize="12sp" />
-
-                                <com.yellowsoft.newproject.CustomTextView
-                                    android:id="@+id/customTextView90"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="% OFF"
-                                    android:textSize="12sp" />
-                            </LinearLayout>
-
                         </LinearLayout>
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="5dp"
-                            android:orientation="horizontal"
-                            android:visibility="gone">
-
-                            <com.yellowsoft.newproject.CustomTextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="EARN"
-                                android:textSize="12sp" />
-
-                            <com.yellowsoft.newproject.CustomTextView
-                                android:id="@+id/amberpoints_tv"
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:layout_marginLeft="5dp"
-                                android:layout_marginRight="5dp"
-                                android:text="60"
-                                android:textSize="12sp" />
-
-                            <com.yellowsoft.newproject.CustomTextView
-                                android:id="@+id/customTextView92"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="AMBER POINTS"
-                                android:textSize="12sp" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/pricematch_ll"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginBottom="5dp"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal"
-                            android:visibility="gone">
-
-
-                            <ImageView
-                                android:id="@+id/imageView25"
-                                android:layout_width="15dp"
-                                android:layout_height="10dp"
-                                android:src="@drawable/pricematch" />
-
-                            <com.yellowsoft.newproject.CustomTextView
-                                android:id="@+id/pricematch_tv"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="5dp"
-                                android:layout_marginRight="5dp"
-                                android:text="@string/price_match"
-                                android:textSize="11sp" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginBottom="5dp"
-                            android:orientation="horizontal"
-                            android:visibility="gone">
-
-                            <com.yellowsoft.newproject.CustomTextView
-                                android:id="@+id/customTextView97"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="SIZE"
-                                android:textColor="@android:color/black"
-                                android:textSize="12sp" />
-
-                            <com.yellowsoft.newproject.CustomTextView
-                                android:id="@+id/sizeguide_tv"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:gravity="end"
-                                android:text="@string/size_guide"
-                                android:textColor="@android:color/black"
-                                android:textSize="12sp" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/selectsize_ll"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/corners_black"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal"
-                            android:visibility="gone">
-
-                            <com.yellowsoft.newproject.CustomTextView
-                                android:id="@+id/customTextView99"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="5dp"
-                                android:layout_weight="1"
-                                android:text="Select Size"
-                                android:textSize="12sp" />
-
-                            <ImageView
-                                android:id="@+id/imageView26"
-                                android:layout_width="15dp"
-                                android:layout_height="15dp"
-                                android:layout_margin="5dp"
-                                android:src="@drawable/downarrow" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/cybersale_ll"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:background="@drawable/corners_black"
-                            android:orientation="vertical"
-                            android:visibility="gone">
-
-                            <com.yellowsoft.newproject.CustomTextView
-                                android:id="@+id/customTextView100"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="10dp"
-                                android:text="CYBER SALE"
-                                android:textColor="@color/buttonColor"
-                                app:font_name="Gothammedium" />
-
-                            <com.yellowsoft.newproject.CustomTextView
-                                android:id="@+id/customTextView101"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="10dp"
-                                android:text="Enter code EXTRA10"
-                                android:textColor="@color/colorBlack"
-                                app:font_name="Gothamlight" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/addtobag_ll"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginBottom="5dp"
-                            android:background="@color/buttonColor"
-                            android:gravity="center"
-                            android:orientation="horizontal">
-
-                            <com.yellowsoft.newproject.CustomTextView
-                                android:id="@+id/customTextView102"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="5dp"
-                                android:text="ADD TO BAG"
-                                android:textColor="@android:color/white"
-                                android:textSize="12sp" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="50dp"
-                            android:layout_marginBottom="10dp"
-                            android:gravity="center_vertical|center_horizontal"
-                            android:orientation="horizontal">
-
-                            <com.yellowsoft.newproject.CustomTextView
-                                android:id="@+id/addtowishlist_tv"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="5dp"
-                                android:text="@string/add_to_wishlist"
-                                android:textSize="13sp" />
-                        </LinearLayout>
                     </LinearLayout>
 
                     <LinearLayout
@@ -420,9 +224,9 @@
                                     android:id="@+id/customTextView10"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Editor's Advice"
+                                    android:text="Description"
                                     android:textColor="@android:color/black"
-                                    android:textSize="12sp" />
+                                    android:textSize="13sp" />
 
                                 <LinearLayout
                                     android:id="@+id/space2"
@@ -435,15 +239,6 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent">
 
-                                    <ImageView
-                                        android:id="@+id/plus_icon_editor"
-                                        android:layout_width="25dp"
-                                        android:layout_height="25dp"
-                                        android:adjustViewBounds="false"
-                                        android:padding="5dp"
-                                        android:src="@drawable/plus"
-                                        android:tint="#dcdcdc"
-                                        android:visibility="visible" />
 
                                     <ImageView
                                         android:id="@+id/minus_icon_editor"
@@ -478,30 +273,6 @@
                             </LinearLayout>
                         </LinearLayout>
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginBottom="5dp"
-                            android:orientation="horizontal">
-
-                            <com.yellowsoft.newproject.CustomTextView
-                                android:id="@+id/product_code_title"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Product Code : "
-                                android:textColor="@android:color/black"
-                                android:textSize="12sp" />
-
-                            <com.yellowsoft.newproject.CustomTextView
-                                android:id="@+id/product_code_tv"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="2342344"
-                                android:textColor="@android:color/black"
-                                android:textSize="12sp" />
-                        </LinearLayout>
-
                     </LinearLayout>
 
                     <com.yellowsoft.newproject.CustomTextView
@@ -533,33 +304,13 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="5dp"
                             android:layout_marginTop="5dp"
+                            android:textSize="13dp"
                             android:layout_marginBottom="5dp"
-                            android:text="SHOP ALL "
+                            android:text="SHOP ALL"
                             android:textColor="@android:color/white" />
 
-                        <com.yellowsoft.newproject.CustomTextView
-                            android:id="@+id/shop_all_tv"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="5dp"
-                            android:textColor="@android:color/white" />
 
                     </LinearLayout>
-
-                    <com.yellowsoft.newproject.CustomTextView
-                        android:id="@+id/customTextView109"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="You May Also Like"
-                        android:textColor="@android:color/black"
-                        android:textSize="20sp" />
-
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/extraitems_rv"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="10dp" />
 
                     <com.yellowsoft.newproject.CustomTextView
                         android:id="@+id/customTextView110"
@@ -598,6 +349,28 @@
 
                 </LinearLayout>
             </android.support.v4.widget.NestedScrollView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/addtobag_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="5dp"
+            android:background="@color/buttonColor"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <com.yellowsoft.newproject.CustomTextView
+                android:id="@+id/customTextView102"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="ADD TO BAG"
+                android:textColor="@android:color/white"
+                android:textSize="12sp" />
         </LinearLayout>
 
 

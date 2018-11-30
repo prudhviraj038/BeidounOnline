@@ -81,6 +81,18 @@ public class TabsAdapter extends FragmentStatePagerAdapter {
 
         }
 
+        case 8:{
+
+            SignupFragment signupFragment = SignupFragment.newInstance(position);
+            return signupFragment;
+        }
+
+        case 9:{
+            AccountFragment accountFragment = AccountFragment.newInstance(position);
+
+            return accountFragment;
+        }
+
         default: {
             HomeFragment demoFragment = HomeFragment.newInstance(position);
 
@@ -94,6 +106,6 @@ public class TabsAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-        return 7;
+        return 10;
     }
 }

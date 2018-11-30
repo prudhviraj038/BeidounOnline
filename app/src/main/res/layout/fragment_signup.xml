@@ -4,20 +4,6 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/signup_toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:elevation="5dp"
-        android:outlineProvider="bounds"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme" />
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="4dp"
-        android:background="@drawable/shadow" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -39,179 +25,191 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical" >
+                    android:layout_margin="15dp"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
 
                     <com.yellowsoft.newproject.CustomTextView
-                        android:id="@+id/textView2"
-                        android:layout_width="match_parent"
+                        android:id="@+id/customTextView104"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:padding="25dp"
-                        android:text="MY COP"
-                        android:textSize="20sp"
-                        android:visibility="gone"
-                        app:font_name="Gothambook" />
-
-                    <ImageView
-                        android:id="@+id/imageView2"
-                        android:layout_width="200dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginBottom="40dp"
-                        android:layout_marginTop="50dp"
-                        android:adjustViewBounds="true"
-                        app:srcCompat="@drawable/logo" />
+                        android:layout_margin="15dp"
+                        android:text="Creating An Account"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp" />
 
                     <LinearLayout
                         android:id="@+id/ll_username"
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
-                        android:background="@drawable/rounded_corners_transparent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/corners_grey"
                         android:orientation="vertical">
 
                         <com.yellowsoft.newproject.CustomTextEdit
                             android:id="@+id/et_fname"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:layout_margin="5dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp"
                             android:background="#00000000"
-                            android:gravity="center"
                             android:hint="First Name"
                             android:inputType="textPersonName"
-                            android:textSize="14sp"
+                            android:textSize="13sp"
                             app:font_name="Gothammedium" />
                     </LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/ll_lastname"
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:layout_marginBottom="5dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
-                        android:background="@drawable/rounded_corners_transparent"
+                        android:layout_marginBottom="5dp"
+                        android:background="@drawable/corners_grey"
                         android:orientation="vertical">
 
                         <com.yellowsoft.newproject.CustomTextEdit
                             android:id="@+id/et_lastname"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:layout_margin="5dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp"
                             android:background="#00000000"
                             android:ems="10"
-                            android:gravity="center"
                             android:hint="Last Name"
                             android:inputType="textPersonName"
-                            android:textSize="14sp"
+                            android:textSize="13sp"
                             app:font_name="Gothammedium" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="15dp"
+                            android:layout_marginBottom="5dp"
+                            android:background="@drawable/corners_grey"
+                            android:orientation="vertical">
+
+                            <com.yellowsoft.newproject.CustomTextEdit
+                                android:id="@+id/et_phonecode"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_margin="5dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginRight="5dp"
+                                android:layout_marginBottom="5dp"
+                                android:background="#00000000"
+                                android:hint="+965"
+                                android:inputType="phone"
+                                android:textSize="12sp"
+                                app:font_name="Gothammedium" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/ll_phonenumber"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="5dp"
+                            android:background="@drawable/corners_grey"
+                            android:orientation="vertical">
+
+                            <com.yellowsoft.newproject.CustomTextEdit
+                                android:id="@+id/et_phonenumber"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_margin="5dp"
+                                android:background="#00000000"
+                                android:ems="10"
+                                android:hint="Phone Number"
+                                android:inputType="phone"
+                                android:maxLength="10"
+                                android:textSize="12sp"
+                                app:font_name="Gothammedium" />
+                        </LinearLayout>
                     </LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/ll_emailid"
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:layout_marginBottom="5dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:background="@drawable/rounded_corners_transparent"
+                        android:layout_marginBottom="5dp"
+                        android:background="@drawable/corners_grey"
                         android:orientation="vertical">
 
                         <com.yellowsoft.newproject.CustomTextEdit
                             android:id="@+id/et_emailid"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:layout_margin="5dp"
                             android:background="#00000000"
                             android:ems="10"
-                            android:gravity="center"
                             android:hint="Email id"
                             android:inputType="textEmailAddress"
-                            android:textSize="14sp"
-                            app:font_name="Gothammedium" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/ll_phonenumber"
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:layout_marginBottom="5dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
-                        android:layout_marginTop="10dp"
-                        android:background="@drawable/rounded_corners_transparent"
-                        android:orientation="vertical">
-
-                        <com.yellowsoft.newproject.CustomTextEdit
-                            android:id="@+id/et_phonenumber"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="#00000000"
-                            android:ems="10"
-                            android:gravity="center"
-                            android:hint="Phone Number"
-                            android:inputType="phone"
-                            android:maxLength="10"
-                            android:textSize="14sp"
+                            android:textSize="13sp"
                             app:font_name="Gothammedium" />
                     </LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/ll_password"
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:layout_marginBottom="5dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:background="@drawable/rounded_corners_transparent"
+                        android:layout_marginBottom="5dp"
+                        android:background="@drawable/corners_grey"
                         android:orientation="vertical">
 
                         <com.yellowsoft.newproject.CustomTextEdit
                             android:id="@+id/et_password"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
                             android:background="#00000000"
                             android:ems="10"
-                            android:gravity="center"
                             android:hint="Password"
                             android:inputType="textPassword"
-                            android:textSize="14sp"
+                            android:textSize="13sp"
                             app:font_name="Gothammedium" />
                     </LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/ll_confirm_pd"
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:background="@drawable/rounded_corners_transparent"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/corners_grey"
                         android:orientation="vertical">
 
                         <com.yellowsoft.newproject.CustomTextEdit
                             android:id="@+id/et_confirm_pd"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:layout_margin="5dp"
                             android:background="#00000000"
                             android:ems="10"
-                            android:gravity="center"
                             android:hint="Confirm Password"
                             android:inputType="textPassword"
-                            android:textSize="14sp"
+                            android:textSize="13sp"
                             app:font_name="Gothammedium" />
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/ll_submit_signup"
+                        android:id="@+id/ll_join_signup"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
                         android:layout_marginTop="20dp"
-                        android:background="@drawable/rounded_corners"
+                        android:background="@android:color/black"
                         android:orientation="vertical">
 
                         <com.yellowsoft.newproject.CustomTextView
@@ -219,18 +217,21 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:padding="12dp"
-                            android:text="SUBMIT"
+                            android:padding="5dp"
+                            android:text="Join"
                             android:textColor="@android:color/white"
+                            android:textSize="13sp"
                             app:font_name="Gothammedium" />
 
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/signin_signup_ll"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp"
                         android:layout_marginTop="15dp"
+                        android:layout_marginBottom="5dp"
+                        android:background="@drawable/corners_black"
                         android:orientation="horizontal">
 
                         <com.yellowsoft.newproject.CustomTextView
@@ -239,7 +240,8 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:gravity="end"
-                            android:text="Already have an account?"
+                            android:text="Have an account ?"
+                            android:textColor="@android:color/black"
                             android:textSize="13sp"
                             app:font_name="Gothammedium" />
 
@@ -249,8 +251,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
                             android:layout_weight="1"
-                            android:text="Login"
-                            android:textColor="@android:color/holo_blue_dark"
+                            android:text="Sign In"
+                            android:textColor="@android:color/black"
                             android:textSize="15sp"
                             app:font_name="Gothambook" />
                     </LinearLayout>
@@ -298,32 +300,30 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:visibility="gone">
+                        android:visibility="visible">
 
                         <com.yellowsoft.newproject.CustomTextView
                             android:id="@+id/customTextView2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:layout_marginBottom="5dp"
                             android:layout_marginTop="5dp"
-                            android:text="Signup using"
+                            android:layout_marginBottom="5dp"
+                            android:text="By creating an account , you agree to our"
+                            android:textSize="12sp"
                             app:font_name="Gothambook" />
 
-                        <ImageView
-                            android:id="@+id/fb_btn"
-                            android:layout_width="match_parent"
+                        <com.yellowsoft.newproject.CustomTextView
+                            android:id="@+id/terms_tv_signup"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:layout_margin="15dp"
-                            android:src="@drawable/fblog" />
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp"
+                            android:text="@string/terms_and_conditions"
+                            android:textSize="12sp"
+                            app:font_name="Gothambook" />
 
-                        <ImageView
-                            android:id="@+id/gm_btn"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="5dp"
-                            app:srcCompat="@drawable/gmlog" />
                     </LinearLayout>
 
                     <LinearLayout

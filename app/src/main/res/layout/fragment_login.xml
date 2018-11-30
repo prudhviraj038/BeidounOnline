@@ -58,6 +58,7 @@
                         android:textSize="17sp" />
 
                     <LinearLayout
+                        android:id="@+id/createact_ll"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="15dp"
@@ -116,7 +117,7 @@
                             android:orientation="vertical">
 
                             <com.yellowsoft.newproject.CustomTextEdit
-                                android:id="@+id/et_usrnmane"
+                                android:id="@+id/et_usrnmane_login"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_margin="7dp"
@@ -147,7 +148,7 @@
                             android:orientation="vertical">
 
                             <com.yellowsoft.newproject.CustomTextEdit
-                                android:id="@+id/et_password"
+                                android:id="@+id/et_password_login"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_margin="7dp"
@@ -159,7 +160,7 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:id="@+id/ll_submit_login"
+                            android:id="@+id/ll_signin_login"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
@@ -168,7 +169,7 @@
                             android:orientation="vertical">
 
                             <com.yellowsoft.newproject.CustomTextView
-                                android:id="@+id/tv_submit"
+                                android:id="@+id/tv_signin_login"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_horizontal"

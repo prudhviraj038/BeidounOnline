@@ -77,7 +77,7 @@ public class ShopFragment extends Fragment {
 
 
 		instagram_ll = (LinearLayout)view.findViewById(R.id.instagram_ll);
-		filter = (LinearLayout)view.findViewById(R.id.filter_ll);
+		//filter = (LinearLayout)view.findViewById(R.id.filter_ll);
 		filter_top = (LinearLayout)view.findViewById(R.id.filter_ll_top);
 
 		grid_img.setColorFilter(getResources().getColor(R.color.colorlightGrey));

@@ -49,22 +49,15 @@ public class ProductActivity extends AppCompatActivity {
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.product_fragment);
+		setContentView(R.layout.fragment_product);
 
 
 
 
-		save_tv = (TextView)findViewById(R.id.save_tv);
+		//save_tv = (TextView)findViewById(R.id.save_tv);
 		title_tv_product = (TextView)findViewById(R.id.title_tv_product);
 		subtitle_product_tv = (TextView)findViewById(R.id.subtitle_product_tv);
 		price_product_tv = (TextView)findViewById(R.id.price_product_tv);
-		discount_product_tv = (TextView)findViewById(R.id.discount_product_tv);
-		amberpoints_tv = (TextView)findViewById(R.id.amberpoints_tv);
-		pricematch_tv = (TextView)findViewById(R.id.pricematch_tv);
-		sizeguide_tv = (TextView)findViewById(R.id.sizeguide_tv);
-		addtowishlist_tv = (TextView)findViewById(R.id.addtowishlist_tv);
-		product_code_tv = (TextView)findViewById(R.id.product_code_tv);
-		//save_tv = (TextView)findViewById(R.id.save_tv);
 
 /*
 		addtobag_ll = (LinearLayout) findViewById(R.id.addtobag_ll);

@@ -113,17 +113,6 @@
                 android:layout_marginTop="10dp"
                 android:visibility="gone" />
 
-            <com.yellowsoft.newproject.CustomTextView
-                android:id="@+id/insta_shopnow_tv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="15dp"
-                android:background="@android:color/black"
-                android:gravity="center_horizontal"
-                android:padding="5dp"
-                android:text="SHOP NOW"
-                android:textColor="@android:color/white" />
-
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 

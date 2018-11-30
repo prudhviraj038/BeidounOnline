@@ -27,7 +27,7 @@ public class HomeFragment extends Fragment {
 	ArrayList<MenuItem> menuItems = new ArrayList<>();
 	RelativeLayout vechile_tracking;
 
-	TextView insta_shopnow_tv;
+	//TextView insta_shopnow_tv;
 
 	Sales_Adapter sales_adapter;
 	Slider_Adapter slider_adapter;
@@ -136,7 +136,7 @@ public class HomeFragment extends Fragment {
 		home_data.add(new Home_data(R.drawable.sales));
 		home_data.add(new Home_data(R.drawable.sales));
 		home_data.add(new Home_data(R.drawable.sales));
-		home_data.add(new Home_data(R.drawable.sales));
+
 
 		sales_adapter = new Sales_Adapter(getContext(),home_data);
 		rv_one.setAdapter(sales_adapter);

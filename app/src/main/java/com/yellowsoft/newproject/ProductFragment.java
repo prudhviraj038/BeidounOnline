@@ -10,19 +10,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
-
 public class ProductFragment extends Fragment {
 
 
-	TextView save_tv,title_tv_product,subtitle_product_tv,price_product_tv,strikeprice_product_tv,discount_product_tv,amberpoints_tv;
-	TextView pricematch_tv,sizeguide_tv,addtowishlist_tv,product_code_tv,description_tv_editor;
+	TextView title_tv_product,subtitle_product_tv,price_product_tv,strikeprice_product_tv;
+	TextView description_tv_editor;
 
 	ImageView product_img;
+	LinearLayout addtobag_ll;
 
 	Shop_Data shop_data;
 
@@ -40,23 +40,20 @@ public class ProductFragment extends Fragment {
 	@Nullable
 	@Override
 	public View onCreateView(final LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-		View view = inflater.inflate(R.layout.product_fragment, container, false);
+		View view = inflater.inflate(R.layout.fragment_product, container, false);
 		Log.e("shopfragment", "shopfragment");
 
 
 
-		save_tv = (TextView) view.findViewById(R.id.save_tv);
+	//	save_tv = (TextView) view.findViewById(R.id.save_tv);
 		title_tv_product = (TextView) view.findViewById(R.id.title_tv_product);
 		subtitle_product_tv = (TextView) view.findViewById(R.id.subtitle_product_tv);
 		price_product_tv = (TextView) view.findViewById(R.id.price_product_tv);
 		description_tv_editor = (TextView) view.findViewById(R.id.description_tv_editor);
-
 		strikeprice_product_tv = (TextView) view.findViewById(R.id.strikeprice_product_tv);
-		amberpoints_tv = (TextView) view.findViewById(R.id.amberpoints_tv);
-		pricematch_tv = (TextView) view.findViewById(R.id.pricematch_tv);
-		sizeguide_tv = (TextView) view.findViewById(R.id.sizeguide_tv);
-		addtowishlist_tv = (TextView) view.findViewById(R.id.addtowishlist_tv);
-		product_code_tv = (TextView) view.findViewById(R.id.product_code_tv);
+
+
+		addtobag_ll = (LinearLayout)view.findViewById(R.id.addtobag_ll);
 
 		product_img = (ImageView)  view.findViewById(R.id.product_img);
 

@@ -1,138 +1,75 @@
 package com.yellowsoft.newproject;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+
 import org.json.JSONException;
+import org.json.JSONObject;
 
-import java.util.ArrayList;
-
-import static android.app.Activity.RESULT_OK;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MyAccountFragment extends Fragment {
 
 	ListView listView;
 	TextView tv_my_ref_code,tv_username_myaccount;
 
-	String playstorelink;
-	LinearLayout referralcode_ll;
 
-	EditText et_usrname,et_password;
+	LinearLayout createact_ll,ll_signin_login;
+
+	EditText et_usrnmane_login,et_password_login;
 
 	ImageView share_img;
 
 	@Nullable
 	@Override
 	public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-		View view = inflater.inflate(R.layout.activity_login, container, false);
+		View view = inflater.inflate(R.layout.fragment_login, container, false);
 
-		/*listView = (ListView)view.findViewById(R.id.lv_myaccount);
-		share_img = (ImageView)view.findViewById(R.id.share_img);
-		share_img.setOnClickListener(new View.OnClickListener() {
+		createact_ll = (LinearLayout)view.findViewById(R.id.createact_ll);
+		createact_ll.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				String shareBody = "Hi, I am "+Session.getUserName(getActivity())+", join me on My Cop App and register in their Purchase Advance Scheme to get your Referral Code. Enter my code ("+ Session.getMemberCode(getActivity())+") before making the payment. You can earn Rs. 1000/- for every successful referral."+playstorelink;
+				((HomeActivity)getActivity()).signupFragment();
+			}
+		});
 
-				//String shareBody = "Hi, I am "+Session.getUserName(getActivity())+", use my referral code: "+""+ Session.getMemberCode(getActivity());
-				Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
-				sharingIntent.setType("text/plain");
-				sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
-				sharingIntent.putExtra(Intent.EXTRA_SUBJECT, "Share with");
-				startActivity(sharingIntent);
+		et_usrnmane_login = (EditText) view.findViewById(R.id.et_usrnmane_login);
+		et_password_login = (EditText) view.findViewById(R.id.et_password_login);
+
+
+		ll_signin_login = (LinearLayout)view.findViewById(R.id.ll_signin_login);
+		ll_signin_login.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				((HomeActivity)getActivity()).accountFragment();
 			}
 		});
 
 
-		try {
-			playstorelink = ApplicationController.getInstance().settings.getString("playstore");
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
 
 
-		tv_my_ref_code = (TextView) view.findViewById(R.id.myreferalcode_tv);
-		tv_my_ref_code.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				String shareBody = "Hi, I am "+Session.getUserName(getActivity())+", join me on My Cop App and register in their Purchase Advance Scheme to get your Referral Code. Enter my code ("+ Session.getMemberCode(getActivity())+") before making the payment. You can earn Rs. 1000/- for every successful referral."+playstorelink;
-
-				//String shareBody = "Hi, I am "+Session.getUserName(getActivity())+", use my referral code: "+""+ Session.getMemberCode(getActivity());
-				Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
-				sharingIntent.setType("text/plain");
-				sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
-				sharingIntent.putExtra(Intent.EXTRA_SUBJECT, "Share with");
-				startActivity(sharingIntent);
-			}
-		});
 
 
-		referralcode_ll = (LinearLayout)view.findViewById(R.id.referralcode_ll);
-
-		tv_username_myaccount = (TextView)view.findViewById(R.id.tv_username_myaccount);
-		String name = Session.getUserName(getContext());
-		tv_username_myaccount.setText(name);
-
-
-		tv_my_ref_code.setText(Session.getMemberCode(getContext()));
-		Log.e("membercode",""+Session.getMemberCode(getContext()));
-
-		ArrayList<MenuItem> menuItems = new ArrayList<>();
-		if(Session.getMemberCode(getContext()).equals("")){
-			menuItems.add(new MenuItem("My Orders","",R.drawable.myorders));
-			menuItems.add(new MenuItem("My Profile","",R.drawable.myprofile));
-			referralcode_ll.setVisibility(View.GONE);
-
-		}else {
-			menuItems.add(new MenuItem("My Orders", "", R.drawable.myorders));
-			menuItems.add(new MenuItem("My Profile", "", R.drawable.myprofile));
-			menuItems.add(new MenuItem("My Referrals", "", R.drawable.myreferals));
-			menuItems.add(new MenuItem("My Earnings", "", R.drawable.myernings));
-			menuItems.add(new MenuItem("My Noitifications","",R.drawable.notification));
-		}
-
-		MenuAdapter_MyAccount menuAdapter_myAccount = new MenuAdapter_MyAccount(getContext(),menuItems);
-		listView.setAdapter(menuAdapter_myAccount);
-
-		listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				if (position==0){
-					Intent intent = new Intent(getContext(),MyOrdersActivity.class);
-					startActivityForResult(intent,888);
-				}
-				else if (position==1){
-					Intent intent = new Intent(getContext(),MyProfileActivity.class);
-					startActivity(intent);
-				}
-				else if (position==2){
-					Intent intent = new Intent(getContext(),MyreferalsActivity.class);
-					startActivity(intent);
-				}
-				else if (position==3)
-				{
-					Intent intent = new Intent(getContext(),MyearningsActivity.class);
-					startActivityForResult(intent,888);
-				}
-				else {
-					Intent intent = new Intent(getContext(),NotificationsActivity.class);
-					startActivity(intent);
-				}
-
-			}
-		});*/
 		return view;
 	}
 	public static MyAccountFragment newInstance(int someInt) {
@@ -146,6 +83,74 @@ public class MyAccountFragment extends Fragment {
 	}
 
 
+
+	public void CallLoginService(){
+
+		final ProgressDialog progressDialog = new ProgressDialog(getContext());
+		progressDialog.setMessage("Please Wait....");
+		progressDialog.show();
+		progressDialog.setCancelable(false);
+		String URL = Session.BASE_URL+"api/login.php";
+
+		StringRequest stringRequest = new StringRequest(Request.Method.POST, URL,new Response.Listener<String>() {
+			@Override
+			public void onResponse(String response) {
+				Log.e("res",response);
+				if(progressDialog!=null) {
+					progressDialog.dismiss();
+				}
+				try {
+					JSONObject jsonObject=new JSONObject(response);
+					String reply=jsonObject.getString("status");
+					Log.e("status",""+reply);
+					if(reply.equals("Success")) {
+
+
+						((HomeActivity)getActivity()).accountFragment();
+						String memberid = jsonObject.getString("member_id");
+						String name = jsonObject.getString("name");
+
+
+
+
+						Intent intent = new Intent(getContext(),HomeActivity.class);
+
+						intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+						getActivity().startActivity(intent);
+
+					}
+
+					else {
+
+						String msg = jsonObject.getString("message");
+						Log.e("message",""+msg);
+
+					}
+
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+			}
+		},
+				new Response.ErrorListener() {
+					@Override
+					public void onErrorResponse(VolleyError error) {
+						if(progressDialog!=null)
+							progressDialog.dismiss();
+
+					}
+				}){
+			@Override
+			protected Map<String,String> getParams(){
+				Map<String,String> parameters = new HashMap<String, String>();
+				parameters.put("email",et_usrnmane_login.getText().toString());
+				parameters.put("password",et_password_login.getText().toString());
+				return parameters;
+			}
+		};
+		ApplicationController.getInstance().addToRequestQueue(stringRequest);
+	}
     
 
 }
