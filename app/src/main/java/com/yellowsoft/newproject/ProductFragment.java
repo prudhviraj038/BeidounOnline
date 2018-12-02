@@ -161,7 +161,7 @@ public class ProductFragment extends Fragment {
 
 		int i = Integer.parseInt(q);
 
-		if (i<quantity){
+		if (i<=quantity){
 
 			((HomeActivity)getActivity()).sendtoCart();
 			//i=i-1;

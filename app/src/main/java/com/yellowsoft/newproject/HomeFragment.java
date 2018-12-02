@@ -1,6 +1,8 @@
 package com.yellowsoft.newproject;
 
 
+import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
@@ -14,10 +16,23 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class HomeFragment extends Fragment {
 	private ProgressInterface progressInterface;
@@ -36,11 +51,16 @@ public class HomeFragment extends Fragment {
 	RecyclerView slider_rv;
 	TabLayout indicator_tab;
 
+	ListView countries_lv;
 
 	ArrayList<Home_data> home_data = new ArrayList<>();
 	ArrayList<Slider_Data> home_data1 = new ArrayList<>();
 	ArrayList<Home_data> home_data2 = new ArrayList<>();
+	ArrayList countriesList = new ArrayList();
 
+	MenuAdapter menuAdapter;
+
+	LinearLayout countries_popup_ll;
 
 	/*@Override
 	public void onAttach(Context context) {
@@ -73,6 +93,11 @@ public class HomeFragment extends Fragment {
 		rv_one = (RecyclerView) view.findViewById(R.id.rv_one);
 		slider_rv = (RecyclerView) view.findViewById(R.id.slider_rv);
 		rv_two = (RecyclerView)view.findViewById(R.id.rv_two);
+
+		countries_lv = (ListView) view.findViewById(R.id.countries_lv);
+
+		countries_popup_ll = (LinearLayout) view.findViewById(R.id.countries_popup_ll);
+		countries_popup_ll.setVisibility(View.GONE);
 /*
 
 		insta_shopnow_tv = (TextView)view.findViewById(R.id.insta_shopnow_tv);
@@ -161,5 +186,56 @@ public class HomeFragment extends Fragment {
 
 	}
 
+	public void setCountries_lv() {
 
+		callCountriesList();
+	}
+
+
+    public void callCountriesList(){
+
+		final ProgressDialog progressDialog = new ProgressDialog(getContext());
+		progressDialog.setMessage("Please Wait....");
+		progressDialog.show();
+		progressDialog.setCancelable(false);
+		String URL = Session.BASE_URL+"api/countries.php";
+
+		StringRequest stringRequest = new StringRequest(Request.Method.POST, URL,new Response.Listener<String>() {
+			@Override
+			public void onResponse(String response) {
+				Log.e("res",response);
+				if(progressDialog!=null) {
+					progressDialog.dismiss();
+				}
+				try {
+					JSONArray jsonArray =new JSONArray(response);
+					for (int i = 0;i<jsonArray.length();i++){
+						JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+					}
+
+
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+			}
+		},
+				new Response.ErrorListener() {
+					@Override
+					public void onErrorResponse(VolleyError error) {
+						if(progressDialog!=null)
+							progressDialog.dismiss();
+
+					}
+				}){
+			@Override
+			protected Map<String,String> getParams(){
+				Map<String,String> parameters = new HashMap<String, String>();
+
+				return parameters;
+			}
+		};
+		ApplicationController.getInstance().addToRequestQueue(stringRequest);
+
+}
 }
