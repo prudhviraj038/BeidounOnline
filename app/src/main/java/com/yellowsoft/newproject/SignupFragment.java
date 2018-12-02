@@ -145,14 +145,15 @@ public class SignupFragment  extends Fragment {
 					String reply=jsonObject.getString("status");
 					if(reply.equals("Failed")) {
 						String msg = jsonObject.getString("message");
-						//Toast.makeText(SignupFragment.this, msg, Toast.LENGTH_SHORT).show();
+						Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
 					} else {
 						String msg = jsonObject.getString("message");
 						Snackbar.make(et_fname, msg, Snackbar.LENGTH_SHORT).show();
+						//((HomeActivity)getActivity()).accountFragment();
 						//Intent intent = new Intent(SignupFragment.this,LoginActivity.class);
 						//startActivity(intent);
 						String memberid = jsonObject.getString("member_id");
-						//Session.setUserid(SignupActivity.this,""+memberid,"");
+						Session.setUserid(getContext(),""+memberid,""+jsonObject.getString("name"));
 						Log.e("memberid",""+memberid);
 						//finish();
 					}

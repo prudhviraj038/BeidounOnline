@@ -199,8 +199,14 @@ public class HomeActivity extends AppCompatActivity {
 
 					resetAllColors();
 					changebg(account_tv, account_img);
-					mViewPager.setCurrentItem(5);
-
+					if (Session.getUserid(HomeActivity.this).equals("0")) {
+						mViewPager.setCurrentItem(5);
+					}
+					else {
+						mViewPager.setCurrentItem(9);
+						menu_btn.setVisibility(View.GONE);
+						btn_back.setVisibility(View.VISIBLE);
+					}
 
 
 
@@ -417,6 +423,13 @@ public class HomeActivity extends AppCompatActivity {
 
 
 
+	public void sendtoCart(){
+		resetAllColors();
+		changebg(bag_tv,shop_img);
+		mViewPager.setCurrentItem(3);
+	}
+
+
 	public void getproductDetails(Shop_Data data){
 
 		mViewPager.setCurrentItem(6);
@@ -442,10 +455,21 @@ public class HomeActivity extends AppCompatActivity {
 
 	public void accountFragment(){
 
-		mViewPager.setCurrentItem(9);
-		menu_btn.setVisibility(View.GONE);
-		btn_back.setVisibility(View.VISIBLE);
 
+
+
+
+		if (Session.getUserid(HomeActivity.this).equals("0")){
+
+			mViewPager.setCurrentItem(5);
+
+		}
+		else {
+			mViewPager.setCurrentItem(9);
+			menu_btn.setVisibility(View.GONE);
+			btn_back.setVisibility(View.VISIBLE);
+
+		}
 		//	tabsAdapter.productFragment.productDetails(data);
 
 	}

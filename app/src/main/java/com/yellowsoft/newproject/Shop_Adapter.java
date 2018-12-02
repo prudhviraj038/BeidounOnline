@@ -39,7 +39,7 @@ public class Shop_Adapter extends RecyclerView.Adapter<Shop_Adapter.MyViewHolder
 		holder.imageView.setImageResource(R.drawable.sales);
 
 		if (data.get(position).product_images.size()>0) {
-			Picasso.get().load(data.get(position).product_images.get(0).image_url).placeholder(R.drawable.place_holder).into(holder.imageView);
+			Picasso.get().load(data.get(position).product_images.get(0).image_url).into(holder.imageView);
 		}
 		//Picasso.get().load(data.get(position).images).into(holder.imageView);
 

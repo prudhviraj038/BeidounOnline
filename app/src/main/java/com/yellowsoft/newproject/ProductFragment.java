@@ -12,20 +12,24 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
 public class ProductFragment extends Fragment {
 
 
-	TextView title_tv_product,subtitle_product_tv,price_product_tv,strikeprice_product_tv;
+	TextView title_tv_product,subtitle_product_tv,price_product_tv;
+	TextView strikeprice_product_tv,quatity_tv_product;
 	TextView description_tv_editor;
 
-	ImageView product_img;
+	ImageView product_img,plus_img,minus_img;
 	LinearLayout addtobag_ll;
 
 	Shop_Data shop_data;
 
+	int quantity;
+    Integer i;
 
 	public static ProductFragment newInstance(int someInt) {
 		ProductFragment myFragment = new ProductFragment();
@@ -52,12 +56,68 @@ public class ProductFragment extends Fragment {
 		description_tv_editor = (TextView) view.findViewById(R.id.description_tv_editor);
 		strikeprice_product_tv = (TextView) view.findViewById(R.id.strikeprice_product_tv);
 
+		quatity_tv_product = (TextView)view.findViewById(R.id.quantity_tv_product);
+
+
+
+
+		product_img = (ImageView)  view.findViewById(R.id.product_img);
+		minus_img = (ImageView) view.findViewById(R.id.minus_img);
+		plus_img = (ImageView) view.findViewById(R.id.plus_img);
+
+		plus_img.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				checkQuantity(quatity_tv_product.getText().toString());
+			}
+		});
+
+
+
+
+        i = Integer.parseInt(quatity_tv_product.getText().toString());
+        minus_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+               // checkQuantity(quatity_tv_product.getText().toString());
+                String _stringVal;
+                if (i > 1) {
+                    i = i - 1;
+                    _stringVal = String.valueOf(i);
+                    quatity_tv_product.setText(_stringVal);
+                } else {
+                    Log.e("src", "Value can't be less than 0");
+                }
+            }
+        });
+        plus_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+              //  checkQuantity(quatity_tv_product.getText().toString());
+
+                String _stringVal;
+
+               Log.e("src", "Increasing value...");
+                i = i + 1;
+                _stringVal = String.valueOf(i);
+                quatity_tv_product.setText(_stringVal);
+            }
+        });
+
+
+
+
 
 		addtobag_ll = (LinearLayout)view.findViewById(R.id.addtobag_ll);
 
-		product_img = (ImageView)  view.findViewById(R.id.product_img);
-
-
+		addtobag_ll.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				checkQuantity(quatity_tv_product.getText().toString());
+			}
+		});
 
 		//discount_product_tv.setText(shop_data.);
 		//amberpoints_tv.setText(shop_data.);
@@ -84,6 +144,9 @@ public class ProductFragment extends Fragment {
 
 		Log.e("prices",""+data.price+"   "+data.old_price);
 		Log.e("imageURL",""+data.product_images.get(0).image_url);
+		Log.e("quantity",""+data.quantity);
+
+		quantity = Integer.parseInt(data.quantity);
 
 		Picasso.get().load(data.product_images.get(0).image_url).into(product_img);
 
@@ -91,6 +154,25 @@ public class ProductFragment extends Fragment {
 
 	}
 
+
+
+
+	public void checkQuantity(String q) {
+
+		int i = Integer.parseInt(q);
+
+		if (i<quantity){
+
+			((HomeActivity)getActivity()).sendtoCart();
+			//i=i-1;
+            //
+		}
+		else {
+		    quatity_tv_product.setText(""+quantity);
+			Toast.makeText(getContext(),"Maximum quantity is :"+quantity,Toast.LENGTH_LONG).show();
+        }
+
+	}
 
 	//product request
 //	public void CallProductdetails() {

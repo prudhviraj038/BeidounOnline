@@ -61,7 +61,8 @@ public class MyAccountFragment extends Fragment {
 		ll_signin_login.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				((HomeActivity)getActivity()).accountFragment();
+				//((HomeActivity)getActivity()).accountFragment();
+				CallLoginService();
 			}
 		});
 
@@ -108,9 +109,11 @@ public class MyAccountFragment extends Fragment {
 
 						((HomeActivity)getActivity()).accountFragment();
 						String memberid = jsonObject.getString("member_id");
+
+
 						String name = jsonObject.getString("name");
 
-
+                        Session.setUserid(getContext(),memberid,name);
 
 
 						Intent intent = new Intent(getContext(),HomeActivity.class);
