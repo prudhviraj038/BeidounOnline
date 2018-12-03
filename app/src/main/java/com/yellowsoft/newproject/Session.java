@@ -6,6 +6,11 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * Created by mac on 7/2/18.
  */
@@ -175,6 +180,14 @@ public class Session {
 
 
     }
+
+
+    public static void saveCart(){
+
+
+
+    }
+
 
 
 
