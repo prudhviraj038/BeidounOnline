@@ -65,17 +65,18 @@ public class ProductFragment extends Fragment {
 		minus_img = (ImageView) view.findViewById(R.id.minus_img);
 		plus_img = (ImageView) view.findViewById(R.id.plus_img);
 
-		plus_img.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				checkQuantity(quatity_tv_product.getText().toString());
-			}
-		});
+//		plus_img.setOnClickListener(new View.OnClickListener() {
+//			@Override
+//			public void onClick(View v) {
+//				checkQuantity(quatity_tv_product.getText().toString());
+//			}
+//		});
 
 
 
 
         i = Integer.parseInt(quatity_tv_product.getText().toString());
+
         minus_img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -169,6 +170,10 @@ public class ProductFragment extends Fragment {
 		int i = Integer.parseInt(q);
 
 		if (i<=quantity){
+
+
+			Cart_Data cartData = new Cart_Data(shop_data,quantity);
+			ApplicationController.getInstance().cartProducts.add(cartData);
 
 			((HomeActivity)getActivity()).sendtoCart();
 			//i=i-1;
