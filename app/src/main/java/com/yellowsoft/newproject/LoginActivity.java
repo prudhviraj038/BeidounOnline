@@ -3,28 +3,16 @@ package com.yellowsoft.newproject;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.Signature;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import com.facebook.FacebookSdk;
-import com.facebook.GraphRequest;
-import com.facebook.GraphResponse;
-import com.facebook.LoggingBehavior;
-import com.facebook.Profile;
-import com.facebook.appevents.AppEventsLogger;
 
 import android.support.annotation.Nullable;
-import android.support.design.widget.BottomSheetDialog;
 import android.support.design.widget.Snackbar;
-import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,18 +29,10 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
-import com.facebook.FacebookCallback;
-import com.facebook.FacebookException;
-import com.facebook.FacebookSdk;
-import com.facebook.login.Login;
-import com.facebook.login.LoginManager;
-import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
-import com.firebase.client.Firebase;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -62,16 +42,10 @@ import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
-import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.net.URL;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -112,6 +86,7 @@ public class LoginActivity extends AppCompatActivity {
 		finish();
 	}
 
+/*
 	@Override
 	protected void onStart() {
 		super.onStart();
@@ -124,12 +99,13 @@ public class LoginActivity extends AppCompatActivity {
 			Log.e("currentUser","= null");
 		}
 	}
+*/
 
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_login);
-		u_name = (EditText) findViewById(R.id.et_usrnmane);
+		setContentView(R.layout.fragment_login);
+		/*u_name = (EditText) findViewById(R.id.et_usrnmane);
 
 
 		password = (EditText)findViewById(R.id.et_password);
@@ -161,7 +137,7 @@ public class LoginActivity extends AppCompatActivity {
 
 		//generating keyhash
 
-		/*try {
+		*//*try {
 			PackageInfo info = getPackageManager().getPackageInfo(
 					getPackageName(),
 					PackageManager.GET_SIGNATURES);
@@ -176,7 +152,7 @@ public class LoginActivity extends AppCompatActivity {
 		}
 		catch (NoSuchAlgorithmException e) {
 
-		}*/
+		}*//*
 
 		final FirebaseUser currentUser = mAuth.getCurrentUser();
 		GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -240,7 +216,7 @@ public class LoginActivity extends AppCompatActivity {
 
 												if (object.has("email")){
 
-                                                   /* alertDialog.setTitle("Alert");
+                                                   *//* alertDialog.setTitle("Alert");
 
                                                     // Setting Dialog Message
                                                     alertDialog.setMessage("Unable to get your facebook email id.");
@@ -250,7 +226,7 @@ public class LoginActivity extends AppCompatActivity {
                                                             dialog.dismiss();
                                                         }
                                                     });
-                                                    alertDialog.show();*/
+                                                    alertDialog.show();*//*
 
 
 													ApplicationController.getInstance().fbEmail = object.getString("email");
@@ -369,7 +345,7 @@ public class LoginActivity extends AppCompatActivity {
 				finish();
 			}
 		});
-
+*/
 		Toolbar toolbar = (Toolbar) findViewById(R.id.login_toolbar);
 		setSupportActionBar(toolbar);
 		setupActionBar();

@@ -1,14 +1,155 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="150dp"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
     android:orientation="vertical">
 
     <com.yellowsoft.newproject.SquareImageView
         android:id="@+id/viewpagerimage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:adjustViewBounds="true"
+        android:src="@drawable/slider_img_one" />
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:adjustViewBounds="false"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:orientation="vertical">
 
-        android:src="@drawable/product1" />
+        <com.yellowsoft.newproject.CustomTextView
+            android:id="@+id/title_slider_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
+            android:text="Title"
+            android:textColor="@android:color/black"
+            android:textSize="15sp"
+            app:font_name="Gothambook" />
+
+        <com.yellowsoft.newproject.CustomTextView
+            android:id="@+id/subtitle_slider_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
+            android:text="sub title"
+            android:textColor="@android:color/black"
+            android:textSize="13sp"
+            app:font_name="Gothambook" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.yellowsoft.newproject.CustomTextView
+                    android:id="@+id/price_slider_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="54"
+                    android:textColor="@color/buttonColor"
+                    android:textSize="13sp" />
+
+                <com.yellowsoft.newproject.CustomTextView
+                    android:id="@+id/customTextView91"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:text="KWD"
+                    android:textColor="@color/buttonColor"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <com.yellowsoft.newproject.CustomTextView
+                        android:id="@+id/strikeprice_slider_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="150"
+                        android:textSize="13sp" />
+
+                    <com.yellowsoft.newproject.CustomTextView
+                        android:id="@+id/customTextView93"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:text="KWD"
+                        android:textSize="13sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="60dp"
+                    android:layout_height="1dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:background="@android:color/black"
+                    android:orientation="vertical"></LinearLayout>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
+            android:orientation="horizontal">
+
+            <com.yellowsoft.newproject.CustomTextView
+                android:id="@+id/discount_slider_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="40%"
+                android:textSize="12sp" />
+
+            <com.yellowsoft.newproject.CustomTextView
+                android:id="@+id/customTextView95"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:text="OFF"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <com.yellowsoft.newproject.CustomTextView
+            android:id="@+id/customTextView96"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
+            android:background="@drawable/corners_black"
+            android:padding="3dp"
+            android:text="CYBER SALE"
+            android:textColor="@android:color/black"
+            android:textSize="11sp"
+            app:font_name="Gothambook" />
+    </LinearLayout>
 </LinearLayout>

@@ -10,7 +10,9 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 
 public class TabsAdapter extends FragmentStatePagerAdapter {
 
-
+   public   ShopFragment shopFragment;
+   public   ProductFragment productFragment;
+   public   HomeFragment homeFragment;
 
 
     public TabsAdapter(FragmentManager fm, HomeActivity activity) {
@@ -26,33 +28,73 @@ public class TabsAdapter extends FragmentStatePagerAdapter {
 
 
         case 0:{
-            HomeFragment demoFragment = HomeFragment.newInstance(position);
+            if (homeFragment ==null){
+                 homeFragment = HomeFragment.newInstance(position);
+            }
 
-            return demoFragment;
+
+            return homeFragment;
 
         }
         case 1:{
-            TrackFragment trackFragment = TrackFragment.newInstance(position);
+            if (shopFragment==null) {
+                 shopFragment = ShopFragment.newInstance(position);
+            }
 
-            return trackFragment;
+            return shopFragment;
         }
 
         case 2:{
-            ProductsFragment productsFragment = ProductsFragment.newInstance(position);
+            BrandsFragment productsFragment = BrandsFragment.newInstance(position);
 
             return  productsFragment;
 
         }
 
         case 3:{
-            SchemeFragment schemeFragment = SchemeFragment.newInstance(position);
-            return schemeFragment;
+            CartFragment cartFragment = CartFragment.newInstance(position);
+            return cartFragment;
         }
 
         case 4:{
+            CategoriesFragment schemeFragment = CategoriesFragment.newInstance(position);
+            return schemeFragment;
+
+
+        }
+
+
+        case 5:{
             MyAccountFragment myAccountFragment = MyAccountFragment.newInstance(position);
             return myAccountFragment;
 
+
+        }
+        case 6:{
+            if (productFragment==null){
+                 productFragment = ProductFragment.newInstance(position);
+            }
+
+            return productFragment;
+        }
+
+        case 7:{
+
+            WhishListFragment whishListFragment = WhishListFragment.newInstance(position);
+            return whishListFragment;
+
+        }
+
+        case 8:{
+
+            SignupFragment signupFragment = SignupFragment.newInstance(position);
+            return signupFragment;
+        }
+
+        case 9:{
+            AccountFragment accountFragment = AccountFragment.newInstance(position);
+
+            return accountFragment;
         }
 
         default: {
@@ -68,6 +110,6 @@ public class TabsAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-        return 5;
+        return 10;
     }
 }

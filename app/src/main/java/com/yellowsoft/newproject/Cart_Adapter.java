@@ -20,9 +20,9 @@ import java.util.ArrayList;
 
 public class Cart_Adapter extends RecyclerView.Adapter<Cart_Adapter.MyViewHolder> {
 	Context context;
-	ArrayList<ProductsData> items;
+	ArrayList<Cart_Data> items;
 
-	public Cart_Adapter(Context context, ArrayList<ProductsData> items){
+	public Cart_Adapter(Context context, ArrayList<Cart_Data> items){
 		this.context=context;
 		this.items=items;
 	}
@@ -36,12 +36,20 @@ public class Cart_Adapter extends RecyclerView.Adapter<Cart_Adapter.MyViewHolder
 	@Override
 	public void onBindViewHolder(MyViewHolder holder,final int position){
 
-		holder.producttitle.setText(items.get(position).product_title);
+		holder.producttitle_tv_cart.setText(items.get(position).product_title);
+		holder.subtitle_tv_cart.setText(items.get(position).description);
+		//holder.quantity_cart.setText(items.get(position).);
+		holder.product_price_tv_item.setText(items.get(position).price);
+
+
+
+
+
 	//	holder.productimage.setImageResource(items.get(position).images);
-		if (items.get(position).images.size()>0) {
-			Picasso.get().load(items.get(position).images.get(0).image_url).into(holder.productimage);
+		/*if (items.get(position).images.size()>0) {
+			Picasso.get().load(items.get(position).images.get(0).image_url).into(holder.product_img_cart);
 		}
-		else holder.productimage.setImageResource(R.drawable.product1);
+		else*/ //holder.product_img_cart.setImageResource(R.drawable.product1);
 
 			holder.itemView.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -68,14 +76,18 @@ public class Cart_Adapter extends RecyclerView.Adapter<Cart_Adapter.MyViewHolder
 	public  class MyViewHolder extends RecyclerView.ViewHolder
 	{
 
-		TextView producttitle;
-		ImageView productimage;
+		TextView producttitle_tv_cart,subtitle_tv_cart,quantity_cart,product_price_tv_item;
+		ImageView product_img_cart;
 
 		public MyViewHolder(View itemView){
 			super(itemView);
 
-			producttitle = (TextView)itemView.findViewById(R.id.producttitle_tv_item);
-			productimage = (ImageView)itemView.findViewById(R.id.product_img_item);
+			producttitle_tv_cart = (TextView)itemView.findViewById(R.id.producttitle_tv_cart);
+			subtitle_tv_cart = (TextView)itemView.findViewById(R.id.subtitle_tv_cart);
+			quantity_cart = (TextView)itemView.findViewById(R.id.quantity_cart);
+			product_price_tv_item = (TextView)itemView.findViewById(R.id.product_price_tv_item);
+
+			product_img_cart = (ImageView)itemView.findViewById(R.id.product_img_cart);
 		}
 	}
 }

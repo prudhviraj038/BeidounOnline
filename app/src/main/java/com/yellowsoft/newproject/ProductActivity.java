@@ -1,6 +1,5 @@
 package com.yellowsoft.newproject;
 
-import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -8,9 +7,8 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.text.Html;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -26,6 +24,14 @@ public class ProductActivity extends AppCompatActivity {
 	TextView quantity;
 	SlidingImageAdapter slidingImageAdapter;
 	TextView page_title,discount_price,title,originalprice_tv,description_tv;
+
+	TextView save_tv,title_tv_product,subtitle_product_tv,price_product_tv,strikeprice_product_tv,discount_product_tv,amberpoints_tv;
+	TextView pricematch_tv,sizeguide_tv,addtowishlist_tv,product_code_tv;
+
+	LinearLayout size_ll,editor_ll,designdetails_ll,addtobag_ll;
+
+	RecyclerView samebrand_rv,extraitems_rv;
+
 	ImageView back;
 
 	ProductsData product;
@@ -43,28 +49,45 @@ public class ProductActivity extends AppCompatActivity {
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_product);
+		setContentView(R.layout.fragment_product);
+
+
+
+
+		//save_tv = (TextView)findViewById(R.id.save_tv);
+		title_tv_product = (TextView)findViewById(R.id.title_tv_product);
+		subtitle_product_tv = (TextView)findViewById(R.id.subtitle_product_tv);
+		price_product_tv = (TextView)findViewById(R.id.price_product_tv);
+
+/*
+		addtobag_ll = (LinearLayout) findViewById(R.id.addtobag_ll);
+		size_ll = (LinearLayout) findViewById(R.id.size_ll);
+		editor_ll = (LinearLayout) findViewById(R.id.editor_ll);
+		designdetails_ll = (LinearLayout) findViewById(R.id.designdetails_ll);
+
+
+
 
 		discount_price = (TextView)findViewById(R.id.discounted_price);
-		title = (TextView)findViewById(R.id.mycop_title_tv);
-		originalprice_tv = (TextView)findViewById(R.id.originalprice_tv);
-		description_tv = (TextView)findViewById(R.id.description_tv);
+		//title = (TextView)findViewById(R.id.mycop_title_tv);
+		originalprice_tv = (TextView)findViewById(R.id.strikeprice_product_tv);
+		description_tv = (TextView)findViewById(R.id.description_tv);*/
 
-		product = (ProductsData)(getIntent().getSerializableExtra("product"));
+		//product = (ProductsData)(getIntent().getSerializableExtra("product"));
 
 
 
 
 		//product title
-		title.setText(product.product_title);
+		/*title.setText(product.product_title);
 		originalprice_tv.setText(product.discountprice);
 		discount_price.setText(product.originalprice);
 		description_tv.setText(Html.fromHtml(product.description));
 
-		for (int i =0;i<product.images.size();i++) {
+		*//*for (int i =0;i<product.images.size();i++) {
 			Log.e("sliderimagers",""+product.images.get(i).image_url);
 			slidingImage_data.add(new SlidingImage_Data(product.images.get(i).image_url));
-		}
+		}*//*
 		//Log.e("product",""+product.description);
 		//String s=getIntent().getStringExtra("product");
 		//Log.e("product",""+s);
@@ -86,10 +109,10 @@ public class ProductActivity extends AppCompatActivity {
 		Toolbar toolbar = (Toolbar)findViewById(R.id.product_toolbar);
 		setSupportActionBar(toolbar);
 		setupActionBar();
-		setupHeader();
+		setupHeader();*/
 
 		//increase button & decrease button
-		quantity = (TextView)findViewById(R.id.quantity_tv);
+	/*	quantity = (TextView)findViewById(R.id.quantity_tv);
 		increase_btn = (RelativeLayout)findViewById(R.id.rl_increase);
 		decrease_btn = (RelativeLayout)findViewById(R.id.rl_decrease);
 		i = Integer.parseInt(quantity.getText().toString());
@@ -116,9 +139,9 @@ public class ProductActivity extends AppCompatActivity {
 				_stringVal = String.valueOf(i);
 				quantity.setText(_stringVal);
 			}
-		});
+		});*/
 
-		final Intent intent = new Intent(ProductActivity.this,CartActivity.class);
+	/*	final Intent intent = new Intent(ProductActivity.this,df.class);
 
 		//add to cart button
 		cart_btn = (LinearLayout)findViewById(R.id.addtocart_ll_btn);
@@ -155,7 +178,7 @@ public class ProductActivity extends AppCompatActivity {
 
 			}
 		});
-
+*/
 
 
 

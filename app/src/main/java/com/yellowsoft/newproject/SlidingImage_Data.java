@@ -10,12 +10,13 @@ import org.json.JSONObject;
  */
 
 public class SlidingImage_Data {
-	String name,description,id,image_url;
+	String name,description,id;
+	int image_url;
 
 	/*public SlidingImage_Data(int image){
 		this.image=image;
 	}*/
-	public SlidingImage_Data(String  image_url){
+	public SlidingImage_Data(int  image_url){
 
 		this.image_url=image_url;
 

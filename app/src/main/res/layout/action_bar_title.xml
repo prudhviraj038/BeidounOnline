@@ -8,6 +8,17 @@
     android:background="@color/colorPrimary"
     android:gravity="center_vertical|center_horizontal"
     android:weightSum="1.0">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/btn_back_title"
+        android:layout_width="30dp"
+        android:layout_height="20dp"
+        android:layout_centerVertical="true"
+        android:src="@drawable/leftarrow"
+        android:visibility="gone" />
 
     <LinearLayout
         android:id="@+id/btn_menu_container"
@@ -23,16 +34,25 @@
             android:layout_height="28dp"
             android:layout_weight="1"
             android:adjustViewBounds="true"
-            android:src="@drawable/menu"
+            android:src="@drawable/menu_icon"
             android:tint="@color/colorBlack" />
+
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_weight="1"
+        android:layout_centerInParent="true"
         android:gravity="center_horizontal"
         android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:adjustViewBounds="false"
+            android:src="@drawable/logo" />
 
         <com.yellowsoft.newproject.CustomTextView
             android:id="@+id/page_title_one"
@@ -40,10 +60,11 @@
             android:layout_height="match_parent"
             android:layout_centerInParent="true"
             android:gravity="center"
-            android:text="text one"
+            android:text="BEIDOUN"
             android:textColor="@color/colorBlack"
-            android:textSize="18sp"
-            android:textStyle="normal"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:visibility="gone"
             app:font_name="Gothambook" />
 
         <com.yellowsoft.newproject.CustomTextView
@@ -54,36 +75,47 @@
             android:text="TextTwo"
             android:textColor="@color/colorBlack"
             android:textSize="18sp"
-            app:font_name="Gothamlight" />
+            android:visibility="gone"
+            />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/orders_ll_toolbar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="5dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="10dp"
         android:gravity="center_horizontal"
-        android:orientation="vertical"
-        android:visibility="invisible">
+        android:orientation="horizontal"
+        android:visibility="visible">
 
         <ImageView
-            android:id="@+id/btn_cart"
+            android:id="@+id/btn_like"
             android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:src="@drawable/order"
-            android:tint="@android:color/white"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="3dp"
+            android:scrollbarAlwaysDrawHorizontalTrack="false"
+            android:src="@drawable/like"
             android:visibility="visible" />
 
-        <com.yellowsoft.newproject.CustomTextView
-            android:id="@+id/customTextView80"
+        <ImageView
+            android:id="@+id/search_img"
+            android:layout_width="20dp"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:src="@drawable/search" />
+
+        <ImageView
+            android:id="@+id/countries_img"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="3dp"
-            android:text="Orders"
-            android:textColor="@android:color/white"
-            android:textSize="10sp" />
+            android:layout_height="match_parent"
+            android:padding="5dp"
+            android:src="@drawable/country" />
+
     </LinearLayout>
+
+</RelativeLayout>
+
 
 
 </LinearLayout>

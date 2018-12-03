@@ -25,6 +25,7 @@ public class ApplicationController extends Application {
     JSONObject settings;
     String fbId;
     String fbEmail;
+    String countryCode,rate;
 
     ArrayList<Object> cartProducts;
 

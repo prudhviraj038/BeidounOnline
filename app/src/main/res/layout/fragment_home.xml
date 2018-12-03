@@ -3,74 +3,147 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:divider="@drawable/divider_white"
     android:orientation="vertical"
-    android:paddingLeft="10dp"
-    android:paddingRight="10dp"
     android:showDividers="beginning|middle|end">
 
     <RelativeLayout
-        android:id="@+id/rl_vehicletracking"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="#EAEAEA"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/menu_icon_homeone"
+        <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:adjustViewBounds="true"
-            android:scaleType="centerCrop"
-            android:src="@drawable/vehicletracking" />
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:id="@+id/rl_vehicletracking"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:gravity="center_vertical|center_horizontal"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/menu_icon_homeone"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginBottom="30dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/sale" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_one"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <com.yellowsoft.newproject.CustomTextView
+                        android:id="@+id/customTextView80"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="20dp"
+                        android:text="CYBER SALE MOST WANTED"
+                        android:textColor="@android:color/black"
+                        android:textSize="20sp" />
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/slider_rv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="visible" />
+
+                    <android.support.design.widget.TabLayout
+                        android:id="@+id/indicator"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_alignBottom="@+id/image_slider"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginBottom="5dp"
+                        android:visibility="visible"
+                        app:tabBackground="@drawable/tab"
+                        app:tabGravity="center"
+                        app:tabIndicatorHeight="0dp">
+
+
+                    </android.support.design.widget.TabLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <com.yellowsoft.newproject.CustomTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="INSTAGRAM SHOP"
+                            android:textColor="@android:color/black"
+                            android:textSize="20sp"
+                            app:font_name="Gothamlight" />
+                    </LinearLayout>
+
+                    <com.yellowsoft.newproject.CustomTextView
+                        android:id="@+id/customTextView86"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="10dp"
+                        android:text="Saw it on Instagram ? Shop the very best of @Beidoun every week."
+                        android:textColor="@android:color/black" />
+
+                </LinearLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_two"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+        </android.support.v4.widget.NestedScrollView>
 
         <LinearLayout
+            android:id="@+id/countries_popup_ll"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_alignBottom="@+id/menu_icon_homeone"
-            android:layout_alignLeft="@+id/menu_icon_homeone"
-            android:layout_alignRight="@+id/menu_icon_homeone"
-            android:layout_alignTop="@+id/menu_icon_homeone"
-            android:background="#C0000000"
-            android:orientation="vertical"></LinearLayout>
+            android:background="#80000000"
+            android:orientation="vertical"
+            android:visibility="visible">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="15dp"
+                android:background="@drawable/rounded_corners_white"
+                android:orientation="vertical">
 
-            <com.yellowsoft.newproject.CustomTextView
-                android:id="@+id/menu_iem_one"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="false"
-                android:text="VEHICLE"
-                android:textColor="#FFFFFF"
-                android:textSize="20sp"
-                app:font_name="Gothambook" />
+                <ListView
+                    android:id="@+id/countries_lv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
 
-            <com.yellowsoft.newproject.CustomTextView
-                android:id="@+id/menu_iem2_one"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="false"
-                android:layout_marginLeft="5dp"
-                android:layout_toRightOf="@+id/menu_iem"
-                android:text="TRACKING"
-                android:textColor="#FFFFFF"
-                android:textSize="20sp"
-                app:font_name="Gothamlight" />
         </LinearLayout>
 
     </RelativeLayout>
 
-    <ListView
-        android:id="@+id/home_listview"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:divider="@null"
-        android:visibility="gone" />
+
 </LinearLayout>

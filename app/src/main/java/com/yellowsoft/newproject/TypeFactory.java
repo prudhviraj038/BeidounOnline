@@ -9,10 +9,10 @@ import android.graphics.Typeface;
 
 public class TypeFactory {
 
-    private String A_ROUND= "fonts/gothamroundedbook.otf";
-    private String A_LIGHT="fonts/gothamroundedlight.otf";
+    private String A_ROUND= "fonts/PortraitRegular.ttf";
+    private String A_LIGHT="fonts/PortraitLight.ttf";
     private String A_REGULAR= "fonts/Roboto-Regular.ttf";
-    private String A_MEDIUM= "fonts/gothamroundedmedium.otf";
+    private String A_MEDIUM= "fonts/MarrSansRegular.ttf";
 
     Typeface ambleBold;
     Typeface ambleLight;
