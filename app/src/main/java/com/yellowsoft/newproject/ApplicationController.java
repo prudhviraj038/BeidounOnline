@@ -12,6 +12,9 @@ import com.android.volley.toolbox.Volley;
 
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 /**
  * Created by sriven on 5/7/2018.
  */
@@ -24,6 +27,8 @@ public class ApplicationController extends Application {
     String fbEmail;
     String countryCode,rate;
 
+    ArrayList<Object> cartProducts;
+
     private static ApplicationController sInstance;
 
 
@@ -32,9 +37,10 @@ public class ApplicationController extends Application {
         super.onCreate();
         settings = new JSONObject();
         // initialize the singleton
-
-
+        cartProducts = new ArrayList<Object>();
+        getCart();
         sInstance = this;
+
     }
 
     /**
@@ -65,6 +71,28 @@ public class ApplicationController extends Application {
     }*/
 
 
+   public void addToCart(CartData productsData){
+
+       cartProducts.add(productsData);
+
+   }
+
+   public void saveCart(){
+
+
+       TinyDB tinydb = new TinyDB(this);
+       tinydb.putListObject("cartProducts", cartProducts);
+
+
+
+   }
+
+
+   public void getCart(){
+       TinyDB tinydb = new TinyDB(this);
+       cartProducts =    tinydb.getListObject("cartProducts",CartData.class);
+
+   }
 
 
 }

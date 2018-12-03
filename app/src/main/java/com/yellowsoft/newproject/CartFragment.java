@@ -119,6 +119,14 @@ public class CartFragment extends Fragment {
 */
 
 
+		ArrayList<Object> temp = (ArrayList<Object>) ApplicationController.getInstance().cartProducts;
+
+		for(int i=0;i<temp.size();i++) {
+
+			Cart_Data temp_obj = (Cart_Data) temp.get(i);
+			cart_data.add(temp_obj);
+		}
+
 		cart_adapter = new Cart_Adapter(getActivity(),cart_data);
 
 		cart_rv.setAdapter(cart_adapter);
