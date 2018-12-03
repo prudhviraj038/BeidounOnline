@@ -109,7 +109,7 @@ public class WhishListFragment extends Fragment {
 			public void onClick(View v) {
 				int total_to_send;
 				total_to_send = subtotal+shippingcharges_int;
-				Intent intent1  = new Intent(Pay.this,CheckoutActivity.class);
+
 				intent1.putExtra("product",product);
 
 				intent1.putExtra("price",subtotal);

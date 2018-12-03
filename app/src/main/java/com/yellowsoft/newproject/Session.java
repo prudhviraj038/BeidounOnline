@@ -209,6 +209,19 @@ public class Session {
 
 
 
+    public static void setQuantity(Context context, String quantity) {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("quantity", quantity);
+        editor.apply();
+    }
+
+    public static String getQuantity(Context context){
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return sharedPreferences.getString("quantity", "1");
+    }
+
+
     public static void setCurrency(Context context, String code,String rate,String img) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();

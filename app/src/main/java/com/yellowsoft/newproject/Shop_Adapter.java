@@ -77,7 +77,8 @@ public class Shop_Adapter extends RecyclerView.Adapter<Shop_Adapter.MyViewHolder
 		 i  = prices * rate ;
 
 		 finalPrice = String.valueOf(i);
-		holder.price_tv.setText(finalPrice);
+		holder.price_tv.setText(ApplicationController.getInstance().formatNumber(i));
+
 		holder.code.setText(Session.getCurrencyCode(context));
 
 	}

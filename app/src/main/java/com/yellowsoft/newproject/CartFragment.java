@@ -45,7 +45,8 @@ import java.util.Map;
 public class CartFragment extends Fragment {
 
 	TextView quantity,page_title,total_tv,price_cart_tv,subtotal_tv,discount_tv;
-	TextView discount_tv_payment,shippingcharge_tv,referalmoney_payment;
+	TextView shippingcharge_tv,ordertotal_tv_cart;
+	TextView country_code_cartsub,country_code__cartdiscount,country_code_cart_total;
 
 	LinearLayout empty_cart_ll,apply_ll_btn;
 	LinearLayout menu_btn,back_btn,coupencode_ll;
@@ -66,6 +67,10 @@ public class CartFragment extends Fragment {
 
 	RecyclerView cart_rv;
 
+	float total;
+
+
+
 	public static CartFragment newInstance(int someInt) {
 		CartFragment myFragment = new CartFragment();
 
@@ -80,13 +85,26 @@ public class CartFragment extends Fragment {
 	public View onCreateView(final LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.fragment_cart, container, false);
 
+		Log.e("CARTFRAGMENT","cartfrag");
 
 
 		/*coupencode_ll = (LinearLayout)view. findViewById(R.id.coupencode_ll);
 		total_tv = (TextView)view. findViewById(R.id.total_tv);
-		subtotal_tv = (TextView)view.findViewById(R.id.subtotal_tv);
+
 		discount_tv = (TextView)view.findViewById(R.id.discount_tv);*/
 		//quantity.setText(cartquantity.toString());
+
+		subtotal_tv = (TextView)view.findViewById(R.id.subtotal_tv);
+		ordertotal_tv_cart = (TextView)view.findViewById(R.id.ordertotal_tv_cart);
+
+		country_code_cartsub = (TextView)view.findViewById(R.id.country_code_cartsub);
+		country_code__cartdiscount = (TextView)view.findViewById(R.id.country_code__cartdiscount);
+		country_code_cart_total = (TextView)view.findViewById(R.id.country_code_cart_total);
+
+		country_code_cart_total.setText(Session.getCurrencyCode(getActivity()));
+		country_code__cartdiscount.setText(Session.getCurrencyCode(getActivity()));
+		country_code_cartsub.setText(Session.getCurrencyCode(getActivity()));
+
 
 		empty_cart_ll = (LinearLayout)view.findViewById(R.id.empty_cart_ll);
 		cart_items_ll = (LinearLayout)view.findViewById(R.id.cart_items_ll);
@@ -96,6 +114,8 @@ public class CartFragment extends Fragment {
 			@Override
 			public void onClick(View v) {
 				Toast.makeText(getContext(),"checkout page",Toast.LENGTH_SHORT).show();
+
+				((HomeActivity)getActivity()).proceedtoCheckout();
 			}
 		});
 
@@ -121,15 +141,25 @@ public class CartFragment extends Fragment {
 
 		ArrayList<Object> temp = (ArrayList<Object>) ApplicationController.getInstance().cartProducts;
 
+		total=0;
+
 		for(int i=0;i<temp.size();i++) {
 
 			Cart_Data temp_obj = (Cart_Data) temp.get(i);
 			cart_data.add(temp_obj);
+
+			total = total + (temp_obj.cartquantity*Float.parseFloat(temp_obj.shop_data.price));
+
 		}
+
+		subtotal_tv.setText(ApplicationController.getInstance().formatNumber(total));
+		ordertotal_tv_cart.setText(ApplicationController.getInstance().formatNumber(total));
 
 		cart_adapter = new Cart_Adapter(getActivity(),cart_data);
 
 		cart_rv.setAdapter(cart_adapter);
+
+
 
 
 
@@ -176,7 +206,7 @@ public class CartFragment extends Fragment {
 			public void onClick(View v) {
 				int total_to_send;
 				total_to_send = subtotal+shippingcharges_int;
-				Intent intent1  = new Intent(Pay.this,CheckoutActivity.class);
+
 				intent1.putExtra("product",product);
 
 				intent1.putExtra("price",subtotal);

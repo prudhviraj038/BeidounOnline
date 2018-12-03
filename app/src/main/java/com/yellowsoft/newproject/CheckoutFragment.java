@@ -6,12 +6,14 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -32,14 +34,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CheckoutActivity extends AppCompatActivity {
+public class CheckoutFragment extends Fragment {
 	TextView page_title;
 	TextView btn_edit,state;
 	LinearLayout prdcheckout_btn;
 	LinearLayout menu_btn,back_btn,submit_btn,proceedtopay_ll_btn;
 	LinearLayout popup_checkout;
 
-	ArrayList<StatesData> statesData = new ArrayList<StatesData>();
+
 
 	StatesAdapter statesAdapter;
 
@@ -49,21 +51,22 @@ public class CheckoutActivity extends AppCompatActivity {
 	String member,name;
 
 	ImageView back;
-	@Override
-	public void onBackPressed() {
-		super.onBackPressed();
+	public static CheckoutFragment newInstance(int someInt) {
+		CheckoutFragment myFragment = new CheckoutFragment();
 
-		//Intent intent = new Intent(CheckoutActivity.this,HomeActivity.class);
-		// startActivity(intent);
-		finish();
+		Bundle args = new Bundle();
+		args.putInt("someInt", someInt);
+		myFragment.setArguments(args);
+
+		return myFragment;
 	}
+
 	@Override
-	protected void onCreate(@Nullable Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.fragment_shipping);
+	public View onCreateView(final LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+		View view = inflater.inflate(R.layout.fragment_shipping, container, false);
 
 
-
+		return view;
 	}
 
 }

@@ -25,7 +25,7 @@ public class ApplicationController extends Application {
     JSONObject settings;
     String fbId;
     String fbEmail;
-    String countryCode,rate;
+    String quatity;
 
     ArrayList<Object> cartProducts;
 
@@ -91,6 +91,12 @@ public class ApplicationController extends Application {
    public void getCart(){
        TinyDB tinydb = new TinyDB(this);
        cartProducts =    tinydb.getListObject("cartProducts",CartData.class);
+
+   }
+
+   public String formatNumber(float f){
+
+       return String.format("%.02f",f);
 
    }
 

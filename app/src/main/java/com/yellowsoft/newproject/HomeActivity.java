@@ -268,26 +268,23 @@ public class HomeActivity extends AppCompatActivity {
 				if (position==0){
 					mDrawerLayout.closeDrawer(GravityCompat.START);
 
-					Intent intent = new Intent(HomeActivity.this,MyOrdersActivity.class);
-					startActivity(intent);
+					mViewPager.setCurrentItem(5);
 				}
 				else if (position==1){
 					mDrawerLayout.closeDrawer(GravityCompat.START);
-					Intent intent = new Intent(HomeActivity.this,MyProfileActivity.class);
-					startActivity(intent);
+					mViewPager.setCurrentItem(5);
+
 				}
 				else if (position==2){mDrawerLayout.closeDrawer(GravityCompat.START);
-					Intent intent = new Intent(HomeActivity.this,MyreferalsActivity.class);
-					startActivity(intent);
+
+
 				}
 				else if (position==3)
 				{mDrawerLayout.closeDrawer(GravityCompat.START);
-					Intent intent = new Intent(HomeActivity.this,MyearningsActivity.class);
-					startActivity(intent);
+
 				}
 				else {mDrawerLayout.closeDrawer(GravityCompat.START);
-					Intent intent = new Intent(HomeActivity.this,NotificationsActivity.class);
-					startActivity(intent);
+
 
 				}
 			}
@@ -425,6 +422,7 @@ public class HomeActivity extends AppCompatActivity {
 
 
 	public void sendtoCart(){
+	//	ApplicationController.getInstance().quatity = quantity;
 		resetAllColors();
 		changebg(bag_tv,shop_img);
 		mViewPager.setCurrentItem(3);
@@ -441,6 +439,10 @@ public class HomeActivity extends AppCompatActivity {
 
 	}
 
+	public void proceedtoCheckout(){
+	    mViewPager.setCurrentItem(10);
+    }
+
 
 
 
@@ -454,11 +456,8 @@ public class HomeActivity extends AppCompatActivity {
 
 	}
 
+
 	public void accountFragment(){
-
-
-
-
 
 		if (Session.getUserid(HomeActivity.this).equals("0")){
 

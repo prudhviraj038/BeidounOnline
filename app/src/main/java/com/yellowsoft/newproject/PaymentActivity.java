@@ -409,7 +409,7 @@ public class PaymentActivity extends AppCompatActivity  implements PaymentResult
 
 	public void startPayment(final String invoice_id) {
 		/**
-		 * You need to pass current activity in order to let Razorpay create CheckoutActivity
+		 * You need to pass current activity in order to let Razorpay create
 		 */
 		final Activity activity = this;
 

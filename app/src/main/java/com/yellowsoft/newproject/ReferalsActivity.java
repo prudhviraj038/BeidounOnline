@@ -298,7 +298,7 @@ public class ReferalsActivity extends AppCompatActivity implements PaymentResult
 
 	public void startPayment() {
 		/**
-		 * You need to pass current activity in order to let Razorpay create CheckoutActivity
+		 * You need to pass current activity in order to let Razorpay create
 		 */
 		final Activity activity = this;
 

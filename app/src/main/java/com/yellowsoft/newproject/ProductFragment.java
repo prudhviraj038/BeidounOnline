@@ -135,6 +135,7 @@ public class ProductFragment extends Fragment {
 
 	public void productDetails(Shop_Data data){
 
+		shop_data = data;
 
 		title_tv_product.setText(data.title);
 		subtitle_product_tv.setText(data.subtitle);
@@ -173,14 +174,18 @@ public class ProductFragment extends Fragment {
 
 
 			Cart_Data cartData = new Cart_Data(shop_data,quantity);
+			Log.e("shopData",""+shop_data.title);
 			ApplicationController.getInstance().cartProducts.add(cartData);
 
 			((HomeActivity)getActivity()).sendtoCart();
+
+			Session.setQuantity(getContext(),String.valueOf(i));
 			//i=i-1;
             //
 		}
 		else {
 		    quatity_tv_product.setText(""+quantity);
+            Session.setQuantity(getContext(),String.valueOf(i));
 			Toast.makeText(getContext(),"Maximum quantity is :"+quantity,Toast.LENGTH_LONG).show();
         }
 

@@ -272,6 +272,29 @@
         android:background="@drawable/shadow"
         android:visibility="gone" />
 
+    <LinearLayout
+        android:id="@+id/countries_popup_ll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#80000000"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="15dp"
+            android:background="@drawable/rounded_corners_white"
+            android:orientation="vertical">
+
+            <ListView
+                android:id="@+id/countries_lv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
+    </LinearLayout>
+
 </RelativeLayout>
 
     <LinearLayout
