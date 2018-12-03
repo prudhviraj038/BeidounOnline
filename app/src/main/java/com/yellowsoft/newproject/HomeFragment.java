@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -56,9 +57,10 @@ public class HomeFragment extends Fragment {
 	ArrayList<Home_data> home_data = new ArrayList<>();
 	ArrayList<Slider_Data> home_data1 = new ArrayList<>();
 	ArrayList<Home_data> home_data2 = new ArrayList<>();
-	ArrayList countriesList = new ArrayList();
+	ArrayList<CountryData> countriesdata = new ArrayList<>();
 
-	MenuAdapter menuAdapter;
+	Countries_Adapter countries_adapter;
+
 
 	LinearLayout countries_popup_ll;
 
@@ -169,7 +171,16 @@ public class HomeFragment extends Fragment {
 
 
 
+		countries_lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
 
+                String img = countriesdata.get(position).image;
+                String code = countriesdata.get(position).code;
+                String rate = countriesdata.get(position).rate;
+                ((HomeActivity)getActivity()).setCountries(img,rate,code);
+            }
+        });
 
 		/*menuItems = new ArrayList<MenuItem>();
 		menuItems.add(new MenuItem("Vechile","Traking",R.drawable.vehicletracking));
@@ -186,13 +197,10 @@ public class HomeFragment extends Fragment {
 
 	}
 
-	public void setCountries_lv() {
-
-		callCountriesList();
-	}
 
 
-    public void callCountriesList(){
+
+    public void getCountriesList(){
 
 		final ProgressDialog progressDialog = new ProgressDialog(getContext());
 		progressDialog.setMessage("Please Wait....");
@@ -207,12 +215,19 @@ public class HomeFragment extends Fragment {
 				if(progressDialog!=null) {
 					progressDialog.dismiss();
 				}
+				countries_popup_ll.setVisibility(View.VISIBLE);
 				try {
 					JSONArray jsonArray =new JSONArray(response);
 					for (int i = 0;i<jsonArray.length();i++){
 						JSONObject jsonObject = jsonArray.getJSONObject(i);
+						CountryData temp = new CountryData(jsonObject);
+                        countriesdata.add(temp);
 
 					}
+					countries_adapter = new Countries_Adapter(getActivity(),countriesdata);
+
+					countries_lv.setAdapter(countries_adapter);
+					countries_adapter.notifyDataSetChanged();
 
 
 				} catch (JSONException e) {

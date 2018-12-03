@@ -22,6 +22,8 @@ public class Shop_Adapter extends RecyclerView.Adapter<Shop_Adapter.MyViewHolder
 	ArrayList<Shop_Data> data;
 
 
+
+
 	public Shop_Adapter(Context context, ArrayList<Shop_Data> data){
 		this.context=context;
 		this.data=data;
@@ -48,6 +50,7 @@ public class Shop_Adapter extends RecyclerView.Adapter<Shop_Adapter.MyViewHolder
 
 		holder.title_tv.setText(data.get(position).title);
 		holder.subtitle_tv.setText(data.get(position).subtitle);
+		holder.code.setText(data.get(position).code);
 
 		holder.imageView.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -55,6 +58,8 @@ public class Shop_Adapter extends RecyclerView.Adapter<Shop_Adapter.MyViewHolder
 				((HomeActivity)context).getproductDetails(data.get(position));
 			}
 		});
+
+
 
 		holder.like.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -72,7 +77,7 @@ public class Shop_Adapter extends RecyclerView.Adapter<Shop_Adapter.MyViewHolder
 	{
 
 		ImageView imageView,like;
-		TextView price_tv,strike_tv,title_tv,subtitle_tv,discount_tv;
+		TextView price_tv,strike_tv,title_tv,subtitle_tv,discount_tv,code;
 
 		public MyViewHolder(View itemView){
 			super(itemView);
@@ -84,11 +89,13 @@ public class Shop_Adapter extends RecyclerView.Adapter<Shop_Adapter.MyViewHolder
 
 			title_tv = (TextView)itemView.findViewById(R.id.title_shop_tv);
 			subtitle_tv = (TextView)itemView.findViewById(R.id.subtitle_shop_tv);
+			code = (TextView) itemView.findViewById(R.id.code_tv);
 
 
 
 
 		}
 	}
+
 
 }

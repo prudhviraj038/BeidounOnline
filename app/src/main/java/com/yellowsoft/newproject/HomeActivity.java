@@ -31,6 +31,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -63,7 +64,7 @@ public class HomeActivity extends AppCompatActivity {
 
 	ImageView home_img,track_img,shop_img,scheme_img,btn_back;
 	ImageView account_img,btn_like;
-	ImageView youtube_btn;
+	ImageView countries_img;
 
 	@Override
 	public void onBackPressed() {
@@ -344,15 +345,14 @@ public class HomeActivity extends AppCompatActivity {
 				}
 			}
 		});
-		//btn_back.setVisibility(View.GONE);
-		/*btn_cart.setOnClickListener(new View.OnClickListener() {
+
+		countries_img = (ImageView)v.findViewById(R.id.countries_img);
+		countries_img.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent(HomeActivity.this,MyOrdersActivity.class);
-				startActivity(intent);
+				tabsAdapter.homeFragment.getCountriesList();
 			}
-		});*/
-
+		});
 
 
 
@@ -473,6 +473,22 @@ public class HomeActivity extends AppCompatActivity {
 		//	tabsAdapter.productFragment.productDetails(data);
 
 	}
+
+	public void setCountries(String img,String rate,String code){
+
+		Picasso.get().load(img).into(countries_img);
+
+		ApplicationController.getInstance().countryCode = code;
+		ApplicationController.getInstance().rate = rate;
+
+		Intent intent = new Intent(HomeActivity.this,HomeActivity.class);
+
+		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+		startActivity(intent);
+	}
+
+
 
 
 

@@ -12,6 +12,7 @@ public class TabsAdapter extends FragmentStatePagerAdapter {
 
    public   ShopFragment shopFragment;
    public   ProductFragment productFragment;
+   public   HomeFragment homeFragment;
 
 
     public TabsAdapter(FragmentManager fm, HomeActivity activity) {
@@ -27,9 +28,12 @@ public class TabsAdapter extends FragmentStatePagerAdapter {
 
 
         case 0:{
-            HomeFragment demoFragment = HomeFragment.newInstance(position);
+            if (homeFragment ==null){
+                 homeFragment = HomeFragment.newInstance(position);
+            }
 
-            return demoFragment;
+
+            return homeFragment;
 
         }
         case 1:{

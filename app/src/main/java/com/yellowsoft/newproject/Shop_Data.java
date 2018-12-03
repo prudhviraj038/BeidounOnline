@@ -14,7 +14,11 @@ public class Shop_Data implements Serializable {
 
     public ArrayList<RequestImages> product_images;
 
+
+    ApplicationController applicationController;
+
     String title,subtitle,price,id,old_price,quantity,about,about_ar,category,brand,images,description,description_ar;
+    String code;
 
 
     // Context context;
@@ -41,6 +45,7 @@ public class Shop_Data implements Serializable {
             this.description = jsonObject.getString("description");
             this.description_ar = jsonObject.getString("description_ar");
 
+            setCurrency(price);
 
             product_images = new ArrayList<>();
 
@@ -61,6 +66,19 @@ public class Shop_Data implements Serializable {
         }
 
 
+
+    }
+    public void setCurrency(String s){
+
+        int prices = Integer.parseInt(s);
+        int rate = Integer.parseInt(applicationController.rate);
+
+        int i  = prices * rate ;
+
+        String finalPrice = String.valueOf(i);
+        price = finalPrice;
+
+        code = applicationController.countryCode;
 
     }
 

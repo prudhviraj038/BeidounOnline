@@ -82,7 +82,7 @@
                         android:textSize="13sp" />
 
                     <com.yellowsoft.newproject.CustomTextView
-                        android:id="@+id/customTextView91"
+                        android:id="@+id/code_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"

@@ -8,28 +8,30 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
 public class Countries_Adapter extends BaseAdapter {
     Context context;
-    ArrayList<MenuItem> menuItems;
+    ArrayList<CountryData> countryData;
 
 
 
 
     private static LayoutInflater inflater=null;
-    public Countries_Adapter(Context mainActivity, ArrayList<MenuItem> menuItems) {
+    public Countries_Adapter(Context mainActivity, ArrayList<CountryData> countryData) {
         // TODO Auto-generated constructor stubcontext=mainActivity;
         this.context = mainActivity;
         inflater = (LayoutInflater)context.
                 getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        this.menuItems = menuItems;
+        this.countryData = countryData;
 
     }
     @Override
     public int getCount() {
         // TODO Auto-generated method stub
-        return menuItems.size();
+        return countryData.size();
     }
 
     @Override
@@ -47,7 +49,7 @@ public class Countries_Adapter extends BaseAdapter {
 
     public class Holder
     {
-        TextView cur_symbol,cur_name;
+        TextView title,cur_name;
         ImageView country_flag;
     }
 
@@ -65,17 +67,17 @@ public class Countries_Adapter extends BaseAdapter {
 
 
 
-        holder.cur_symbol=(TextView) rowView.findViewById(R.id.country_title_item);
-        holder.cur_symbol.setText(menuItems.get(position).title);
+        holder.title=(TextView) rowView.findViewById(R.id.country_title_item);
+        holder.title.setText(countryData.get(position).name);
 
         //holder.cur_name=(TextView)rowView.findViewById(R.id.menu_iem2);
        // holder.cur_name.setText(menuItems.get(position).title_ar);
 
 
         holder.country_flag = (ImageView) rowView.findViewById(R.id.country_img_item);
-        holder.country_flag.setImageResource(menuItems.get(position).icon);
+       // holder.country_flag.setImageResource(countryData.get(position).image);
 
-        //Picasso.with(context).load(categories.get(position).icon).into(holder.country_flag);
+        Picasso.get().load(countryData.get(position).image).into(holder.country_flag);
 
 
         return rowView;

@@ -14,8 +14,8 @@
 
         <ImageView
             android:id="@+id/country_img_item"
-            android:layout_width="15dp"
-            android:layout_height="15dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_marginLeft="15dp"
             android:layout_marginTop="5dp"
             android:layout_marginRight="10dp"
@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:text="Menu Item"
             android:textColor="@android:color/black"
-            android:textSize="13sp"
+            android:textSize="15sp"
             app:font_name="Gothammedium" />
     </LinearLayout>
 </LinearLayout>

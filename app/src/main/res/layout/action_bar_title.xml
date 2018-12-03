@@ -93,16 +93,24 @@
             android:id="@+id/btn_like"
             android:layout_width="20dp"
             android:layout_height="wrap_content"
-            android:layout_marginRight="13dp"
+            android:layout_marginRight="7dp"
             android:scrollbarAlwaysDrawHorizontalTrack="false"
             android:src="@drawable/like"
             android:visibility="visible" />
 
         <ImageView
-            android:id="@+id/imageView24"
+            android:id="@+id/search_img"
             android:layout_width="20dp"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/search" />
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:src="@drawable/search" />
+
+        <ImageView
+            android:id="@+id/countries_img"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:padding="5dp"
+            android:src="@drawable/country" />
 
     </LinearLayout>
 

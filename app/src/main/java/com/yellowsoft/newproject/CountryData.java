@@ -2,6 +2,7 @@ package com.yellowsoft.newproject;
 
 import android.content.Context;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.Serializable;
@@ -23,10 +24,17 @@ public class CountryData implements Serializable {
 
 
     public CountryData(JSONObject jsonObject) {
-      //  if(Settings.get_user_language(context).equals("ar"))
-        //    return title_ar;
-        //else
-          //  return  title;
+        try {
+            this.id=jsonObject.getString("id");
+            this.image=jsonObject.getString("image");
+            this.rate=jsonObject.getString("rate");
+            this.name=jsonObject.getString("title");
+            this.code=jsonObject.getString("code");
+            this.shipping=jsonObject.getString("shipping");
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
 
