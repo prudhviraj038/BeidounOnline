@@ -20,7 +20,7 @@ public class ProductFragment extends Fragment {
 
 
 	TextView title_tv_product,subtitle_product_tv,price_product_tv;
-	TextView strikeprice_product_tv,quatity_tv_product;
+	TextView code_tv_product,quatity_tv_product;
 	TextView description_tv_editor;
 
 	ImageView product_img,plus_img,minus_img;
@@ -54,7 +54,7 @@ public class ProductFragment extends Fragment {
 		subtitle_product_tv = (TextView) view.findViewById(R.id.subtitle_product_tv);
 		price_product_tv = (TextView) view.findViewById(R.id.price_product_tv);
 		description_tv_editor = (TextView) view.findViewById(R.id.description_tv_editor);
-		strikeprice_product_tv = (TextView) view.findViewById(R.id.strikeprice_product_tv);
+		code_tv_product = (TextView) view.findViewById(R.id.code_tv_product);
 
 		quatity_tv_product = (TextView)view.findViewById(R.id.quantity_tv_product);
 
@@ -137,10 +137,17 @@ public class ProductFragment extends Fragment {
 
 		title_tv_product.setText(data.title);
 		subtitle_product_tv.setText(data.subtitle);
-		price_product_tv.setText(data.price);
-		strikeprice_product_tv.setText(data.old_price);
+
+
+		//strikeprice_product_tv.setText(data.old_price);
 		description_tv_editor.setText(Html.fromHtml(data.description));
 
+
+
+		float price = Float.valueOf(data.price) * Float.valueOf(Session.getCurrencyRate(getContext()));
+		price_product_tv.setText(String.valueOf(price));
+
+		code_tv_product.setText(Session.getCurrencyCode(getContext()));
 
 		Log.e("prices",""+data.price+"   "+data.old_price);
 		Log.e("imageURL",""+data.product_images.get(0).image_url);
