@@ -20,7 +20,8 @@ import java.util.ArrayList;
 public class Shop_Adapter extends RecyclerView.Adapter<Shop_Adapter.MyViewHolder> {
 	Context context;
 	ArrayList<Shop_Data> data;
-
+	String finalPrice;
+	float rate,prices,i;
 
 
 
@@ -69,13 +70,13 @@ public class Shop_Adapter extends RecyclerView.Adapter<Shop_Adapter.MyViewHolder
 		});
 
 
-		Integer prices = Integer.parseInt(data.get(position).price);
+		 prices = Float.valueOf(data.get(position).price);
 		// Log.e("rate",""+applicationController.rate);
-		Integer rate = Integer.parseInt(Session.getCurrencyRate(context));
+		 rate = Float.valueOf(Session.getCurrencyRate(context));
 
-		int i  = prices * rate ;
+		 i  = prices * rate ;
 
-		String finalPrice = String.valueOf(i);
+		 finalPrice = String.valueOf(i);
 		holder.price_tv.setText(finalPrice);
 		holder.code.setText(Session.getCurrencyCode(context));
 

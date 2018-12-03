@@ -63,6 +63,9 @@ public class Shop_Data implements Serializable {
 
             }
 
+
+
+
         } catch (JSONException e) {
             e.printStackTrace();
         }

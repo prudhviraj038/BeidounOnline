@@ -142,7 +142,7 @@
                                     android:textSize="15sp" />
 
                                 <com.yellowsoft.newproject.CustomTextView
-                                    android:id="@+id/discounted_price"
+                                    android:id="@+id/code_tv_product"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="5dp"
@@ -176,13 +176,13 @@
                                         android:background="#000000"
                                         android:orientation="vertical"></LinearLayout>
 
-                                    <com.yellowsoft.newproject.CustomTextView
+                                    <!--<com.yellowsoft.newproject.CustomTextView
                                         android:id="@+id/strikeprice_product_tv"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_toRightOf="@+id/strike_tv"
                                         android:text="5,640"
-                                        android:textSize="10sp" />
+                                        android:textSize="10sp" />-->
 
                                     <com.yellowsoft.newproject.CustomTextView
                                         android:id="@+id/customTextView17"
@@ -270,28 +270,12 @@
                                     android:layout_margin="5dp"
                                     android:text="description"
                                     android:textColor="@android:color/black"
-                                    android:textSize="12sp"
+                                    android:textSize="13sp"
                                     android:visibility="visible" />
                             </LinearLayout>
                         </LinearLayout>
 
                     </LinearLayout>
-
-                    <com.yellowsoft.newproject.CustomTextView
-                        android:id="@+id/customTextView11"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginBottom="15dp"
-                        android:gravity="center_horizontal"
-                        android:text="More From This Brand"
-                        android:textColor="@android:color/black"
-                        android:textSize="20sp" />
-
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/samebrand_rv"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -324,16 +308,19 @@
 
                     </LinearLayout>
 
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/samebrand_rv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
                 </LinearLayout>
             </android.support.v4.widget.NestedScrollView>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="75dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
@@ -343,7 +330,7 @@
                 android:layout_marginLeft="25dp"
                 android:layout_marginRight="25dp"
                 android:background="@drawable/corners_black_rounded"
-                android:gravity="center_vertical|center"
+                android:gravity="center_vertical|start"
                 android:orientation="horizontal">
 
                 <LinearLayout
@@ -381,7 +368,7 @@
                         android:id="@+id/plus_img"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_margin="8dp"
+                        android:padding="5dp"
                         android:src="@drawable/plus"
                         android:tint="@android:color/black" />
                 </LinearLayout>
@@ -389,14 +376,19 @@
             </LinearLayout>
 
             <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical"></LinearLayout>
+
+            <LinearLayout
                 android:id="@+id/addtobag_ll"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_weight="1"
                 android:background="@drawable/rounded_corners_gold"
-                android:gravity="center_vertical|center"
+                android:gravity="center_vertical"
                 android:orientation="horizontal">
 
                 <com.yellowsoft.newproject.CustomTextView
