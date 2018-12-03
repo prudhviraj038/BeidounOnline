@@ -13,6 +13,9 @@ public class Cart_Data implements Serializable{
 	public  ArrayList<RequestImages> images;
 	public  Integer cartquantity;
 
+	public  Shop_Data shop_data;
+
+
 	public Cart_Data(String price,  String product_images, String product_title, String description, String product_id){
 
 		this.price=price;
@@ -21,6 +24,17 @@ public class Cart_Data implements Serializable{
 		this.product_id=product_id;
 		this.product_title=product_title;
 	}
+
+
+	public Cart_Data(Shop_Data shop_data,int cartquantity){
+
+		this.shop_data = shop_data;
+		this.cartquantity = cartquantity;
+
+	}
+
+
+
 
 	public Cart_Data(JSONObject jsonObject){
 		try {

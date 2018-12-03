@@ -36,10 +36,10 @@ public class Cart_Adapter extends RecyclerView.Adapter<Cart_Adapter.MyViewHolder
 	@Override
 	public void onBindViewHolder(MyViewHolder holder,final int position){
 
-		holder.producttitle_tv_cart.setText(items.get(position).product_title);
-		holder.subtitle_tv_cart.setText(items.get(position).description);
+		holder.producttitle_tv_cart.setText(items.get(position).shop_data.title);
+		holder.subtitle_tv_cart.setText(items.get(position).shop_data.description);
 		//holder.quantity_cart.setText(items.get(position).);
-		holder.product_price_tv_item.setText(items.get(position).price);
+		holder.product_price_tv_item.setText(items.get(position).shop_data.price);
 
 
 
