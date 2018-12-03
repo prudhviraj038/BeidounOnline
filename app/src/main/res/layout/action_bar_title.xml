@@ -93,7 +93,7 @@
             android:id="@+id/btn_like"
             android:layout_width="20dp"
             android:layout_height="wrap_content"
-            android:layout_marginRight="7dp"
+            android:layout_marginRight="3dp"
             android:scrollbarAlwaysDrawHorizontalTrack="false"
             android:src="@drawable/like"
             android:visibility="visible" />

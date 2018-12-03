@@ -46,7 +46,7 @@ public class Shop_Adapter extends RecyclerView.Adapter<Shop_Adapter.MyViewHolder
 		//Picasso.get().load(data.get(position).images).into(holder.imageView);
 
 
-		holder.price_tv.setText(data.get(position).price);
+		//holder.price_tv.setText(data.get(position).price);
 
 		holder.title_tv.setText(data.get(position).title);
 		holder.subtitle_tv.setText(data.get(position).subtitle);
@@ -67,6 +67,17 @@ public class Shop_Adapter extends RecyclerView.Adapter<Shop_Adapter.MyViewHolder
 				Toast.makeText(context,"Added to Wishlist",Toast.LENGTH_LONG).show();
 			}
 		});
+
+
+		Integer prices = Integer.parseInt(data.get(position).price);
+		// Log.e("rate",""+applicationController.rate);
+		Integer rate = Integer.parseInt(Session.getCurrencyRate(context));
+
+		int i  = prices * rate ;
+
+		String finalPrice = String.valueOf(i);
+		holder.price_tv.setText(finalPrice);
+		holder.code.setText(Session.getCurrencyCode(context));
 
 	}
 	public int getItemCount(){

@@ -178,4 +178,33 @@ public class Session {
 
 
 
+
+    public static String getCurrencyCode(Context context){
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return sharedPreferences.getString("code", "KWD");
+    }
+
+    public static String getCurrencyRate(Context context){
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return sharedPreferences.getString("rate", "1");
+    }
+
+    public static String getCurrencyImage(Context context){
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return sharedPreferences.getString("currencyImg", "https://beidounonline.com//uploads//images//11507620715.png");
+    }
+
+
+
+    public static void setCurrency(Context context, String code,String rate,String img) {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("code", code);
+        editor.putString("rate",rate);
+        editor.putString("currencyImg",img);
+        editor.apply();
+    }
+
+
+
 }

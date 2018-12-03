@@ -347,6 +347,7 @@ public class HomeActivity extends AppCompatActivity {
 		});
 
 		countries_img = (ImageView)v.findViewById(R.id.countries_img);
+		Picasso.get().load(Session.getCurrencyImage(HomeActivity.this)).into(countries_img);
 		countries_img.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -478,8 +479,6 @@ public class HomeActivity extends AppCompatActivity {
 
 		Picasso.get().load(img).into(countries_img);
 
-		ApplicationController.getInstance().countryCode = code;
-		ApplicationController.getInstance().rate = rate;
 
 		Intent intent = new Intent(HomeActivity.this,HomeActivity.class);
 

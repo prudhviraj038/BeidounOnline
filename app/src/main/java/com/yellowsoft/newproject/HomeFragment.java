@@ -178,7 +178,13 @@ public class HomeFragment extends Fragment {
                 String img = countriesdata.get(position).image;
                 String code = countriesdata.get(position).code;
                 String rate = countriesdata.get(position).rate;
-                ((HomeActivity)getActivity()).setCountries(img,rate,code);
+
+                Log.e("currency","rate = "+rate+", code = "+code+", img = "+img);
+
+                Session.setCurrency(getContext(),code,rate,img);
+
+
+				((HomeActivity)getActivity()).setCountries(img,rate,code);
             }
         });
 
