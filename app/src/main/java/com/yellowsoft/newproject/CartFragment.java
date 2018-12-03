@@ -94,7 +94,7 @@ public class CartFragment extends Fragment {
 		discount_tv = (TextView)view.findViewById(R.id.discount_tv);*/
 		//quantity.setText(cartquantity.toString());
 
-		subtotal_tv = (TextView)view.findViewById(R.id.subtotal_tv);
+		subtotal_tv = (TextView)view.findViewById(R.id.subtotal_tv_cart);
 		ordertotal_tv_cart = (TextView)view.findViewById(R.id.ordertotal_tv_cart);
 
 		country_code_cartsub = (TextView)view.findViewById(R.id.country_code_cartsub);
@@ -153,6 +153,8 @@ public class CartFragment extends Fragment {
 		}
 
 		subtotal_tv.setText(ApplicationController.getInstance().formatNumber(total));
+		Log.e("total",""+ApplicationController.getInstance().formatNumber(total));
+
 		ordertotal_tv_cart.setText(ApplicationController.getInstance().formatNumber(total));
 
 		cart_adapter = new Cart_Adapter(getActivity(),cart_data);

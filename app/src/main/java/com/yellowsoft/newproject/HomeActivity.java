@@ -1,5 +1,6 @@
 package com.yellowsoft.newproject;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -27,16 +28,23 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.squareup.picasso.Picasso;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -66,6 +74,12 @@ public class HomeActivity extends AppCompatActivity {
 	ImageView account_img,btn_like;
 	ImageView countries_img;
 
+	ListView countries_lv;
+	ArrayList<CountryData> countriesdata = new ArrayList<>();
+
+	Countries_Adapter countries_adapter;
+	LinearLayout countries_popup_ll;
+
 	@Override
 	public void onBackPressed() {
 		super.onBackPressed();
@@ -92,6 +106,28 @@ public class HomeActivity extends AppCompatActivity {
 		categores_tv = (TextView)findViewById(R.id.categories_tv);
 		account_tv = (TextView)findViewById(R.id.account_tv);
 
+
+
+		countries_popup_ll = (LinearLayout)findViewById(R.id.countries_popup_ll);
+		countries_popup_ll.setVisibility(View.GONE);
+
+		countries_lv = (ListView)findViewById(R.id.countries_lv);
+		countries_lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+
+				String img = countriesdata.get(position).image;
+				String code = countriesdata.get(position).code;
+				String rate = countriesdata.get(position).rate;
+
+				Log.e("currency","rate = "+rate+", code = "+code+", img = "+img);
+
+				Session.setCurrency(HomeActivity.this,code,rate,img);
+
+
+				setCountries(img,rate,code);
+			}
+		});
 
 
 
@@ -268,11 +304,28 @@ public class HomeActivity extends AppCompatActivity {
 				if (position==0){
 					mDrawerLayout.closeDrawer(GravityCompat.START);
 
-					mViewPager.setCurrentItem(5);
+					if (Session.getUserid(HomeActivity.this).equals("0")){
+						mViewPager.setCurrentItem(5);
+					}
+					else {
+						mViewPager.setCurrentItem(9);
+						menu_btn.setVisibility(View.GONE);
+						btn_back.setVisibility(View.VISIBLE);
+					}
+
 				}
 				else if (position==1){
+
 					mDrawerLayout.closeDrawer(GravityCompat.START);
-					mViewPager.setCurrentItem(5);
+					if (Session.getUserid(HomeActivity.this).equals("0")){
+						mViewPager.setCurrentItem(5);
+					}
+					else {
+						mViewPager.setCurrentItem(9);
+						menu_btn.setVisibility(View.GONE);
+						btn_back.setVisibility(View.VISIBLE);
+					}
+
 
 				}
 				else if (position==2){mDrawerLayout.closeDrawer(GravityCompat.START);
@@ -348,7 +401,9 @@ public class HomeActivity extends AppCompatActivity {
 		countries_img.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				tabsAdapter.homeFragment.getCountriesList();
+				//tabsAdapter.homeFragment.getCountriesList();
+				getCountriesList();
+				countries_popup_ll.setVisibility(View.VISIBLE);
 			}
 		});
 
@@ -595,6 +650,60 @@ int resume_count = 0;
 			}
 		});
 		alertDialog.show();
+	}
+
+	public void getCountriesList(){
+
+		final ProgressDialog progressDialog = new ProgressDialog(HomeActivity.this);
+		progressDialog.setMessage("Please Wait....");
+		progressDialog.show();
+		progressDialog.setCancelable(false);
+		String URL = Session.BASE_URL+"api/countries.php";
+
+		StringRequest stringRequest = new StringRequest(Request.Method.POST, URL,new Response.Listener<String>() {
+			@Override
+			public void onResponse(String response) {
+				Log.e("res",response);
+				if(progressDialog!=null) {
+					progressDialog.dismiss();
+				}
+				countries_popup_ll.setVisibility(View.VISIBLE);
+				try {
+					JSONArray jsonArray =new JSONArray(response);
+					for (int i = 0;i<jsonArray.length();i++){
+						JSONObject jsonObject = jsonArray.getJSONObject(i);
+						CountryData temp = new CountryData(jsonObject);
+						countriesdata.add(temp);
+
+					}
+					countries_adapter = new Countries_Adapter(HomeActivity.this,countriesdata);
+
+					countries_lv.setAdapter(countries_adapter);
+					countries_adapter.notifyDataSetChanged();
+
+
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+			}
+		},
+				new Response.ErrorListener() {
+					@Override
+					public void onErrorResponse(VolleyError error) {
+						if(progressDialog!=null)
+							progressDialog.dismiss();
+
+					}
+				}){
+			@Override
+			protected Map<String,String> getParams(){
+				Map<String,String> parameters = new HashMap<String, String>();
+
+				return parameters;
+			}
+		};
+		ApplicationController.getInstance().addToRequestQueue(stringRequest);
+
 	}
 
 }
