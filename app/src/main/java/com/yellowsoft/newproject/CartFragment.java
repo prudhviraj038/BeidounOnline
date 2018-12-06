@@ -115,7 +115,7 @@ public class CartFragment extends Fragment {
 			public void onClick(View v) {
 				Toast.makeText(getContext(),"checkout page",Toast.LENGTH_SHORT).show();
 
-				((HomeActivity)getActivity()).proceedtoCheckout();
+				((HomeActivity)getActivity()).selectAddressFragment();
 			}
 		});
 

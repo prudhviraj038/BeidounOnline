@@ -114,6 +114,17 @@ public class TabsAdapter extends FragmentStatePagerAdapter {
             return addAddressFragment;
         }
 
+        case 12 :{
+            MyProfileFragment myProfileFragment = MyProfileFragment.newInstance(position);
+
+            return myProfileFragment;
+        }
+
+        case 13:{
+            CheckoutAddressFragment checkoutAddressFragment = CheckoutAddressFragment.newInstance(position);
+
+            return checkoutAddressFragment;
+        }
 
         default: {
             HomeFragment demoFragment = HomeFragment.newInstance(position);
@@ -128,6 +139,6 @@ public class TabsAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-        return 12;
+        return 14;
     }
 }

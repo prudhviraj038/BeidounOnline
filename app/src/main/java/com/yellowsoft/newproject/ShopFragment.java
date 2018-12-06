@@ -99,6 +99,10 @@ public class ShopFragment extends Fragment {
 			@Override
 			public void onClick(View v) {
 				popup_sort_ll.setVisibility(View.VISIBLE);
+
+
+
+               // popup_sort_ll.setVisibility(View.GONE);
 			}
 		});
 
@@ -214,7 +218,7 @@ public class ShopFragment extends Fragment {
 		card_tv = (TextView)view.findViewById(R.id.high_tv);
 
 		checkoff_new = (ImageView)view.findViewById(R.id.checkoff_new);
-		checkoff_new = (ImageView)view.findViewById(R.id.checkon_new);
+		checkon_new = (ImageView)view.findViewById(R.id.checkon_new);
 
 		checkoff_high = (ImageView)view.findViewById(R.id.checkoff_high);
 		checkon_high = (ImageView)view.findViewById(R.id.checkon_high);
@@ -237,6 +241,7 @@ public class ShopFragment extends Fragment {
 
 
 				popup_sort_ll.setVisibility(View.GONE);
+				shopData.clear();
 
 				callProducts("new","");
 
@@ -257,6 +262,7 @@ public class ShopFragment extends Fragment {
 
 				callProducts("lowtohigh","PLOW");
 				popup_sort_ll.setVisibility(View.GONE);
+				shopData.clear();
 			}
 		});
 
@@ -270,6 +276,7 @@ public class ShopFragment extends Fragment {
 				changecolor(card_tv);
 				callProducts("hightoLow","Phigh");
 				popup_sort_ll.setVisibility(View.GONE);
+				shopData.clear();
 
 			}
 		});
@@ -391,6 +398,7 @@ public class ShopFragment extends Fragment {
 					e.printStackTrace();
 				}
 				shop_adapter.notifyDataSetChanged();
+
 			}
 		},
 				new Response.ErrorListener() {

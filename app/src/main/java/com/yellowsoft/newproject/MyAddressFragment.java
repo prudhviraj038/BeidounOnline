@@ -27,7 +27,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AddAddressFragment extends Fragment {
+public class MyAddressFragment extends Fragment {
 	TextView page_title;
 	TextView btn_edit,state;
 	LinearLayout prdcheckout_btn;
@@ -48,8 +48,8 @@ public class AddAddressFragment extends Fragment {
 
 
 	ImageView back;
-	public static AddAddressFragment newInstance(int someInt) {
-		AddAddressFragment myFragment = new AddAddressFragment();
+	public static MyAddressFragment newInstance(int someInt) {
+		MyAddressFragment myFragment = new MyAddressFragment();
 
 		Bundle args = new Bundle();
 		args.putInt("someInt", someInt);

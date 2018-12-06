@@ -650,6 +650,11 @@ public class HomeActivity extends AppCompatActivity {
 		orders_ll_toolbar.setVisibility(View.INVISIBLE);
 	}
 
+	public void selectAddressFragment(){
+
+		mViewPager.setCurrentItem(13);
+	}
+
 
 
 	public void myWishList(){
@@ -663,9 +668,9 @@ public class HomeActivity extends AppCompatActivity {
 
 
 
-	public void Shopping(){
+	public void myProfileFragment(){
 
-		mViewPager.setCurrentItem(0);
+		mViewPager.setCurrentItem(12);
 	}
 
 

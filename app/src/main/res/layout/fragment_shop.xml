@@ -308,13 +308,14 @@
                                 android:id="@+id/checkoff_new"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/checkon" />
+                                android:src="@drawable/checkon"
+                                android:visibility="gone" />
 
                             <ImageView
                                 android:id="@+id/checkon_new"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:visibility="gone"
+                                android:visibility="visible"
                                 app:srcCompat="@drawable/checkon" />
                         </RelativeLayout>
                     </LinearLayout>
@@ -377,7 +378,6 @@
                             android:layout_marginLeft="10dp"
                             android:layout_weight="1"
                             android:text="Price High to Low"
-                            android:textColor="@android:color/black"
                             android:textSize="18sp" />
 
                         <RelativeLayout

@@ -39,6 +39,13 @@ public class AccountFragment extends Fragment {
 			}
 		});
 
+		usrinfo_ll.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				((HomeActivity)getActivity()).myProfileFragment();
+			}
+		});
+
 
 
 
