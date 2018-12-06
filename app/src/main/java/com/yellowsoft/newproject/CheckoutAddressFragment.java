@@ -81,7 +81,7 @@ public class CheckoutAddressFragment extends Fragment {
 		addnewaddress_checkout.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				((HomeActivity)getActivity()).addAddressFragment();
+				((HomeActivity)getActivity()).addAddressFragment("checkout");
 			}
 		});
 

@@ -641,18 +641,24 @@ public class HomeActivity extends AppCompatActivity {
 
 
 
-	public void addAddressFragment(){
+	public void addAddressFragment(String id){
 
 		resetAllColors();
 
 		mViewPager.setCurrentItem(11);
 
 		orders_ll_toolbar.setVisibility(View.INVISIBLE);
+
+		tabsAdapter.addAddressFragment.addAddressId(id);
 	}
 
 	public void selectAddressFragment(){
 
 		mViewPager.setCurrentItem(13);
+	}
+
+	public void myAddressFragment(){
+		mViewPager.setCurrentItem(14);
 	}
 
 

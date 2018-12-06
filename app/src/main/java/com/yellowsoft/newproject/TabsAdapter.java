@@ -14,6 +14,7 @@ public class TabsAdapter extends FragmentStatePagerAdapter {
    public   ProductFragment productFragment;
    public   HomeFragment homeFragment;
    public   CartFragment cartFragment;
+   public  AddAddressFragment addAddressFragment;
 
 
     public TabsAdapter(FragmentManager fm, HomeActivity activity) {
@@ -109,7 +110,10 @@ public class TabsAdapter extends FragmentStatePagerAdapter {
         }
 
         case 11:{
-            AddAddressFragment addAddressFragment = AddAddressFragment.newInstance(position);
+            if (addAddressFragment==null){
+                 addAddressFragment = AddAddressFragment.newInstance(position);
+            }
+
 
             return addAddressFragment;
         }
@@ -126,6 +130,11 @@ public class TabsAdapter extends FragmentStatePagerAdapter {
             return checkoutAddressFragment;
         }
 
+        case 14:{
+            MyAddressFragment myAddressFragment = MyAddressFragment.newInstance(position);
+            return myAddressFragment;
+        }
+
         default: {
             HomeFragment demoFragment = HomeFragment.newInstance(position);
 
@@ -139,6 +148,6 @@ public class TabsAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-        return 14;
+        return 15;
     }
 }

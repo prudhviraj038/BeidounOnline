@@ -84,7 +84,7 @@
         android:background="@android:color/black"
         android:gravity="center"
         android:padding="5dp"
-        android:text="Next Step"
+        android:text="Add Address"
         android:textColor="@android:color/white"
         android:textSize="15sp" />
 

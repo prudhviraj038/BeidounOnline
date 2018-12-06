@@ -106,7 +106,8 @@ public class AddAddressFragment extends Fragment {
 				} else {
 
 
-					sendShippingAddress();
+					//sendShippingAddress();
+					addAddressId("add");
 				}
 
 			}
@@ -114,14 +115,26 @@ public class AddAddressFragment extends Fragment {
 
 
 
+
+
 		return view;
 	}
 
 
+	public void addAddressId(String id) {
 
 
+		if (id.equals("add")) {
+			sendShippingAddress("add");
+		} else if (id.equals("checkout")) {
+			sendShippingAddress("checkout");
+		} else {
+			sendShippingAddress(id);
+		}
+	}
 
-	public void sendShippingAddress(){
+
+	public void sendShippingAddress(final String type){
 
 		final ProgressDialog progressDialog = new ProgressDialog(getActivity());
 		progressDialog.setMessage("Please Wait....");
@@ -167,16 +180,46 @@ public class AddAddressFragment extends Fragment {
 			@Override
 			protected Map<String,String> getParams(){
 				Map<String,String> parameters = new HashMap<String, String>();
-				parameters.put("fname",firstname.getText().toString());
-				parameters.put("lname",lastname.getText().toString());
-				parameters.put("phone",phone.getText().toString());
-				parameters.put("address",address.getText().toString());
-				parameters.put("email",email.getText().toString());
-				parameters.put("country",et_country_checkout.getText().toString());
-				parameters.put("state",state.getText().toString());
-				parameters.put("pincode",et_pincode_checkout.getText().toString());
-				parameters.put("city",city.getText().toString());
-				parameters.put("member_id",Session.getUserid(getActivity()));
+				if (type.equals("add")){
+					parameters.put("fname",firstname.getText().toString());
+					parameters.put("lname",lastname.getText().toString());
+					parameters.put("phone",phone.getText().toString());
+					parameters.put("address",address.getText().toString());
+					parameters.put("email",email.getText().toString());
+					parameters.put("country",et_country_checkout.getText().toString());
+					parameters.put("state",state.getText().toString());
+					parameters.put("pincode",et_pincode_checkout.getText().toString());
+					parameters.put("city",city.getText().toString());
+					parameters.put("member_id",Session.getUserid(getActivity()));
+
+				}
+				else if (type.equals("checkout")){
+
+					parameters.put("fname",firstname.getText().toString());
+					parameters.put("lname",lastname.getText().toString());
+					parameters.put("phone",phone.getText().toString());
+					parameters.put("address",address.getText().toString());
+					parameters.put("email",email.getText().toString());
+					parameters.put("country",et_country_checkout.getText().toString());
+					parameters.put("state",state.getText().toString());
+					parameters.put("pincode",et_pincode_checkout.getText().toString());
+					parameters.put("city",city.getText().toString());
+					parameters.put("member_id",Session.getUserid(getActivity()));
+				}
+				else {
+					parameters.put("address_id",type);
+					parameters.put("fname",firstname.getText().toString());
+					parameters.put("lname",lastname.getText().toString());
+					parameters.put("phone",phone.getText().toString());
+					parameters.put("address",address.getText().toString());
+					parameters.put("email",email.getText().toString());
+					parameters.put("country",et_country_checkout.getText().toString());
+					parameters.put("state",state.getText().toString());
+					parameters.put("pincode",et_pincode_checkout.getText().toString());
+					parameters.put("city",city.getText().toString());
+					parameters.put("member_id",Session.getUserid(getActivity()));
+				}
+
 
 				return parameters;
 			}

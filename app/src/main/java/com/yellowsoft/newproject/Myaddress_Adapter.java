@@ -42,7 +42,7 @@ public class Myaddress_Adapter extends RecyclerView.Adapter<Myaddress_Adapter.My
 			public void onClick(View v) {
 				Toast.makeText(context,"Edit",Toast.LENGTH_SHORT).show();
 
-				((HomeActivity)context).addAddressFragment();
+				((HomeActivity)context).addAddressFragment(data.get(position).id);
 			}
 		});
 
@@ -96,7 +96,7 @@ public class Myaddress_Adapter extends RecyclerView.Adapter<Myaddress_Adapter.My
 		public MyViewHolder(View itemView){
 			super(itemView);
 
-			address = (TextView) itemView.findViewById(R.id.address_checkoutitem);
+			address = (TextView) itemView.findViewById(R.id.address_myaddressitem);
 
 			edit_addressitem_et = (TextView) itemView.findViewById(R.id.edit_addressitem_et);
 			delete_myadressitem = (TextView) itemView.findViewById(R.id.delete_myadressitem);

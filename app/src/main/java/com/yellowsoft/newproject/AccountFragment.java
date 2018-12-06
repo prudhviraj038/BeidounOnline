@@ -30,7 +30,8 @@ public class AccountFragment extends Fragment {
 		address_ll.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				((HomeActivity)getActivity()).addAddressFragment();
+				//((HomeActivity)getActivity()).addAddressFragment();
+				((HomeActivity)getActivity()).myAddressFragment();
 			}
 		});mywishlist_ll.setOnClickListener(new View.OnClickListener() {
 			@Override
