@@ -22,9 +22,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -72,13 +74,18 @@ public class HomeActivity extends AppCompatActivity {
 
 	ImageView home_img,track_img,shop_img,scheme_img,btn_back;
 	ImageView account_img,btn_like;
-	ImageView countries_img;
+	ImageView countries_img,search_img;
 
 	ListView countries_lv;
 	ArrayList<CountryData> countriesdata = new ArrayList<>();
 
 	Countries_Adapter countries_adapter;
-	LinearLayout countries_popup_ll;
+	LinearLayout countries_popup_ll,search_popup;
+
+	RelativeLayout toolbar_content;
+
+
+	TextView usr_name_tv;
 
 	@Override
 	public void onBackPressed() {
@@ -94,6 +101,12 @@ public class HomeActivity extends AppCompatActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
+
+
+
+		usr_name_tv = (TextView)findViewById(R.id.usr_name);
+		usr_name_tv.setText(Session.getUserName(HomeActivity.this));
+
 
 
 		lv_menu = (ListView)findViewById(R.id.lv_menu);
@@ -267,32 +280,34 @@ public class HomeActivity extends AppCompatActivity {
 
 		ArrayList<MenuItem> menuItems = new ArrayList<>();
 
-		menuItems.add(new MenuItem("Home", "", R.drawable.home));
-		menuItems.add(new MenuItem("My Addresses", "", R.drawable.myprofile));
-		menuItems.add(new MenuItem("Past Orders", "", R.drawable.myreferals));
-		menuItems.add(new MenuItem("Change Language", "", R.drawable.change));
-		menuItems.add(new MenuItem("Offers","",R.drawable.offers));
-		menuItems.add(new MenuItem("Customer Care","",R.drawable.contact));
-		menuItems.add(new MenuItem("About","",R.drawable.about));
-		menuItems.add(new MenuItem("Log Out","",R.drawable.logout));
 
+		if (Session.getUserid(HomeActivity.this).equals("0")){
 
-		/*if(Session.getMemberCode(HomeActivity.this).equals("")) {
-			menuItems.add(new MenuItem("My Orders", "", R.drawable.myorders));
-			menuItems.add(new MenuItem("My Profile", "", R.drawable.myprofile));
+			menuItems.add(new MenuItem("Home", "", R.drawable.home));
+			menuItems.add(new MenuItem("Change Language", "", R.drawable.change));
+			menuItems.add(new MenuItem("Offers","",R.drawable.offers));
+			menuItems.add(new MenuItem("Customer Care","",R.drawable.contact));
+			menuItems.add(new MenuItem("About","",R.drawable.about));
+
 		}
+
 		else {
-			menuItems.add(new MenuItem("Home", "", R.drawable.myorders));
+
+
+			menuItems.add(new MenuItem("Home", "", R.drawable.home));
 			menuItems.add(new MenuItem("My Addresses", "", R.drawable.myprofile));
 			menuItems.add(new MenuItem("Past Orders", "", R.drawable.myreferals));
-			menuItems.add(new MenuItem("Change Language", "", R.drawable.myernings));
-			menuItems.add(new MenuItem("Offers","",R.drawable.notification));
-			menuItems.add(new MenuItem("Customer Care","",R.drawable.notification));
-			menuItems.add(new MenuItem("About","",R.drawable.notification));
-			menuItems.add(new MenuItem("Log Out","",R.drawable.notification));
+			menuItems.add(new MenuItem("Change Language", "", R.drawable.change));
+			menuItems.add(new MenuItem("Offers", "", R.drawable.offers));
+			menuItems.add(new MenuItem("Customer Care", "", R.drawable.contact));
+			menuItems.add(new MenuItem("About", "", R.drawable.about));
+			menuItems.add(new MenuItem("Log Out", "", R.drawable.logout));
+		}
 
 
-		}*/
+
+
+
 
 		MenuAdapter menuAdapter = new MenuAdapter(this,menuItems);
 		lv_menu.setAdapter(menuAdapter);
@@ -332,8 +347,18 @@ public class HomeActivity extends AppCompatActivity {
 
 
 				}
-				else if (position==3)
+				else if (position==7)
 				{mDrawerLayout.closeDrawer(GravityCompat.START);
+
+
+				Session.setUserid(HomeActivity.this,"0","0");
+
+					Intent intent = new Intent(HomeActivity.this,HomeActivity.class);
+
+					intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+					startActivity(intent);
+
 
 				}
 				else {mDrawerLayout.closeDrawer(GravityCompat.START);
@@ -351,9 +376,21 @@ public class HomeActivity extends AppCompatActivity {
 			orders_ll_toolbar.setVisibility(View.VISIBLE);
 		}
 
-		//btn_back.setVisibility(View.GONE);
+
+
+
+
+
 	}
+
+
+
+
+
+
 	private void setupActionBar() {
+
+
 		//set action bar
 		getSupportActionBar().setHomeButtonEnabled(false);
 		getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -365,7 +402,18 @@ public class HomeActivity extends AppCompatActivity {
 		View v = inflater.inflate(R.layout.action_bar_title,null);
 
 
-		orders_ll_toolbar = (LinearLayout)v.findViewById(R.id.orders_ll_toolbar);
+        search_popup = (LinearLayout)v.findViewById(R.id.search_popup);
+        search_popup.setVisibility(View.GONE);
+		toolbar_content = (RelativeLayout)v.findViewById(R.id.toolbar_content);
+
+
+
+
+
+
+
+
+        orders_ll_toolbar = (LinearLayout)v.findViewById(R.id.orders_ll_toolbar);
 		orders_ll_toolbar.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -373,7 +421,13 @@ public class HomeActivity extends AppCompatActivity {
 				startActivity(intent);
 			}
 		});
-		//cart button on click
+
+
+
+
+
+
+
 		btn_like = (ImageView)v.findViewById(R.id.btn_like);
 
 		btn_like.setOnClickListener(new View.OnClickListener() {
@@ -396,12 +450,16 @@ public class HomeActivity extends AppCompatActivity {
 			}
 		});
 
+
+
+
 		countries_img = (ImageView)v.findViewById(R.id.countries_img);
 		Picasso.get().load(Session.getCurrencyImage(HomeActivity.this)).into(countries_img);
 		countries_img.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				//tabsAdapter.homeFragment.getCountriesList();
+
+
 				getCountriesList();
 				countries_popup_ll.setVisibility(View.VISIBLE);
 			}
@@ -410,8 +468,21 @@ public class HomeActivity extends AppCompatActivity {
 
 
 
+
+		search_img = (ImageView)v.findViewById(R.id.search_img);
+		search_img.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+
+			  //  tabsAdapter.shopFragment.search();
+			    mViewPager.setCurrentItem(1);
+			}
+		});
+
+
+
+
 		menu_btn = (LinearLayout) v.findViewById(R.id.btn_menu_container);
-		/*shop_img = (ImageView)v.findViewById(R.id.btn_shop);*/
 		menu_btn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
@@ -427,36 +498,59 @@ public class HomeActivity extends AppCompatActivity {
 
 
 	}
+
+
+
+
+
+
+
+
+
+
 	private void setupHeader(){
 
 	}
 
+
+
+
+
+
+
+
+
+
+
 	public  void changebg(TextView l,ImageView i){
-		//l.setBackgroundResource(R.drawable.rounded_corners_white);
+
+
 		l.setTextColor(getResources().getColor(R.color.buttonColor));
 		i.setColorFilter(home_img.getContext().getResources().getColor(R.color.buttonColor), PorterDuff.Mode.SRC_ATOP);
 
 	}
+
+
 	public void resetAllColors(){
-		//home_btn.setBackgroundColor(Color.parseColor("#b87354"));
+
+
 		home_tv.setTextColor(getResources().getColor(R.color.colorBlack));
-	//	home_img.setImageDrawable(getDrawable(R.drawable.home_icon_black));
-		//home_img.setImageResource(R.drawable.home_icon_black);
+
 		home_img.setColorFilter(getResources().getColor(R.color.colorBlack));
 
-		//track_btn.setBackgroundColor(Color.parseColor("#b87354"));
+
 		brands_tv.setTextColor(getResources().getColor(R.color.colorBlack));
 		track_img.setColorFilter(getResources().getColor(R.color.colorBlack));
 
-		//shop_btn.setBackgroundColor(Color.parseColor("#b87354"));
+
 		bag_tv.setTextColor(getResources().getColor(R.color.colorBlack));
 		shop_img.setColorFilter(getResources().getColor(R.color.colorBlack));
 
-		//scheme_btn.setBackgroundColor(Color.parseColor("#b87354"));
+
 		categores_tv.setTextColor(getResources().getColor(R.color.colorBlack));
 		scheme_img.setColorFilter(getResources().getColor(R.color.colorBlack));
 
-		//account_btn.setBackgroundColor(Color.parseColor("#b87354"));
+
 		account_tv.setTextColor(getResources().getColor(R.color.colorBlack));
 		account_img.setColorFilter(getResources().getColor(R.color.colorBlack));
 
@@ -468,6 +562,7 @@ public class HomeActivity extends AppCompatActivity {
 		mViewPager.setCurrentItem(1);
 		tabsAdapter.shopFragment.setParamentersBrands(id,title);
 		tabsAdapter.shopFragment.setParamentersCategories(id,title);
+
 		menu_btn.setVisibility(View.GONE);
 		btn_back.setVisibility(View.VISIBLE);
 
@@ -546,17 +641,21 @@ public class HomeActivity extends AppCompatActivity {
 
 
 
-	public void schemeSelected(){
+	public void addAddressFragment(){
+
 		resetAllColors();
-		//changebg(scheme_btn,scheme_img);
-		mViewPager.setCurrentItem(3);
+
+		mViewPager.setCurrentItem(11);
 
 		orders_ll_toolbar.setVisibility(View.INVISIBLE);
 	}
-	public void accountfrg(){
+
+
+
+	public void myWishList(){
+
 		resetAllColors();
-		//changebg(account_btn,account_img);
-		mViewPager.setCurrentItem(4);
+		mViewPager.setCurrentItem(7);
 
 		orders_ll_toolbar.setVisibility(View.INVISIBLE);
 	}

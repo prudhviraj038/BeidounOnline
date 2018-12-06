@@ -179,14 +179,20 @@ public class ProductFragment extends Fragment {
 
 			((HomeActivity)getActivity()).sendtoCart();
 
-			Session.setQuantity(getContext(),String.valueOf(i));
+			//Session.setQuantity(getContext(),String.valueOf(i));
 			//i=i-1;
             //
 		}
 		else {
+
+
+
 		    quatity_tv_product.setText(""+quantity);
-            Session.setQuantity(getContext(),String.valueOf(i));
+
+		    Session.setQuantity(getContext(),String.valueOf(i));
 			Toast.makeText(getContext(),"Maximum quantity is :"+quantity,Toast.LENGTH_LONG).show();
+
+
         }
 
 	}

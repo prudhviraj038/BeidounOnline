@@ -3,6 +3,7 @@ package com.yellowsoft.newproject;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
@@ -11,11 +12,14 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
 import android.text.Html;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -36,7 +40,7 @@ import java.util.Map;
 
 public class ShopFragment extends Fragment {
 
-	TextView title, description_tv,noof_results_tv;
+	TextView title, cod_tv,wallet_tv,card_tv,noof_results_tv,shortby_tv;
 	RecyclerView shop_rv;
 
 	ArrayList<Shop_Data> shopData= new ArrayList<Shop_Data>();
@@ -50,6 +54,18 @@ public class ShopFragment extends Fragment {
 	boolean vertical;
 
 	String brandid,categoryid;
+
+
+
+
+	LinearLayout new_ll,high_ll,low_ll;
+	ImageView checkoff_new,checkon_new,checkoff_high,checkon_high,checkoff_low,checkon_low,cashimg,walletimg,cardimg;
+
+
+
+	EditText search_et;
+	LinearLayout search_ll_search,search_popup,popup_sort_ll;
+
 
 	public static ShopFragment newInstance(int someInt) {
 		ShopFragment myFragment = new ShopFragment();
@@ -66,7 +82,66 @@ public class ShopFragment extends Fragment {
 	public View onCreateView(final LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.fragment_shop, container, false);
 		Log.e("shopfragment", "shopfragment");
-		//
+
+
+		popup_sort_ll = (LinearLayout)view.findViewById(R.id.popup_sort_ll);
+		popup_sort_ll.setVisibility(View.GONE);
+		popup_sort_ll.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				popup_sort_ll.setVisibility(View.GONE);
+			}
+		});
+
+
+		shortby_tv = (TextView)view.findViewById(R.id.shortby_tv);
+		shortby_tv.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				popup_sort_ll.setVisibility(View.VISIBLE);
+			}
+		});
+
+		search_et = (EditText)view.findViewById(R.id.et_search);
+		search_ll_search = (LinearLayout)view. findViewById(R.id.search_ll_search);
+		search_popup = (LinearLayout)view.findViewById(R.id.search_popup);
+
+
+		search_ll_search.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+
+
+				String keywords = search_et.getText().toString();
+				Log.e("keyword",search_et.getText().toString());
+
+				search(search_et.getText().toString());
+
+
+			}
+		});
+
+		search_et.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                search(search_et.getText().toString());
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+
+
 		//CallProductdetails();
 
 		title = (TextView)view.findViewById(R.id.tilte_shop_frag);
@@ -98,27 +173,7 @@ public class ShopFragment extends Fragment {
 
 
 
-		grid_img.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				grid=true;
-				vertical=false;
-				grid_img.setColorFilter(getResources().getColor(R.color.colorBlack));
-				vertical_img.setColorFilter(getResources().getColor(R.color.colorlightGrey));
-				shop_rv.setLayoutManager(gridLayoutManager);
-			}
-		});
 
-		vertical_img.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				vertical=true;
-				grid=false;
-				grid_img.setColorFilter(getResources().getColor(R.color.colorlightGrey));
-				vertical_img.setColorFilter(getResources().getColor(R.color.colorBlack));
-				shop_rv.setLayoutManager(linearLayoutManager);
-			}
-		});
 
 		shop_rv = (RecyclerView)view.findViewById(R.id.rv_shop);
 		shop_rv.setNestedScrollingEnabled(false);
@@ -145,33 +200,119 @@ public class ShopFragment extends Fragment {
 
 
 
-/*
-		final Handler handler = new Handler();
-
-		final 	Runnable update = new Runnable() {
-			public void run() {
-				if (viewPager.getCurrentItem() < slidingImage_data.size() - 1) {
-					viewPager.setCurrentItem(viewPager.getCurrentItem() + 1);
-				}
-				else {
-					viewPager.setCurrentItem(0);
-				}
-
-			}
-		};
+		new_ll = (LinearLayout)view.findViewById(R.id.new_ll);
+		high_ll = (LinearLayout)view.findViewById(R.id.high_ll);
+		low_ll = (LinearLayout)view.findViewById(R.id.low_ll);
 
 
-		new Timer().schedule(new TimerTask() {
+		cod_tv = (TextView)view.findViewById(R.id.new_tv);
 
+
+		wallet_tv = (TextView)view.findViewById(R.id.low_tv);
+
+
+		card_tv = (TextView)view.findViewById(R.id.high_tv);
+
+		checkoff_new = (ImageView)view.findViewById(R.id.checkoff_new);
+		checkoff_new = (ImageView)view.findViewById(R.id.checkon_new);
+
+		checkoff_high = (ImageView)view.findViewById(R.id.checkoff_high);
+		checkon_high = (ImageView)view.findViewById(R.id.checkon_high);
+
+		checkoff_low = (ImageView)view.findViewById(R.id.checkoff_low);
+		checkon_low = (ImageView)view.findViewById(R.id.checkon_low);
+
+
+		//Sorting
+
+
+		new_ll.setOnClickListener(new View.OnClickListener() {
 			@Override
-			public void run() {
-				handler.post(update);
-			}
-		}, 3000, 5000);*/
+			public void onClick(View v) {
 
-		//Snackbar.make(quantity,"shop fragment selected",Snackbar.LENGTH_SHORT).show();
+				resetColors();
+				checkoff(checkoff_high,checkoff_low);
+				changecolor(cod_tv);
+				check(checkoff_new, checkon_new,checkon_high,checkon_low);
+
+
+				popup_sort_ll.setVisibility(View.GONE);
+
+				callProducts("new","");
+
+
+
+			}
+		});
+
+
+		low_ll.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				resetColors();
+				checkoff(checkoff_new,checkoff_high);
+				check(checkoff_low,checkon_low,checkon_new,checkon_high);
+
+				changecolor(wallet_tv);
+
+				callProducts("lowtohigh","PLOW");
+				popup_sort_ll.setVisibility(View.GONE);
+			}
+		});
+
+
+		high_ll.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				resetColors();
+				check(checkoff_high,checkon_high,checkon_new,checkon_low);
+				checkoff(checkoff_new,checkoff_low);
+				changecolor(card_tv);
+				callProducts("hightoLow","Phigh");
+				popup_sort_ll.setVisibility(View.GONE);
+
+			}
+		});
+
+
+		shopData.clear();
+
 		return view;
 	}
+
+
+
+
+
+	private void check(ImageView imageView,ImageView imageView2,ImageView imageView3,ImageView imageView4){
+		imageView.setVisibility(View.GONE);
+		imageView2.setVisibility(View.VISIBLE);
+		imageView3.setVisibility(View.GONE);
+		imageView4.setVisibility(View.GONE);
+	}
+
+	private void checkoff(ImageView imageView,ImageView imageView2){
+		imageView.setVisibility(View.VISIBLE);
+		imageView2.setVisibility(View.VISIBLE);
+
+	}
+
+	private void changecolor(TextView textView){
+		textView.setTextColor(getResources().getColor(R.color.colorBlack));
+
+	}
+
+	private void resetColors(){
+		cod_tv.setTextColor(getResources().getColor(R.color.colorlightGrey));
+
+		wallet_tv.setTextColor(getResources().getColor(R.color.colorlightGrey));
+
+		card_tv.setTextColor(getResources().getColor(R.color.colorlightGrey));
+
+	}
+
+
+
 
 	public void setParamentersBrands(String brandId,String titles){
 
@@ -183,6 +324,7 @@ public class ShopFragment extends Fragment {
 
 		this.brandid = brandId ;
 		callProducts("brands",brandId);
+		search_popup.setVisibility(View.GONE);
 
 	}
 
@@ -195,6 +337,16 @@ public class ShopFragment extends Fragment {
 
 		this.categoryid = categories ;
 		callProducts("category",categories);
+
+		search_popup.setVisibility(View.GONE);
+
+	}
+
+	public void search(String keywords){
+
+		search_popup.setVisibility(View.VISIBLE);
+
+		callProducts("search",search_et.getText().toString());
 
 	}
 
@@ -257,8 +409,21 @@ public class ShopFragment extends Fragment {
 			if (type.equals("brands")){
 				parameters.put("brand_id",id);
 			}
-			else {
+			else if (type.equals("category")){
 				parameters.put("category_id",id);
+			}
+			else if (type.equals("search")){
+				parameters.put("search",id);
+			}
+			else if (type.equals("LtoH")){
+
+				parameters.put("sorting","PLOW");
+			}
+			else if (type.equals("HtoL")){
+				parameters.put("sorting","PHIG");
+			}
+			else if (type.equals("new")){
+				parameters.put("sorting","");
 			}
 
 				//	parameters.put("password",password.getText().toString());

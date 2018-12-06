@@ -46,9 +46,9 @@ public class Cart_Adapter extends RecyclerView.Adapter<Cart_Adapter.MyViewHolder
 		float q = Float.valueOf(items.get(position).shop_data.price) * Float.valueOf(Session.getCurrencyRate(context));
 
 
-		holder.quantity_tv_product.setText(Session.getQuantity(context));
+		//holder.quantity_tv_product.setText(String.valueOf(items.get(position).cartquantity));
 
-		float temp = q * Float.valueOf(Session.getQuantity(context));
+		float temp = q * Float.valueOf(items.get(position).cartquantity);
 
 
 

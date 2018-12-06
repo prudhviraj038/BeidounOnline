@@ -1,19 +1,18 @@
 package com.yellowsoft.newproject;
 
-
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,27 +24,31 @@ import com.android.volley.toolbox.StringRequest;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+public class AddAddressFragment extends Fragment {
+	TextView page_title;
+	TextView btn_edit,state;
+	LinearLayout prdcheckout_btn;
+	LinearLayout menu_btn,back_btn,submit_btn,proceedtopay_ll_btn;
+	LinearLayout popup_checkout;
 
-public class ShippingAddressFragment extends Fragment {
 
 
+	StatesAdapter statesAdapter;
 
-	Cart_Adapter cart_adapter;
-	ArrayList<Cart_Data> cart_data = new ArrayList<>();
+	EditText firstname,lastname,address,email,phone,city,et_country_checkout;
+	ListView states_lv;
 
-	EditText firstname,lastname,address,email,phone,city,et_country_checkout,state;
 	LinearLayout nextstep_ll;
+	String member,name;
 	TextView title_shipping_tv;
 
 
-	RecyclerView cart_rv;
-
-	public static ShippingAddressFragment newInstance(int someInt) {
-		ShippingAddressFragment myFragment = new ShippingAddressFragment();
+	ImageView back;
+	public static AddAddressFragment newInstance(int someInt) {
+		AddAddressFragment myFragment = new AddAddressFragment();
 
 		Bundle args = new Bundle();
 		args.putInt("someInt", someInt);
@@ -59,6 +62,7 @@ public class ShippingAddressFragment extends Fragment {
 		View view = inflater.inflate(R.layout.fragment_shipping, container, false);
 
 
+
 		firstname = (EditText)view.findViewById(R.id.et_firstname_checkout);
 		lastname = (EditText)view.findViewById(R.id.et_lastname_checkout);
 		address = (EditText)view.findViewById(R.id.et_address_checkout);
@@ -70,6 +74,7 @@ public class ShippingAddressFragment extends Fragment {
 		state = (EditText)view. findViewById(R.id.tv_state_checkout);
 
 		title_shipping_tv = (TextView)view.findViewById(R.id.title_shipping_tv);
+		title_shipping_tv.setText("Add Address");
 
 
 
@@ -80,57 +85,52 @@ public class ShippingAddressFragment extends Fragment {
 			@Override
 			public void onClick(View v) {
 
-				if (firstname.getText().toString().equals("")){
-					Snackbar.make(firstname,"please enter firstname",Snackbar.LENGTH_SHORT).show();
-				}
-				else if (lastname.getText().toString().equals("")){
-					Snackbar.make(firstname,"please enter lastname",Snackbar.LENGTH_SHORT).show();
-				}
-				else if(address.getText().toString().equals("")){
-					Snackbar.make(firstname,"please enter address",Snackbar.LENGTH_SHORT).show();
-				}
-				else if(email.getText().toString().equals("")||!email.getText().toString().matches("[a-zA-Z0-9._-]+@[a-z]+.[a-z]+")){
-					Snackbar.make(firstname,"please enter valid email",Snackbar.LENGTH_SHORT).show();
-				}
-				else if(phone.getText().toString().equals("")){
-					Snackbar.make(firstname,"please enter phonenumber",Snackbar.LENGTH_SHORT).show();
-				}
-				else if(city.getText().toString().equals("")){
-					Snackbar.make(firstname,"please enter city",Snackbar.LENGTH_SHORT).show();
-				}
-
-				else if(et_country_checkout.getText().toString().equals("")){
-					Snackbar.make(firstname,"please enter countryname",Snackbar.LENGTH_SHORT).show();
-				}
-				else if(state.getText().toString().equals("")){
-					Snackbar.make(firstname,"please enter state",Snackbar.LENGTH_SHORT).show();
-				}
-				else {
+				if (firstname.getText().toString().equals("")) {
+					Snackbar.make(firstname, "please enter firstname", Snackbar.LENGTH_SHORT).show();
+				} else if (lastname.getText().toString().equals("")) {
+					Snackbar.make(firstname, "please enter lastname", Snackbar.LENGTH_SHORT).show();
+				} else if (address.getText().toString().equals("")) {
+					Snackbar.make(firstname, "please enter address", Snackbar.LENGTH_SHORT).show();
+				} else if (email.getText().toString().equals("") || !email.getText().toString().matches("[a-zA-Z0-9._-]+@[a-z]+.[a-z]+")) {
+					Snackbar.make(firstname, "please enter valid email", Snackbar.LENGTH_SHORT).show();
+				} else if (phone.getText().toString().equals("")) {
+					Snackbar.make(firstname, "please enter phonenumber", Snackbar.LENGTH_SHORT).show();
+				} else if (city.getText().toString().equals("")) {
+					Snackbar.make(firstname, "please enter city", Snackbar.LENGTH_SHORT).show();
+				} else if (et_country_checkout.getText().toString().equals("")) {
+					Snackbar.make(firstname, "please enter countryname", Snackbar.LENGTH_SHORT).show();
+				} else if (state.getText().toString().equals("")) {
+					Snackbar.make(firstname, "please enter state", Snackbar.LENGTH_SHORT).show();
+				} else {
 
 
 					sendShippingAddress();
 				}
 
-				//CallAddAddressService(member,name,address.getText().toString(),city.getText().toString(),state.getText().toString(),country.getText().toString(),pincode.getText().toString(),phone.getText().toString());
 			}
 		});
 
-		return  view;
 
+
+		return view;
 	}
 
-public void sendShippingAddress(){
+
+
+
+
+	public void sendShippingAddress(){
 
 		final ProgressDialog progressDialog = new ProgressDialog(getActivity());
 		progressDialog.setMessage("Please Wait....");
 		progressDialog.show();
 		progressDialog.setCancelable(false);
-		String URL = Session.BASE_URL+"api/coupon-check.php";
+		String URL = Session.BASE_URL+"api/add-address.php";
 
 		StringRequest stringRequest = new StringRequest(Request.Method.POST, URL,new Response.Listener<String>() {
 			@Override
 			public void onResponse(String response) {
-				Log.e("resShippingAddress",response);
+				Log.e("resAddaddress",response);
 				if(progressDialog!=null) {
 					progressDialog.dismiss();
 				}
@@ -141,14 +141,14 @@ public void sendShippingAddress(){
 
 					if(reply.equals("Success")) {
 
-						Toast.makeText(getContext(),"Successfully order placeed",Toast.LENGTH_SHORT).show();
+						Toast.makeText(getContext(),"Address added successfully",Toast.LENGTH_SHORT).show();
 
 
 					}
 
 
 
-					} catch (JSONException e) {
+				} catch (JSONException e) {
 					e.printStackTrace();
 				}
 			}
@@ -172,5 +172,4 @@ public void sendShippingAddress(){
 		};
 		ApplicationController.getInstance().addToRequestQueue(stringRequest);
 	}
-
 }

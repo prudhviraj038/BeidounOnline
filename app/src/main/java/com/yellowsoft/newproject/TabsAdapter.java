@@ -104,9 +104,16 @@ public class TabsAdapter extends FragmentStatePagerAdapter {
         }
 
         case 10:{
-            CheckoutFragment checkoutFragment = CheckoutFragment.newInstance(position);
-            return checkoutFragment;
+            ShippingAddressFragment shippingAddressFragment = ShippingAddressFragment.newInstance(position);
+            return shippingAddressFragment;
         }
+
+        case 11:{
+            AddAddressFragment addAddressFragment = AddAddressFragment.newInstance(position);
+
+            return addAddressFragment;
+        }
+
 
         default: {
             HomeFragment demoFragment = HomeFragment.newInstance(position);
@@ -121,6 +128,6 @@ public class TabsAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-        return 11;
+        return 12;
     }
 }

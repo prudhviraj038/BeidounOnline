@@ -273,13 +273,21 @@
         android:visibility="gone" />
 
     <LinearLayout
+        android:id="@+id/searching_ll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        android:orientation="vertical"
+        android:visibility="gone"></LinearLayout>
+
+    <LinearLayout
         android:id="@+id/countries_popup_ll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@id/toolbar"
         android:background="#80000000"
         android:orientation="vertical"
-        android:layout_below="@id/toolbar"
-        android:visibility="visible">
+        android:visibility="gone">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -291,8 +299,7 @@
             <ListView
                 android:id="@+id/countries_lv"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                />
+                android:layout_height="match_parent" />
         </LinearLayout>
 
     </LinearLayout>
@@ -346,6 +353,7 @@
                         android:orientation="horizontal">
 
                         <LinearLayout
+                            android:id="@+id/usrname_home_ll"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center_vertical|center_horizontal"

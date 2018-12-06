@@ -6,17 +6,14 @@ import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.JsonReader;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -279,7 +276,7 @@ public class PaymentActivity extends AppCompatActivity  implements PaymentResult
 
 						}else {
 
-							Intent intent = new Intent(PaymentActivity.this, ThankyouActivity.class);
+							Intent intent = new Intent(PaymentActivity.this, SearchActivity.class);
 							intent.putExtra("id", jsonObject.getString("invoice_id"));
 							invoiceid = jsonObject.getString("invoice_id");
 							startActivity(intent);
@@ -490,7 +487,7 @@ public class PaymentActivity extends AppCompatActivity  implements PaymentResult
 						if(reply.equals("Success")) {
 
 							Toast.makeText(PaymentActivity.this,""+reply.toString(),Toast.LENGTH_SHORT).show();
-							Intent intent = new Intent(PaymentActivity.this, ThankyouActivity.class);
+							Intent intent = new Intent(PaymentActivity.this, SearchActivity.class);
 							intent.putExtra("id", paymentid);
 							intent.putExtra("invoiceId",invoiceid);
 							startActivity(intent);

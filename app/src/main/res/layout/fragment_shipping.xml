@@ -25,7 +25,7 @@
                     android:orientation="vertical">
 
                     <com.yellowsoft.newproject.CustomTextView
-                        android:id="@+id/customTextView13"
+                        android:id="@+id/title_shipping_tv"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
@@ -35,7 +35,7 @@
                         android:padding="5dp"
                         android:text="Billing Address"
                         android:textColor="@android:color/white"
-                        android:textSize="16sp" />
+                        android:textSize="15sp" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -45,6 +45,232 @@
                         android:layout_marginRight="10dp"
                         android:layout_marginBottom="10dp"
                         android:orientation="vertical">
+
+                        <com.yellowsoft.newproject.CustomTextView
+                            android:id="@+id/customTextView94"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:text="First Name"
+                            android:textColor="@android:color/black" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:background="@drawable/corners_grey"
+                            android:orientation="vertical">
+
+                            <com.yellowsoft.newproject.CustomTextEdit
+                                android:id="@+id/et_firstname_checkout"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@null"
+                                android:hint="First Name*"
+                                android:imeOptions="actionDone"
+                                android:maxLines="1"
+                                android:padding="5dp"
+                                android:singleLine="true"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+                        <com.yellowsoft.newproject.CustomTextView
+                            android:id="@+id/customTextView92"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:text="Last Nmae"
+                            android:textColor="@android:color/black" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="5dp"
+                            android:background="@drawable/corners_grey"
+                            android:orientation="vertical">
+
+                            <com.yellowsoft.newproject.CustomTextEdit
+                                android:id="@+id/et_lastname_checkout"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="5dp"
+                                android:background="@null"
+                                android:hint="Last Name*"
+                                android:imeOptions="actionDone"
+                                android:maxLines="1"
+                                android:singleLine="true"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+                        <com.yellowsoft.newproject.CustomTextView
+                            android:id="@+id/customTextView90"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:text="Mobile Number"
+                            android:textColor="@android:color/black" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <com.yellowsoft.newproject.CustomTextEdit
+                                android:id="@+id/et_phonecode_checkout"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="5dp"
+                                android:background="@drawable/corners_grey"
+                                android:hint="+965"
+                                android:imeOptions="actionDone"
+                                android:inputType="phone"
+                                android:maxLines="1"
+                                android:paddingLeft="5dp"
+                                android:paddingRight="5dp"
+                                android:singleLine="true"
+                                android:textSize="14sp" />
+
+                            <com.yellowsoft.newproject.CustomTextEdit
+                                android:id="@+id/et_phone_checkout"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="5dp"
+                                android:background="@drawable/corners_grey"
+                                android:hint="Phone Number*"
+                                android:imeOptions="actionDone"
+                                android:inputType="phone"
+                                android:maxLines="1"
+                                android:singleLine="true"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+                        <com.yellowsoft.newproject.CustomTextView
+                            android:id="@+id/customTextView89"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginTop="7dp"
+                            android:layout_marginRight="5dp"
+                            android:text="Email Address"
+                            android:textColor="@android:color/black" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:background="@drawable/corners_grey"
+                            android:orientation="vertical">
+
+                            <com.yellowsoft.newproject.CustomTextEdit
+                                android:id="@+id/et_email_checkout"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="5dp"
+                                android:background="@null"
+                                android:hint="Email id*"
+                                android:imeOptions="actionDone"
+                                android:inputType="textEmailAddress"
+                                android:maxLines="1"
+                                android:singleLine="true"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+                        <com.yellowsoft.newproject.CustomTextView
+                            android:id="@+id/customTextView88"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:text="Town/City"
+                            android:textColor="@android:color/black" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:background="@drawable/corners_grey"
+                            android:orientation="vertical">
+
+                            <com.yellowsoft.newproject.CustomTextEdit
+                                android:id="@+id/et_city_checkout"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="5dp"
+                                android:background="@null"
+                                android:hint="City*"
+                                android:imeOptions="actionDone"
+                                android:maxLines="1"
+                                android:singleLine="true"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+                        <com.yellowsoft.newproject.CustomTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:text="Country"
+                            android:textColor="@android:color/black" />
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="5dp"
+                            android:background="@drawable/corners_grey"
+                            android:orientation="vertical">
+
+                            <com.yellowsoft.newproject.CustomTextEdit
+                                android:id="@+id/et_country_checkout"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="5dp"
+                                android:background="@null"
+                                android:hint="Country*"
+                                android:imeOptions="actionDone"
+                                android:maxLines="1"
+                                android:singleLine="true"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+                        <com.yellowsoft.newproject.CustomTextView
+                            android:id="@+id/customTextView97"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:text="State"
+                            android:textColor="@android:color/black" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:background="@drawable/corners_grey"
+                            android:orientation="vertical">
+
+                            <com.yellowsoft.newproject.CustomTextEdit
+                                android:id="@+id/tv_state_checkout"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="5dp"
+                                android:background="@null"
+                                android:hint="State*"
+                                android:imeOptions="actionDone"
+                                android:maxLines="1"
+                                android:singleLine="true"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+                        <com.yellowsoft.newproject.CustomTextView
+                            android:id="@+id/customTextView100"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:text="Address"
+                            android:textColor="@android:color/black" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -63,163 +289,40 @@
                                     android:id="@+id/et_address_checkout"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_margin="5dp"
+                                    android:layout_marginTop="5dp"
+                                    android:layout_marginBottom="5dp"
                                     android:background="@null"
                                     android:hint="Address*"
                                     android:imeOptions="actionDone"
                                     android:maxLines="7"
+                                    android:paddingBottom="30dp"
                                     android:textSize="14sp" />
                             </LinearLayout>
 
                         </LinearLayout>
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_margin="5dp"
-                            android:background="@drawable/rounded_corners_transparent"
-                            android:orientation="vertical">
-
-                            <com.yellowsoft.newproject.CustomTextEdit
-                                android:id="@+id/et_lastname_checkout"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="5dp"
-                                android:background="@null"
-                                android:hint="Last Name*"
-                                android:imeOptions="actionDone"
-                                android:maxLines="1"
-                                android:singleLine="true"
-                                android:textSize="14sp" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="5dp"
-                            android:background="@drawable/corners_grey"
-                            android:orientation="vertical">
-
-                            <com.yellowsoft.newproject.CustomTextEdit
-                                android:id="@+id/et_firstname_checkout"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="5dp"
-                                android:background="@null"
-                                android:hint="First Name*"
-                                android:imeOptions="actionDone"
-                                android:maxLines="1"
-                                android:padding="5dp"
-                                android:singleLine="true"
-                                android:textSize="14sp" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_margin="5dp"
-                            android:background="@drawable/rounded_corners_transparent"
-                            android:orientation="horizontal">
-
-                            <com.yellowsoft.newproject.CustomTextEdit
-                                android:id="@+id/et_phone_checkout"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="5dp"
-                                android:background="@null"
-                                android:hint="Phone Number*"
-                                android:imeOptions="actionDone"
-                                android:inputType="phone"
-                                android:maxLines="1"
-                                android:singleLine="true"
-                                android:textSize="14sp" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="5dp"
-                            android:background="@drawable/rounded_corners_transparent"
-                            android:orientation="vertical">
-
-                            <com.yellowsoft.newproject.CustomTextEdit
-                                android:id="@+id/et_email_checkout"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="5dp"
-                                android:background="@null"
-                                android:hint="Email id*"
-                                android:imeOptions="actionDone"
-                                android:inputType="textEmailAddress"
-                                android:maxLines="1"
-                                android:singleLine="true"
-                                android:textSize="14sp" />
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="5dp"
-                            android:background="@drawable/rounded_corners_transparent"
-                            android:orientation="vertical">
-
-                            <com.yellowsoft.newproject.CustomTextEdit
-                                android:id="@+id/et_city_checkout"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="5dp"
-                                android:background="@null"
-                                android:hint="City*"
-                                android:imeOptions="actionDone"
-                                android:maxLines="1"
-                                android:singleLine="true"
-                                android:textSize="14sp" />
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_margin="5dp"
-                            android:background="@drawable/rounded_corners_transparent"
-                            android:orientation="vertical">
-
-                            <com.yellowsoft.newproject.CustomTextView
-                                android:id="@+id/et_country_checkout"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="5dp"
-                                android:layout_marginLeft="5dp"
-                                android:background="@null"
-                                android:hint="Country*"
-                                android:imeOptions="actionDone"
-                                android:maxLines="1"
-                                android:singleLine="true"
-                                android:textSize="14sp" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="5dp"
-                            android:background="@drawable/rounded_corners_transparent"
-                            android:orientation="vertical">
-
-                            <com.yellowsoft.newproject.CustomTextView
-                                android:id="@+id/tv_state_checkout"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="5dp"
-                                android:background="@null"
-                                android:hint="State*"
-                                android:imeOptions="actionDone"
-                                android:maxLines="1"
-                                android:singleLine="true"
-                                android:textSize="14sp" />
-                        </LinearLayout>
-
-
-
-
 
                     </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/nextstep_ll"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="15dp"
+                        android:background="@android:color/black"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <com.yellowsoft.newproject.CustomTextView
+                            android:id="@+id/customTextView15"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:text="NEXT STEP"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
                 </LinearLayout>
             </ScrollView>
 
@@ -228,25 +331,6 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:orientation="vertical"></LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/nextstep_ll"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="15dp"
-                android:background="@android:color/black"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <com.yellowsoft.newproject.CustomTextView
-                    android:id="@+id/customTextView15"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:text="NEXT STEP"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="15sp" />
-            </LinearLayout>
 
         </LinearLayout>
 
