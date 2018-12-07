@@ -17,6 +17,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -26,11 +27,13 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.PipedInputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -43,6 +46,8 @@ public class HomeFragment extends Fragment {
 	ArrayList<MenuItem> menuItems = new ArrayList<>();
 	RelativeLayout vechile_tracking;
 
+	ImageView main_img_homeone;
+
 	//TextView insta_shopnow_tv;
 
 	Sales_Adapter sales_adapter;
@@ -54,8 +59,8 @@ public class HomeFragment extends Fragment {
 
 
 	ArrayList<Home_data> home_data = new ArrayList<>();
-	ArrayList<Slider_Data> home_data1 = new ArrayList<>();
-	ArrayList<Home_data> home_data2 = new ArrayList<>();
+	ArrayList<Slider_Data> slider_data = new ArrayList<>();
+	ArrayList<Shop_Data> shopData = new ArrayList<>();
 
 
 
@@ -86,6 +91,8 @@ public class HomeFragment extends Fragment {
 		View view = inflater.inflate(R.layout.fragment_home, container, false);
 
 		Log.e("homefragment","homefragment");
+
+		main_img_homeone = (ImageView) view.findViewById(R.id.main_img_homeone);
 
 		rv_one = (RecyclerView) view.findViewById(R.id.rv_one);
 		slider_rv = (RecyclerView) view.findViewById(R.id.slider_rv);
@@ -121,17 +128,9 @@ public class HomeFragment extends Fragment {
 
 
 
-		home_data1.add(new Slider_Data(R.drawable.slider_img_one,"SELF - PORTRAIT","Check Firll Midi Dress","150","40","90"));
-		home_data1.add(new Slider_Data(R.drawable.slider_img_two,"GIANVITO ROSSI","White Buckled Strap Sandals","90","39","120"));
-		home_data1.add(new Slider_Data(R.drawable.slider_img_one,"SELF - PORTRAIT","Check Firll Midi Dress","150","40","90"));
-		home_data1.add(new Slider_Data(R.drawable.slider_img_two,"GIANVITO ROSSI","White Buckled Strap Sandals","150","40","90"));
-		home_data1.add(new Slider_Data(R.drawable.slider_img_one,"SELF - PORTRAIT","Check Firll Midi Dress","150","40","90"));
-		home_data1.add(new Slider_Data(R.drawable.slider_img_two,"GIANVITO ROSSI","White Buckled Strap Sandals","150","40","90"));
-		home_data1.add(new Slider_Data(R.drawable.slider_img_one,"SELF - PORTRAIT","Check Firll Midi Dress","150","40","90"));
 
-
-
-		slider_adapter = new Slider_Adapter(getContext(),home_data1);
+		shopData.clear();
+		slider_adapter = new Slider_Adapter(getContext(),shopData);
 		slider_rv.setAdapter(slider_adapter);
 
 
@@ -142,21 +141,10 @@ public class HomeFragment extends Fragment {
 
 		rv_one.setLayoutManager(new GridLayoutManager(getContext(),2));
 
-		home_data.add(new Home_data(R.drawable.sales));
-
-		home_data.add(new Home_data(R.drawable.sales));
-		home_data.add(new Home_data(R.drawable.sales));
-		home_data.add(new Home_data(R.drawable.sales));
-		home_data.add(new Home_data(R.drawable.sales));
-		home_data.add(new Home_data(R.drawable.sales));
-		home_data.add(new Home_data(R.drawable.sales));
-		home_data.add(new Home_data(R.drawable.sales));
-		home_data.add(new Home_data(R.drawable.sales));
-		home_data.add(new Home_data(R.drawable.sales));
-		home_data.add(new Home_data(R.drawable.sales));
-		home_data.add(new Home_data(R.drawable.sales));
 
 
+
+		home_data.clear();
 		sales_adapter = new Sales_Adapter(getContext(),home_data);
 		rv_one.setAdapter(sales_adapter);
 
@@ -165,16 +153,11 @@ public class HomeFragment extends Fragment {
 
 
 
-		/*menuItems = new ArrayList<MenuItem>();
-		menuItems.add(new MenuItem("Vechile","Traking",R.drawable.vehicletracking));
-		menuItems.add(new MenuItem("Buy GPS","Traker",R.drawable.buygps));
-		menuItems.add(new MenuItem("Referal","Scheme",R.drawable.referal));
-		menuItems.add(new MenuItem("MY","Account",R.drawable.myaccount));
-
-		homeAdapter = new HomeAdapter(getActivity(),menuItems);
-		home_list.setAdapter(homeAdapter);*/
 
 
+
+
+		getHomeApi();
 
 		return view;
 
@@ -182,6 +165,111 @@ public class HomeFragment extends Fragment {
 
 
 
+
+
+
+
+	//call homepage api
+
+	public void getHomeApi()
+	{
+
+		final ProgressDialog progressDialog = new ProgressDialog(getContext());
+		progressDialog.setMessage("Please Wait....");
+		progressDialog.show();
+		progressDialog.setCancelable(false);
+		String URL = Session.BASE_URL+"api/home.php";
+
+		StringRequest stringRequest = new StringRequest(Request.Method.POST, URL,new Response.Listener<String>() {
+			@Override
+			public void onResponse(String response) {
+				Log.e("res",response);
+				if(progressDialog!=null) {
+					progressDialog.dismiss();
+				}
+
+				try {
+					JSONObject jsonObject =new JSONObject(response);
+
+
+					JSONArray jsonArray = jsonObject.getJSONArray("banners");
+
+					if (jsonArray.length()>1){
+
+						JSONObject jsonObject1 = jsonArray.getJSONObject(0);
+
+						Picasso.get().load(jsonObject1.getString("image")).into(main_img_homeone);
+
+					}
+
+
+
+
+
+
+
+
+
+					JSONArray jsonArray2 = jsonObject.getJSONArray("latest_products");
+					Log.e("latestProducts",""+jsonObject.getJSONArray("latest_products"));
+
+					for (int i=0;i<jsonArray2.length();i++) {
+						JSONObject jsonObject2 = jsonArray2.getJSONObject(i);
+						Shop_Data temp = new Shop_Data(jsonObject2);
+						shopData.add(temp);
+					}
+					slider_adapter.notifyDataSetChanged();
+
+
+
+
+
+
+						//images
+					JSONArray jsonArray1 = jsonObject.getJSONArray("images");
+
+
+					for (int i=0;i<jsonArray1.length();i++) {
+
+						JSONObject jsonObject3 = jsonArray1.getJSONObject(i);
+						Log.e("imagesjson",""+jsonObject3.getString("image"));
+						Home_data home_temp = new Home_data(jsonObject3);
+						home_data.add(home_temp);
+
+					}
+
+					sales_adapter.notifyDataSetChanged();
+
+
+
+
+
+
+
+
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+			}
+		},
+				new Response.ErrorListener() {
+					@Override
+					public void onErrorResponse(VolleyError error) {
+						if(progressDialog!=null)
+							progressDialog.dismiss();
+
+					}
+				}){
+			@Override
+			protected Map<String,String> getParams(){
+				Map<String,String> parameters = new HashMap<String, String>();
+
+				return parameters;
+			}
+		};
+		ApplicationController.getInstance().addToRequestQueue(stringRequest);
+
+	}
 
 
 }

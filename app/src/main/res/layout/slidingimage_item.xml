@@ -27,6 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
             android:layout_marginBottom="2dp"
+            android:singleLine="true"
             android:text="Title"
             android:textColor="@android:color/black"
             android:textSize="15sp"
@@ -38,6 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
             android:layout_marginBottom="2dp"
+            android:singleLine="true"
             android:text="sub title"
             android:textColor="@android:color/black"
             android:textSize="13sp"
@@ -120,7 +122,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
             android:layout_marginBottom="2dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:visibility="gone">
 
             <com.yellowsoft.newproject.CustomTextView
                 android:id="@+id/discount_slider_tv"
@@ -139,17 +142,5 @@
                 android:textSize="12sp" />
         </LinearLayout>
 
-        <com.yellowsoft.newproject.CustomTextView
-            android:id="@+id/customTextView96"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:layout_marginBottom="2dp"
-            android:background="@drawable/corners_black"
-            android:padding="3dp"
-            android:text="CYBER SALE"
-            android:textColor="@android:color/black"
-            android:textSize="11sp"
-            app:font_name="Gothambook" />
     </LinearLayout>
 </LinearLayout>

@@ -135,6 +135,7 @@ public class TabsAdapter extends FragmentStatePagerAdapter {
             return myAddressFragment;
         }
 
+
         default: {
             HomeFragment demoFragment = HomeFragment.newInstance(position);
 

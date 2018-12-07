@@ -46,6 +46,7 @@ public class AddAddressFragment extends Fragment {
 	String member,name;
 	TextView title_shipping_tv;
 
+    AddressChechout_Data addressChechout_data;
 
 	ImageView back;
 	public static AddAddressFragment newInstance(int someInt) {
@@ -107,7 +108,7 @@ public class AddAddressFragment extends Fragment {
 
 
 					//sendShippingAddress();
-					addAddressId("add");
+					addAddressId("add",addressChechout_data);
 				}
 
 			}
@@ -121,7 +122,7 @@ public class AddAddressFragment extends Fragment {
 	}
 
 
-	public void addAddressId(String id) {
+	public void addAddressId(String id,AddressChechout_Data data) {
 
 
 		if (id.equals("add")) {
@@ -129,7 +130,30 @@ public class AddAddressFragment extends Fragment {
 		} else if (id.equals("checkout")) {
 			sendShippingAddress("checkout");
 		} else {
-			sendShippingAddress(id);
+
+			if (!data.equals(null)){
+
+
+				firstname.setText(data.fname);
+				lastname.setText(data.lname);
+				email.setText(data.email);
+				address.setText(data.address);
+				phone.setText(data.phone);
+			}
+			else if (city.getText().toString().equals("")) {
+				Snackbar.make(firstname, "please enter city", Snackbar.LENGTH_SHORT).show();
+			} else if (et_country_checkout.getText().toString().equals("")) {
+				Snackbar.make(firstname, "please enter countryname", Snackbar.LENGTH_SHORT).show();
+			} else if (state.getText().toString().equals("")) {
+				Snackbar.make(firstname, "please enter state", Snackbar.LENGTH_SHORT).show();
+			} else {
+				sendShippingAddress(id);
+				Log.e("addressIdAdd",id);
+			}
+
+
+
+
 		}
 	}
 

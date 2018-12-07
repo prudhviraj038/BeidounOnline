@@ -641,7 +641,7 @@ public class HomeActivity extends AppCompatActivity {
 
 
 
-	public void addAddressFragment(String id){
+	public void addAddressFragment(String id,AddressChechout_Data data){
 
 		resetAllColors();
 
@@ -649,7 +649,7 @@ public class HomeActivity extends AppCompatActivity {
 
 		orders_ll_toolbar.setVisibility(View.INVISIBLE);
 
-		tabsAdapter.addAddressFragment.addAddressId(id);
+		tabsAdapter.addAddressFragment.addAddressId(id,data);
 	}
 
 	public void selectAddressFragment(){

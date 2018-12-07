@@ -2,6 +2,7 @@ package com.yellowsoft.newproject;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,9 +19,9 @@ import java.util.ArrayList;
 
 public class Slider_Adapter extends RecyclerView.Adapter<Slider_Adapter.MyViewHolder> {
 	Context context;
-	ArrayList<Slider_Data> data;
+	ArrayList<Shop_Data> data;
 
-	public Slider_Adapter(Context context, ArrayList<Slider_Data> data){
+	public Slider_Adapter(Context context, ArrayList<Shop_Data> data){
 		this.context=context;
 		this.data=data;
 	}
@@ -35,13 +36,23 @@ public class Slider_Adapter extends RecyclerView.Adapter<Slider_Adapter.MyViewHo
 	public void onBindViewHolder(MyViewHolder holder,final int position){
 
 		//holder.imageView.setImageResource(R.drawable.sales);
-		Picasso.get().load(data.get(position).image).into(holder.imageView);
+		Picasso.get().load(data.get(position).product_images.get(0).image_url).into(holder.imageView);
 
-		holder.discount_tv.setText(data.get(position).discount);
+		Log.e("image",""+data.get(position).product_images.get(0).image_url);
+
+		//holder.discount_tv.setText(data.get(position).old_price);
 		holder.price_tv.setText(data.get(position).price);
-		holder.strike_tv.setText(data.get(position).strikePrice);
+		holder.strike_tv.setText(data.get(position).old_price);
 		holder.title_tv.setText(data.get(position).title);
 		holder.subtitle_tv.setText(data.get(position).subtitle);
+
+		holder.imageView.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+
+				((HomeActivity)context).getproductDetails(data.get(position));
+			}
+		});
 
 	}
 	public int getItemCount(){

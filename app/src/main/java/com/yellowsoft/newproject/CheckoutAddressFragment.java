@@ -1,6 +1,7 @@
 package com.yellowsoft.newproject;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
@@ -75,13 +76,15 @@ public class CheckoutAddressFragment extends Fragment {
 			@Override
 			public void onClick(View v) {
 				Log.e("sendtocheckout","sendtocheckout");
+				Intent intent = new Intent(getContext(),CheckoutActivty.class);
+				startActivity(intent);
 			}
 		});
 
 		addnewaddress_checkout.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				((HomeActivity)getActivity()).addAddressFragment("checkout");
+				((HomeActivity)getActivity()).addAddressFragment("checkout",addressChechout_data.get(0));
 			}
 		});
 

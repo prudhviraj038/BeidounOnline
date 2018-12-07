@@ -3,6 +3,7 @@ package com.yellowsoft.newproject;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,14 +36,15 @@ public class Sales_Adapter extends RecyclerView.Adapter<Sales_Adapter.MyViewHold
 	public void onBindViewHolder(MyViewHolder holder,final int position){
 
 		//holder.imageView.setImageResource(R.drawable.sales);
-		Picasso.get().load(data.get(position).image).into(holder.imageView);
+        //Log.e("image",""+data.get(position).images);
+		Picasso.get().load(data.get(position).images).into(holder.imageView);
 
 		holder.imageView.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 
 
-                ((HomeActivity)context).insta_shop("9","Shop");
+                ((HomeActivity)context).insta_shop(data.get(position).id,"Shop");
 
 
 			}

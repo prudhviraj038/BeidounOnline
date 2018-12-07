@@ -71,7 +71,7 @@ public class MyAddressFragment extends Fragment {
 		addaddress_myaddress_tv.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				((HomeActivity)getActivity()).addAddressFragment("add");
+				((HomeActivity)getActivity()).addAddressFragment("add",myaddress_data.get(0));
 			}
 		});
 

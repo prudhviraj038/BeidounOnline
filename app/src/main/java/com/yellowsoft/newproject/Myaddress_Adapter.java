@@ -2,6 +2,7 @@ package com.yellowsoft.newproject;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,7 +43,8 @@ public class Myaddress_Adapter extends RecyclerView.Adapter<Myaddress_Adapter.My
 			public void onClick(View v) {
 				Toast.makeText(context,"Edit",Toast.LENGTH_SHORT).show();
 
-				((HomeActivity)context).addAddressFragment(data.get(position).id);
+				((HomeActivity)context).addAddressFragment(data.get(position).id,data.get(position));
+                Log.e("addressId",data.get(position).id);
 			}
 		});
 
