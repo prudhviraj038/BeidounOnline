@@ -295,8 +295,8 @@ public class HomeActivity extends AppCompatActivity {
 
 
 			menuItems.add(new MenuItem("Home", "", R.drawable.home));
-			menuItems.add(new MenuItem("My Addresses", "", R.drawable.myprofile));
-			menuItems.add(new MenuItem("Past Orders", "", R.drawable.myreferals));
+			menuItems.add(new MenuItem("My Addresses", "", R.drawable.user1));
+			menuItems.add(new MenuItem("Past Orders", "", R.drawable.orderbox));
 			menuItems.add(new MenuItem("Change Language", "", R.drawable.change));
 			menuItems.add(new MenuItem("Offers", "", R.drawable.offers));
 			menuItems.add(new MenuItem("Customer Care", "", R.drawable.contact));

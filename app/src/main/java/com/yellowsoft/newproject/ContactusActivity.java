@@ -55,120 +55,20 @@ public class ContactusActivity extends AppCompatActivity{
 		et_message_contactus = (EditText)findViewById(R.id.et_message_contactus);
 
 
-		mycopphone_tv = (TextView)findViewById(R.id.mycopphone_tv);
-		mycop_email = (TextView)findViewById(R.id.mycop_email_tv);
-
-		try {
-			mycop_email.setText(ApplicationController.getInstance().settings.getString("email"));
-			mycopphone_tv.setText(ApplicationController.getInstance().settings.getString("phone"));
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
 
 
 
-		youtube_img_contactus = (ImageView)findViewById(R.id.youtube_img_contactus);
-		youtube_img_contactus.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				try {
-					String fb= ApplicationController.getInstance().settings.getString("youtube");
-					startActivity(new Intent(Intent.ACTION_VIEW).setData(Uri.parse(fb)));
-				} catch (JSONException e) {
-					e.printStackTrace();
-				}
-			}
-		});
-
-		//mycop location
-		location_mycop = (ImageView)findViewById(R.id.mycop_location_img);
-		location_mycop.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				String uri = "https://maps.google.com/?cid=457372523366386631";
-				Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
-				startActivity(intent);
-			}
-		});
-
-		topselect_popup = (LinearLayout)findViewById(R.id.topselect_popup);
 
 
-		//popup background onclick closes popup
-		topic_bg = (LinearLayout)findViewById(R.id.topic_ll_bg);
-		topic_bg.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				topselect_popup.setVisibility(View.GONE);
-			}
-		});
 
 
-		topic_select_tv_dropdown = (TextView)findViewById(R.id.topic_select_tv_dropdown);
-		topic_select_tv_dropdown.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				topselect_popup.setVisibility(View.VISIBLE);
-			}
-		});
-
-		//topicselect list view
-		lv_topselect = (ListView)findViewById(R.id.topicselect_lv);
-		lv_topselect.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				if (position==0){
-					topselect_popup.setVisibility(View.GONE);
-					topic_select_tv_dropdown.setText("My Orders");
-				}else if (position==1){
-					topselect_popup.setVisibility(View.GONE);
-					topic_select_tv_dropdown.setText("My Profile");
-				}
-				else if (position==2){
-					topselect_popup.setVisibility(View.GONE);
-					topic_select_tv_dropdown.setText("My Referrals");
-				}
-				else if (position==3){
-					topselect_popup.setVisibility(View.GONE);
-					topic_select_tv_dropdown.setText("My Referral Commission");
-				}
-				else if (position==4){
-					topselect_popup.setVisibility(View.GONE);
-					topic_select_tv_dropdown.setText("Investment Refund");
-				}
-				else if (position==5){
-					topselect_popup.setVisibility(View.GONE);
-					topic_select_tv_dropdown.setText("General");
-				}
-			}
-		});
 
 
-		//social links
-		fbbtn = (ImageView)findViewById(R.id.fb_btn_contactus);
-		gmbtn = (ImageView)findViewById(R.id.gm_btn_contactus);
-		twbtn = (ImageView)findViewById(R.id.tw_btn_contactus);
 
-		fbbtn.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				startActivity(new Intent(Intent.ACTION_VIEW).setData(Uri.parse("https://www.facebook.com")));
-			}
-		});
 
-		gmbtn.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				startActivity(new Intent(Intent.ACTION_VIEW).setData(Uri.parse("https://www.googleplus.com")));
-			}
-		});
 
-		twbtn.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				startActivity(new Intent(Intent.ACTION_VIEW).setData(Uri.parse("https://www.twitter.com")));
-			}
-		});
+
+
 
 		//subit button
 		submit_ll_contact  = (LinearLayout)findViewById(R.id.submit_ll_contact);
@@ -198,7 +98,7 @@ public class ContactusActivity extends AppCompatActivity{
 				}
 
 				else {
-					submitForm(et_phone_contactus.getText().toString(),et_name_contactus.getText().toString(),et_email_contactus.getText().toString(),et_message_contactus.getText().toString(),topic_select_tv_dropdown.getText().toString());
+					//submitForm(et_phone_contactus.getText().toString(),et_name_contactus.getText().toString(),et_email_contactus.getText().toString(),et_message_contactus.getText().toString(),topic_select_tv_dropdown.getText().toString());
 				}
 
 			}

@@ -72,7 +72,7 @@ public class TabsAdapter extends FragmentStatePagerAdapter {
 
 
         case 5:{
-            MyAccountFragment myAccountFragment = MyAccountFragment.newInstance(position);
+            LoginFragment myAccountFragment = LoginFragment.newInstance(position);
             return myAccountFragment;
 
 
