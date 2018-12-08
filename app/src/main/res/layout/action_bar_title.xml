@@ -12,64 +12,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <LinearLayout
-        android:id="@+id/search_popup"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:background="@android:color/white"
-        android:orientation="vertical"
-        android:visibility="gone">
-
-        <LinearLayout
-            android:id="@+id/search"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <EditText
-                android:id="@+id/et_search"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginBottom="5dp"
-                android:layout_weight="1"
-                android:background="?attr/colorPrimary"
-                android:hint="Search                                 "
-                android:imeOptions="actionSearch"
-                android:textColor="@android:color/black"
-                android:textColorHint="#dcdcdc" />
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"></LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/search_ll_search"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:paddingLeft="5dp"
-                android:paddingTop="5dp"
-                android:paddingRight="10dp"
-                android:paddingBottom="5dp">
-
-                <ImageView
-                    android:id="@+id/imageView2"
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
-                    android:src="@drawable/search" />
-            </LinearLayout>
-        </LinearLayout>
-
-    </LinearLayout>
-
     <RelativeLayout
         android:id="@+id/toolbar_content"
         android:layout_width="match_parent"

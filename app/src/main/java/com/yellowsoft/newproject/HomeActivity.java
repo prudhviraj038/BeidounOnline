@@ -347,6 +347,21 @@ public class HomeActivity extends AppCompatActivity {
 
 
 				}
+				else if (position==3){
+					if (Session.getUserid(HomeActivity.this).equals("0")){
+						mDrawerLayout.closeDrawer(GravityCompat.START);
+						Intent intent = new Intent(HomeActivity.this,ContactusActivity.class);
+						startActivity(intent);
+					}
+					else {
+						mDrawerLayout.closeDrawer(GravityCompat.START);
+						Log.e("changeLang","language change");
+					}
+
+				}
+
+
+
 				else if (position==7)
 				{mDrawerLayout.closeDrawer(GravityCompat.START);
 
@@ -402,8 +417,6 @@ public class HomeActivity extends AppCompatActivity {
 		View v = inflater.inflate(R.layout.action_bar_title,null);
 
 
-        search_popup = (LinearLayout)v.findViewById(R.id.search_popup);
-        search_popup.setVisibility(View.GONE);
 		toolbar_content = (RelativeLayout)v.findViewById(R.id.toolbar_content);
 
 
@@ -498,12 +511,6 @@ public class HomeActivity extends AppCompatActivity {
 
 
 	}
-
-
-
-
-
-
 
 
 

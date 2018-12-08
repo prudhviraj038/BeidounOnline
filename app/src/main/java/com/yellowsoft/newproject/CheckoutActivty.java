@@ -1,18 +1,27 @@
 package com.yellowsoft.newproject;
 
 
+import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.view.GravityCompat;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -27,13 +36,16 @@ public class CheckoutActivty extends AppCompatActivity {
 	LinearLayout menu_btn,back_btn,coupencode_ll;
 	LinearLayout cart_items_ll,payconfirm_ll_checkout;
 
+	LinearLayout orders_ll_toolbar;
+	ImageView btn_like,btn_back;
+
 	Checkout_Adapter checkout_adapter;
 	ArrayList<Cart_Data> cart_data = new ArrayList<>();
 
 
 	Integer cartquantity;
 	ProductsData product;
-	ImageView back;
+	ImageView back,countries_img;
 
 	EditText coupon_code;
 	int subtotal;
@@ -191,52 +203,96 @@ public class CheckoutActivty extends AppCompatActivity {
         //    getting shipping charges
 
 
+		Toolbar toolbar = (Toolbar) findViewById(R.id.checkout_toolbar);
+		setSupportActionBar(toolbar);
+		setupActionBar();
+		setupHeader();
 
 
-		//prdcheckout_btn = (LinearLayout)view.findViewById(R.id.proceedtocheckout_ll_btn);
-	/*	prdcheckout_btn.setOnClickListener(new View.OnClickListener() {
+
+
+
+	}
+
+	private void setupActionBar() {
+
+
+		//set action bar
+		getSupportActionBar().setHomeButtonEnabled(false);
+		getSupportActionBar().setDisplayShowTitleEnabled(false);
+		getSupportActionBar().setDisplayShowCustomEnabled(true);
+		getSupportActionBar().setIcon(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
+		ActionBar.LayoutParams layoutParams = new ActionBar.LayoutParams(ActionBar.LayoutParams.MATCH_PARENT,
+				ActionBar.LayoutParams.MATCH_PARENT);
+		LayoutInflater inflater = getLayoutInflater();
+		View v = inflater.inflate(R.layout.action_bar_title,null);
+
+
+
+
+
+
+
+
+
+
+
+		orders_ll_toolbar = (LinearLayout)v.findViewById(R.id.orders_ll_toolbar);
+		orders_ll_toolbar.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				int total_to_send;
-				total_to_send = subtotal+shippingcharges_int;
-
-				intent1.putExtra("product",product);
-
-				intent1.putExtra("price",subtotal);
-				intent1.putExtra("delivery_charges",shippingcharges_int);
-				if (coupon_code_str.equals("")) {
-					intent1.putExtra("discount_amount", "");
-					intent1.putExtra("coupon_code", "");
-
-				}
-				else {
-
-					intent1.putExtra("discount_amount", discount_int);
-					intent1.putExtra("coupon_code", coupon_code_str);
-					total_to_send =total_to_send-discount_int;
-				}
-
-
-				if (schemeAmtUsed==true) {
-					intent1.putExtra("schemeAmt_used", "1");
-					intent1.putExtra("scheme_amount",scheme_amt);
-					total_to_send =total_to_send-Integer.parseInt(scheme_amt);
-				}
-				else {
-					intent1.putExtra("schemeAmt_used", "0");
-
-					intent1.putExtra("scheme_amount","0");
-				}
-
-				intent1.putExtra("total_price",total_to_send);
-				Log.e("total_tosend",""+total_to_send);
-				startActivity(intent1);
+				Intent intent = new Intent(CheckoutActivty.this,MyOrdersActivity.class);
+				startActivity(intent);
 			}
 		});
-*/
 
 
 
+
+
+
+
+		btn_like = (ImageView)v.findViewById(R.id.btn_like);
+		btn_like.setVisibility(View.GONE);
+
+		btn_back = (ImageView)v.findViewById(R.id.btn_back_title);
+		btn_back.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				finish();
+			}
+		});
+
+
+
+
+		countries_img = (ImageView)v.findViewById(R.id.countries_img);
+		countries_img.setVisibility(View.GONE);
+
+
+
+
+
+
+
+
+
+
+
+
+
+		getSupportActionBar().setCustomView(v, layoutParams);
+		Toolbar parent = (Toolbar) v.getParent();
+
+		parent.setContentInsetsAbsolute(0, 0);
+
+
+	}
+
+
+
+
+	private void setupHeader(){
 
 	}
 

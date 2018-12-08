@@ -146,7 +146,6 @@ public class ContactusActivity extends AppCompatActivity{
 
 	}
 	private void setupHeader(){
-		page_title.setText("CONTACT US");
 		//btn_edit.setVisibility(View.VISIBLE);
 		//btn_edit.setText("Search");
 		//page_title.setText("Home");

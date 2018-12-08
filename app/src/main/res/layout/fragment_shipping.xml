@@ -50,14 +50,18 @@
                             android:id="@+id/customTextView94"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_margin="5dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
                             android:text="First Name"
                             android:textColor="@android:color/black" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_margin="5dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginBottom="10dp"
                             android:background="@drawable/corners_grey"
                             android:orientation="vertical">
 
@@ -78,14 +82,19 @@
                             android:id="@+id/customTextView92"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_margin="5dp"
-                            android:text="Last Nmae"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginRight="5dp"
+                            android:text="Last Name"
                             android:textColor="@android:color/black" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_margin="5dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginBottom="10dp"
                             android:background="@drawable/corners_grey"
                             android:orientation="vertical">
 
@@ -93,12 +102,11 @@
                                 android:id="@+id/et_lastname_checkout"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:layout_marginBottom="5dp"
                                 android:background="@null"
                                 android:hint="Last Name*"
                                 android:imeOptions="actionDone"
                                 android:maxLines="1"
+                                android:padding="5dp"
                                 android:singleLine="true"
                                 android:textSize="14sp" />
                         </LinearLayout>
@@ -114,20 +122,22 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginBottom="10dp"
+                            android:gravity="center_vertical"
                             android:orientation="horizontal">
 
                             <com.yellowsoft.newproject.CustomTextEdit
                                 android:id="@+id/et_phonecode_checkout"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_margin="5dp"
                                 android:background="@drawable/corners_grey"
                                 android:hint="+965"
                                 android:imeOptions="actionDone"
                                 android:inputType="phone"
                                 android:maxLines="1"
-                                android:paddingLeft="5dp"
-                                android:paddingRight="5dp"
+                                android:padding="5dp"
                                 android:singleLine="true"
                                 android:textSize="14sp" />
 
@@ -135,12 +145,12 @@
                                 android:id="@+id/et_phone_checkout"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_margin="5dp"
                                 android:background="@drawable/corners_grey"
                                 android:hint="Phone Number*"
                                 android:imeOptions="actionDone"
                                 android:inputType="phone"
                                 android:maxLines="1"
+                                android:padding="5dp"
                                 android:singleLine="true"
                                 android:textSize="14sp" />
                         </LinearLayout>
@@ -149,16 +159,16 @@
                             android:id="@+id/customTextView89"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginTop="7dp"
-                            android:layout_marginRight="5dp"
+                            android:layout_margin="5dp"
                             android:text="Email Address"
                             android:textColor="@android:color/black" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_margin="5dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginBottom="10dp"
                             android:background="@drawable/corners_grey"
                             android:orientation="vertical">
 
@@ -166,13 +176,12 @@
                                 android:id="@+id/et_email_checkout"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:layout_marginBottom="5dp"
                                 android:background="@null"
                                 android:hint="Email id*"
                                 android:imeOptions="actionDone"
                                 android:inputType="textEmailAddress"
                                 android:maxLines="1"
+                                android:padding="5dp"
                                 android:singleLine="true"
                                 android:textSize="14sp" />
                         </LinearLayout>
@@ -188,7 +197,9 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_margin="5dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginBottom="10dp"
                             android:background="@drawable/corners_grey"
                             android:orientation="vertical">
 
@@ -196,12 +207,11 @@
                                 android:id="@+id/et_city_checkout"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:layout_marginBottom="5dp"
                                 android:background="@null"
                                 android:hint="City*"
                                 android:imeOptions="actionDone"
                                 android:maxLines="1"
+                                android:padding="5dp"
                                 android:singleLine="true"
                                 android:textSize="14sp" />
                         </LinearLayout>
@@ -222,7 +232,9 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_margin="5dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginBottom="10dp"
                             android:background="@drawable/corners_grey"
                             android:orientation="vertical">
 
@@ -230,12 +242,11 @@
                                 android:id="@+id/et_pincode_checkout"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:layout_marginBottom="5dp"
                                 android:background="@null"
                                 android:hint="Pincode"
                                 android:imeOptions="actionDone"
                                 android:maxLines="1"
+                                android:padding="5dp"
                                 android:singleLine="true"
                                 android:textSize="14sp" />
                         </LinearLayout>
@@ -256,7 +267,9 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_margin="5dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginBottom="10dp"
                             android:background="@drawable/corners_grey"
                             android:orientation="vertical">
 
@@ -264,12 +277,11 @@
                                 android:id="@+id/et_country_checkout"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:layout_marginBottom="5dp"
                                 android:background="@null"
                                 android:hint="Country*"
                                 android:imeOptions="actionDone"
                                 android:maxLines="1"
+                                android:padding="5dp"
                                 android:singleLine="true"
                                 android:textSize="14sp" />
                         </LinearLayout>
@@ -285,7 +297,9 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_margin="5dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginBottom="10dp"
                             android:background="@drawable/corners_grey"
                             android:orientation="vertical">
 
@@ -293,12 +307,11 @@
                                 android:id="@+id/tv_state_checkout"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:layout_marginBottom="5dp"
                                 android:background="@null"
                                 android:hint="State*"
                                 android:imeOptions="actionDone"
                                 android:maxLines="1"
+                                android:padding="5dp"
                                 android:singleLine="true"
                                 android:textSize="14sp" />
                         </LinearLayout>
@@ -314,7 +327,8 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_margin="5dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
                             android:orientation="horizontal">
 
                             <LinearLayout
@@ -328,6 +342,7 @@
                                     android:id="@+id/et_address_checkout"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
+                                    android:layout_marginLeft="5dp"
                                     android:layout_marginTop="5dp"
                                     android:layout_marginBottom="5dp"
                                     android:background="@null"
@@ -373,42 +388,6 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/popup_checkout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/checkout_toolBar"
-            android:background="#a0000000"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:visibility="gone">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="15dp"
-                android:background="@drawable/rounded_corners_white"
-                android:divider="@drawable/divider_grey"
-                android:gravity="center_horizontal"
-                android:orientation="vertical"
-                android:showDividers="middle">
-
-                <com.yellowsoft.newproject.CustomTextView
-                    android:id="@+id/customTextView27"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:text="Select State"
-                    android:textColor="@color/colorBlack"
-                    android:textSize="16sp" />
-
-                <ListView
-                    android:id="@+id/lv_states"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:divider="@null" />
-            </LinearLayout>
-        </LinearLayout>
     </RelativeLayout>
 
 </LinearLayout>
