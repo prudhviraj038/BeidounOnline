@@ -1,6 +1,7 @@
 package com.yellowsoft.newproject;
 
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -21,15 +22,25 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.squareup.picasso.Picasso;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class CheckoutActivty extends AppCompatActivity {
 
 	TextView quantity,page_title,total_tv,price_cart_tv,subtotal_tv,discount_tv;
-	TextView shippingcharge_tv,ordertotal_tv_cart;
+	TextView shippingcharge_tv,ordertotal_tv_checkout;
 	TextView country_code_cartsub,country_code__cartdiscount,country_code_cart_total;
 
 	LinearLayout empty_cart_ll,apply_ll_btn;
@@ -52,16 +63,38 @@ public class CheckoutActivty extends AppCompatActivity {
 	int discount_int = 0;
 	String coupon_code_str = "";
 
+	LinearLayout visa_ll,knet_ll,cod_ll;
+
+
 	RecyclerView cart_rv;
 
 	float total;
 
+	boolean collect_payment;
+
+
+	AddressChechout_Data addressChechout_data;
 
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_checkout);
 
+
+		visa_ll = (LinearLayout)findViewById(R.id.visa_ll);
+		knet_ll = (LinearLayout)findViewById(R.id.knet_ll);
+		cod_ll = (LinearLayout)findViewById(R.id.cod_ll);
+
+
+		cod_ll.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				collect_payment = true;
+
+				Log.e("addressdata",String.valueOf(getIntent().getStringExtra("addressId")));
+				//callPlaceOrderService();
+			}
+		});
 
 
 
@@ -75,7 +108,7 @@ public class CheckoutActivty extends AppCompatActivity {
 		//quantity.setText(cartquantity.toString());
 
 		subtotal_tv = (TextView)findViewById(R.id.subtotal_tv_checkout);
-		ordertotal_tv_cart = (TextView)findViewById(R.id.total_tv_checkout);
+		ordertotal_tv_checkout = (TextView)findViewById(R.id.total_tv_checkout);
 
 		country_code_cartsub = (TextView)findViewById(R.id.countrycode_checkout);
 		country_code__cartdiscount = (TextView)findViewById(R.id.countrycode_dis_checkout);
@@ -86,14 +119,26 @@ public class CheckoutActivty extends AppCompatActivity {
 		country_code_cartsub.setText(Session.getCurrencyCode(CheckoutActivty.this));
 
 
+
 		/*empty_cart_ll = (LinearLayout)view.findViewById(R.id.empty_cart_ll);
 		cart_items_ll = (LinearLayout)view.findViewById(R.id.cart_items_ll);*/
+
+
+		addressChechout_data = (AddressChechout_Data)getIntent().getSerializableExtra("address");
+		Log.e("addressData",addressChechout_data.email);
+
+
 		payconfirm_ll_checkout = (LinearLayout)findViewById(R.id.payconfirm_ll_checkout);
 
 		payconfirm_ll_checkout.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Toast.makeText(CheckoutActivty.this,"Payment done",Toast.LENGTH_SHORT).show();
+				//Toast.makeText(CheckoutActivty.this,"Payment done",Toast.LENGTH_SHORT).show();
+
+				callPlaceOrderService();
+
+
+
 			}
 		});
 
@@ -154,10 +199,10 @@ public class CheckoutActivty extends AppCompatActivity {
 		subtotal_tv.setText(String.valueOf(floatTemp));
 
 
-		ordertotal_tv_cart.setText(ApplicationController.getInstance().formatNumber(total));
+		ordertotal_tv_checkout.setText(ApplicationController.getInstance().formatNumber(total));
 
 
-        ordertotal_tv_cart.setText(String.valueOf(floatTemp));
+        ordertotal_tv_checkout.setText(String.valueOf(floatTemp));
 
 
 		checkout_adapter = new Checkout_Adapter(CheckoutActivty.this,cart_data);
@@ -234,36 +279,18 @@ public class CheckoutActivty extends AppCompatActivity {
 
 
 
-
-
-
-		orders_ll_toolbar = (LinearLayout)v.findViewById(R.id.orders_ll_toolbar);
-		orders_ll_toolbar.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				Intent intent = new Intent(CheckoutActivty.this,MyOrdersActivity.class);
-				startActivity(intent);
-			}
-		});
-
-
-
-
-
-
-
 		btn_like = (ImageView)v.findViewById(R.id.btn_like);
 		btn_like.setVisibility(View.GONE);
 
-		btn_back = (ImageView)v.findViewById(R.id.btn_back_title);
+		/*btn_back = (ImageView)v.findViewById(R.id.btn_back_title);
+		back_btn.setVisibility(View.VISIBLE);
 		btn_back.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				finish();
 			}
 		});
-
-
+*/
 
 
 		countries_img = (ImageView)v.findViewById(R.id.countries_img);
@@ -297,19 +324,20 @@ public class CheckoutActivty extends AppCompatActivity {
 	}
 
 
-	//
-	/*public void CallCoupenService(final String coupen, final String total){
 
-		final ProgressDialog progressDialog = new ProgressDialog(this);
+	public void callPlaceOrderService(){
+
+
+		final ProgressDialog progressDialog = new ProgressDialog(CheckoutActivty.this);
 		progressDialog.setMessage("Please Wait....");
 		progressDialog.show();
 		progressDialog.setCancelable(false);
-		String URL = Session.BASE_URL+"api/coupon-check.php";
+		String URL = Session.BASE_URL+"api/place-order.php";
 
 		StringRequest stringRequest = new StringRequest(Request.Method.POST, URL,new Response.Listener<String>() {
 			@Override
 			public void onResponse(String response) {
-				Log.e("resCartActivity",response);
+				Log.e("resPlaceOrder",response);
 				if(progressDialog!=null) {
 					progressDialog.dismiss();
 				}
@@ -319,112 +347,27 @@ public class CheckoutActivty extends AppCompatActivity {
 					Log.e("status",""+reply);
 					if(reply.equals("Success")) {
 
-						Snackbar.make(discount_tv,"Coupon code applied successfully",Snackbar.LENGTH_SHORT).show();
-						String discount = jsonObject.getString("discount_value");
-						Log.e("discount",""+discount);
 
-						discount_tv.setText(""+discount);
-
-						Log.e("totalss",""+totalss);
-
-						discount_int = Integer.parseInt(discount);
-						totals = addShippingCharges-Integer.parseInt(discount);
-
-						Log.e("subtotal",""+subtotal);
-
-						total_tv.setText(""+totals);
-
-						Log.e("total",""+totals);
-
-						Session.setTotalPrice(pay.this,""+totals);
+						Toast.makeText(CheckoutActivty.this,"Payment done",Toast.LENGTH_LONG);
+					/*	if(collect_payment){
+							//intent.putExtra("id", jsonObject.getString("invoice_id"));
+							*//*invoiceid = jsonObject.getString("invoice_id");
 
 
-						coupon_code_str = coupon_code.getText().toString();
-						Log.e("coupen_code",coupon_code_str);
+							startPayment(invoiceid);
+*//*
+
+							Toast.makeText(CheckoutActivty.this,"Payment done",Toast.LENGTH_SHORT);
+						}else {
+
+						*//*	Intent intent = new Intent(CheckoutActivty.this, ThankyouActivity.class);
+							intent.putExtra("id", jsonObject.getString("invoice_id"));
+							invoiceid = jsonObject.getString("invoice_id");
+							startActivity(intent);*//*
+							//finish();
+						}*/
 
 					}
-					else {
-						Snackbar.make(discount_tv,"Invalid Coupon Code",Snackbar.LENGTH_SHORT).show();
-					}
-
-
-					} catch (JSONException e) {
-					e.printStackTrace();
-				}
-			}
-		},
-				new Response.ErrorListener() {
-					@Override
-					public void onErrorResponse(VolleyError error) {
-						if(progressDialog!=null)
-							progressDialog.dismiss();
-						Toast.makeText(hs.this,"Internet error",Toast.LENGTH_SHORT).show();
-						//Snackbar.make(gmail_btn, error.toString(), Snackbar.LENGTH_SHORT).show();
-					}
-				}){
-			@Override
-			protected Map<String,String> getParams(){
-				Map<String,String> parameters = new HashMap<String, String>();
-				parameters.put("coupon",coupen);
-				parameters.put("cart_total",total);
-				return parameters;
-			}
-		};
-		ApplicationController.getInstance().addToRequestQueue(stringRequest);
-	}
-
-	//referal amount check
-	public void callReferalMoney(){
-		final ProgressDialog progressDialog = new ProgressDialog(this);
-		progressDialog.setMessage("Please Wait....");
-		progressDialog.show();
-		progressDialog.setCancelable(false);
-		String URL = Session.BASE_URL+"api/scheme_amount_check.php";
-
-		StringRequest stringRequest = new StringRequest(Request.Method.POST, URL,new Response.Listener<String>() {
-			@Override
-			public void onResponse(String response) {
-				Log.e("referalmoney",response);
-
-				if(progressDialog!=null) {
-					progressDialog.dismiss();
-					//scheme_amount
-				}
-				try {
-					JSONObject jsonObject=new JSONObject(response);
-					String reply=jsonObject.getString("scheme_amount");
-					Log.e("status",""+reply);
-
-					if (reply.equals("0")){
-						discount_tv_payment.setText("use my scheme amount");
-						usescheme_money_ll.setVisibility(View.GONE);
-						scheme_amt="0";
-
-					}
-					else {
-						discount_tv_payment.setText("use my scheme amount");
-
-						//discount_tv.setText(reply);
-						//discount_int = Integer.parseInt(reply);
-						scheme_amt = String.valueOf(reply);
-
-
-						*//*if (schemeAmtUsed==true){
-
-
-						}*//*
-					*//*	else {
-							discount_tv.setText("0");
-							discount_int = 0;
-						}*//*
-
-						//subtotal_tv.setText(reply);
-					}
-
-
-					referalmoney_payment.setText(reply);
-
-
 
 
 				} catch (JSONException e) {
@@ -437,21 +380,124 @@ public class CheckoutActivty extends AppCompatActivity {
 					public void onErrorResponse(VolleyError error) {
 						if(progressDialog!=null)
 							progressDialog.dismiss();
-						Toast.makeText(sd.this,"Internet error",Toast.LENGTH_SHORT).show();
-						// /Snackbar.make(gmail_btn, error.toString(), Snackbar.LENGTH_SHORT).show();
+						//Snackbar.make(gmail_btn, error.toString(), Snackbar.LENGTH_SHORT).show();
 					}
 				}){
 			@Override
 			protected Map<String,String> getParams(){
+
+
+				JSONObject jsonObject_to_send = new JSONObject();
+
+
+
+
+
+
+
+				JSONObject address = new JSONObject();
+
+				try {
+
+					address.put("firstname",addressChechout_data.fname);
+					address.put("lastname",addressChechout_data.lname);
+					address.put("address",addressChechout_data.address);
+					address.put("city",addressChechout_data.city);
+					address.put("state",addressChechout_data.state);
+					address.put("country",addressChechout_data.country);
+					address.put("phone",addressChechout_data.phone);
+					address.put("email",addressChechout_data.email);
+					address.put("pincode",addressChechout_data.pincode);
+					address.put("message","test");
+
+
+
+					jsonObject_to_send.put("address",address);
+					jsonObject_to_send.put("products",getProductasJson());
+					jsonObject_to_send.put("coupon_code"," ");
+					jsonObject_to_send.put("currency_code",Session.getCurrencyCode(CheckoutActivty.this));
+					Log.e("ValidCoupenCodes",""+getIntent().getStringExtra("coupon_code"));
+
+					/*if(collect_payment) {
+
+						jsonObject_to_send.put("payment_method", "Online");
+					}else{
+						jsonObject_to_send.put("payment_method", "Cash");
+					}*/
+
+					jsonObject_to_send.put("discount_amount",String.valueOf(getIntent().getIntExtra("discount_amount",0)));
+					jsonObject_to_send.put("price",ordertotal_tv_checkout.getText().toString());
+					jsonObject_to_send.put("delivery_charges",String.valueOf(getIntent().getIntExtra("delivery_charges",0)));
+					jsonObject_to_send.put("member_id",Session.getUserid(CheckoutActivty.this));
+
+
+
+					if(collect_payment) {
+
+						jsonObject_to_send.put("payment", "1");
+						jsonObject_to_send.put("payment_method", "1");
+					}
+
+
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+
+
+
+
+
 				Map<String,String> parameters = new HashMap<String, String>();
-				parameters.put("member_id",Session.getUserid(sdf.this));
-				Log.e("memberid",Session.getUserid(CartsdfActivity.this));
+				parameters.put("content",jsonObject_to_send.toString());
 
-
+				for (Map.Entry<String,String> entry : parameters.entrySet()) {
+					String key = entry.getKey();
+					String value = entry.getValue();
+					// do stuff
+					Log.e(key,value);
+				}
 
 				return parameters;
 			}
 		};
 		ApplicationController.getInstance().addToRequestQueue(stringRequest);
-	}*/
+	}
+
+
+
+	public JSONArray getProductasJson(){
+
+
+		ArrayList<Object> arrayListtemp = (ArrayList<Object>) ApplicationController.getInstance().cartProducts;
+
+		total=0;
+		JSONArray temp = new JSONArray();
+		for(int i=0;i<arrayListtemp.size();i++) {
+
+			Cart_Data temp_obj = (Cart_Data) arrayListtemp.get(i);
+			cart_data.add(temp_obj);
+
+
+			JSONObject jsonObject = new JSONObject();
+			try {
+				jsonObject.put("product_id",cart_data.get(i).shop_data.id);
+				jsonObject.put("quantity",cart_data.get(i).cartquantity);
+				jsonObject.put("price",cart_data.get(i).shop_data.price);
+				temp.put(jsonObject);
+
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+		}
+
+
+
+
+
+
+
+
+		return temp;
+
+	};
 }

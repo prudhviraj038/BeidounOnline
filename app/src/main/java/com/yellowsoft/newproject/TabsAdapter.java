@@ -10,7 +10,7 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 
 public class TabsAdapter extends FragmentStatePagerAdapter {
 
-   public   ShopFragment shopFragment;
+   public ShopActivity shopFragment;
    public   ProductFragment productFragment;
    public   HomeFragment homeFragment;
    public   CartFragment cartFragment;
@@ -39,11 +39,8 @@ public class TabsAdapter extends FragmentStatePagerAdapter {
 
         }
         case 1:{
-            if (shopFragment==null) {
-                 shopFragment = ShopFragment.newInstance(position);
-            }
 
-            return shopFragment;
+
         }
 
         case 2:{

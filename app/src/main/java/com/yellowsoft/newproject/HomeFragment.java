@@ -62,6 +62,8 @@ public class HomeFragment extends Fragment {
 	ArrayList<Slider_Data> slider_data = new ArrayList<>();
 	ArrayList<Shop_Data> shopData = new ArrayList<>();
 
+	String id,type;
+
 
 
 	/*@Override
@@ -93,6 +95,17 @@ public class HomeFragment extends Fragment {
 		Log.e("homefragment","homefragment");
 
 		main_img_homeone = (ImageView) view.findViewById(R.id.main_img_homeone);
+		main_img_homeone.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+
+				//((HomeActivity)getActivity()).insta_shop(id,"shop");
+				Intent intent = new Intent(getContext(),ShopActivity.class);
+				intent.putExtra(type,id);
+				startActivity(intent);
+			}
+		});
+
 
 		rv_one = (RecyclerView) view.findViewById(R.id.rv_one);
 		slider_rv = (RecyclerView) view.findViewById(R.id.slider_rv);
@@ -194,13 +207,19 @@ public class HomeFragment extends Fragment {
 
 					JSONArray jsonArray = jsonObject.getJSONArray("banners");
 
+
 					if (jsonArray.length()>1){
 
 						JSONObject jsonObject1 = jsonArray.getJSONObject(0);
 
 						Picasso.get().load(jsonObject1.getString("image")).into(main_img_homeone);
 
+						id = jsonObject1.getString("type_id");
+
+						type = jsonObject1.getString("type");
+
 					}
+
 
 
 

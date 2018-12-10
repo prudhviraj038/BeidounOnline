@@ -1,6 +1,7 @@
 package com.yellowsoft.newproject;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -50,7 +51,14 @@ public class Slider_Adapter extends RecyclerView.Adapter<Slider_Adapter.MyViewHo
 			@Override
 			public void onClick(View v) {
 
-				((HomeActivity)context).getproductDetails(data.get(position));
+			//	((HomeActivity)context).getproductDetails(data.get(position));
+
+				Intent intent = new Intent(context,ProductActivity.class);
+				intent.putExtra("openProduct",true);
+				intent.putExtra("productDetails",data.get(position));
+				Log.e("productid",data.get(position).id);
+
+				context.startActivity(intent);
 			}
 		});
 

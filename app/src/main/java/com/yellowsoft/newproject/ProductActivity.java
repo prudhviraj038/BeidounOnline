@@ -1,9 +1,12 @@
 package com.yellowsoft.newproject;
 
+
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +14,8 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
+
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -20,170 +25,55 @@ import java.util.ArrayList;
 
 public class ProductActivity extends AppCompatActivity {
 
-	RelativeLayout decrease_btn,increase_btn;
-	TextView quantity;
-	SlidingImageAdapter slidingImageAdapter;
-	TextView page_title,discount_price,title,originalprice_tv,description_tv;
 
-	TextView save_tv,title_tv_product,subtitle_product_tv,price_product_tv,strikeprice_product_tv,discount_product_tv,amberpoints_tv;
-	TextView pricematch_tv,sizeguide_tv,addtowishlist_tv,product_code_tv;
-
-	LinearLayout size_ll,editor_ll,designdetails_ll,addtobag_ll;
-
-	RecyclerView samebrand_rv,extraitems_rv;
-
-	ImageView back;
-
-	ProductsData product;
-
-	ViewPager viewPager;
-	TabLayout indicator_tab;
-	SlidingImageAdapter slidingPageAdapter;
-	Integer i;
-	LinearLayout back_btn,menu_btn,cart_btn;
-	ArrayList<SlidingImage_Data> slidingImage_data = new ArrayList<SlidingImage_Data>();
-
-
+FrameLayout frameLayout;
+TextView page_title;
+LinearLayout back_btn,menu_btn;
+ImageView back;
 
 
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.fragment_product);
+		setContentView(R.layout.activity_product);
 
 
+		frameLayout = (FrameLayout)findViewById(R.id.product_framelayout);
+
+		if (savedInstanceState==null){
+
+			Bundle bundle = new Bundle();
+			Shop_Data shop_data = (Shop_Data)getIntent().getSerializableExtra("productDetails");
+
+			bundle.putSerializable("productDetails",shop_data);
+			Fragment fragment = new ProductFragment();
+
+			fragment.setArguments(bundle);
+
+			FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+
+			ft.add(R.id.product_framelayout,fragment).commit();
+
+			//Shop_Data shop_data = (Shop_Data)getIntent().getSerializableExtra("productDetails");
 
 
-		//save_tv = (TextView)findViewById(R.id.save_tv);
-		title_tv_product = (TextView)findViewById(R.id.title_tv_product);
-		subtitle_product_tv = (TextView)findViewById(R.id.subtitle_product_tv);
-		price_product_tv = (TextView)findViewById(R.id.price_product_tv);
+			//((ProductFragment) fragment).productDetails(shop_data);
 
-/*
-		addtobag_ll = (LinearLayout) findViewById(R.id.addtobag_ll);
-		size_ll = (LinearLayout) findViewById(R.id.size_ll);
-		editor_ll = (LinearLayout) findViewById(R.id.editor_ll);
-		designdetails_ll = (LinearLayout) findViewById(R.id.designdetails_ll);
+		}
 
-
-
-
-		discount_price = (TextView)findViewById(R.id.discounted_price);
-		//title = (TextView)findViewById(R.id.mycop_title_tv);
-		originalprice_tv = (TextView)findViewById(R.id.strikeprice_product_tv);
-		description_tv = (TextView)findViewById(R.id.description_tv);*/
-
-		//product = (ProductsData)(getIntent().getSerializableExtra("product"));
-
-
-
-
-		//product title
-		/*title.setText(product.product_title);
-		originalprice_tv.setText(product.discountprice);
-		discount_price.setText(product.originalprice);
-		description_tv.setText(Html.fromHtml(product.description));
-
-		*//*for (int i =0;i<product.images.size();i++) {
-			Log.e("sliderimagers",""+product.images.get(i).image_url);
-			slidingImage_data.add(new SlidingImage_Data(product.images.get(i).image_url));
-		}*//*
-		//Log.e("product",""+product.description);
-		//String s=getIntent().getStringExtra("product");
-		//Log.e("product",""+s);
-
-
-
-		viewPager=(ViewPager)findViewById(R.id.image_slider);
-
-		indicator_tab=(TabLayout)findViewById(R.id.indicator);
-
-		slidingPageAdapter = new SlidingImageAdapter(ProductActivity.this,slidingImage_data);
-
-		viewPager.setAdapter(slidingPageAdapter);
-
-		indicator_tab.setupWithViewPager(viewPager,true);
-
-
-		//toolbar
-		Toolbar toolbar = (Toolbar)findViewById(R.id.product_toolbar);
+		Toolbar toolbar = (Toolbar) findViewById(R.id.product_toolbar);
 		setSupportActionBar(toolbar);
 		setupActionBar();
-		setupHeader();*/
-
-		//increase button & decrease button
-	/*	quantity = (TextView)findViewById(R.id.quantity_tv);
-		increase_btn = (RelativeLayout)findViewById(R.id.rl_increase);
-		decrease_btn = (RelativeLayout)findViewById(R.id.rl_decrease);
-		i = Integer.parseInt(quantity.getText().toString());
-		decrease_btn.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				String _stringVal;
-				if (i > 1) {
-					i = i - 1;
-					_stringVal = String.valueOf(i);
-					quantity.setText(_stringVal);
-				} else {
-					Log.d("src", "Value can't be less than 0");
-				}
-			}
-		});
-		increase_btn.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				String _stringVal;
-
-				Log.d("src", "Increasing value...");
-				i = i + 1;
-				_stringVal = String.valueOf(i);
-				quantity.setText(_stringVal);
-			}
-		});*/
-
-	/*	final Intent intent = new Intent(ProductActivity.this,df.class);
-
-		//add to cart button
-		cart_btn = (LinearLayout)findViewById(R.id.addtocart_ll_btn);
-
-		cart_btn.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				//
-				// Toast.makeText(getContext(),"go to cart",Toast.LENGTH_LONG).show();
-
-
-				if(Session.getUserid(ProductActivity.this).equals("0")){
-
-
-
-					Intent intent = new Intent(ProductActivity.this,LoginActivity.class);
-					intent.putExtra("sendResult",true);
-					startActivityForResult(intent,9999);
-
-
-
-				}
-				else {
-
-					String q;
-					q = quantity.getText().toString();
-					product.cartquantity = Integer.parseInt(q);
-					intent.putExtra("quantity", q);
-					intent.putExtra("product", product);
-					startActivity(intent);
-
-				}
-
-
-			}
-		});
-*/
-
-
-
+		setupHeader();
 
 	}
+
+
+
+
+
+
+
 	private void setupActionBar() {
 //set action bar
 		getSupportActionBar().setHomeButtonEnabled(false);

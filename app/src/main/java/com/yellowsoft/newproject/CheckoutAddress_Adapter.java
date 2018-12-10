@@ -1,6 +1,7 @@
 package com.yellowsoft.newproject;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -47,6 +48,10 @@ public class CheckoutAddress_Adapter extends RecyclerView.Adapter<CheckoutAddres
 			@Override
 			public void onClick(View v) {
 				Toast.makeText(context,"Checked address of: "+position,Toast.LENGTH_SHORT).show();
+
+				Intent intent = new Intent(context,CheckoutActivty.class);
+				intent.putExtra("address",data.get(position));
+				context.startActivity(intent);
 			}
 		});
 

@@ -45,39 +45,13 @@
             android:textStyle="normal"
             app:font_name="Gothambook" />
 
-        <LinearLayout
-            android:id="@+id/shop_ll_toolbar"
+        <ImageView
+            android:id="@+id/imageView14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="5dp"
-            android:gravity="center_horizontal"
-            android:orientation="vertical"
-            android:visibility="invisible">
+            android:layout_centerHorizontal="true"
+            app:srcCompat="@drawable/logo" />
 
-            <ImageView
-                android:id="@+id/shop_img_toolbar"
-                android:layout_width="25dp"
-                android:layout_height="20dp"
-                android:layout_alignParentBottom="false"
-                android:layout_alignParentEnd="true"
-                android:src="@drawable/shopp"
-                android:tint="@android:color/white"
-                android:visibility="visible" />
-
-            <com.yellowsoft.newproject.CustomTextView
-                android:id="@+id/shop_tv_toolbar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="false"
-                android:layout_marginLeft="3dp"
-                android:layout_marginRight="3dp"
-                android:layout_weight="1"
-                android:text="Shop"
-                android:textColor="@android:color/white"
-                android:textSize="11sp" />
-        </LinearLayout>
     </RelativeLayout>
 
     <!--    <ImageView

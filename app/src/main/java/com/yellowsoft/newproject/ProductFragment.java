@@ -1,6 +1,8 @@
 package com.yellowsoft.newproject;
 
 
+import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -24,7 +26,7 @@ public class ProductFragment extends Fragment {
 	TextView description_tv_editor;
 
 	ImageView product_img,plus_img,minus_img;
-	LinearLayout addtobag_ll;
+	LinearLayout addtobag_ll,minus_ll;
 
 	Shop_Data shop_data;
 
@@ -63,6 +65,7 @@ public class ProductFragment extends Fragment {
 
 		product_img = (ImageView)  view.findViewById(R.id.product_img);
 		minus_img = (ImageView) view.findViewById(R.id.minus_img);
+		minus_ll = (LinearLayout) view.findViewById(R.id.minus_ll);
 		plus_img = (ImageView) view.findViewById(R.id.plus_img);
 
 //		plus_img.setOnClickListener(new View.OnClickListener() {
@@ -77,7 +80,7 @@ public class ProductFragment extends Fragment {
 
         i = Integer.parseInt(quatity_tv_product.getText().toString());
 
-        minus_img.setOnClickListener(new View.OnClickListener() {
+        minus_ll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -128,6 +131,9 @@ public class ProductFragment extends Fragment {
 		//product_code_tv.setText(shop_data.);
 
 
+		shop_data = (Shop_Data)getArguments().getSerializable("productDetails");
+
+		productDetails(shop_data);
 
 
 		return view;
@@ -177,7 +183,11 @@ public class ProductFragment extends Fragment {
 			Log.e("shopData",""+shop_data.title);
 			ApplicationController.getInstance().cartProducts.add(cartData);
 
-			((HomeActivity)getActivity()).sendtoCart();
+			//((HomeActivity)getActivity()).sendtoCart();
+
+			Intent intent = new Intent(getContext(),HomeActivity.class);
+			intent.putExtra("sendtoCart",true);
+			startActivity(intent);
 
 			//Session.setQuantity(getContext(),String.valueOf(i));
 			//i=i-1;

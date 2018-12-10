@@ -29,7 +29,7 @@ public class CategoriesFragment extends Fragment {
 
 	RecyclerView categories_rv;
 	Categories_Adapter categories_adapter;
-	ArrayList<Brands_Data> brands_data = new ArrayList<>();
+	ArrayList<CatergoriesData> catergoriesData = new ArrayList<>();
 
 
 	@Override
@@ -64,7 +64,7 @@ public class CategoriesFragment extends Fragment {
 		home_data.add(new Home_data(R.drawable.c3));*/
 
 
-		categories_adapter = new Categories_Adapter(getContext(),brands_data);
+		categories_adapter = new Categories_Adapter(getContext(),catergoriesData);
 		categories_rv.setAdapter(categories_adapter);
 
 
@@ -109,8 +109,8 @@ public class CategoriesFragment extends Fragment {
 						JSONObject jsonObject = jsonArray.getJSONObject(i);
 						Log.e("jsonobject",""+jsonObject.getString("image"));
 						Log.e("jsonobjectLength",""+jsonObject.length());
-						Brands_Data temp = new Brands_Data(jsonObject);
-						brands_data.add(temp);
+						CatergoriesData temp = new CatergoriesData(jsonObject);
+						catergoriesData.add(temp);
 						//productsData.add(products_Data);
 					}
 					categories_adapter.notifyDataSetChanged();

@@ -12,7 +12,7 @@ import org.json.JSONObject;
 public class Home_data {
 
 
-    String images,id;
+    String images,id,type;
 
 
     // Context context;
@@ -25,7 +25,8 @@ public class Home_data {
     public Home_data(JSONObject jsonObject){
         try {
             this.images = jsonObject.getString("image");
-            this.id = jsonObject.getString("id");
+            this.id = jsonObject.getString("type_id");
+            this.type = jsonObject.getString("type");
         } catch (JSONException e) {
             e.printStackTrace();
         }

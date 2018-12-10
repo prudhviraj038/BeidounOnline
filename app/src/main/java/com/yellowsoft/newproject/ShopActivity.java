@@ -2,27 +2,23 @@ package com.yellowsoft.newproject;
 
 
 import android.app.ProgressDialog;
-import android.content.Intent;
-import android.graphics.PorterDuff;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.text.Editable;
-import android.text.Html;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -38,9 +34,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ShopFragment extends Fragment {
+public class ShopActivity extends AppCompatActivity {
 
-	TextView title, cod_tv,wallet_tv,card_tv,noof_results_tv,shortby_tv;
+	TextView title, new_tv,low_tv,high_tv,noof_results_tv,shortby_tv;
 	RecyclerView shop_rv;
 
 	ArrayList<Shop_Data> shopData= new ArrayList<Shop_Data>();
@@ -52,7 +48,11 @@ public class ShopFragment extends Fragment {
 
 	boolean grid=true;
 	boolean vertical;
+	boolean newSelected;
+	boolean LtoH ;
+	boolean HtoL ;
 
+	String categories,brands;
 	String brandid,categoryid;
 
 
@@ -67,24 +67,22 @@ public class ShopFragment extends Fragment {
 	LinearLayout search_ll_search,search_popup,popup_sort_ll;
 
 
-	public static ShopFragment newInstance(int someInt) {
-		ShopFragment myFragment = new ShopFragment();
+	TextView page_title;
+	LinearLayout back_btn,menu_btn;
+	ImageView back;
 
-		Bundle args = new Bundle();
-		args.putInt("someInt", someInt);
-		myFragment.setArguments(args);
-
-		return myFragment;
-	}
-
-	@Nullable
 	@Override
-	public View onCreateView(final LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-		View view = inflater.inflate(R.layout.fragment_shop, container, false);
+	protected void onCreate(@Nullable Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+
+		setContentView(R.layout.fragment_shop);
+
+
+
 		Log.e("shopfragment", "shopfragment");
 
 
-		popup_sort_ll = (LinearLayout)view.findViewById(R.id.popup_sort_ll);
+		popup_sort_ll = (LinearLayout)findViewById(R.id.popup_sort_ll);
 		popup_sort_ll.setVisibility(View.GONE);
 		popup_sort_ll.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -94,7 +92,7 @@ public class ShopFragment extends Fragment {
 		});
 
 
-		shortby_tv = (TextView)view.findViewById(R.id.shortby_tv);
+		shortby_tv = (TextView)findViewById(R.id.shortby_tv);
 		shortby_tv.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -106,9 +104,9 @@ public class ShopFragment extends Fragment {
 			}
 		});
 
-		search_et = (EditText)view.findViewById(R.id.et_search);
-		search_ll_search = (LinearLayout)view. findViewById(R.id.search_ll_search);
-		search_popup = (LinearLayout)view.findViewById(R.id.search_popup);
+		search_et = (EditText)findViewById(R.id.et_search);
+		search_ll_search = (LinearLayout) findViewById(R.id.search_ll_search);
+		search_popup = (LinearLayout)findViewById(R.id.search_popup);
 
 
 		search_ll_search.setOnClickListener(new View.OnClickListener() {
@@ -135,6 +133,9 @@ public class ShopFragment extends Fragment {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
                 search(search_et.getText().toString());
+                if (search_et.getText().toString().equals("")){
+                	shopData.clear();
+				}
 
             }
 
@@ -148,16 +149,16 @@ public class ShopFragment extends Fragment {
 
 		//CallProductdetails();
 
-		title = (TextView)view.findViewById(R.id.tilte_shop_frag);
-		noof_results_tv = (TextView)view.findViewById(R.id.noof_results_tv);
+		title = (TextView)findViewById(R.id.tilte_shop_frag);
+		noof_results_tv = (TextView)findViewById(R.id.noof_results_tv);
 
-		grid_img = (ImageView)view.findViewById(R.id.grid_img);
-		vertical_img = (ImageView)view.findViewById(R.id.vertical_img);
+		grid_img = (ImageView)findViewById(R.id.grid_img);
+		vertical_img = (ImageView)findViewById(R.id.vertical_img);
 
 
-		instagram_ll = (LinearLayout)view.findViewById(R.id.instagram_ll);
+		instagram_ll = (LinearLayout)findViewById(R.id.instagram_ll);
 		//filter = (LinearLayout)view.findViewById(R.id.filter_ll);
-		filter_top = (LinearLayout)view.findViewById(R.id.filter_ll_top);
+		filter_top = (LinearLayout)findViewById(R.id.filter_ll_top);
 
 		grid_img.setColorFilter(getResources().getColor(R.color.colorlightGrey));
 		vertical_img.setColorFilter(getResources().getColor(R.color.colorlightGrey));
@@ -166,10 +167,10 @@ public class ShopFragment extends Fragment {
 
 
 
-		final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+		final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(ShopActivity.this);
 		linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 
-		final GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),2);
+		final GridLayoutManager gridLayoutManager = new GridLayoutManager(ShopActivity.this,2);
 
 
 
@@ -179,10 +180,11 @@ public class ShopFragment extends Fragment {
 
 
 
-		shop_rv = (RecyclerView)view.findViewById(R.id.rv_shop);
+
+		shop_rv = (RecyclerView)findViewById(R.id.rv_shop);
 		shop_rv.setNestedScrollingEnabled(false);
 
-		shop_adapter = new Shop_Adapter(getContext(),shopData);
+		shop_adapter = new Shop_Adapter(ShopActivity.this,shopData);
 
 
 
@@ -204,27 +206,55 @@ public class ShopFragment extends Fragment {
 
 
 
-		new_ll = (LinearLayout)view.findViewById(R.id.new_ll);
-		high_ll = (LinearLayout)view.findViewById(R.id.high_ll);
-		low_ll = (LinearLayout)view.findViewById(R.id.low_ll);
 
 
-		cod_tv = (TextView)view.findViewById(R.id.new_tv);
+
+		new_ll = (LinearLayout)findViewById(R.id.new_ll);
+		high_ll = (LinearLayout)findViewById(R.id.high_ll);
+		low_ll = (LinearLayout)findViewById(R.id.low_ll);
 
 
-		wallet_tv = (TextView)view.findViewById(R.id.low_tv);
+		new_tv = (TextView)findViewById(R.id.new_tv);
 
 
-		card_tv = (TextView)view.findViewById(R.id.high_tv);
+		low_tv = (TextView)findViewById(R.id.low_tv);
 
-		checkoff_new = (ImageView)view.findViewById(R.id.checkoff_new);
-		checkon_new = (ImageView)view.findViewById(R.id.checkon_new);
 
-		checkoff_high = (ImageView)view.findViewById(R.id.checkoff_high);
-		checkon_high = (ImageView)view.findViewById(R.id.checkon_high);
+		high_tv = (TextView)findViewById(R.id.high_tv);
 
-		checkoff_low = (ImageView)view.findViewById(R.id.checkoff_low);
-		checkon_low = (ImageView)view.findViewById(R.id.checkon_low);
+		checkoff_new = (ImageView)findViewById(R.id.checkoff_new);
+		checkon_new = (ImageView)findViewById(R.id.checkon_new);
+
+		checkoff_high = (ImageView)findViewById(R.id.checkoff_high);
+		checkon_high = (ImageView)findViewById(R.id.checkon_high);
+
+		checkoff_low = (ImageView)findViewById(R.id.checkoff_low);
+		checkon_low = (ImageView)findViewById(R.id.checkon_low);
+
+
+
+
+
+
+		categories = getIntent().getStringExtra("Category");
+		brands = getIntent().getStringExtra("brands");
+
+
+
+		if (categories!=null){
+			callProducts("category",categories);
+			Log.e("tag",String.valueOf(categories));
+
+		}
+		else if (brands!=null){
+
+
+			callProducts("brands",brands);
+			Log.e("tag",String.valueOf(brands));
+		}
+
+
+
 
 
 		//Sorting
@@ -234,16 +264,19 @@ public class ShopFragment extends Fragment {
 			@Override
 			public void onClick(View v) {
 
-				resetColors();
+				/*resetColors();
 				checkoff(checkoff_high,checkoff_low);
 				changecolor(cod_tv);
-				check(checkoff_new, checkon_new,checkon_high,checkon_low);
+				check(checkoff_new, checkon_new,checkon_high,checkon_low);*/
 
-
-				popup_sort_ll.setVisibility(View.GONE);
+				/*LtoH = false;
+				HtoL = false;
+				newSelected = true;
+				*/
 				shopData.clear();
-
-				callProducts("new","");
+				popup_sort_ll.setVisibility(View.GONE);
+				callProducts("new",categories);
+				Log.e("New","newselected");
 
 
 
@@ -254,15 +287,21 @@ public class ShopFragment extends Fragment {
 		low_ll.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				resetColors();
+				/*resetColors();
 				checkoff(checkoff_new,checkoff_high);
 				check(checkoff_low,checkon_low,checkon_new,checkon_high);
 
-				changecolor(wallet_tv);
-
-				callProducts("lowtohigh","PLOW");
-				popup_sort_ll.setVisibility(View.GONE);
+				changecolor(wallet_tv);*/
+				/*LtoH = true;
+				HtoL = false;
+				newSelected = false;
+*/
 				shopData.clear();
+				callProducts("LtoH",categories);
+
+				popup_sort_ll.setVisibility(View.GONE);
+
+				Log.e("low","lowselected");
 			}
 		});
 
@@ -270,28 +309,108 @@ public class ShopFragment extends Fragment {
 		high_ll.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				resetColors();
+				/*resetColors();
 				check(checkoff_high,checkon_high,checkon_new,checkon_low);
 				checkoff(checkoff_new,checkoff_low);
-				changecolor(card_tv);
-				callProducts("hightoLow","Phigh");
-				popup_sort_ll.setVisibility(View.GONE);
+				changecolor(high_tv);*/
+				/*LtoH = false;
+				HtoL = true;
+				newSelected = false;
+
+			*/
 				shopData.clear();
+				callProducts("HtoL",categories);
+				popup_sort_ll.setVisibility(View.GONE);
+				Log.e("high","highselected");
 
 			}
 		});
 
+	/*	if (newSelected){
+			resetColors();
+			checkoff(checkoff_high,checkoff_low);
+			changecolor(new_tv);
+			check(checkoff_new, checkon_new,checkon_high,checkon_low);
+
+		}
+		else if (LtoH){
+			resetColors();
+			checkoff(checkoff_new,checkoff_high);
+			check(checkoff_low,checkon_low,checkon_new,checkon_high);
+
+			changecolor(low_tv);
+		}
+		else if (HtoL){
+			resetColors();
+			check(checkoff_high,checkon_high,checkon_new,checkon_low);
+			checkoff(checkoff_new,checkoff_low);
+			changecolor(high_tv);
+		}
+*/
+
+
+
+
+
+
+
+    //setParamentersBrands(id,"brands");
+
+
 
 		shopData.clear();
 
-		return view;
+		Toolbar toolbar = (Toolbar) findViewById(R.id.shop_toolbar);
+		setSupportActionBar(toolbar);
+		setupActionBar();
+		setupHeader();
+
 	}
 
 
 
 
+	private void setupActionBar() {
+//set action bar
+		getSupportActionBar().setHomeButtonEnabled(false);
+		getSupportActionBar().setDisplayShowTitleEnabled(false);
+		getSupportActionBar().setDisplayShowCustomEnabled(true);
+		getSupportActionBar().setIcon(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
+		ActionBar.LayoutParams layoutParams = new ActionBar.LayoutParams(ActionBar.LayoutParams.MATCH_PARENT,
+				ActionBar.LayoutParams.MATCH_PARENT);
+		LayoutInflater inflater = getLayoutInflater();
+		View v = inflater.inflate(R.layout.action_bar_login,null);
 
-	private void check(ImageView imageView,ImageView imageView2,ImageView imageView3,ImageView imageView4){
+		page_title = (TextView) v.findViewById(R.id.page_title);
+		back_btn = (LinearLayout)v.findViewById(R.id.btn_back_container);
+
+		back = (ImageView)v.findViewById(R.id.btn_back);
+		back.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				finish();
+			}
+		});
+
+		menu_btn = (LinearLayout) v.findViewById(R.id.btn_menu_container);
+
+		getSupportActionBar().setCustomView(v, layoutParams);
+		Toolbar parent = (Toolbar) v.getParent();
+
+		parent.setContentInsetsAbsolute(0, 0);
+
+
+	}
+	private void setupHeader(){
+
+		page_title.setText(""+getIntent().getStringExtra("title"));
+		//btn_edit.setVisibility(View.VISIBLE);
+		//btn_edit.setText("Search");
+		//page_title.setText("Home");
+	}
+
+
+	/*private void check(ImageView imageView,ImageView imageView2,ImageView imageView3,ImageView imageView4){
 		imageView.setVisibility(View.GONE);
 		imageView2.setVisibility(View.VISIBLE);
 		imageView3.setVisibility(View.GONE);
@@ -310,18 +429,18 @@ public class ShopFragment extends Fragment {
 	}
 
 	private void resetColors(){
-		cod_tv.setTextColor(getResources().getColor(R.color.colorlightGrey));
+		new_tv.setTextColor(getResources().getColor(R.color.colorlightGrey));
 
-		wallet_tv.setTextColor(getResources().getColor(R.color.colorlightGrey));
+		low_tv.setTextColor(getResources().getColor(R.color.colorlightGrey));
 
-		card_tv.setTextColor(getResources().getColor(R.color.colorlightGrey));
+		high_tv.setTextColor(getResources().getColor(R.color.colorlightGrey));
 
 	}
+*/
 
 
 
-
-	public void setParamentersBrands(String brandId,String titles){
+	/*public void setParamentersBrands(String brandId,String titles){
 
         if (brandId.equals("0")){
             instagram_ll.setVisibility(View.GONE);
@@ -333,9 +452,9 @@ public class ShopFragment extends Fragment {
 		callProducts("brands",brandId);
 		search_popup.setVisibility(View.GONE);
 
-	}
+	}*/
 
-	public void setParamentersCategories(String categories,String titles){
+	/*public void setParamentersCategories(String categories,String titles){
 
         if (categories.equals("0")){
             instagram_ll.setVisibility(View.GONE);
@@ -347,7 +466,7 @@ public class ShopFragment extends Fragment {
 
 		search_popup.setVisibility(View.GONE);
 
-	}
+	}*/
 
 	public void search(String keywords){
 
@@ -360,7 +479,7 @@ public class ShopFragment extends Fragment {
 
 	public void callProducts(final String type, final String id) {
 
-		final ProgressDialog progressDialog = new ProgressDialog(getActivity());
+		final ProgressDialog progressDialog = new ProgressDialog(ShopActivity.this);
 		progressDialog.setMessage("Please Wait....");
 		progressDialog.show();
 		progressDialog.setCancelable(false);
@@ -425,12 +544,15 @@ public class ShopFragment extends Fragment {
 			}
 			else if (type.equals("LtoH")){
 
+				parameters.put("category_id",id);
 				parameters.put("sorting","PLOW");
 			}
 			else if (type.equals("HtoL")){
+				parameters.put("category_id",id);
 				parameters.put("sorting","PHIG");
 			}
 			else if (type.equals("new")){
+				parameters.put("category_id",id);
 				parameters.put("sorting","");
 			}
 

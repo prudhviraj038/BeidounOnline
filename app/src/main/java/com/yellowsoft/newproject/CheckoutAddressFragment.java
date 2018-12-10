@@ -75,9 +75,11 @@ public class CheckoutAddressFragment extends Fragment {
 		nextstep_checkoutadddress.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+
+				/*
 				Log.e("sendtocheckout","sendtocheckout");
 				Intent intent = new Intent(getContext(),CheckoutActivty.class);
-				startActivity(intent);
+				startActivity(intent);*/
 			}
 		});
 

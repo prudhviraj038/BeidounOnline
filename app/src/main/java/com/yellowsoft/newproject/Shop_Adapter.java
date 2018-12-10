@@ -1,7 +1,9 @@
 package com.yellowsoft.newproject;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,10 +55,20 @@ public class Shop_Adapter extends RecyclerView.Adapter<Shop_Adapter.MyViewHolder
 		holder.subtitle_tv.setText(data.get(position).subtitle);
 		holder.code.setText(data.get(position).code);
 
+
 		holder.imageView.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				((HomeActivity)context).getproductDetails(data.get(position));
+
+				Intent intent = new Intent(context,ProductActivity.class);
+				intent.putExtra("openProduct",true);
+				intent.putExtra("productDetails",data.get(position));
+				Log.e("productid",data.get(position).id);
+
+				context.startActivity(intent);
+				/*((ShopActivity)context).finish();*/
+
+				//((HomeActivity)context).getproductDetails(data.get(position));
 			}
 		});
 

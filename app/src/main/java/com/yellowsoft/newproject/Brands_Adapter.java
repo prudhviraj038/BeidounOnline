@@ -1,6 +1,7 @@
 package com.yellowsoft.newproject;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,8 +43,11 @@ public class Brands_Adapter extends RecyclerView.Adapter<Brands_Adapter.MyViewHo
 			public void onClick(View v) {
 
 
-                ((HomeActivity)context).insta_shop(data.get(position).id,data.get(position).title);
+              //  ((HomeActivity)context).insta_shop(data.get(position).id,data.get(position).title);
 
+				Intent intent = new Intent(context,ShopActivity.class);
+				intent.putExtra("brands",data.get(position).id);
+				context.startActivity(intent);
 
 
 

@@ -107,6 +107,13 @@ public class CartFragment extends Fragment {
 
 
 		empty_cart_ll = (LinearLayout)view.findViewById(R.id.empty_cart_ll);
+
+		empty_cart_ll.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				((HomeActivity)getActivity()).openHome();
+			}
+		});
 		cart_items_ll = (LinearLayout)view.findViewById(R.id.cart_items_ll);
 		proceedtocheckout_ll_btn = (LinearLayout)view.findViewById(R.id.proceedtocheckout_ll_btn);
 

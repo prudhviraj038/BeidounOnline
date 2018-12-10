@@ -44,7 +44,11 @@ public class Sales_Adapter extends RecyclerView.Adapter<Sales_Adapter.MyViewHold
 			public void onClick(View v) {
 
 
-                ((HomeActivity)context).insta_shop(data.get(position).id,"Shop");
+                //((HomeActivity)context).insta_shop(data.get(position).id,"Shop");
+				Intent intent = new Intent(context,ShopActivity.class);
+				intent.putExtra(data.get(position).type,data.get(position).id);
+				context.startActivity(intent);
+
 
 
 			}

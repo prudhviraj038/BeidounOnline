@@ -10,7 +10,7 @@
     <android.support.v7.widget.Toolbar
         android:id="@+id/checkout_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme" />
@@ -115,7 +115,7 @@
                                     android:id="@+id/subtotal_tv_checkout"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="80"
+                                    android:text="0"
                                     android:textColor="@android:color/black"
                                     android:textSize="12sp" />
 
@@ -158,7 +158,7 @@
                                     android:id="@+id/shipping_tv_checkout"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="80"
+                                    android:text="0"
                                     android:textColor="@color/colorlightGrey"
                                     android:textSize="12sp" />
 
@@ -247,7 +247,7 @@
                                     android:id="@+id/total_tv_checkout"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="80"
+                                    android:text="0"
                                     android:textColor="@android:color/black"
                                     android:textSize="15sp" />
 
@@ -309,6 +309,7 @@
                                 android:orientation="horizontal">
 
                                 <LinearLayout
+                                    android:id="@+id/visa_ll"
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
@@ -330,6 +331,7 @@
                                 </LinearLayout>
 
                                 <LinearLayout
+                                    android:id="@+id/cod_ll"
                                     android:layout_width="0dp"
                                     android:layout_height="match_parent"
                                     android:layout_weight="1"
@@ -347,12 +349,13 @@
                                         android:layout_width="50dp"
                                         android:layout_height="25dp"
                                         android:adjustViewBounds="false"
-                                        app:srcCompat="@drawable/knet" />
+                                        android:src="@drawable/cash" />
 
                                 </LinearLayout>
                             </LinearLayout>
 
                             <LinearLayout
+                                android:id="@+id/knet_ll"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_marginTop="10dp"

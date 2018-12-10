@@ -85,6 +85,7 @@ public class HomeActivity extends AppCompatActivity {
 	RelativeLayout toolbar_content;
 
 
+	Shop_Data shop_data;
 	TextView usr_name_tv;
 
 	@Override
@@ -383,12 +384,23 @@ public class HomeActivity extends AppCompatActivity {
 			}
 		});
 
-		if (getIntent().hasExtra("openShop")==true){
-			resetAllColors();
+		if (getIntent().hasExtra("openProduct")){
+		/*	resetAllColors();
 			changebg(bag_tv,shop_img);
 			mViewPager.setCurrentItem(2);
 
-			orders_ll_toolbar.setVisibility(View.VISIBLE);
+			orders_ll_toolbar.setVisibility(View.VISIBLE);*/
+
+
+		mViewPager.setCurrentItem(6);
+
+
+		shop_data = (Shop_Data)getIntent().getSerializableExtra("productDetails");
+		//	Log.e("dataShop",getIntent().getStringExtra("productDetails"));
+			tabsAdapter.productFragment.productDetails(shop_data);
+		}
+		else if (getIntent().hasExtra("sendtoCart")){
+			sendtoCart();
 		}
 
 
@@ -426,7 +438,7 @@ public class HomeActivity extends AppCompatActivity {
 
 
 
-        orders_ll_toolbar = (LinearLayout)v.findViewById(R.id.orders_ll_toolbar);
+       /* orders_ll_toolbar = (LinearLayout)v.findViewById(R.id.orders_ll_toolbar);
 		orders_ll_toolbar.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -434,7 +446,7 @@ public class HomeActivity extends AppCompatActivity {
 				startActivity(intent);
 			}
 		});
-
+*/
 
 
 
@@ -564,7 +576,7 @@ public class HomeActivity extends AppCompatActivity {
 	}
 
 
-	public void insta_shop(String id,String title){
+	/*public void insta_shop(String id,String title){
 
 		mViewPager.setCurrentItem(1);
 		tabsAdapter.shopFragment.setParamentersBrands(id,title);
@@ -574,7 +586,7 @@ public class HomeActivity extends AppCompatActivity {
 		btn_back.setVisibility(View.VISIBLE);
 
 	}
-
+*/
 
 
 
@@ -586,11 +598,13 @@ public class HomeActivity extends AppCompatActivity {
 	}
 
 
+	public void openHome(){
+		mViewPager.setCurrentItem(0);
+	}
+
 	public void getproductDetails(Shop_Data data){
 
 		mViewPager.setCurrentItem(6);
-		menu_btn.setVisibility(View.GONE);
-		btn_back.setVisibility(View.VISIBLE);
 
 		tabsAdapter.productFragment.productDetails(data);
 
@@ -606,8 +620,8 @@ public class HomeActivity extends AppCompatActivity {
 	public void signupFragment(){
 
 		mViewPager.setCurrentItem(8);
-		menu_btn.setVisibility(View.GONE);
-		btn_back.setVisibility(View.VISIBLE);
+		//menu_btn.setVisibility(View.GONE);
+		//btn_back.setVisibility(View.VISIBLE);
 
 	//	tabsAdapter.productFragment.productDetails(data);
 
