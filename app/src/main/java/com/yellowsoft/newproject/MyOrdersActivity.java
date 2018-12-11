@@ -127,7 +127,7 @@ public class MyOrdersActivity extends AppCompatActivity {
 		page_title = (TextView) v.findViewById(R.id.page_title);
 		back_btn = (LinearLayout)v.findViewById(R.id.btn_back_container);
 
-		shop_img_toolbar = (ImageView)v.findViewById(R.id.shop_img_toolbar);
+		/*shop_img_toolbar = (ImageView)v.findViewById(R.id.shop_img_toolbar);
 		//shop_img_toolbar.setVisibility(View.VISIBLE);
 		shop_ll_toolbar = (LinearLayout)v.findViewById(R.id.shop_ll_toolbar);
 		shop_img_toolbar.setVisibility(View.VISIBLE);
@@ -143,7 +143,7 @@ public class MyOrdersActivity extends AppCompatActivity {
 				startActivity(intent);
 				finish();
 			}
-		});
+		});*/
 		back = (ImageView)v.findViewById(R.id.btn_back);
 		back.setOnClickListener(new View.OnClickListener() {
 			@Override

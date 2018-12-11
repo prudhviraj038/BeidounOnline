@@ -31,41 +31,40 @@ public class CategoriesFragment extends Fragment {
 	Categories_Adapter categories_adapter;
 	ArrayList<CatergoriesData> catergoriesData = new ArrayList<>();
 
-
-	@Override
-	public void onStart() {
-		super.onStart();
-		String memberid = Session.getUserid(getActivity());
-		String membercode = Session.getMemberCode(getActivity());
+	SubCategoriesData subCategoriesData;
 
 
-
-	}
 
 	@Nullable
 	@Override
 	public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.fragment_categories, container, false);
 		Log.e("categories","categories");
-		callCategories();
+		callCategories(0);
 
 		categories_rv = (RecyclerView)view.findViewById(R.id.categories_rv);
 
 		LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
 		linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 		categories_rv.setLayoutManager(linearLayoutManager);
-/*
-		home_data.add(new Home_data(R.drawable.categories));
-		home_data.add(new Home_data(R.drawable.c2));
-		home_data.add(new Home_data(R.drawable.c3));
-		home_data.add(new Home_data(R.drawable.c2));
-		home_data.add(new Home_data(R.drawable.c3));
-		home_data.add(new Home_data(R.drawable.c2));
-		home_data.add(new Home_data(R.drawable.c3));*/
 
+		Bundle bundle = getArguments();
+		if (bundle!=null){
+			if (bundle.containsKey("subcategories")){
+				CatergoriesData catergoriesData = (CatergoriesData)getArguments().getSerializable("subcategories");
+				Log.e("subcat",""+catergoriesData.subcat_cnt);
+				callCategories(Integer.parseInt(catergoriesData.id));
+
+			}
+		}
+
+
+	//	subCategoriesData = (SubCategoriesData)getArguments().getSerializable("subcategories");
 
 		categories_adapter = new Categories_Adapter(getContext(),catergoriesData);
 		categories_rv.setAdapter(categories_adapter);
+
+
 
 
 
@@ -86,7 +85,7 @@ public class CategoriesFragment extends Fragment {
 
 
 
-	public void callCategories(){
+	public void callCategories(final int subcat_count){
 
 		final ProgressDialog progressDialog = new ProgressDialog(getActivity());
 		progressDialog.setMessage("Please Wait....");
@@ -102,6 +101,7 @@ public class CategoriesFragment extends Fragment {
 					progressDialog.dismiss();
 				}
 				try {
+					catergoriesData.clear();
 
 					JSONArray jsonArray = new JSONArray(response);
 					Log.e("jsonArray",""+jsonArray.toString());
@@ -153,6 +153,10 @@ public class CategoriesFragment extends Fragment {
 			@Override
 			protected Map<String,String> getParams(){
 				Map<String,String> parameters = new HashMap<String, String>();
+
+				if (subcat_count != 0 ) {
+					parameters.put("parent",String.valueOf(subcat_count));
+				}
 				//parameters.put("email",u_name.getText().toString());
 				//	parameters.put("password",password.getText().toString());
 				return parameters;

@@ -3,6 +3,7 @@ package com.yellowsoft.newproject;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,14 +44,22 @@ public class Categories_Adapter extends RecyclerView.Adapter<Categories_Adapter.
 			@Override
 			public void onClick(View v) {
 
-				if (Integer.getInteger(data.get(position).subcat_cnt) == 0) {
-					Toast.makeText(context, "No sub Categories", Toast.LENGTH_LONG).show();
-				} else {
+				if (Integer.parseInt(data.get(position).subcat_cnt) == 0) {
+
 
 					Intent intent = new Intent(context, ShopActivity.class);
-					intent.putExtra("categories", data.get(position).id);
+					intent.putExtra("Category", data.get(position).id);
 					context.startActivity(intent);
-					// 	((HomeActivity)context).insta_shop(data.get(position).id,data.get(position).title);
+
+				} else if (Integer.parseInt(data.get(position).subcat_cnt) != 0){
+
+
+
+
+					Intent intent = new Intent(context, SubCategoriesActivity.class);
+					intent.putExtra("subcategories", data.get(position));
+					context.startActivity(intent);
+
 				}
 			}
 		});
