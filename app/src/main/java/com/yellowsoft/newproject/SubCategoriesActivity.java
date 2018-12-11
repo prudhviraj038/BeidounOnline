@@ -56,8 +56,8 @@ ImageView back;
 
 		Toolbar toolbar = (Toolbar) findViewById(R.id.subcategories_toolbar);
 		setSupportActionBar(toolbar);
-		/*setupActionBar();
-		setupHeader();*/
+		setupActionBar();
+		setupHeader();
 
 	}
 
@@ -67,7 +67,7 @@ ImageView back;
 
 
 
-/*	private void setupActionBar() {
+	private void setupActionBar() {
 //set action bar
 		getSupportActionBar().setHomeButtonEnabled(false);
 		getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -104,7 +104,7 @@ ImageView back;
 		//btn_edit.setVisibility(View.VISIBLE);
 		//btn_edit.setText("Search");
 		//page_title.setText("Home");
-	}*/
+	}
 	/*public void CallProductdetails(){
 
 		final ProgressDialog progressDialog = new ProgressDialog(ProductActivity.this);

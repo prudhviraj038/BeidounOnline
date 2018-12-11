@@ -71,18 +71,6 @@
                         android:padding="2dp"
                         android:src="@drawable/home_icon_black" />
 
-                    <LinearLayout
-                        android:id="@+id/ll_home"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:background="@android:color/transparent"
-                        android:orientation="vertical"
-                        android:padding="5dp"
-                        android:visibility="gone">
-
-                    </LinearLayout>
-
                     <com.yellowsoft.newproject.CustomTextView
                         android:id="@+id/home_tv"
                         android:layout_width="match_parent"
@@ -97,7 +85,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/track"
+                    android:id="@+id/brands"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginTop="7dp"
@@ -105,25 +93,13 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:id="@+id/track_img"
+                        android:id="@+id/brands_img"
                         android:layout_width="25dp"
                         android:layout_height="20dp"
                         android:layout_gravity="center"
                         android:padding="2dp"
                         android:scaleType="centerCrop"
                         android:src="@drawable/brands_icon_black" />
-
-                    <LinearLayout
-                        android:id="@+id/ll_track"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:background="@color/colorTransparent"
-                        android:orientation="vertical"
-                        android:padding="5dp"
-                        android:visibility="gone">
-
-                    </LinearLayout>
 
                     <com.yellowsoft.newproject.CustomTextView
                         android:id="@+id/brands_tv"
@@ -138,7 +114,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/shop"
+                    android:id="@+id/bag"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginTop="7dp"
@@ -146,25 +122,13 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:id="@+id/shop_img"
+                        android:id="@+id/bag_img"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:layout_gravity="center"
                         android:adjustViewBounds="false"
                         android:padding="2dp"
                         android:src="@drawable/bag_icon_black" />
-
-                    <LinearLayout
-                        android:id="@+id/ll_shop"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:background="@color/colorTransparent"
-                        android:orientation="vertical"
-                        android:padding="5dp"
-                        android:visibility="gone">
-
-                    </LinearLayout>
 
                     <com.yellowsoft.newproject.CustomTextView
                         android:id="@+id/bag_tv"
@@ -179,7 +143,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/scheme"
+                    android:id="@+id/categories"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginTop="7dp"
@@ -188,23 +152,11 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:id="@+id/scheme_img"
+                        android:id="@+id/categories_img"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:padding="3dp"
                         android:src="@drawable/category_icon_black" />
-
-                    <LinearLayout
-                        android:id="@+id/ll_scheme"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:background="@color/colorTransparent"
-                        android:orientation="vertical"
-                        android:padding="5dp"
-                        android:visibility="gone">
-
-                    </LinearLayout>
 
                     <com.yellowsoft.newproject.CustomTextView
                         android:id="@+id/categories_tv"
@@ -234,18 +186,6 @@
                         android:padding="2dp"
                         android:src="@drawable/user_icon_black" />
 
-                    <LinearLayout
-                        android:id="@+id/ll_account"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:background="@color/colorTransparent"
-                        android:orientation="vertical"
-                        android:padding="5dp"
-                        android:visibility="gone">
-
-                    </LinearLayout>
-
                     <com.yellowsoft.newproject.CustomTextView
                         android:id="@+id/account_tv"
                         android:layout_width="match_parent"
@@ -269,16 +209,9 @@
         android:layout_height="4dp"
         android:layout_alignTop="@+id/ll_main"
         android:layout_alignParentStart="true"
+        android:layout_marginStart="0dp"
         android:background="@drawable/shadow"
-        android:visibility="gone" />
-
-    <LinearLayout
-        android:id="@+id/searching_ll"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@android:color/white"
-        android:orientation="vertical"
-        android:visibility="gone"></LinearLayout>
+        android:visibility="visible" />
 
     <LinearLayout
         android:id="@+id/countries_popup_ll"

@@ -56,6 +56,7 @@ public class WhishListFragment extends Fragment {
 		shopping.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				((HomeActivity)getActivity()).openHome();
 
 			}
 		});

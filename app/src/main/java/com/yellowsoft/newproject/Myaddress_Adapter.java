@@ -1,6 +1,7 @@
 package com.yellowsoft.newproject;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -43,8 +44,8 @@ public class Myaddress_Adapter extends RecyclerView.Adapter<Myaddress_Adapter.My
 			public void onClick(View v) {
 				Toast.makeText(context,"Edit",Toast.LENGTH_SHORT).show();
 
-				((HomeActivity)context).addAddressFragment(data.get(position).id,data.get(position));
-                Log.e("addressId",data.get(position).id);
+				((HomeActivity)context).addAddressFragment("edit",data.get(position).id,data.get(position));
+
 			}
 		});
 
@@ -55,33 +56,6 @@ public class Myaddress_Adapter extends RecyclerView.Adapter<Myaddress_Adapter.My
 			}
 		});
 
-		/*holder.password.setText(data.get(position).password);
-		holder.vehicle_id.setText(data.get(position).veh_id);*/
-
-
-
-
-		/*if(position %2 == 1)
-		{
-			holder.itemView.setBackgroundColor(Color.parseColor("#e4e4e4"));
-			//  holder.imageView.setBackgroundColor(Color.parseColor("#FFFFFF"));
-		}
-		else
-		{
-			holder.itemView.setBackgroundColor(Color.parseColor("#FFFFFF"));
-			//  holder.imageView.setBackgroundColor(Color.parseColor("#FFFAF8FD"));
-		}
-		holder.itemView.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View view) {
-			*//*	Intent intent;
-				intent =  new Intent(context, Order_type.class);
-				intent.putExtra("service",items.get(position));
-				context.startActivity(intent);*//*
-
-			}
-
-		});*/
 
 
 	}

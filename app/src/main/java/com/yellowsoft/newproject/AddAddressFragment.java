@@ -1,6 +1,7 @@
 package com.yellowsoft.newproject;
 
 import android.app.ProgressDialog;
+import android.arch.lifecycle.LifecycleOwner;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
@@ -44,9 +45,11 @@ public class AddAddressFragment extends Fragment {
 
 	LinearLayout nextstep_ll;
 	String member,name;
-	TextView title_shipping_tv;
+	TextView title_shipping_tv,nextstepbtn_tv;
 
     AddressChechout_Data addressChechout_data;
+
+    String addressType,addressid;
 
 	ImageView back;
 	public static AddAddressFragment newInstance(int someInt) {
@@ -76,6 +79,7 @@ public class AddAddressFragment extends Fragment {
 
 		state = (EditText)view. findViewById(R.id.tv_state_checkout);
 
+		nextstepbtn_tv = (TextView)view.findViewById(R.id.nextstepbtn_tv);
 		title_shipping_tv = (TextView)view.findViewById(R.id.title_shipping_tv);
 		title_shipping_tv.setText("Add Address");
 
@@ -108,11 +112,21 @@ public class AddAddressFragment extends Fragment {
 
 
 					//sendShippingAddress();
-					addAddressId("add",addressChechout_data);
+					if (addressType.equals("edit")) {
+
+						sendShippingAddress(addressid);
+						Log.e("id", addressid);
+					} else {
+
+
+
+					addAddressId("add", "add", addressChechout_data);
 				}
+			}
 
 			}
 		});
+
 
 
 
@@ -122,14 +136,18 @@ public class AddAddressFragment extends Fragment {
 	}
 
 
-	public void addAddressId(String id,AddressChechout_Data data) {
+	public void addAddressId(String type,String id,AddressChechout_Data data) {
 
+		addressType = type;
+		Log.e("type",type);
+		addressid = id;
 
-		if (id.equals("add")) {
-			sendShippingAddress("add");
-		} else if (id.equals("checkout")) {
-			sendShippingAddress("checkout");
-		} else {
+		addressChechout_data = data;
+
+		if (type.equals("edit")) {
+			Log.e("address","edit");
+			title_shipping_tv.setText("Edit Address");
+			nextstepbtn_tv.setText("Edit");
 
 			if (!data.equals(null)){
 
@@ -139,6 +157,9 @@ public class AddAddressFragment extends Fragment {
 				email.setText(data.email);
 				address.setText(data.address);
 				phone.setText(data.phone);
+				Log.e("addressIdAdd",data.id);
+				Log.e("addressId",id);
+				city.setText(data.city);
 			}
 			else if (city.getText().toString().equals("")) {
 				Snackbar.make(firstname, "please enter city", Snackbar.LENGTH_SHORT).show();
@@ -148,8 +169,24 @@ public class AddAddressFragment extends Fragment {
 				Snackbar.make(firstname, "please enter state", Snackbar.LENGTH_SHORT).show();
 			} else {
 				sendShippingAddress(id);
-				Log.e("addressIdAdd",id);
+
 			}
+
+		}
+
+
+
+		else if (type.equals("checkout")) {
+			Log.e("address","checkout");
+			sendShippingAddress("checkout");
+
+		}
+
+		else if (type.equals("add")){
+			Log.e("address","add");
+
+			sendShippingAddress("add");
+
 
 
 

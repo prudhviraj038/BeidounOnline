@@ -55,7 +55,7 @@ public class HomeActivity extends AppCompatActivity {
 	TextView membercode;
 	private static int SPLASH_TIME_OUT = 3000;
 
-	TextView contactus,tv_about,tv_returns,tv_scheme,tv_terms,tv_faq;
+
 	TextView home_tv,bag_tv,brands_tv,categores_tv,account_tv;
 
 	String playstorelink;
@@ -64,7 +64,7 @@ public class HomeActivity extends AppCompatActivity {
 
 
 
-	LinearLayout menu_btn,home_btn,home,track_btn,track,shop_btn,shop,scheme_btn,scheme,account_btn,account;
+	LinearLayout menu_btn,home,brands,bag,categories,account;
 	LinearLayout ll_userdetails,orders_ll_toolbar;
 
 	private DrawerLayout mDrawerLayout;
@@ -72,7 +72,7 @@ public class HomeActivity extends AppCompatActivity {
 	TabsAdapter tabsAdapter;
 	CustomViewPager mViewPager;
 
-	ImageView home_img,track_img,shop_img,scheme_img,btn_back;
+	ImageView home_img,brands_img,bag_img,categories_img,btn_back;
 	ImageView account_img,btn_like;
 	ImageView countries_img,search_img;
 
@@ -163,12 +163,12 @@ public class HomeActivity extends AppCompatActivity {
 
 
 		home_img = (ImageView)findViewById(R.id.home_img);
-		track_img = (ImageView)findViewById(R.id.track_img);
-		shop_img = (ImageView)findViewById(R.id.shop_img);
-		scheme_img = (ImageView)findViewById(R.id.scheme_img);
+		brands_img = (ImageView)findViewById(R.id.brands_img);
+		bag_img = (ImageView)findViewById(R.id.bag_img);
+		categories_img = (ImageView)findViewById(R.id.categories_img);
 		account_img = (ImageView)findViewById(R.id.account_img);
 
-		home_btn = (LinearLayout)findViewById(R.id.ll_home);
+
 		home = (LinearLayout)findViewById(R.id.home);
 		home.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -188,13 +188,13 @@ public class HomeActivity extends AppCompatActivity {
 
 		}
 
-		track_btn = (LinearLayout)findViewById(R.id.ll_track);
-		track = (LinearLayout)findViewById(R.id.track);
-		track.setOnClickListener(new View.OnClickListener() {
+
+		brands = (LinearLayout)findViewById(R.id.brands);
+		brands.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				resetAllColors();
-				changebg(brands_tv,track_img);
+				changebg(brands_tv,brands_img);
 				mViewPager.setCurrentItem(2);
 
 
@@ -202,13 +202,13 @@ public class HomeActivity extends AppCompatActivity {
 			}
 		});
 
-		shop_btn = (LinearLayout)findViewById(R.id.ll_shop);
-		shop = (LinearLayout)findViewById(R.id.shop);
-		shop.setOnClickListener(new View.OnClickListener() {
+
+		bag = (LinearLayout)findViewById(R.id.bag);
+		bag.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				resetAllColors();
-				changebg(bag_tv,shop_img);
+				changebg(bag_tv,bag_img);
 				mViewPager.setCurrentItem(3);
 
 
@@ -216,9 +216,9 @@ public class HomeActivity extends AppCompatActivity {
 			}
 		});
 
-		scheme_btn = (LinearLayout)findViewById(R.id.ll_scheme);
-		scheme = (LinearLayout)findViewById(R.id.scheme);
-		scheme.setOnClickListener(new View.OnClickListener() {
+
+		categories = (LinearLayout)findViewById(R.id.categories);
+		categories.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				//orders_ll_toolbar.setVisibility(View.INVISIBLE);
@@ -232,7 +232,7 @@ public class HomeActivity extends AppCompatActivity {
 
 
 					resetAllColors();
-					changebg(categores_tv,scheme_img);
+					changebg(categores_tv,categories_img);
 
 
 
@@ -240,7 +240,7 @@ public class HomeActivity extends AppCompatActivity {
 			}
 		});
 
-		account_btn = (LinearLayout)findViewById(R.id.ll_account);
+
 		account = (LinearLayout)findViewById(R.id.account);
 		account.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -255,8 +255,8 @@ public class HomeActivity extends AppCompatActivity {
 					}
 					else {
 						mViewPager.setCurrentItem(9);
-						menu_btn.setVisibility(View.GONE);
-						btn_back.setVisibility(View.VISIBLE);
+					/*	menu_btn.setVisibility(View.GONE);
+						btn_back.setVisibility(View.VISIBLE);*/
 					}
 
 
@@ -267,10 +267,6 @@ public class HomeActivity extends AppCompatActivity {
 			}
 		});
 
-
-
-
-		//LOGOUT
 
 
 
@@ -484,9 +480,13 @@ public class HomeActivity extends AppCompatActivity {
 			@Override
 			public void onClick(View v) {
 
-
-				getCountriesList();
-				countries_popup_ll.setVisibility(View.VISIBLE);
+				if (countries_popup_ll.getVisibility() == View.VISIBLE) {
+					countries_popup_ll.setVisibility(View.GONE);
+				} else {
+					countriesdata.clear();
+					getCountriesList();
+					countries_popup_ll.setVisibility(View.VISIBLE);
+				}
 			}
 		});
 
@@ -559,15 +559,15 @@ public class HomeActivity extends AppCompatActivity {
 
 
 		brands_tv.setTextColor(getResources().getColor(R.color.colorBlack));
-		track_img.setColorFilter(getResources().getColor(R.color.colorBlack));
+		brands_img.setColorFilter(getResources().getColor(R.color.colorBlack));
 
 
 		bag_tv.setTextColor(getResources().getColor(R.color.colorBlack));
-		shop_img.setColorFilter(getResources().getColor(R.color.colorBlack));
+		bag_img.setColorFilter(getResources().getColor(R.color.colorBlack));
 
 
 		categores_tv.setTextColor(getResources().getColor(R.color.colorBlack));
-		scheme_img.setColorFilter(getResources().getColor(R.color.colorBlack));
+		categories_img.setColorFilter(getResources().getColor(R.color.colorBlack));
 
 
 		account_tv.setTextColor(getResources().getColor(R.color.colorBlack));
@@ -593,12 +593,14 @@ public class HomeActivity extends AppCompatActivity {
 	public void sendtoCart(){
 	//	ApplicationController.getInstance().quatity = quantity;
 		resetAllColors();
-		changebg(bag_tv,shop_img);
+		changebg(bag_tv,bag_img);
 		mViewPager.setCurrentItem(3);
 	}
 
 
 	public void openHome(){
+		resetAllColors();
+		changebg(home_tv,home_img);
 		mViewPager.setCurrentItem(0);
 	}
 
@@ -620,10 +622,7 @@ public class HomeActivity extends AppCompatActivity {
 	public void signupFragment(){
 
 		mViewPager.setCurrentItem(8);
-		//menu_btn.setVisibility(View.GONE);
-		//btn_back.setVisibility(View.VISIBLE);
 
-	//	tabsAdapter.productFragment.productDetails(data);
 
 	}
 
@@ -637,15 +636,15 @@ public class HomeActivity extends AppCompatActivity {
 		}
 		else {
 			mViewPager.setCurrentItem(9);
-			menu_btn.setVisibility(View.GONE);
-			btn_back.setVisibility(View.VISIBLE);
+
 
 		}
-		//	tabsAdapter.productFragment.productDetails(data);
+
 
 	}
 
 	public void setCountries(String img,String rate,String code){
+
 
 		Picasso.get().load(img).into(countries_img);
 
@@ -662,15 +661,15 @@ public class HomeActivity extends AppCompatActivity {
 
 
 
-	public void addAddressFragment(String id,AddressChechout_Data data){
+	public void addAddressFragment(String type,String id,AddressChechout_Data data){
 
 		resetAllColors();
 
 		mViewPager.setCurrentItem(11);
 
-		orders_ll_toolbar.setVisibility(View.INVISIBLE);
 
-		tabsAdapter.addAddressFragment.addAddressId(id,data);
+
+		tabsAdapter.addAddressFragment.addAddressId(type,id,data);
 	}
 
 	public void selectAddressFragment(){
@@ -689,7 +688,7 @@ public class HomeActivity extends AppCompatActivity {
 		resetAllColors();
 		mViewPager.setCurrentItem(7);
 
-		orders_ll_toolbar.setVisibility(View.INVISIBLE);
+
 	}
 
 
@@ -710,6 +709,7 @@ public class HomeActivity extends AppCompatActivity {
 	}
 
 
+/*
 int resume_count = 0;
 	@Override
 	public void onResume(){
@@ -718,21 +718,20 @@ int resume_count = 0;
 		if(resume_count>0){
 
 			if(mViewPager.getCurrentItem()==3)
-			//	orders_ll_toolbar.setVisibility(View.VISIBLE);
-			//home.performClick();
+
 
 			if(Session.getUserid(HomeActivity.this).equals("0")) {
-			//	showLoginLayout();
+
 				Log.e("memberid","0");
 
 			}
 			else {
 
-				//hideLoginLayout();
+
 
 			}
 			if (mViewPager.getCurrentItem()==2){
-				orders_ll_toolbar.setVisibility(View.VISIBLE);
+
 			}
 
 
@@ -742,6 +741,7 @@ int resume_count = 0;
 
 
 	}
+*/
 
 
 /*	@Override

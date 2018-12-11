@@ -42,10 +42,14 @@ public class Slider_Adapter extends RecyclerView.Adapter<Slider_Adapter.MyViewHo
 		Log.e("image",""+data.get(position).product_images.get(0).image_url);
 
 		//holder.discount_tv.setText(data.get(position).old_price);
-		holder.price_tv.setText(data.get(position).price);
+		float i= Float.parseFloat(data.get(position).price) * Float.parseFloat(Session.getCurrencyRate(context));
+		String format = ApplicationController.getInstance().formatNumber(i);
+		holder.price_tv.setText(format);
 		holder.strike_tv.setText(data.get(position).old_price);
+		holder.strike_tv.setVisibility(View.GONE);
 		holder.title_tv.setText(data.get(position).title);
 		holder.subtitle_tv.setText(data.get(position).subtitle);
+		holder.currency_code_slideritem.setText(Session.getCurrencyCode(context));
 
 		holder.imageView.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -71,7 +75,7 @@ public class Slider_Adapter extends RecyclerView.Adapter<Slider_Adapter.MyViewHo
 	{
 
 		ImageView imageView;
-		TextView price_tv,strike_tv,title_tv,subtitle_tv,discount_tv;
+		TextView price_tv,strike_tv,title_tv,subtitle_tv,discount_tv,currency_code_slideritem;
 
 		public MyViewHolder(View itemView){
 			super(itemView);
@@ -83,6 +87,7 @@ public class Slider_Adapter extends RecyclerView.Adapter<Slider_Adapter.MyViewHo
 			title_tv = (TextView)itemView.findViewById(R.id.title_slider_tv);
 			subtitle_tv = (TextView)itemView.findViewById(R.id.subtitle_slider_tv);
 			discount_tv = (TextView)itemView.findViewById(R.id.discount_slider_tv);
+			currency_code_slideritem = (TextView)itemView.findViewById(R.id.currency_code_slideritem);
 
 
 

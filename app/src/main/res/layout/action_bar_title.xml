@@ -82,6 +82,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:adjustViewBounds="false"
+                android:padding="5dp"
                 android:src="@drawable/logo" />
 
             <com.yellowsoft.newproject.CustomTextView

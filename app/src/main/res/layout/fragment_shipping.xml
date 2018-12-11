@@ -217,10 +217,6 @@
                         </LinearLayout>
 
 
-
-
-
-
                         <com.yellowsoft.newproject.CustomTextView
 
                             android:layout_width="match_parent"
@@ -250,10 +246,6 @@
                                 android:singleLine="true"
                                 android:textSize="14sp" />
                         </LinearLayout>
-
-
-
-
 
 
                         <com.yellowsoft.newproject.CustomTextView
@@ -368,7 +360,7 @@
                         android:orientation="vertical">
 
                         <com.yellowsoft.newproject.CustomTextView
-                            android:id="@+id/customTextView15"
+                            android:id="@+id/nextstepbtn_tv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="5dp"
@@ -377,14 +369,13 @@
                             android:textSize="14sp" />
                     </LinearLayout>
 
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:orientation="vertical"></LinearLayout>
+
                 </LinearLayout>
             </ScrollView>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical"></LinearLayout>
 
         </LinearLayout>
 
