@@ -116,8 +116,11 @@
                 android:orientation="horizontal">
 
                 <LinearLayout
+                    android:id="@+id/minus_cart_ll"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:orientation="vertical">
@@ -142,8 +145,11 @@
                     android:textColor="@android:color/black" />
 
                 <LinearLayout
+                    android:id="@+id/plus_cart_ll"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:orientation="vertical">

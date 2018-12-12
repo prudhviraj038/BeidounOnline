@@ -24,6 +24,8 @@ TextView page_title;
 LinearLayout back_btn,menu_btn;
 ImageView back;
 
+	ImageView search_img_title;
+
 
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -88,6 +90,9 @@ ImageView back;
 				finish();
 			}
 		});
+
+		search_img_title = (ImageView)v.findViewById(R.id.search_img_title);
+		search_img_title.setVisibility(View.GONE);
 
 		menu_btn = (LinearLayout) v.findViewById(R.id.btn_menu_container);
 

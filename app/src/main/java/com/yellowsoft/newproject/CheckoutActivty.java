@@ -72,6 +72,8 @@ public class CheckoutActivty extends AppCompatActivity {
 
 	boolean collect_payment;
 
+	ImageView checkoff_cod_img,checkon_code_img,checkoff_knet_img,checkon_knet_img,checkoff_visa_img,checkon_visa_img;
+
 
 	AddressChechout_Data addressChechout_data;
 
@@ -81,10 +83,32 @@ public class CheckoutActivty extends AppCompatActivity {
 		setContentView(R.layout.activity_checkout);
 
 
+
+		checkoff_cod_img = (ImageView)findViewById(R.id.checkoff_cod_img);
+		checkon_code_img = (ImageView)findViewById(R.id.checked_cod_img);
+
+		checkoff_knet_img = (ImageView)findViewById(R.id.checkoff_knet_img);
+		checkon_knet_img = (ImageView)findViewById(R.id.checked_knet_img);
+
+		checkoff_visa_img = (ImageView)findViewById(R.id.checkoff_visa_img);
+		checkon_visa_img = (ImageView)findViewById(R.id.checked_visa_img);
+
+
 		visa_ll = (LinearLayout)findViewById(R.id.visa_ll);
 		knet_ll = (LinearLayout)findViewById(R.id.knet_ll);
 		cod_ll = (LinearLayout)findViewById(R.id.cod_ll);
 
+
+
+
+
+
+		visa_ll.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+
+			}
+		});
 
 		cod_ll.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -93,6 +117,15 @@ public class CheckoutActivty extends AppCompatActivity {
 
 				Log.e("addressdata",String.valueOf(getIntent().getStringExtra("addressId")));
 				//callPlaceOrderService();
+			}
+		});
+
+
+
+		knet_ll.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+
 			}
 		});
 
@@ -153,13 +186,6 @@ public class CheckoutActivty extends AppCompatActivity {
 
 
 
-	/*	cart_data.add(new Cart_Data("456","https:\\/\\/beidounonline.com\\/uploads\\/collections\\/51517215687.jpg","Gold Watch","This is a gold watch","ddd"));
-		cart_data.add(new Cart_Data("456","https:\\/\\/beidounonline.com\\/uploads\\/collections\\/51517215687.jpg","Gold Watch","This is a gold watch","ddd"));
-		cart_data.add(new Cart_Data("456","https:\\/\\/beidounonline.com\\/uploads\\/collections\\/51517215687.jpg","Gold Watch","This is a gold watch","ddd"));
-		cart_data.add(new Cart_Data("456","https:\\/\\/beidounonline.com\\/uploads\\/collections\\/51517215687.jpg","Gold Watch","This is a gold watch","ddd"));
-		cart_data.add(new Cart_Data("456","https:\\/\\/beidounonline.com\\/uploads\\/collections\\/51517215687.jpg","Gold Watch","This is a gold watch","ddd"));
-
-*/
 
 
 		ArrayList<Object> temp = (ArrayList<Object>) ApplicationController.getInstance().cartProducts;
