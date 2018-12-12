@@ -197,7 +197,7 @@ public class HomeFragment extends Fragment {
 			@Override
 			public void onResponse(String response) {
 				Log.e("res",response);
-				if(progressDialog!=null) {
+				if(progressDialog!=null&&progressDialog.isShowing()) {
 					progressDialog.dismiss();
 				}
 

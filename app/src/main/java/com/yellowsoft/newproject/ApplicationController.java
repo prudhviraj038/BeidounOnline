@@ -27,7 +27,7 @@ public class ApplicationController extends Application {
     String fbEmail;
     String keywords;
 
-    ArrayList<Object> cartProducts;
+   public ArrayList<Object> cartProducts;
 
     private static ApplicationController sInstance;
 

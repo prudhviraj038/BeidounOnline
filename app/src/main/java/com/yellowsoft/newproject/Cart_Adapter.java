@@ -25,12 +25,18 @@ import java.util.ArrayList;
 public class Cart_Adapter extends RecyclerView.Adapter<Cart_Adapter.MyViewHolder> {
 	Context context;
 	ArrayList<Cart_Data> items;
+	CartFragment cartFragment;
 	int i;
 
-	public Cart_Adapter(Context context, ArrayList<Cart_Data> items){
+
+
+	public Cart_Adapter(Context context, ArrayList<Cart_Data> items,CartFragment cartFragment){
 		this.context=context;
 		this.items=items;
+		this.cartFragment = cartFragment;
 	}
+
+
 	@Override
 	public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewtype){
 		View v= LayoutInflater.from(parent.getContext()).inflate(R.layout.cart_items,parent,false);
@@ -52,33 +58,22 @@ public class Cart_Adapter extends RecyclerView.Adapter<Cart_Adapter.MyViewHolder
 
 		//holder.quantity_tv_product.setText(String.valueOf(items.get(position).cartquantity));
 
-		float temp = q * Float.valueOf(items.get(position).cartquantity);
+		//float temp = q * Float.valueOf(items.get(position).cartquantity);
 
 
 
-		holder.product_price_tv_item.setText(ApplicationController.getInstance().formatNumber(temp));
+		holder.product_price_tv_item.setText(ApplicationController.getInstance().formatNumber(q));
 
-	//	holder.productimage.setImageResource(items.get(position).images);
+
 		if (items.get(position).shop_data.product_images.size()>0) {
 			Picasso.get().load(items.get(position).shop_data.product_images.get(0).image_url).into(holder.product_img_cart);
 		}
-		else //holder.product_img_cart.setImageResource(R.drawable.product1);
-
-			holder.itemView.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View view) {
-				/*Intent intent;
-				intent =  new Intent(context, ProductActivity.class);
-				intent.putExtra("title",items.get(position).product_title);
-				intent.putExtra("product",items.get(position));
-				context.startActivity(intent);
-				Toast.makeText(context,"position"+position,Toast.LENGTH_LONG).show();
-*/
 
 
-			}
 
-		});
+
+
+
 
 		holder.currency_code_tv.setText(Session.getCurrencyCode(context));
 
@@ -113,6 +108,25 @@ public class Cart_Adapter extends RecyclerView.Adapter<Cart_Adapter.MyViewHolder
 				_stringVal = String.valueOf(i);
 				//checkQuantity(_stringVal);
 				//holder.quantity_tv_product.setText(_stringVal);
+			}
+		});
+
+
+
+
+		holder.delete_product_img_cart.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+
+				//items.remove(position);
+				//notifyDataSetChanged();
+
+				ApplicationController.getInstance().cartProducts.remove(position);
+				notifyDataSetChanged();
+				//ApplicationController.getInstance().cartProducts.get(position).;
+				cartFragment.getCartItems();
+
+
 			}
 		});
 

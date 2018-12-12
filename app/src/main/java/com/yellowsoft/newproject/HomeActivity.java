@@ -598,6 +598,12 @@ public class HomeActivity extends AppCompatActivity {
 	}
 
 
+
+
+
+
+
+
 	public void openHome(){
 		resetAllColors();
 		changebg(home_tv,home_img);
@@ -707,6 +713,8 @@ public class HomeActivity extends AppCompatActivity {
 		Session.setMemberCode(HomeActivity.this,"0");
 
 	}
+
+
 
 
 /*

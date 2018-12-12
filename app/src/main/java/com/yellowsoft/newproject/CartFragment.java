@@ -146,48 +146,11 @@ public class CartFragment extends Fragment {
 */
 
 
-		ArrayList<Object> temp = (ArrayList<Object>) ApplicationController.getInstance().cartProducts;
-
-		total=0;
-		cart_data.clear();
-
-		for(int i=0;i<temp.size();i++) {
-
-			Cart_Data temp_obj = (Cart_Data) temp.get(i);
-			cart_data.add(temp_obj);
-
-			total = total + (temp_obj.cartquantity * Float.parseFloat(temp_obj.shop_data.price));
-
-		}
-
-
-		if(temp.size()==0){
-			empty_cart_ll.setVisibility(View.VISIBLE);
-			cart_items_ll.setVisibility(View.GONE);
-		}
-		else {
-			empty_cart_ll.setVisibility(View.GONE);
-			cart_items_ll.setVisibility(View.VISIBLE);
-		}
 
 
 
-		subtotal_tv.setText(ApplicationController.getInstance().formatNumber(total));
-		Log.e("total",""+ApplicationController.getInstance().formatNumber(total));
-
-
-		float floatTemp = total * Float.parseFloat(Session.getCurrencyRate(getActivity()));
-
-		subtotal_tv.setText(String.valueOf(floatTemp));
-
-
-		ordertotal_tv_cart.setText(ApplicationController.getInstance().formatNumber(total));
-
-
-        ordertotal_tv_cart.setText(String.valueOf(floatTemp));
-
-
-		cart_adapter = new Cart_Adapter(getActivity(),cart_data);
+		getCartItems();
+		cart_adapter = new Cart_Adapter(getActivity(),cart_data,this);
 
 		cart_rv.setAdapter(cart_adapter);
 
@@ -510,4 +473,49 @@ public void CallCoupenService(final String coupen, final String total){
 		};
 		ApplicationController.getInstance().addToRequestQueue(stringRequest);
 	}*/
+
+
+
+	public void getCartItems(){
+
+		ArrayList<Object> temp = (ArrayList<Object>) ApplicationController.getInstance().cartProducts;
+
+		total=0;
+		cart_data.clear();
+
+		for(int i=0;i<temp.size();i++) {
+
+			Cart_Data temp_obj = (Cart_Data) temp.get(i);
+			cart_data.add(temp_obj);
+
+			total = total + (temp_obj.cartquantity * Float.parseFloat(temp_obj.shop_data.price));
+
+		}
+
+
+		if(temp.size()==0){
+			empty_cart_ll.setVisibility(View.VISIBLE);
+			cart_items_ll.setVisibility(View.GONE);
+		}
+		else {
+			empty_cart_ll.setVisibility(View.GONE);
+			cart_items_ll.setVisibility(View.VISIBLE);
+		}
+
+
+
+		subtotal_tv.setText(ApplicationController.getInstance().formatNumber(total));
+		Log.e("total",""+ApplicationController.getInstance().formatNumber(total));
+
+
+		float floatTemp = total * Float.parseFloat(Session.getCurrencyRate(getActivity()));
+
+		subtotal_tv.setText(String.valueOf(floatTemp));
+
+
+		ordertotal_tv_cart.setText(ApplicationController.getInstance().formatNumber(total));
+
+
+		ordertotal_tv_cart.setText(String.valueOf(floatTemp));
+	}
 }
