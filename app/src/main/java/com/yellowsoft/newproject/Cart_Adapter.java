@@ -26,8 +26,11 @@ public class Cart_Adapter extends RecyclerView.Adapter<Cart_Adapter.MyViewHolder
 	Context context;
 	ArrayList<Cart_Data> items;
 	CartFragment cartFragment;
-	int i;
+	int quantity;
 
+
+
+	int i = 1;
 
 
 	public Cart_Adapter(Context context, ArrayList<Cart_Data> items,CartFragment cartFragment){
@@ -47,13 +50,21 @@ public class Cart_Adapter extends RecyclerView.Adapter<Cart_Adapter.MyViewHolder
 	@Override
 	public void onBindViewHolder(final MyViewHolder holder, final int position){
 
+
+
 		holder.producttitle_tv_cart.setText(items.get(position).shop_data.title);
 		holder.subtitle_tv_cart.setText(Html.fromHtml(items.get(position).shop_data.description));
 		holder.quantity_cart.setText(items.get(position).shop_data.quantity);
+
+
+		holder.quantity_tv_product.setText(String.valueOf(items.get(position).cartquantity));
+
+
+		//holder.quantity_tv_product.setText(String.valueOf(userQuantity));
 		//holder.product_price_tv_item.setText(items.get(position).shop_data.price);
 
 
-		float q = Float.valueOf(items.get(position).shop_data.price) * Float.valueOf(Session.getCurrencyRate(context));
+		final float q = Float.valueOf(items.get(position).shop_data.price) * Float.valueOf(Session.getCurrencyRate(context));
 
 
 		//holder.quantity_tv_product.setText(String.valueOf(items.get(position).cartquantity));
@@ -84,14 +95,38 @@ public class Cart_Adapter extends RecyclerView.Adapter<Cart_Adapter.MyViewHolder
 		holder.minus_cart_ll.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+
+
 				String _stringVal;
 				if (i > 1) {
 					i = i - 1;
 					_stringVal = String.valueOf(i);
-					//checkQuantity(_stringVal);
 					//holder.quantity_tv_product.setText(_stringVal);
+
+					Cart_Data temp_obj =
+
+							(Cart_Data)(ApplicationController.getInstance().cartProducts.get(position));
+
+					temp_obj.cartquantity = temp_obj.cartquantity-1;
+
+					ApplicationController.getInstance().cartProducts.remove(position);
+
+					ApplicationController.getInstance().cartProducts.add(position,temp_obj);
+
+					cartFragment.getCartItems();
+
+
+
 				} else {
 					Log.e("src", "Value can't be less than 0");
+					items.remove(position);
+					notifyDataSetChanged();
+
+					ApplicationController.getInstance().cartProducts.remove(position);
+					//notifyDataSetChanged();
+
+					cartFragment.getCartItems();
+
 				}
 			}
 		});
@@ -101,16 +136,42 @@ public class Cart_Adapter extends RecyclerView.Adapter<Cart_Adapter.MyViewHolder
 		holder.plus_cart_ll.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				String _stringVal;
 
-				Log.e("src", "Increasing value...");
-				i = i + 1;
-				_stringVal = String.valueOf(i);
-				//checkQuantity(_stringVal);
+
+				int avalQty= Integer.parseInt(items.get(position).shop_data.quantity);
+
+				int userQty = items.get(position).cartquantity;
+
+				if (avalQty == userQty){
+
+
+					Toast.makeText(context,"Maximum quantity is :"+avalQty,Toast.LENGTH_SHORT).show();
+
+				}
+				else {
+					Cart_Data temp_obj =
+
+					(Cart_Data)(ApplicationController.getInstance().cartProducts.get(position));
+
+					temp_obj.cartquantity = temp_obj.cartquantity+1;
+
+					ApplicationController.getInstance().cartProducts.remove(position);
+
+					ApplicationController.getInstance().cartProducts.add(position,temp_obj);
+
+					cartFragment.getCartItems();
+
+
+
+				}
+
+
+
 				//holder.quantity_tv_product.setText(_stringVal);
 			}
 		});
 
+		quantity = Integer.parseInt(items.get(position).shop_data.quantity);
 
 
 
@@ -168,30 +229,6 @@ public class Cart_Adapter extends RecyclerView.Adapter<Cart_Adapter.MyViewHolder
 
 
 
-	/*public void checkQuantity(String q) {
-
-		int i = Integer.parseInt(q);
-
-		if (i<=quantity){
-
-
-
-
-		}
-		else {
-
-
-
-			quatity_tv_product.setText(""+quantity);
-
-			Session.setQuantity(getContext(),String.valueOf(i));
-			Toast.makeText(getContext(),"Maximum quantity is :"+quantity,Toast.LENGTH_LONG).show();
-
-
-		}
-
-	}
-*/
 
 
 

@@ -70,12 +70,17 @@ public class CheckoutActivty extends AppCompatActivity {
 
 	float total;
 
-	boolean collect_payment;
+	boolean cod_payment,visa_payment,knet_payment;
+
+	boolean cod,visa,knet;
+
 
 	ImageView checkoff_cod_img,checkon_code_img,checkoff_knet_img,checkon_knet_img,checkoff_visa_img,checkon_visa_img;
 
 
 	AddressChechout_Data addressChechout_data;
+
+	ImageView search_img_title;
 
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -107,14 +112,21 @@ public class CheckoutActivty extends AppCompatActivity {
 			@Override
 			public void onClick(View v) {
 
+				visa = true;
+				cod = false;
+				knet = false;
+
 			}
 		});
 
 		cod_ll.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				collect_payment = true;
 
+
+				visa = false;
+				cod = true;
+				knet = false;
 				Log.e("addressdata",String.valueOf(getIntent().getStringExtra("addressId")));
 				//callPlaceOrderService();
 			}
@@ -126,8 +138,24 @@ public class CheckoutActivty extends AppCompatActivity {
 			@Override
 			public void onClick(View v) {
 
+				visa = false;
+				cod = false;
+				knet = false;
 			}
 		});
+
+		if (visa==true){
+
+			visa_payment =true;
+
+		}
+		else if (cod==true){
+			cod_payment = true;
+		}
+		else {
+
+			knet_payment =true;
+		}
 
 
 
@@ -296,32 +324,32 @@ public class CheckoutActivty extends AppCompatActivity {
 		ActionBar.LayoutParams layoutParams = new ActionBar.LayoutParams(ActionBar.LayoutParams.MATCH_PARENT,
 				ActionBar.LayoutParams.MATCH_PARENT);
 		LayoutInflater inflater = getLayoutInflater();
-		View v = inflater.inflate(R.layout.action_bar_title,null);
+		View v = inflater.inflate(R.layout.action_bar_login,null);
 
 
 
 
 
 
+/*
 
 
-		btn_like = (ImageView)v.findViewById(R.id.btn_like);
-		btn_like.setVisibility(View.GONE);
-
-		/*btn_back = (ImageView)v.findViewById(R.id.btn_back_title);
-		back_btn.setVisibility(View.VISIBLE);
-		btn_back.setOnClickListener(new View.OnClickListener() {
+		back = (ImageView)v.findViewById(R.id.btn_back);
+		back.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				finish();
 			}
 		});
-*/
 
+
+
+
+		search_img_title = (ImageView)v.findViewById(R.id.search_img_title);
 
 		countries_img = (ImageView)v.findViewById(R.id.countries_img);
 		countries_img.setVisibility(View.GONE);
-
+*/
 
 
 
@@ -458,7 +486,7 @@ public class CheckoutActivty extends AppCompatActivity {
 
 
 
-					if(collect_payment) {
+					if(cod_payment) {
 
 						jsonObject_to_send.put("payment", "1");
 						jsonObject_to_send.put("payment_method", "1");

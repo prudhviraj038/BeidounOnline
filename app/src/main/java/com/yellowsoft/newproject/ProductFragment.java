@@ -177,11 +177,13 @@ public class ProductFragment extends Fragment {
 		int i = Integer.parseInt(q);
 
 		int j = Integer.parseInt(shop_data.quantity);
+
+
 		if (i<=j){
 
 
 			Cart_Data cartData = new Cart_Data(shop_data,i);
-			Log.e("shopData",""+shop_data.title);
+			Log.e("quantityproductchanged",""+i);
 			ApplicationController.getInstance().cartProducts.add(cartData);
 
 			//((HomeActivity)getActivity()).sendtoCart();

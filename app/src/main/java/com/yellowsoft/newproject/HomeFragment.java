@@ -197,11 +197,15 @@ public class HomeFragment extends Fragment {
 			@Override
 			public void onResponse(String response) {
 				Log.e("res",response);
-				if(progressDialog!=null&&progressDialog.isShowing()) {
-					progressDialog.dismiss();
-				}
+
 
 				try {
+
+					if(progressDialog!=null&&progressDialog.isShowing()) {
+						progressDialog.dismiss();
+					}
+
+
 					JSONObject jsonObject =new JSONObject(response);
 
 

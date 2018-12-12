@@ -150,9 +150,6 @@ public class CartFragment extends Fragment {
 
 
 		getCartItems();
-		cart_adapter = new Cart_Adapter(getActivity(),cart_data,this);
-
-		cart_rv.setAdapter(cart_adapter);
 
 
 
@@ -517,5 +514,12 @@ public void CallCoupenService(final String coupen, final String total){
 
 
 		ordertotal_tv_cart.setText(String.valueOf(floatTemp));
-	}
+
+        cart_adapter = new Cart_Adapter(getActivity(),cart_data,this);
+
+        cart_rv.setAdapter(cart_adapter);
+
+
+
+    }
 }

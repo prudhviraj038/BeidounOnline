@@ -313,19 +313,20 @@
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
+                                    android:gravity="center_vertical"
                                     android:orientation="horizontal">
 
                                     <ImageView
                                         android:id="@+id/checked_visa_img"
-                                        android:layout_width="25dp"
-                                        android:layout_height="25dp"
+                                        android:layout_width="15dp"
+                                        android:layout_height="10dp"
                                         android:visibility="gone"
                                         app:srcCompat="@drawable/checked" />
 
                                     <ImageView
                                         android:id="@+id/checkoff_visa_img"
-                                        android:layout_width="25dp"
-                                        android:layout_height="25dp"
+                                        android:layout_width="15dp"
+                                        android:layout_height="10dp"
                                         app:srcCompat="@drawable/check" />
 
                                     <ImageView
@@ -342,27 +343,27 @@
                                     android:layout_width="0dp"
                                     android:layout_height="match_parent"
                                     android:layout_weight="1"
-                                    android:gravity="end"
+                                    android:gravity="center_vertical|end"
                                     android:orientation="horizontal">
 
                                     <ImageView
                                         android:id="@+id/checked_cod_img"
-                                        android:layout_width="25dp"
-                                        android:layout_height="25dp"
+                                        android:layout_width="15dp"
+                                        android:layout_height="10dp"
                                         android:visibility="gone"
                                         app:srcCompat="@drawable/checked" />
 
                                     <ImageView
                                         android:id="@+id/checkoff_cod_img"
-                                        android:layout_width="25dp"
-                                        android:layout_height="25dp"
+                                        android:layout_width="15dp"
+                                        android:layout_height="10dp"
                                         app:srcCompat="@drawable/check" />
 
                                     <ImageView
                                         android:id="@+id/imageView25"
-                                        android:layout_width="50dp"
+                                        android:layout_width="wrap_content"
                                         android:layout_height="25dp"
-                                        android:adjustViewBounds="false"
+                                        android:adjustViewBounds="true"
                                         android:src="@drawable/cash" />
 
                                 </LinearLayout>
@@ -379,22 +380,22 @@
 
                                 <ImageView
                                     android:id="@+id/checked_knet_img"
-                                    android:layout_width="25dp"
-                                    android:layout_height="25dp"
+                                    android:layout_width="15dp"
+                                    android:layout_height="10dp"
                                     android:visibility="gone"
                                     app:srcCompat="@drawable/checked" />
 
                                 <ImageView
                                     android:id="@+id/checkoff_knet_img"
-                                    android:layout_width="25dp"
-                                    android:layout_height="25dp"
+                                    android:layout_width="15dp"
+                                    android:layout_height="10dp"
                                     app:srcCompat="@drawable/check" />
 
                                 <ImageView
                                     android:id="@+id/imageView25"
-                                    android:layout_width="50dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="25dp"
-                                    android:adjustViewBounds="false"
+                                    android:adjustViewBounds="true"
                                     app:srcCompat="@drawable/knet" />
 
                             </LinearLayout>

@@ -50,6 +50,8 @@ public class Checkout_Adapter extends RecyclerView.Adapter<Checkout_Adapter.MyVi
 
 		holder.product_price_tv_item.setText(ApplicationController.getInstance().formatNumber(temp));
 
+		holder.quantity_tv_product.setText(items.get(position).cartquantity);
+
 
 
 
