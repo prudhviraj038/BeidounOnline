@@ -118,12 +118,12 @@ public class Cart_Adapter extends RecyclerView.Adapter<Cart_Adapter.MyViewHolder
 			@Override
 			public void onClick(View v) {
 
-				//items.remove(position);
-				//notifyDataSetChanged();
+				items.remove(position);
+				notifyDataSetChanged();
 
 				ApplicationController.getInstance().cartProducts.remove(position);
-				notifyDataSetChanged();
-				//ApplicationController.getInstance().cartProducts.get(position).;
+				//notifyDataSetChanged();
+
 				cartFragment.getCartItems();
 
 

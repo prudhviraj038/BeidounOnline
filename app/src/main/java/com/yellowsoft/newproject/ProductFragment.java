@@ -161,7 +161,7 @@ public class ProductFragment extends Fragment {
 		Log.e("imageURL",""+data.product_images.get(0).image_url);
 		Log.e("quantity",""+data.quantity);
 
-		quantity = Integer.parseInt(data.quantity);
+		quantity = Integer.parseInt(quatity_tv_product.getText().toString());
 
 		Picasso.get().load(data.product_images.get(0).image_url).into(product_img);
 
@@ -176,10 +176,11 @@ public class ProductFragment extends Fragment {
 
 		int i = Integer.parseInt(q);
 
-		if (i<=quantity){
+		int j = Integer.parseInt(shop_data.quantity);
+		if (i<=j){
 
 
-			Cart_Data cartData = new Cart_Data(shop_data,quantity);
+			Cart_Data cartData = new Cart_Data(shop_data,i);
 			Log.e("shopData",""+shop_data.title);
 			ApplicationController.getInstance().cartProducts.add(cartData);
 
