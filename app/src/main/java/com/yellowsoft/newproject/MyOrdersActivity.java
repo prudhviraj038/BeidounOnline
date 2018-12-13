@@ -92,9 +92,9 @@ public class MyOrdersActivity extends AppCompatActivity {
 			@Override
 			public void onClick(View v) {
 				//showPopup();
-				Intent intent = new Intent(MyOrdersActivity.this,OrderDetailsActivity.class);
+				/*Intent intent = new Intent(MyOrdersActivity.this,OrderDetailsActivity.class);
 				intent.putExtra("details",myOrdersData);
-				startActivity(intent);
+				startActivity(intent);*/
 			}
 		});
 
