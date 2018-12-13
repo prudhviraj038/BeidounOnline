@@ -120,7 +120,7 @@ public class CartFragment extends Fragment {
 		proceedtocheckout_ll_btn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Toast.makeText(getContext(),"checkout page",Toast.LENGTH_SHORT).show();
+			//	Toast.makeText(getContext(),"checkout page",Toast.LENGTH_SHORT).show();
 
 				((HomeActivity)getActivity()).selectAddressFragment();
 			}

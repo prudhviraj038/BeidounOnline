@@ -59,6 +59,7 @@ public class CheckoutAddressFragment extends Fragment {
 		View view = inflater.inflate(R.layout.fragment_checkoutaddress, container, false);
 
 		nextstep_checkoutadddress = (TextView)view.findViewById(R.id.nextstep_checkoutadddress);
+		nextstep_checkoutadddress.setVisibility(View.GONE);
 
 		addnewaddress_checkout = (LinearLayout) view.findViewById(R.id.addnewaddress_checkout);
 
@@ -72,16 +73,16 @@ public class CheckoutAddressFragment extends Fragment {
 		checkoutAddress_adapter = new CheckoutAddress_Adapter(getContext(),addressChechout_data);
 		myaddress_rv.setAdapter(checkoutAddress_adapter);
 
-		nextstep_checkoutadddress.setOnClickListener(new View.OnClickListener() {
+		/*nextstep_checkoutadddress.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 
-				/*
+				*//*
 				Log.e("sendtocheckout","sendtocheckout");
 				Intent intent = new Intent(getContext(),CheckoutActivty.class);
-				startActivity(intent);*/
+				startActivity(intent);*//*
 			}
-		});
+		});*/
 
 		addnewaddress_checkout.setOnClickListener(new View.OnClickListener() {
 			@Override

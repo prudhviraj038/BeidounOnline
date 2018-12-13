@@ -30,7 +30,7 @@ import java.util.Map;
 
 public class AddAddressFragment extends Fragment {
 	TextView page_title;
-	TextView btn_edit,state;
+	TextView btn_edit;
 	LinearLayout prdcheckout_btn;
 	LinearLayout menu_btn,back_btn,submit_btn,proceedtopay_ll_btn;
 	LinearLayout popup_checkout;
@@ -39,7 +39,7 @@ public class AddAddressFragment extends Fragment {
 
 	StatesAdapter statesAdapter;
 
-	EditText firstname,lastname,address,email,phone,city,et_country_checkout;
+	EditText firstname,lastname,address,email,phone,city,et_country_checkout,state;
 	EditText et_pincode_checkout;
 	ListView states_lv;
 
@@ -117,9 +117,6 @@ public class AddAddressFragment extends Fragment {
 						sendShippingAddress(addressid);
 						Log.e("id", addressid);
 					} else {
-
-
-
 					addAddressId("add", "add", addressChechout_data);
 				}
 			}
@@ -160,6 +157,20 @@ public class AddAddressFragment extends Fragment {
 				Log.e("addressIdAdd",data.id);
 				Log.e("addressId",id);
 				city.setText(data.city);
+				et_country_checkout.setText(data.country);
+				et_pincode_checkout.setText(data.pincode);
+				state.setText(data.state);
+
+			}else if (firstname.getText().toString().equals("")) {
+				Snackbar.make(firstname, "please enter firstname", Snackbar.LENGTH_SHORT).show();
+			} else if (lastname.getText().toString().equals("")) {
+				Snackbar.make(firstname, "please enter lastname", Snackbar.LENGTH_SHORT).show();
+			} else if (address.getText().toString().equals("")) {
+				Snackbar.make(firstname, "please enter address", Snackbar.LENGTH_SHORT).show();
+			} else if (email.getText().toString().equals("") || !email.getText().toString().matches("[a-zA-Z0-9._-]+@[a-z]+.[a-z]+")) {
+				Snackbar.make(firstname, "please enter valid email", Snackbar.LENGTH_SHORT).show();
+			} else if (phone.getText().toString().equals("")) {
+				Snackbar.make(firstname, "please enter phonenumber", Snackbar.LENGTH_SHORT).show();
 			}
 			else if (city.getText().toString().equals("")) {
 				Snackbar.make(firstname, "please enter city", Snackbar.LENGTH_SHORT).show();
@@ -217,7 +228,7 @@ public class AddAddressFragment extends Fragment {
 
 					if(reply.equals("Success")) {
 
-						Toast.makeText(getContext(),"Address added successfully",Toast.LENGTH_SHORT).show();
+						Toast.makeText(getContext(),""+jsonObject.getString("message"),Toast.LENGTH_SHORT).show();
 
 
 					}

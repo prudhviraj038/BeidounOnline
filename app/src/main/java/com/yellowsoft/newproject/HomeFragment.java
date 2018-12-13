@@ -20,8 +20,10 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -64,6 +66,7 @@ public class HomeFragment extends Fragment {
 
 	String id,type;
 
+	ProgressBar homefrag_progress;
 
 
 	/*@Override
@@ -93,6 +96,9 @@ public class HomeFragment extends Fragment {
 		View view = inflater.inflate(R.layout.fragment_home, container, false);
 
 		Log.e("homefragment","homefragment");
+
+		homefrag_progress = (ProgressBar)view.findViewById(R.id.homefrag_progress);
+		homefrag_progress.setVisibility(View.GONE);
 
 		main_img_homeone = (ImageView) view.findViewById(R.id.main_img_homeone);
 		main_img_homeone.setOnClickListener(new View.OnClickListener() {
@@ -187,10 +193,11 @@ public class HomeFragment extends Fragment {
 	public void getHomeApi()
 	{
 
-		final ProgressDialog progressDialog = new ProgressDialog(getContext());
+		/*final ProgressDialog progressDialog = new ProgressDialog(getContext());
 		progressDialog.setMessage("Please Wait....");
 		progressDialog.show();
-		progressDialog.setCancelable(false);
+		progressDialog.setCancelable(false);*/
+		homefrag_progress.setVisibility(View.VISIBLE);
 		String URL = Session.BASE_URL+"api/home.php";
 
 		StringRequest stringRequest = new StringRequest(Request.Method.POST, URL,new Response.Listener<String>() {
@@ -198,12 +205,13 @@ public class HomeFragment extends Fragment {
 			public void onResponse(String response) {
 				Log.e("res",response);
 
+				homefrag_progress.setVisibility(View.GONE);
 
 				try {
 
-					if(progressDialog!=null&&progressDialog.isShowing()) {
+					/*if(progressDialog!=null&&progressDialog.isShowing()) {
 						progressDialog.dismiss();
-					}
+					}*/
 
 
 					JSONObject jsonObject =new JSONObject(response);
@@ -272,14 +280,19 @@ public class HomeFragment extends Fragment {
 
 				} catch (JSONException e) {
 					e.printStackTrace();
+					Toast.makeText(getActivity()," Please try after some time.",Toast.LENGTH_LONG).show();
+					homefrag_progress.setVisibility(View.GONE);
 				}
 			}
 		},
 				new Response.ErrorListener() {
 					@Override
 					public void onErrorResponse(VolleyError error) {
-						if(progressDialog!=null)
-							progressDialog.dismiss();
+						/*if(progressDialog!=null)
+							progressDialog.dismiss();*/
+						homefrag_progress.setVisibility(View.GONE);
+
+						Toast.makeText(getActivity()," Please try after some time.",Toast.LENGTH_LONG).show();
 
 					}
 				}){

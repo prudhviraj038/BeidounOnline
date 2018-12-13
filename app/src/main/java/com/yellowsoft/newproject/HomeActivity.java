@@ -707,6 +707,8 @@ public class HomeActivity extends AppCompatActivity {
 
 
 
+
+
 	public void myProfileFragment(){
 
 		mViewPager.setCurrentItem(12);

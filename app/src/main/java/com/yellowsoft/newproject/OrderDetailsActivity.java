@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -31,25 +32,10 @@ public class OrderDetailsActivity extends AppCompatActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_orderdetails);
 
-		messages_lv = (ListView)findViewById(R.id.order_his_lv);
 
-		order_number_tv = (TextView)findViewById(R.id.order_number_tv);
-		order_number_tv.setText("Order id: "+getIntent().getStringExtra("order_no"));
+		MyOrdersData myOrdersData = (MyOrdersData)getIntent().getSerializableExtra("details") ;
 
-		ordersData = (MyOrdersData) getIntent().getSerializableExtra("details");
-
-		for (int i = 0;i<ordersData.messageData.size();i++){
-
-			String message = ordersData.messageData.get(i).message;
-			String date = ordersData.messageData.get(i).message_date;
-
-			Log.e("details",""+message+"- "+date);
-
-		}
-		orderHistory_adapter = new OrderHistory_Adapter(OrderDetailsActivity.this,ordersData.messageData);
-
-		messages_lv.setAdapter(orderHistory_adapter);
-		orderHistory_adapter.notifyDataSetChanged();
+		Log.e("details",""+myOrdersData.address);
 
 
 		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_orderdetails);

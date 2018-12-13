@@ -40,32 +40,39 @@ public class MyOrders_Adapter extends RecyclerView.Adapter<MyOrders_Adapter.MyVi
 		return myViewHolder;
 	}
 	@Override
-	public void onBindViewHolder(MyViewHolder holder,final int position){
+	public void onBindViewHolder(final MyViewHolder holder,final int position){
 
-		holder.product_tittle.setText(items.get(position).tittle);
-		holder.address_myorders_tv.setText(items.get(position).address);
+		//holder.product_tittle.setText(items.get(position).tittle);
+		//holder.address_myorders_tv.setText(items.get(position).address);
 		holder.order_ids.setText(items.get(position).order_id);
-		holder.price_tv_myorders.setText(items.get(position).price);
-		holder.quantity_tv_myorders.setText(items.get(position).quantity);
-		holder.track_link.setText(items.get(position).tracking_link);
+
+		//holder.quantity_tv_myorders.setText(items.get(position).quantity);
+		//holder.track_link.setText(items.get(position).tracking_link);
 
 
 		holder.date_myorders.setText(items.get(position).date);
 
-		holder.myorders_status.setText(items.get(position).status);
+		float f = Float.valueOf(items.get(position).price) * Float.valueOf(Session.getCurrencyRate(context));
 
-		if(!items.get(position).images.equals(""))
+		holder.price_tv_myorders.setText(String.valueOf(f));
+
+
+		holder.currcode_myorders.setText(Session.getCurrencyCode(context));
+		//	holder.myorders_status.setText(items.get(position).status);
+
+	/*	if(!items.get(position).images.equals(""))
 		Picasso.get().load(items.get(position).images).into(holder.order_img);
+*/
 
 
 
-		holder.itemView.setOnClickListener(new View.OnClickListener() {
+
+		holder.summary_tv.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				Intent intent;
-				intent =  new Intent(context, OrderDetailsActivity.class);
+
+				Intent intent =  new Intent(context, OrderDetailsActivity.class);
 				intent.putExtra("details",items.get(position));
-				intent.putExtra("order_no",items.get(position).order_id);
 				intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 				context.startActivity(intent);
 				//Toast.makeText(context,""+items.get(position).messageData,Toast.LENGTH_LONG).show();
@@ -87,19 +94,24 @@ public class MyOrders_Adapter extends RecyclerView.Adapter<MyOrders_Adapter.MyVi
 		ImageView order_img;
 		TextView address_myorders_tv, order_ids, quantity_tv_myorders, price_tv_myorders, product_tittle, myorders_status;
 		TextView date_myorders, track_link;
+		TextView summary_tv,currcode_myorders;
 		public MyViewHolder(View itemView){
 			super(itemView);
 
-			product_tittle = (TextView) itemView.findViewById(R.id.producttitle_tv);
+			//product_tittle = (TextView) itemView.findViewById(R.id.producttitle_tv);
 			order_ids = (TextView)itemView.findViewById(R.id.orderid_tv_myorders);
-			quantity_tv_myorders = (TextView)itemView.findViewById(R.id.quantity_tv_myorders);
+			//quantity_tv_myorders = (TextView)itemView.findViewById(R.id.quantity_tv_myorders);
 			price_tv_myorders = (TextView)itemView.findViewById(R.id.price_tv_myorders);
-			address_myorders_tv=(TextView)itemView.findViewById(R.id.address_myorders_tv);
-			myorders_status = (TextView) itemView.findViewById(R.id.ordersstatus_tv);
+		//	address_myorders_tv=(TextView)itemView.findViewById(R.id.address_myorders_tv);
+		//	myorders_status = (TextView) itemView.findViewById(R.id.ordersstatus_tv);
 			date_myorders = (TextView)itemView.findViewById(R.id.date_myorders);
-			track_link = (TextView)itemView.findViewById(R.id.trackinglink_tv_orders);
+			summary_tv = (TextView)itemView.findViewById(R.id.summary_tv);
+			currcode_myorders = (TextView)itemView.findViewById(R.id.currcode_myorders);
+		//	track_link = (TextView)itemView.findViewById(R.id.trackinglink_tv_orders);
 
-			order_img=(ImageView)itemView.findViewById(R.id.order_img);
+		//	order_img=(ImageView)itemView.findViewById(R.id.order_img);
+
+
 		}
 	}
 

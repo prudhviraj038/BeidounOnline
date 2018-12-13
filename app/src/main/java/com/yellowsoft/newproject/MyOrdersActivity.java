@@ -78,12 +78,6 @@ public class MyOrdersActivity extends AppCompatActivity {
 			}
 		});
 
-//		myOrdersData.add(new MyOrdersData("https://www.clients.yellowsoft.in/mycop/uploads/products/131537966319.png","45000","MYCOP5544663322","10","Yellowsoft,Anvitha Arcade,Near Hanuman Temple,Currency Nagar,Vijayawada,Krishna Dt.520008"));
-//		myOrdersData.add(new MyOrdersData("https://www.clients.yellowsoft.in/mycop/uploads/products/131537966319.png","30000","MYCOP5544661234","10","Yellowsoft,Anvitha Arcade,Near Hanuman Temple,Currency Nagar,Vijayawada,Krishna Dt.520008"));
-//		myOrdersData.add(new MyOrdersData("https://www.clients.yellowsoft.in/mycop/uploads/products/131537966319.png","20000","MYCOP5544663322","5","Yellowsoft,Anvitha Arcade,Near Hanuman Temple,Currency Nagar,Vijayawada,Krishna Dt.520008"));
-//		myOrdersData.add(new MyOrdersData("https://www.clients.yellowsoft.in/mycop/uploads/products/131537966319.png","12000","MYCOP5544660088","7","Yellowsoft,Anvitha Arcade,Near Hanuman Temple,Currency Nagar,Vijayawada,Krishna Dt.520008"));
-//		myOrdersData.add(new MyOrdersData("https://www.clients.yellowsoft.in/mycop/uploads/products/131537966319.png","13000","MYCOP5544668877","5","Yellowsoft,Anvitha Arcade,Near Hanuman Temple,Currency Nagar,Vijayawada,Krishna Dt.520008"));
-//		myOrdersData.add(new MyOrdersData("https://www.clients.yellowsoft.in/mycop/uploads/products/131537966319.png","15000","MYCOP5544661144","15","Yellowsoft,Anvitha Arcade,Near Hanuman Temple,Currency Nagar,Vijayawada,Krishna Dt.520008"));
 
 		recycler_adapter = new MyOrders_Adapter(getApplicationContext(),myOrdersData);
 		LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getApplicationContext());

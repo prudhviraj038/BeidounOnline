@@ -1,5 +1,6 @@
 package com.yellowsoft.newproject;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -16,7 +17,7 @@ public class AccountFragment extends Fragment {
 
 	@Nullable
 	@Override
-	public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+	public View onCreateView(@NonNull final LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.fragment_account, container, false);
 
 
@@ -37,6 +38,15 @@ public class AccountFragment extends Fragment {
 			@Override
 			public void onClick(View v) {
 				((HomeActivity)getActivity()).myWishList();
+			}
+		});
+
+		myorders_ll.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+
+				Intent intent = new Intent(getContext(),MyOrdersActivity.class);
+				startActivity(intent);
 			}
 		});
 

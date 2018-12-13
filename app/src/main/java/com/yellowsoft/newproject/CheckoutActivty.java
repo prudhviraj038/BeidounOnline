@@ -64,7 +64,7 @@ public class CheckoutActivty extends AppCompatActivity {
 	String coupon_code_str = "";
 
 	LinearLayout visa_ll,knet_ll,cod_ll;
-
+	LinearLayout btn_back_container;
 
 	RecyclerView cart_rv;
 
@@ -75,12 +75,14 @@ public class CheckoutActivty extends AppCompatActivity {
 	boolean cod,visa,knet;
 
 
-	ImageView checkoff_cod_img,checkon_code_img,checkoff_knet_img,checkon_knet_img,checkoff_visa_img,checkon_visa_img;
+	ImageView checkoff_cod_img,checkon_cod_img,checkoff_knet_img,checkon_knet_img,checkoff_visa_img,checkon_visa_img;
 
 
 	AddressChechout_Data addressChechout_data;
 
 	ImageView search_img_title;
+
+	float sendTotaltoApi;
 
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -90,7 +92,7 @@ public class CheckoutActivty extends AppCompatActivity {
 
 
 		checkoff_cod_img = (ImageView)findViewById(R.id.checkoff_cod_img);
-		checkon_code_img = (ImageView)findViewById(R.id.checked_cod_img);
+		checkon_cod_img = (ImageView)findViewById(R.id.checked_cod_img);
 
 		checkoff_knet_img = (ImageView)findViewById(R.id.checkoff_knet_img);
 		checkon_knet_img = (ImageView)findViewById(R.id.checked_knet_img);
@@ -112,22 +114,44 @@ public class CheckoutActivty extends AppCompatActivity {
 			@Override
 			public void onClick(View v) {
 
-				visa = true;
-				cod = false;
-				knet = false;
 
+
+				visa_payment =true;
+				checkon_cod_img.setVisibility(View.GONE);
+				checkon_knet_img.setVisibility(View.GONE);
+				checkon_visa_img.setVisibility(View.VISIBLE);
+				checkoff_visa_img.setVisibility(View.GONE);
+
+				checkoff_cod_img.setVisibility(View.VISIBLE);
+				checkoff_knet_img.setVisibility(View.VISIBLE);
+
+
+
+
+
+				Log.e("PAYMENT_MODE","visa");
 			}
 		});
 
 		cod_ll.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				Log.e("PAYMENT_MODE","cod");
 
 
-				visa = false;
-				cod = true;
-				knet = false;
-				Log.e("addressdata",String.valueOf(getIntent().getStringExtra("addressId")));
+				cod_payment = true;
+				checkon_cod_img.setVisibility(View.VISIBLE);
+				checkon_knet_img.setVisibility(View.GONE);
+				checkon_visa_img.setVisibility(View.GONE);
+				checkoff_cod_img.setVisibility(View.GONE);
+
+
+
+				checkoff_visa_img.setVisibility(View.VISIBLE);
+				checkoff_knet_img.setVisibility(View.VISIBLE);
+				Log.e("PAYMENT_MODE","cod");
+
+			//	Log.e("addressdata",String.valueOf(getIntent().getStringExtra("addressId")));
 				//callPlaceOrderService();
 			}
 		});
@@ -137,24 +161,34 @@ public class CheckoutActivty extends AppCompatActivity {
 		knet_ll.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				Log.e("PAYMENT_MODE","knet");
 
-				visa = false;
-				cod = false;
-				knet = false;
+
+
+				knet_payment =true;
+				checkon_cod_img.setVisibility(View.GONE);
+				checkon_knet_img.setVisibility(View.VISIBLE);
+				checkon_visa_img.setVisibility(View.GONE);
+				checkoff_knet_img.setVisibility(View.GONE);
+
+
+				checkoff_cod_img.setVisibility(View.VISIBLE);
+				checkoff_visa_img.setVisibility(View.VISIBLE);
 			}
 		});
 
 		if (visa==true){
+			Log.e("PAYMENT_MODE","visa");
 
-			visa_payment =true;
+
 
 		}
 		else if (cod==true){
-			cod_payment = true;
-		}
-		else {
 
-			knet_payment =true;
+		}
+		else if (knet==true){
+
+
 		}
 
 
@@ -186,7 +220,7 @@ public class CheckoutActivty extends AppCompatActivity {
 
 
 		addressChechout_data = (AddressChechout_Data)getIntent().getSerializableExtra("address");
-		Log.e("addressData",addressChechout_data.email);
+		Log.e("addressData",addressChechout_data.state+",  "+addressChechout_data.state);
 
 
 		payconfirm_ll_checkout = (LinearLayout)findViewById(R.id.payconfirm_ll_checkout);
@@ -245,8 +279,11 @@ public class CheckoutActivty extends AppCompatActivity {
 
 
 		subtotal_tv.setText(ApplicationController.getInstance().formatNumber(total));
-		Log.e("total",""+ApplicationController.getInstance().formatNumber(total));
+		Log.e("total",""+ApplicationController.getInstance().formatNumber(total)+"   total in kwd"+total);
 
+		sendTotaltoApi = total;
+
+		Log.e("sendApiTotal",""+sendTotaltoApi);
 
 		float floatTemp = total * Float.parseFloat(Session.getCurrencyRate(CheckoutActivty.this));
 
@@ -329,6 +366,16 @@ public class CheckoutActivty extends AppCompatActivity {
 
 
 
+        search_img_title = (ImageView)v.findViewById(R.id.search_img_title);
+        search_img_title.setVisibility(View.GONE);
+
+        btn_back_container = (LinearLayout)v.findViewById(R.id.btn_back_container);
+        btn_back_container.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				finish();
+			}
+		});
 
 
 /*
@@ -402,7 +449,12 @@ public class CheckoutActivty extends AppCompatActivity {
 					if(reply.equals("Success")) {
 
 
-						Toast.makeText(CheckoutActivty.this,"Payment done",Toast.LENGTH_LONG);
+						Toast.makeText(CheckoutActivty.this,"Payment done",Toast.LENGTH_SHORT).show();
+
+						Intent intent = new Intent(CheckoutActivty.this,HomeActivity.class);
+						intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+						startActivity(intent);
+
 					/*	if(collect_payment){
 							//intent.putExtra("id", jsonObject.getString("invoice_id"));
 							*//*invoiceid = jsonObject.getString("invoice_id");
@@ -480,7 +532,7 @@ public class CheckoutActivty extends AppCompatActivity {
 					}*/
 
 					jsonObject_to_send.put("discount_amount",String.valueOf(getIntent().getIntExtra("discount_amount",0)));
-					jsonObject_to_send.put("price",ordertotal_tv_checkout.getText().toString());
+					jsonObject_to_send.put("price",String.valueOf(sendTotaltoApi));
 					jsonObject_to_send.put("delivery_charges",String.valueOf(getIntent().getIntExtra("delivery_charges",0)));
 					jsonObject_to_send.put("member_id",Session.getUserid(CheckoutActivty.this));
 
@@ -491,6 +543,11 @@ public class CheckoutActivty extends AppCompatActivity {
 						jsonObject_to_send.put("payment", "1");
 						jsonObject_to_send.put("payment_method", "1");
 					}
+					else if (visa_payment){
+						jsonObject_to_send.put("payment", "2");
+						jsonObject_to_send.put("payment_method", "2");
+					}
+
 
 
 				} catch (JSONException e) {
@@ -554,4 +611,13 @@ public class CheckoutActivty extends AppCompatActivity {
 		return temp;
 
 	};
+
+
+
+	public void checkVisible(){
+
+	}
+	public void checkoffVisible(){
+
+	}
 }
