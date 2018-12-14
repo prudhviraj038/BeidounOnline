@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,11 +22,16 @@ import java.util.ArrayList;
 public class OrderDetailsActivity extends AppCompatActivity {
 	OrderHistory_Adapter orderHistory_adapter ;
 
-	MyOrdersData ordersData;
+	MyOrdersData myOrdersData;
 	LinearLayout back_btn;
 	ImageView back;
+	RecyclerView orderdetails_rv;
+
+	Checkout_Adapter orderdetails_adapter;
+
 	TextView page_title;
-	TextView order_number_tv;
+	TextView orderno_details,address_details,paymentmethod_details,orderstatus_details,subtotal_details;
+	TextView deliverych_details,discount_details,orderamt_details;
 
 	ListView messages_lv;
 	@Override
@@ -33,9 +40,37 @@ public class OrderDetailsActivity extends AppCompatActivity {
 		setContentView(R.layout.activity_orderdetails);
 
 
-		MyOrdersData myOrdersData = (MyOrdersData)getIntent().getSerializableExtra("details") ;
+		orderno_details = (TextView) findViewById(R.id.orderno_details);
+		address_details = (TextView) findViewById(R.id.address_details);
+		paymentmethod_details = (TextView) findViewById(R.id.paymentmethod_details);
+		orderstatus_details = (TextView) findViewById(R.id.orderstatus_details);
+		//subtotal_details = (TextView) findViewById(R.id.subtotal_details);
+		deliverych_details = (TextView) findViewById(R.id.deliverych_details);
+		discount_details = (TextView) findViewById(R.id.discount_details);
+		orderamt_details = (TextView) findViewById(R.id.orderamt_details);
 
-		Log.e("details",""+myOrdersData.address);
+
+
+		orderdetails_rv = (RecyclerView)findViewById(R.id.orderdetails_rv);
+		LinearLayoutManager linearLayoutManager = new LinearLayoutManager(OrderDetailsActivity.this);
+		linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+
+		orderdetails_rv.setLayoutManager(linearLayoutManager);
+
+		myOrdersData = (MyOrdersData)getIntent().getSerializableExtra("details") ;
+
+		orderno_details.setText(myOrdersData.order_id);
+		address_details.setText(myOrdersData.address);
+		paymentmethod_details.setText(myOrdersData.payment_method);
+		orderstatus_details.setText(myOrdersData.status);
+		//subtotal_details.setText(myOrdersData.);
+		deliverych_details.setText(myOrdersData.delivery_charges);
+		discount_details.setText(myOrdersData.discount_amount);
+		orderamt_details.setText(myOrdersData.price);
+
+		//orderdetails_adapter = new  Checkout_Adapter(OrderDetailsActivity.this,);
+
+		Log.e("details",""+myOrdersData.payment_method);
 
 
 		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_orderdetails);
@@ -82,7 +117,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
 
 	}
 	private void setupHeader(){
-		page_title.setText("Order history");
+		page_title.setText("");
 		//btn_edit.setVisibility(View.VISIBLE);
 		//btn_edit.setText("Search");
 		//page_title.setText("Home");

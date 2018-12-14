@@ -66,7 +66,7 @@ public class CheckoutActivty extends AppCompatActivity {
 	LinearLayout visa_ll,knet_ll,cod_ll;
 	LinearLayout btn_back_container;
 
-	RecyclerView cart_rv;
+	RecyclerView myorders_rv_checkout;
 
 	float total;
 
@@ -239,12 +239,12 @@ public class CheckoutActivty extends AppCompatActivity {
 
 
 
-		cart_rv = (RecyclerView)findViewById(R.id.myorders_rv_checkout);
+		myorders_rv_checkout = (RecyclerView)findViewById(R.id.myorders_rv_checkout);
 
 		LinearLayoutManager linearLayoutManager = new LinearLayoutManager(CheckoutActivty.this);
 		linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 
-		cart_rv.setLayoutManager(linearLayoutManager);
+		myorders_rv_checkout.setLayoutManager(linearLayoutManager);
 
 
 
@@ -298,7 +298,7 @@ public class CheckoutActivty extends AppCompatActivity {
 
 		checkout_adapter = new Checkout_Adapter(CheckoutActivty.this,cart_data);
 
-		cart_rv.setAdapter(checkout_adapter);
+		myorders_rv_checkout.setAdapter(checkout_adapter);
 
 
 
@@ -449,7 +449,7 @@ public class CheckoutActivty extends AppCompatActivity {
 					if(reply.equals("Success")) {
 
 
-						Toast.makeText(CheckoutActivty.this,"Payment done",Toast.LENGTH_SHORT).show();
+						Toast.makeText(CheckoutActivty.this,"Order has been placed successfully",Toast.LENGTH_SHORT).show();
 
 						Intent intent = new Intent(CheckoutActivty.this,HomeActivity.class);
 						intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

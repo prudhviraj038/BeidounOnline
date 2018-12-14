@@ -25,7 +25,7 @@
             android:layout_height="match_parent"
             android:layout_below="@+id/toolbar_orderdetails"
             android:fillViewport="true"
-            android:visibility="gone">
+            android:visibility="visible">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -62,7 +62,7 @@
                             android:text="Order number" />
 
                         <com.yellowsoft.newproject.CustomTextView
-                            android:id="@+id/customTextView16"
+                            android:id="@+id/orderno_details"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -87,12 +87,12 @@
                                 android:text="Address" />
 
                             <com.yellowsoft.newproject.CustomTextView
-                                android:id="@+id/customTextView55"
+                                android:id="@+id/address_details"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:maxLines="4"
-                                android:text="com.yellowsoft.newproject.CustomTextView" />
+                                android:text="fgsddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -104,14 +104,124 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:text="Address" />
+                                android:text="Payment Method" />
 
                             <com.yellowsoft.newproject.CustomTextView
-                                android:id="@+id/address_orderdetails"
+                                android:id="@+id/paymentmethod_details"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:maxLines="4"
+                                android:text="cod" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <com.yellowsoft.newproject.CustomTextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Order Status" />
+
+                            <com.yellowsoft.newproject.CustomTextView
+                                android:id="@+id/orderstatus_details"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="pending" />
+                        </LinearLayout>
+
+                        <com.yellowsoft.newproject.CustomTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="Your Order" />
+
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/orderdetails_rv"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:visibility="gone">
+
+                            <com.yellowsoft.newproject.CustomTextView
+                                android:id="@+id/customTextView27"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Sub Total" />
+
+                            <com.yellowsoft.newproject.CustomTextView
+                                android:id="@+id/subtotal_details"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="com.yellowsoft.newproject.CustomTextView" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <com.yellowsoft.newproject.CustomTextView
+                                android:id="@+id/customTextView93"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Delivery Charges" />
+
+                            <com.yellowsoft.newproject.CustomTextView
+                                android:id="@+id/deliverych_details"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="com.yellowsoft.newproject.CustomTextView" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <com.yellowsoft.newproject.CustomTextView
+                                android:id="@+id/customTextView59"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Discount" />
+
+                            <com.yellowsoft.newproject.CustomTextView
+                                android:id="@+id/discount_details"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="com.yellowsoft.newproject.CustomTextView" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <com.yellowsoft.newproject.CustomTextView
+                                android:id="@+id/customTextView16"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Order Amount" />
+
+                            <com.yellowsoft.newproject.CustomTextView
+                                android:id="@+id/orderamt_details"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
                                 android:text="com.yellowsoft.newproject.CustomTextView" />
                         </LinearLayout>
 

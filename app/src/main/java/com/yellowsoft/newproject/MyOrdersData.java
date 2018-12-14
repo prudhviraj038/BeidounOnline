@@ -19,7 +19,8 @@ import java.util.TimeZone;
 
 public class MyOrdersData implements Serializable{
     String images = "";
-    String price, order_id, quantity, address, tittle, status, date, tracking_link;
+    String price, order_id, quantity, address, tittle, status, date, tracking_link,payment_method;
+    String delivery_charges,total_price,discount_amount;
     public ArrayList<MessageData> messageData = new ArrayList<MessageData>();
 
     // Context context;
@@ -46,8 +47,12 @@ public class MyOrdersData implements Serializable{
 
             this.date = jsonObject.getString("date");
 
-            this.tracking_link = jsonObject.getString("track");
+
+            this.payment_method = jsonObject.getString("payment_method");
             this.status = jsonObject.getString("delivery_status");
+
+            this.delivery_charges = jsonObject.getString("delivery_charges");
+            this.discount_amount = jsonObject.getString("discount_amount");
 
             this.date = getTimeStamp(this.date);
 
