@@ -38,9 +38,10 @@ public class MyOrdersActivity extends AppCompatActivity {
 	MyOrders_Adapter recycler_adapter;
 
 
+	ImageView search_img_title;
 	ArrayList<MyOrdersData> myOrdersData=new ArrayList<MyOrdersData>();
 	/*OrderHistory_Adapter orderHistory_adapter ;
-	ArrayList<MessageData> messageData;
+
 	ListView messages_lv;*/
 
 	TextView page_title;
@@ -120,6 +121,9 @@ public class MyOrdersActivity extends AppCompatActivity {
 
 		page_title = (TextView) v.findViewById(R.id.page_title);
 		back_btn = (LinearLayout)v.findViewById(R.id.btn_back_container);
+
+		search_img_title = (ImageView)v.findViewById(R.id.search_img_title);
+		search_img_title.setVisibility(View.GONE);
 
 		/*shop_img_toolbar = (ImageView)v.findViewById(R.id.shop_img_toolbar);
 		//shop_img_toolbar.setVisibility(View.VISIBLE);

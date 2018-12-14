@@ -22,10 +22,14 @@ import java.util.ArrayList;
 public class OrderDetailsActivity extends AppCompatActivity {
 	OrderHistory_Adapter orderHistory_adapter ;
 
+	ArrayList<ProductsData_OrderDetails> productsData_orderDetails;
 	MyOrdersData myOrdersData;
 	LinearLayout back_btn;
 	ImageView back;
-	RecyclerView orderdetails_rv;
+	ListView orderdetails_rv;
+
+	ImageView search_img_title;
+	ArrayList<Object> orderdetails ;
 
 	Checkout_Adapter orderdetails_adapter;
 
@@ -51,11 +55,11 @@ public class OrderDetailsActivity extends AppCompatActivity {
 
 
 
-		orderdetails_rv = (RecyclerView)findViewById(R.id.orderdetails_rv);
+		orderdetails_rv = (ListView) findViewById(R.id.orderdetails_rv);
 		LinearLayoutManager linearLayoutManager = new LinearLayoutManager(OrderDetailsActivity.this);
 		linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 
-		orderdetails_rv.setLayoutManager(linearLayoutManager);
+
 
 		myOrdersData = (MyOrdersData)getIntent().getSerializableExtra("details") ;
 
@@ -68,9 +72,33 @@ public class OrderDetailsActivity extends AppCompatActivity {
 		discount_details.setText(myOrdersData.discount_amount);
 		orderamt_details.setText(myOrdersData.price);
 
-		//orderdetails_adapter = new  Checkout_Adapter(OrderDetailsActivity.this,);
+		//Log.e("arraylist",""+myOrdersData.productsData_orderDetails.get(0).price);
 
-		Log.e("details",""+myOrdersData.payment_method);
+//		orderdetails_adapter = new  Checkout_Adapter(OrderDetailsActivity.this,);
+
+		//orderdetails = myOrdersData.
+
+/*
+		for (int i =0;i<myOrdersData.productsData_orderDetails.size();i++){
+
+			Log.e("arraylist",""+myOrdersData.productsData_orderDetails.get(i).price);
+
+			String title,price,quantity;
+			title = myOrdersData.productsData_orderDetails.get(i).title;
+			price = myOrdersData.productsData_orderDetails.get(i).price;
+			quantity = myOrdersData.productsData_orderDetails.get(i).quantity;
+			Log.e("price",price);
+
+		//	productsData_orderDetails.add(new ProductsData_OrderDetails(title,quantity,price));
+
+		}*/
+
+		//orderHistory_adapter = new OrderHistory_Adapter(OrderDetailsActivity.this,productsData_orderDetails);
+
+	//	orderdetails_rv.setAdapter(orderHistory_adapter);
+
+
+	//	Log.e("details",""+myOrdersData.payment_method);
 
 
 		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_orderdetails);
@@ -79,7 +107,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
 		setupActionBar();
 		setupHeader();
 
-		//messageData.add(new  MessageData());
+
 
 		//orderHistory_adapter = new OrderHistory_Adapter(OrderDetailsActivity.this,messageData);
 
@@ -108,6 +136,8 @@ public class OrderDetailsActivity extends AppCompatActivity {
 		});
 
 
+		search_img_title = (ImageView)v.findViewById(R.id.search_img_title);
+		search_img_title.setVisibility(View.GONE);
 
 		getSupportActionBar().setCustomView(v, layoutParams);
 		Toolbar parent = (Toolbar) v.getParent();

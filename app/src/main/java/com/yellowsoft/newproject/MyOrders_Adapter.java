@@ -4,21 +4,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.squareup.picasso.Picasso;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  * Created by sriven on 6/1/2018.
@@ -58,6 +51,8 @@ public class MyOrders_Adapter extends RecyclerView.Adapter<MyOrders_Adapter.MyVi
 
 
 		holder.currcode_myorders.setText(Session.getCurrencyCode(context));
+
+
 		//	holder.myorders_status.setText(items.get(position).status);
 
 	/*	if(!items.get(position).images.equals(""))
@@ -115,20 +110,6 @@ public class MyOrders_Adapter extends RecyclerView.Adapter<MyOrders_Adapter.MyVi
 		}
 	}
 
-	public void showAlert(ArrayList<MessageData> messageData){
-		AlertDialog.Builder builderSingle = new AlertDialog.Builder(context);
 
-		final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(context, android.R.layout.simple_selectable_list_item);
-		arrayAdapter.add("Hardik");
-		arrayAdapter.add("Archit");
-		arrayAdapter.add("Jignesh");
-		arrayAdapter.add("Umang");
-		arrayAdapter.add("Gatti");
-
-
-
-		builderSingle.setAdapter(arrayAdapter,null);
-		builderSingle.show();
-	}
 
 }

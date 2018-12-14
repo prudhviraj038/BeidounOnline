@@ -5,20 +5,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
 public class OrderHistory_Adapter extends BaseAdapter {
     Context context;
-    ArrayList<MessageData> messageData;
+    ArrayList<ProductsData_OrderDetails> messageData;
 
 
 
 
     private static LayoutInflater inflater=null;
-    public OrderHistory_Adapter(Context mainActivity, ArrayList<MessageData> messageData) {
+    public OrderHistory_Adapter(Context mainActivity, ArrayList<ProductsData_OrderDetails> messageData) {
         // TODO Auto-generated constructor stubcontext=mainActivity;
         this.context = mainActivity;
         inflater = (LayoutInflater)context.
@@ -47,7 +46,7 @@ public class OrderHistory_Adapter extends BaseAdapter {
 
     public class Holder
     {
-        TextView message,date;
+        TextView title,quantity,price;
 
     }
 
@@ -60,17 +59,19 @@ public class OrderHistory_Adapter extends BaseAdapter {
 
         View rowView;
 
-        rowView = inflater.inflate(R.layout.message_item, null);
+        rowView = inflater.inflate(R.layout.checkout_item, null);
 
 
 
 
-        holder.message=(TextView) rowView.findViewById(R.id.message_tv_item);
-        holder.message.setText(messageData.get(position).message);
+        holder.title=(TextView) rowView.findViewById(R.id.producttitle_tv_checkout);
+        holder.title.setText(messageData.get(position).title);
 
-        holder.date = (TextView)rowView.findViewById(R.id.date_tv_item);
-        holder.date.setText(messageData.get(position).message_date);
+        holder.quantity = (TextView)rowView.findViewById(R.id.quantity_tv_checkout);
+        holder.quantity.setText(messageData.get(position).quantity);
 
+        holder.price = (TextView)rowView.findViewById(R.id.productprice_tv_checkout);
+        holder.price.setText(messageData.get(position).quantity);
 
         //Picasso.with(context).load(categories.get(position).icon).into(holder.country_flag);
 

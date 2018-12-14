@@ -1,7 +1,5 @@
 package com.yellowsoft.newproject;
 
-import android.util.JsonReader;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -11,7 +9,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
-import java.util.TimeZone;
 
 /**
  * Created by sriven on 4/26/2018.
@@ -21,7 +18,7 @@ public class MyOrdersData implements Serializable{
     String images = "";
     String price, order_id, quantity, address, tittle, status, date, tracking_link,payment_method;
     String delivery_charges,total_price,discount_amount;
-    public ArrayList<MessageData> messageData = new ArrayList<MessageData>();
+    public ArrayList<ProductsData_OrderDetails> productsData_orderDetails = new ArrayList<ProductsData_OrderDetails>();
 
     // Context context;
     public MyOrdersData(String images, String price, String order_id, String quantity, String address) {
@@ -58,13 +55,21 @@ public class MyOrdersData implements Serializable{
 
             if (jsonObject.getJSONArray("products").length() > 0) {
 
-                this.images = jsonObject.getJSONArray("products").getJSONObject(0).getString("images");
-                this.quantity = jsonObject.getJSONArray("products").getJSONObject(0).getString("quantity");
-                this.tittle = jsonObject.getJSONArray("products").getJSONObject(0).getString("title");
+                for (int i = 0;i<jsonObject.getJSONArray("products").length();i++){
 
+                    String title,quantity,price,id;
+
+                 title = jsonObject.getJSONArray("products").getJSONObject(i).getString("title");
+                quantity = jsonObject.getJSONArray("products").getJSONObject(i).getString("quantity");
+                price = jsonObject.getJSONArray("products").getJSONObject(i).getString("price");
+                id = jsonObject.getJSONArray("products").getJSONObject(i).getString("id");
+
+                productsData_orderDetails.add(new ProductsData_OrderDetails(title,quantity,price));
+
+                }
             }
 
-
+/*
             if (jsonObject.getJSONArray("history").length() > 0) {
 
 //                this.status = jsonObject.getJSONArray("history").getJSONObject(0).getString("message");
@@ -73,10 +78,9 @@ public class MyOrdersData implements Serializable{
 
                     String message = jsonObject.getJSONArray("history").getJSONObject(i).getString("message");
                     String messageDate = jsonObject.getJSONArray("history").getJSONObject(i).getString("time");
-                    messageDate = getTimeStamp(messageDate);
-                    messageData.add(new MessageData(message,messageDate));
+
                 }
-            }
+            }*/
 
 
         } catch (JSONException e) {
