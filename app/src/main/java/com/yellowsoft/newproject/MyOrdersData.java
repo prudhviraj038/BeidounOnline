@@ -39,7 +39,11 @@ public class MyOrdersData implements Serializable{
             this.order_id = jsonObject.getString("id");
 
 
-            this.address = jsonObject.getString("address") + ", " + jsonObject.getString("city") + ", " + jsonObject.getString("state");
+            this.address = jsonObject.getString("address") + "," +
+                    jsonObject.getString("city") + ", " +
+                    jsonObject.getString("state")+"\n"+
+                    jsonObject.getString("phone")+"\n"+
+                    jsonObject.getString("email");
 
 
             this.date = jsonObject.getString("date");

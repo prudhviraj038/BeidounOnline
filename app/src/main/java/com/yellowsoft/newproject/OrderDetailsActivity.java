@@ -22,7 +22,7 @@ import java.util.ArrayList;
 public class OrderDetailsActivity extends AppCompatActivity {
 	OrderHistory_Adapter orderHistory_adapter ;
 
-	ArrayList<ProductsData_OrderDetails> productsData_orderDetails;
+	ArrayList<ProductsData_OrderDetails> productsData_orderDetails = new ArrayList<>();
 	MyOrdersData myOrdersData;
 	LinearLayout back_btn;
 	ImageView back;
@@ -78,24 +78,24 @@ public class OrderDetailsActivity extends AppCompatActivity {
 
 		//orderdetails = myOrdersData.
 
-/*
+		String title,price,quantity;
 		for (int i =0;i<myOrdersData.productsData_orderDetails.size();i++){
 
 			Log.e("arraylist",""+myOrdersData.productsData_orderDetails.get(i).price);
 
-			String title,price,quantity;
+
 			title = myOrdersData.productsData_orderDetails.get(i).title;
 			price = myOrdersData.productsData_orderDetails.get(i).price;
 			quantity = myOrdersData.productsData_orderDetails.get(i).quantity;
 			Log.e("price",price);
 
-		//	productsData_orderDetails.add(new ProductsData_OrderDetails(title,quantity,price));
+			productsData_orderDetails.add(new ProductsData_OrderDetails(title,quantity,price));
 
-		}*/
+		}
 
-		//orderHistory_adapter = new OrderHistory_Adapter(OrderDetailsActivity.this,productsData_orderDetails);
+		orderHistory_adapter = new OrderHistory_Adapter(OrderDetailsActivity.this,productsData_orderDetails);
 
-	//	orderdetails_rv.setAdapter(orderHistory_adapter);
+		orderdetails_rv.setAdapter(orderHistory_adapter);
 
 
 	//	Log.e("details",""+myOrdersData.payment_method);
