@@ -77,6 +77,9 @@ public class Shop_Adapter extends RecyclerView.Adapter<Shop_Adapter.MyViewHolder
 		holder.like.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+
+				ApplicationController.getInstance().wishList.add(data.get(position));
+
 				Toast.makeText(context,"Added to Wishlist",Toast.LENGTH_LONG).show();
 			}
 		});

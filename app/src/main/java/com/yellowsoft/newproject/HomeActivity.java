@@ -88,6 +88,8 @@ public class HomeActivity extends AppCompatActivity {
 	Shop_Data shop_data;
 	TextView usr_name_tv;
 
+
+
 	@Override
 	public void onBackPressed() {
 		super.onBackPressed();
@@ -109,6 +111,10 @@ public class HomeActivity extends AppCompatActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
+
+
+		ll_userdetails = (LinearLayout)findViewById(R.id.ll_userdetails);
+
 
 
 
@@ -286,6 +292,7 @@ public class HomeActivity extends AppCompatActivity {
 
 
 		if (Session.getUserid(HomeActivity.this).equals("0")){
+			ll_userdetails.setVisibility(View.GONE);
 
 			menuItems.add(new MenuItem("Home", "", R.drawable.home));
 			menuItems.add(new MenuItem("Change Language", "", R.drawable.change));
@@ -297,7 +304,7 @@ public class HomeActivity extends AppCompatActivity {
 
 		else {
 
-
+			ll_userdetails.setVisibility(View.VISIBLE);
 			menuItems.add(new MenuItem("Home", "", R.drawable.home));
 			menuItems.add(new MenuItem("My Addresses", "", R.drawable.user1));
 			menuItems.add(new MenuItem("Past Orders", "", R.drawable.orderbox));
@@ -324,12 +331,11 @@ public class HomeActivity extends AppCompatActivity {
 					mDrawerLayout.closeDrawer(GravityCompat.START);
 
 					if (Session.getUserid(HomeActivity.this).equals("0")){
-						mViewPager.setCurrentItem(5);
+						mViewPager.setCurrentItem(0);
 					}
 					else {
-						mViewPager.setCurrentItem(9);
-						menu_btn.setVisibility(View.GONE);
-						btn_back.setVisibility(View.VISIBLE);
+						mViewPager.setCurrentItem(0);
+
 					}
 
 				}
@@ -341,8 +347,7 @@ public class HomeActivity extends AppCompatActivity {
 					}
 					else {
 						mViewPager.setCurrentItem(9);
-						menu_btn.setVisibility(View.GONE);
-						btn_back.setVisibility(View.VISIBLE);
+
 					}
 
 

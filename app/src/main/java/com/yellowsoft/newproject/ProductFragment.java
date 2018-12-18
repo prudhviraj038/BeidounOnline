@@ -184,6 +184,7 @@ public class ProductFragment extends Fragment {
 
 			Cart_Data cartData = new Cart_Data(shop_data,i);
 			Log.e("quantityproductchanged",""+i);
+
 			ApplicationController.getInstance().cartProducts.add(cartData);
 
 			//((HomeActivity)getActivity()).sendtoCart();

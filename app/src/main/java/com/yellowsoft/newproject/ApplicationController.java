@@ -28,6 +28,7 @@ public class ApplicationController extends Application {
     String keywords;
 
    public ArrayList<Object> cartProducts;
+   public ArrayList<Object> wishList;
 
     private static ApplicationController sInstance;
 
@@ -38,6 +39,7 @@ public class ApplicationController extends Application {
         settings = new JSONObject();
         // initialize the singleton
         cartProducts = new ArrayList<Object>();
+        wishList = new ArrayList<Object>();
         getCart();
         sInstance = this;
 
@@ -99,6 +101,30 @@ public class ApplicationController extends Application {
        return String.format("%.02f",f);
 
    }
+
+    public void addToWislist(WishlistData wishlistData){
+
+        wishList.add(wishlistData);
+
+    }
+
+
+    public void saveWishlist(){
+
+
+        TinyDB tinydb = new TinyDB(this);
+        tinydb.putListObject("wishlistProducts", cartProducts);
+
+
+
+    }
+
+
+    public void getWishlist(){
+        TinyDB tinydb = new TinyDB(this);
+        cartProducts =    tinydb.getListObject("wishlistProducts",Cart_Data.class);
+
+    }
 
 
 }

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -35,6 +36,13 @@ public class WhishListFragment extends Fragment {
 
 	TextView shopping;
 
+	ArrayList<WishlistData> wishlistData = new ArrayList<>();
+
+	LinearLayout empty_wishlist_ll,wishlist_items_ll;
+
+	RecyclerView wishlist_rv;
+	Shop_Adapter shop_adapter;
+
 	public static WhishListFragment newInstance(int someInt) {
 		WhishListFragment myFragment = new WhishListFragment();
 
@@ -60,6 +68,20 @@ public class WhishListFragment extends Fragment {
 
 			}
 		});
+
+
+		wishlist_items_ll = (LinearLayout)view.findViewById(R.id.wishlist_items_ll);
+		wishlist_items_ll.setVisibility(View.GONE);
+
+		empty_wishlist_ll = (LinearLayout)view.findViewById(R.id.empty_wishlist_ll);
+		empty_wishlist_ll.setVisibility(View.GONE);
+
+
+		wishlist_rv = (RecyclerView)view.findViewById(R.id.wishlist_rv);
+
+		final GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),2);
+
+		wishlist_rv.setLayoutManager(gridLayoutManager);
 
 		/*coupencode_ll = (LinearLayout)view. findViewById(R.id.coupencode_ll);
 		total_tv = (TextView)view. findViewById(R.id.total_tv);
@@ -145,9 +167,47 @@ public class WhishListFragment extends Fragment {
 			}
 		});
 */
-
+		getWishlistItems();
 
 return  view;
+
+	}
+
+
+	public void getWishlistItems(){
+
+		ArrayList<Object> temp = (ArrayList<Object>) ApplicationController.getInstance().wishList;
+
+		//total=0;
+		//cart_data.clear();
+
+		for(int i=0;i<temp.size();i++) {
+
+			WishlistData temp_obj = (WishlistData) temp.get(i);
+			wishlistData.add(temp_obj);
+
+			//total = total + (temp_obj.cartquantity * Float.parseFloat(temp_obj.shop_data.price));
+
+		}
+
+
+
+		//shop_adapter = new Shop_Adapter(getContext(),wishlistData);
+
+
+		if(temp.size()==0){
+			empty_wishlist_ll.setVisibility(View.VISIBLE);
+			wishlist_items_ll.setVisibility(View.GONE);
+		}
+		else {
+			empty_wishlist_ll.setVisibility(View.GONE);
+			wishlist_items_ll.setVisibility(View.VISIBLE);
+		}
+
+
+
+
+
 
 	}
 
