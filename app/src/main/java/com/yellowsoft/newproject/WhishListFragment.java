@@ -36,7 +36,7 @@ public class WhishListFragment extends Fragment {
 
 	TextView shopping;
 
-	ArrayList<WishlistData> wishlistData = new ArrayList<>();
+	ArrayList<Shop_Data> wishlistData = new ArrayList<>();
 
 	LinearLayout empty_wishlist_ll,wishlist_items_ll;
 
@@ -82,6 +82,8 @@ public class WhishListFragment extends Fragment {
 		final GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),2);
 
 		wishlist_rv.setLayoutManager(gridLayoutManager);
+
+
 
 		/*coupencode_ll = (LinearLayout)view. findViewById(R.id.coupencode_ll);
 		total_tv = (TextView)view. findViewById(R.id.total_tv);
@@ -183,7 +185,7 @@ return  view;
 
 		for(int i=0;i<temp.size();i++) {
 
-			WishlistData temp_obj = (WishlistData) temp.get(i);
+			Shop_Data temp_obj = (Shop_Data) temp.get(i);
 			wishlistData.add(temp_obj);
 
 			//total = total + (temp_obj.cartquantity * Float.parseFloat(temp_obj.shop_data.price));
@@ -191,8 +193,12 @@ return  view;
 		}
 
 
+		//ArrayList<Shop_Data> shop_data  = (ArrayList<Shop_Data>)(wishlistData);
 
-		//shop_adapter = new Shop_Adapter(getContext(),wishlistData);
+		shop_adapter = new Shop_Adapter(getContext(),wishlistData);
+		shop_adapter.notifyDataSetChanged();
+
+		wishlist_rv.setAdapter(shop_adapter);
 
 
 		if(temp.size()==0){
