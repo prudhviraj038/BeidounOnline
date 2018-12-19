@@ -1,8 +1,10 @@
 package com.yellowsoft.newproject;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +13,7 @@ import android.widget.LinearLayout;
 
 import com.squareup.picasso.Picasso;
 
+import java.security.acl.LastOwnerException;
 import java.util.ArrayList;
 
 /**
@@ -34,20 +37,33 @@ Context context;
 		return view == object;
 	}
 	@Override
-	public Object instantiateItem(ViewGroup container, int position) {
+	public Object instantiateItem(final ViewGroup container, final int position) {
 		do {
 			context = this.context; //Using just "this" doesn't work either.
 		} while (context==null);
 
 		//	context = SlidingPageAdapter.this.context;
 		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		View view = inflater.inflate(R.layout.slidingimage_item, container,false);
+		View view = inflater.inflate(R.layout.slidingviewpager_item, container,false);
 
-		ImageView imageView = (ImageView)view.findViewById(R.id.viewpagerimage);
+		final ImageView imageView = (ImageView)view.findViewById(R.id.viewpagerimage_item);
+
 
 		//	textView.setText(colorName.get(position));
 
-		Picasso.get().load(images.get(position).image_url).placeholder(R.drawable.place_holder).into(imageView);
+		Picasso.get().load(images.get(position).image_url).into(imageView);
+
+		Log.e("sliderimage",""+images.get(position).image_url);
+
+		imageView.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(context,ShopActivity.class);
+				intent.putExtra(images.get(position).type,images.get(position).type_id);
+				Log.e("typeSlide",""+images.get(position).type);
+				context.startActivity(intent);
+			}
+		});
 
 		//	linearLayout.setBackgroundColor(color.get(position));
 

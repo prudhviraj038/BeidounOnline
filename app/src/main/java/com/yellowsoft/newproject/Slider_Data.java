@@ -13,13 +13,13 @@ import java.util.ArrayList;
 public class Slider_Data implements Serializable {
 
     String image;
-    String title,subtitle,price,strikePrice,discount;
+    String id,subtitle,price,strikePrice,discount,type_id,type;
     public ArrayList<RequestImages> product_images;
 
     // Context context;
-    public Slider_Data(String image,String title,String subtitle,String strikePrice,String discount,String price) {
+    public Slider_Data(String image,String id,String subtitle,String strikePrice,String discount,String price) {
         this.image = image;
-        this.title = title;
+        this.id = id;
         this.subtitle = subtitle;
         this.price = price;
         this.strikePrice = strikePrice;
@@ -30,10 +30,14 @@ public class Slider_Data implements Serializable {
 
     public Slider_Data(JSONObject jsonObject){
         try {
-            this.title = jsonObject.getString("title");
+            this.id = jsonObject.getString("id");
             this.subtitle = jsonObject.getString("title_ar");
+            this.type_id = jsonObject.getString("type_id");
+            this.type = jsonObject.getString("type");
             this.strikePrice = jsonObject.getString("old_price");
             this.price = jsonObject.getString("price");
+
+
 
 
 

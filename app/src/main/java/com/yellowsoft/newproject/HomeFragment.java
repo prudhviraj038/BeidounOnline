@@ -4,6 +4,7 @@ package com.yellowsoft.newproject;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -39,6 +40,9 @@ import java.io.PipedInputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class HomeFragment extends Fragment {
 	private ProgressInterface progressInterface;
@@ -54,6 +58,7 @@ public class HomeFragment extends Fragment {
 
 	Sales_Adapter sales_adapter;
 	Slider_Adapter slider_adapter;
+	SlidingImageAdapter slidingImageAdapter;
 	//SlidingImageAdapter slidingImageAdapter;
 
 	RecyclerView slider_rv;
@@ -61,13 +66,16 @@ public class HomeFragment extends Fragment {
 
 
 	ArrayList<Home_data> home_data = new ArrayList<>();
-	ArrayList<Slider_Data> slider_data = new ArrayList<>();
+	ArrayList<SlidingImage_Data> slidingImage_data = new ArrayList<>();
 	ArrayList<Shop_Data> shopData = new ArrayList<>();
 
 	String id,type;
 
 	ProgressBar homefrag_progress;
 
+	private static int currentPage = 0;
+
+	ViewPager slider_viewpager;
 
 	/*@Override
 	public void onAttach(Context context) {
@@ -97,11 +105,14 @@ public class HomeFragment extends Fragment {
 
 		Log.e("homefragment","homefragment");
 
+		slider_viewpager = (ViewPager)view.findViewById(R.id.slider_viewpager);
+
+
 		homefrag_progress = (ProgressBar)view.findViewById(R.id.homefrag_progress);
 		homefrag_progress.setVisibility(View.GONE);
 
 		main_img_homeone = (ImageView) view.findViewById(R.id.main_img_homeone);
-		main_img_homeone.setOnClickListener(new View.OnClickListener() {
+	/*	main_img_homeone.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 
@@ -110,7 +121,7 @@ public class HomeFragment extends Fragment {
 				intent.putExtra(type,id);
 				startActivity(intent);
 			}
-		});
+		});*/
 
 
 		rv_one = (RecyclerView) view.findViewById(R.id.rv_one);
@@ -168,14 +179,55 @@ public class HomeFragment extends Fragment {
 		rv_one.setAdapter(sales_adapter);
 
 
+		/*final Handler handler = new Handler();
+		final Runnable runnable = new Runnable() {
+			@Override
+			public void run() {
+				if (slider_viewpager.getCurrentItem()<=slidingImage_data.size()){
+					slider_viewpager.setCurrentItem(slider_viewpager.getCurrentItem()+1);
+				}
+				else {
+					slider_viewpager.setCurrentItem(0);
+				}
+				//slider_viewpager.setCurrentItem(currentPage++,true);
+
+				handler.postDelayed(this,5000);
+			}
+		};
+		handler.postDelayed(runnable,300);*/
+
+
+		/*slider_viewpager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+			@Override
+			public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+			}
+
+			@Override
+			public void onPageSelected(int position) {
+				currentPage=position;
+
+			}
+
+			@Override
+			public void onPageScrollStateChanged(int state) {
+				// state equals to 0 means the scroll action is stop
+				if(state == 0) {
+
+					if(currentPage == 0)
+						slider_viewpager.setCurrentItem(slidingImage_data.size()-2,false);
+
+					if(currentPage == slidingImage_data.size()-1)
+						slider_viewpager.setCurrentItem(1,false);
+				}
+			}
+		});
+*/
 
 
 
 
-
-
-
-
+        Timer timer = new Timer();
+        timer.scheduleAtFixedRate(new SliderTimer(), 4000, 4000);
 		getHomeApi();
 
 		return view;
@@ -220,18 +272,26 @@ public class HomeFragment extends Fragment {
 					JSONArray jsonArray = jsonObject.getJSONArray("banners");
 
 
-					if (jsonArray.length()>1){
+					if (jsonArray.length()>1) {
 
-						JSONObject jsonObject1 = jsonArray.getJSONObject(0);
+						for (int i = 0; i < jsonArray.length(); i++) {
+							JSONObject jsonObject1 = jsonArray.getJSONObject(i);
 
-						Picasso.get().load(jsonObject1.getString("image")).into(main_img_homeone);
+							//Picasso.get().load(jsonObject1.getString("image")).into(main_img_homeone);
 
-						id = jsonObject1.getString("type_id");
+						//	id = jsonObject1.getString("type_id");
 
-						type = jsonObject1.getString("type");
+						//	type = jsonObject1.getString("type");
 
+							SlidingImage_Data temp = new SlidingImage_Data(jsonObject1);
+							slidingImage_data.add(temp);
+
+						}
+
+						slidingImageAdapter = new SlidingImageAdapter(getActivity(),slidingImage_data);
+						slider_viewpager.setAdapter(slidingImageAdapter);
+						slider_adapter.notifyDataSetChanged();
 					}
-
 
 
 
@@ -308,4 +368,23 @@ public class HomeFragment extends Fragment {
 	}
 
 
+
+
+
+    private class SliderTimer extends TimerTask {
+
+        @Override
+        public void run() {
+            Objects.requireNonNull(getActivity()).runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    if (slider_viewpager.getCurrentItem() < slidingImage_data.size() - 1) {
+                        slider_viewpager.setCurrentItem(slider_viewpager.getCurrentItem() + 1);
+                    } else {
+                        slider_viewpager.setCurrentItem(0);
+                    }
+                }
+            });
+        }
+    }
 }

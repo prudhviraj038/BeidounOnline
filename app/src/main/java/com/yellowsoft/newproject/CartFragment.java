@@ -507,13 +507,13 @@ public void CallCoupenService(final String coupen, final String total){
 
 		float floatTemp = total * Float.parseFloat(Session.getCurrencyRate(getActivity()));
 
-		subtotal_tv.setText(String.valueOf(floatTemp));
+		subtotal_tv.setText(String.valueOf(ApplicationController.getInstance().formatNumber(floatTemp)));
 
 
 		ordertotal_tv_cart.setText(ApplicationController.getInstance().formatNumber(total));
 
 
-		ordertotal_tv_cart.setText(String.valueOf(floatTemp));
+		ordertotal_tv_cart.setText(String.valueOf(ApplicationController.getInstance().formatNumber(floatTemp)));
 
         cart_adapter = new Cart_Adapter(getActivity(),cart_data,this);
 

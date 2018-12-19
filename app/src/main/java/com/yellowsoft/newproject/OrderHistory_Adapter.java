@@ -71,7 +71,15 @@ public class OrderHistory_Adapter extends BaseAdapter {
         holder.quantity.setText(messageData.get(position).quantity);
 
         holder.price = (TextView)rowView.findViewById(R.id.productprice_tv_checkout);
-        holder.price.setText(messageData.get(position).quantity);
+      ///  holder.price.setText(messageData.get(position).price);
+
+        float f = Float.valueOf(Session.getCurrencyRate(context));
+
+        float f2 = Float.valueOf(messageData.get(position).price);
+
+        float Fprice = f*f2;
+
+        holder.price.setText(String.valueOf(Fprice));
 
         //Picasso.with(context).load(categories.get(position).icon).into(holder.country_flag);
 

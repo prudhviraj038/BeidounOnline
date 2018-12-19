@@ -70,7 +70,15 @@ public class OrderDetailsActivity extends AppCompatActivity {
 		//subtotal_details.setText(myOrdersData.);
 		deliverych_details.setText(myOrdersData.delivery_charges);
 		discount_details.setText(myOrdersData.discount_amount);
-		orderamt_details.setText(myOrdersData.price);
+
+		float f = Float.valueOf(Session.getCurrencyRate(OrderDetailsActivity.this));
+
+		float f2 = Float.valueOf(myOrdersData.price);
+
+		float Fprice = f*f2;
+
+
+		orderamt_details.setText(String.valueOf(Fprice));
 
 		//Log.e("arraylist",""+myOrdersData.productsData_orderDetails.get(0).price);
 

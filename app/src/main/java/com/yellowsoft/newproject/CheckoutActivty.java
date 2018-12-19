@@ -287,13 +287,13 @@ public class CheckoutActivty extends AppCompatActivity {
 
 		float floatTemp = total * Float.parseFloat(Session.getCurrencyRate(CheckoutActivty.this));
 
-		subtotal_tv.setText(String.valueOf(floatTemp));
+		subtotal_tv.setText(String.valueOf(ApplicationController.getInstance().formatNumber(floatTemp)));
 
 
 		ordertotal_tv_checkout.setText(ApplicationController.getInstance().formatNumber(total));
 
 
-        ordertotal_tv_checkout.setText(String.valueOf(floatTemp));
+        ordertotal_tv_checkout.setText(String.valueOf(ApplicationController.getInstance().formatNumber(floatTemp)));
 
 
 		checkout_adapter = new Checkout_Adapter(CheckoutActivty.this,cart_data);
@@ -505,8 +505,8 @@ public class CheckoutActivty extends AppCompatActivity {
 
 				try {
 
-					address.put("firstname",addressChechout_data.fname);
-					address.put("lastname",addressChechout_data.lname);
+					address.put("fname",addressChechout_data.fname);
+					address.put("lname",addressChechout_data.lname);
 					address.put("address",addressChechout_data.address);
 					address.put("city",addressChechout_data.city);
 					address.put("state",addressChechout_data.state);
@@ -519,9 +519,9 @@ public class CheckoutActivty extends AppCompatActivity {
 
 
 					jsonObject_to_send.put("address",address);
+					jsonObject_to_send.put("currency_code",Session.getCurrencyCode(CheckoutActivty.this));
 					jsonObject_to_send.put("products",getProductasJson());
 					jsonObject_to_send.put("coupon_code"," ");
-					jsonObject_to_send.put("currency_code",Session.getCurrencyCode(CheckoutActivty.this));
 					Log.e("ValidCoupenCodes",""+getIntent().getStringExtra("coupon_code"));
 
 					/*if(collect_payment) {

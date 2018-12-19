@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -188,10 +189,13 @@ return  view;
 			Shop_Data temp_obj = (Shop_Data) temp.get(i);
 			wishlistData.add(temp_obj);
 
+
 			//total = total + (temp_obj.cartquantity * Float.parseFloat(temp_obj.shop_data.price));
 
 		}
 
+		Log.e("tempsize= ",""+temp.size());
+		//Toast.makeText(getContext(),""+temp.size(),Toast.LENGTH_LONG).show();
 
 		//ArrayList<Shop_Data> shop_data  = (ArrayList<Shop_Data>)(wishlistData);
 
@@ -202,6 +206,7 @@ return  view;
 
 
 		if(temp.size()==0){
+
 			empty_wishlist_ll.setVisibility(View.VISIBLE);
 			wishlist_items_ll.setVisibility(View.GONE);
 		}

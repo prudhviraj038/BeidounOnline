@@ -182,6 +182,9 @@ public class ProductFragment extends Fragment {
 		if (i<=j){
 
 
+			if (Session.getUserid(getContext()).equals("0")){
+				((HomeActivity)getActivity()).signupFragment();
+			}
 			Cart_Data cartData = new Cart_Data(shop_data,i);
 			Log.e("quantityproductchanged",""+i);
 

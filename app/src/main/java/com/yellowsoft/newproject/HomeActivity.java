@@ -105,6 +105,7 @@ public class HomeActivity extends AppCompatActivity {
 		super.onDestroy();
 
 		ApplicationController.getInstance().saveCart();
+		ApplicationController.getInstance().saveWishlist();
 	}
 
 	@Override
