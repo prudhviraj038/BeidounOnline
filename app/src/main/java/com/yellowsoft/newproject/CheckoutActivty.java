@@ -514,10 +514,11 @@ public class CheckoutActivty extends AppCompatActivity {
 					address.put("phone",addressChechout_data.phone);
 					address.put("email",addressChechout_data.email);
 					address.put("pincode",addressChechout_data.pincode);
-					address.put("message","test");
+					//address.put("message","test");
 
 
 
+					jsonObject_to_send.put("message","test Message");
 					jsonObject_to_send.put("address",address);
 					jsonObject_to_send.put("currency_code",Session.getCurrencyCode(CheckoutActivty.this));
 					jsonObject_to_send.put("products",getProductasJson());

@@ -36,10 +36,10 @@ public class Slider_Adapter extends RecyclerView.Adapter<Slider_Adapter.MyViewHo
 	@Override
 	public void onBindViewHolder(MyViewHolder holder,final int position){
 
-		//holder.imageView.setImageResource(R.drawable.sales);
-		Picasso.get().load(data.get(position).product_images.get(0).image_url).into(holder.imageView);
+		holder.imageView.setImageResource(R.drawable.sales);
+		Picasso.get().load(data.get(position).product_images.get(0).image_url).placeholder(R.drawable.logo).into(holder.imageView);
 
-		Log.e("image",""+data.get(position).product_images.get(0).image_url);
+		//Log.e("image",""+data.get(position).product_images.get(0).image_url);
 
 		//holder.discount_tv.setText(data.get(position).old_price);
 		float i= Float.parseFloat(data.get(position).price) * Float.parseFloat(Session.getCurrencyRate(context));

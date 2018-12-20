@@ -113,7 +113,7 @@ public class ApplicationController extends Application {
 
 
         TinyDB tinydb = new TinyDB(this);
-        tinydb.putListObject("wishlistProducts", cartProducts);
+        tinydb.putListObject("wishlistProducts", wishList);
 
 
 

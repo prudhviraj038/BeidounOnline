@@ -252,7 +252,7 @@ public class AddAddressFragment extends Fragment {
 			@Override
 			protected Map<String,String> getParams(){
 				Map<String,String> parameters = new HashMap<String, String>();
-				if (type.equals("add")){
+				if (type.equals("add")||type.equals("checkout")){
 					parameters.put("fname",firstname.getText().toString());
 					parameters.put("lname",lastname.getText().toString());
 					parameters.put("phone",phone.getText().toString());
@@ -265,19 +265,7 @@ public class AddAddressFragment extends Fragment {
 					parameters.put("member_id",Session.getUserid(getActivity()));
 
 				}
-				else if (type.equals("checkout")){
 
-					parameters.put("fname",firstname.getText().toString());
-					parameters.put("lname",lastname.getText().toString());
-					parameters.put("phone",phone.getText().toString());
-					parameters.put("address",address.getText().toString());
-					parameters.put("email",email.getText().toString());
-					parameters.put("country",et_country_checkout.getText().toString());
-					parameters.put("state",state.getText().toString());
-					parameters.put("pincode",et_pincode_checkout.getText().toString());
-					parameters.put("city",city.getText().toString());
-					parameters.put("member_id",Session.getUserid(getActivity()));
-				}
 				else {
 					parameters.put("address_id",type);
 					parameters.put("fname",firstname.getText().toString());

@@ -1,10 +1,7 @@
 package com.yellowsoft.newproject;
 
 
-import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -17,30 +14,23 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.PipedInputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -56,7 +46,7 @@ public class HomeFragment extends Fragment {
 
 	//TextView insta_shopnow_tv;
 
-	Sales_Adapter sales_adapter;
+	HomeAdapter sales_adapter;
 	Slider_Adapter slider_adapter;
 	SlidingImageAdapter slidingImageAdapter;
 	//SlidingImageAdapter slidingImageAdapter;
@@ -175,7 +165,7 @@ public class HomeFragment extends Fragment {
 
 
 		home_data.clear();
-		sales_adapter = new Sales_Adapter(getContext(),home_data);
+		sales_adapter = new HomeAdapter(getContext(),home_data);
 		rv_one.setAdapter(sales_adapter);
 
 
@@ -343,6 +333,9 @@ public class HomeFragment extends Fragment {
 					Toast.makeText(getActivity()," Please try after some time.",Toast.LENGTH_LONG).show();
 					homefrag_progress.setVisibility(View.GONE);
 				}
+				catch (NullPointerException e){
+					Log.e("NullPointerExce"," nullpointer exception");
+				}
 			}
 		},
 				new Response.ErrorListener() {
@@ -375,16 +368,21 @@ public class HomeFragment extends Fragment {
 
         @Override
         public void run() {
-            Objects.requireNonNull(getActivity()).runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    if (slider_viewpager.getCurrentItem() < slidingImage_data.size() - 1) {
-                        slider_viewpager.setCurrentItem(slider_viewpager.getCurrentItem() + 1);
-                    } else {
-                        slider_viewpager.setCurrentItem(0);
-                    }
-                }
-            });
+        	try {
+				getActivity().runOnUiThread(new Runnable() {
+					@Override
+					public void run() {
+						if (slider_viewpager.getCurrentItem() < slidingImage_data.size() - 1) {
+							slider_viewpager.setCurrentItem(slider_viewpager.getCurrentItem() + 1);
+						} else {
+							slider_viewpager.setCurrentItem(0);
+						}
+					}
+				});
+			}catch (NullPointerException e){
+
+			}
+
         }
     }
 }

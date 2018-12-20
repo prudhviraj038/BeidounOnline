@@ -76,7 +76,7 @@ public class MyearningsActivity extends AppCompatActivity {
 		schemedetails_ll_myrearnings.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent(MyearningsActivity.this,SchemeDetails_Activity.class);
+				Intent intent = new Intent(MyearningsActivity.this,HomeActivity.class);
 				startActivity(intent);
 			}
 		});

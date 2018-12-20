@@ -64,9 +64,7 @@
         <activity android:name=".MyreferalsActivity" android:screenOrientation="portrait" android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".MyearningsActivity" android:screenOrientation="portrait" android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".ContactusActivity" android:screenOrientation="portrait" android:windowSoftInputMode="stateHidden"/>
-        <activity android:name=".ReferalsActivity"  android:screenOrientation="portrait" android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".ProductActivity" android:screenOrientation="portrait" android:windowSoftInputMode="stateHidden"/>
-        <activity android:name=".SchemeSuccessActivity" android:screenOrientation="portrait" android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".CheckoutActivty" />
         <activity android:name=".ShopActivity" />
         <activity android:name=".SubCategoriesActivity" />

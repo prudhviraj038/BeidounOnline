@@ -1,88 +1,76 @@
 package com.yellowsoft.newproject;
 
 import android.content.Context;
+import android.content.Intent;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class HomeAdapter extends BaseAdapter {
-    Context context;
-    ArrayList<MenuItem> menuItems;
+/**
+ * Created by sriven on 6/1/2018.
+ */
+
+public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder> {
+	Context context;
+	ArrayList<Home_data> data;
+
+	public HomeAdapter(Context context, ArrayList<Home_data> data){
+		this.context=context;
+		this.data=data;
+	}
+	@Override
+	public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewtype){
+		View v= LayoutInflater.from(parent.getContext()).inflate(R.layout.sales_items,parent,false);
+		MyViewHolder myViewHolder=new MyViewHolder(v);
+
+		return myViewHolder;
+	}
+	@Override
+	public void onBindViewHolder(MyViewHolder holder,final int position){
+
+		//holder.imageView.setImageResource(R.drawable.sales);
+        //Log.e("image",""+data.get(position).images);
+		Picasso.get().load(data.get(position).images).into(holder.imageView);
+
+		holder.imageView.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+
+
+                //((HomeActivity)context).insta_shop(data.get(position).id,"Shop");
+				Intent intent = new Intent(context,ShopActivity.class);
+				intent.putExtra(data.get(position).type,data.get(position).id);
+				context.startActivity(intent);
 
 
 
-
-    private static LayoutInflater inflater=null;
-    public HomeAdapter(Context mainActivity, ArrayList<MenuItem> menuItems) {
-        // TODO Auto-generated constructor stubcontext=mainActivity;
-        this.context = mainActivity;
-        inflater = (LayoutInflater)context.
-                getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        this.menuItems = menuItems;
-
-    }
-    @Override
-    public int getCount() {
-        // TODO Auto-generated method stub
-        return menuItems.size();
-    }
-
-    @Override
-    public Object getItem(int position) {
-        // TODO Auto-generated method stub
-        return position;
-    }
-
-    @Override
-    public long getItemId(int position) {
-        // TODO Auto-generated method stub
-        return position;
-    }
+			}
+		});
 
 
-    public class Holder
-    {
-        TextView cur_symbol,cur_name;
-        ImageView country_flag;
-    }
+	}
+	public int getItemCount(){
+		return data.size();
+	}
 
+	public  class MyViewHolder extends RecyclerView.ViewHolder
+	{
 
-    @Override
-    public View getView(final int position, View convertView, ViewGroup parent) {
-        // TODO Auto-generated method stub
+		ImageView imageView;
+		public MyViewHolder(View itemView){
+			super(itemView);
 
-        Holder holder=new Holder();
-
-        View rowView;
-
-        rowView = inflater.inflate(R.layout.categories_item, null);
+			imageView = (ImageView) itemView.findViewById(R.id.sales_img);
 
 
 
-
-      //  holder.cur_symbol=(TextView) rowView.findViewById(R.id.menu_iem);
-        //holder.cur_symbol.setText(menuItems.get(position).title);
-
-        //holder.cur_name=(TextView)rowView.findViewById(R.id.menu_iem2);
-       // holder.cur_name.setText(menuItems.get(position).title_ar);
-
-
-       // holder.country_flag = (ImageView) rowView.findViewById(R.id.menu_icon_home);
-       // holder.country_flag.setImageResource(menuItems.get(position).icon);
-
-        //Picasso.with(context).load(categories.get(position).icon).into(holder.country_flag);
-
-
-        return rowView;
-        
-    }
-
-
-
+		}
+	}
 
 }

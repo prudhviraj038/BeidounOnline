@@ -76,7 +76,7 @@ public class MyreferalsActivity extends AppCompatActivity {
 		schemedetails_ll_myreferrals.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent intent  = new Intent(MyreferalsActivity.this,SchemeDetails_Activity.class);
+				Intent intent  = new Intent(MyreferalsActivity.this,HomeActivity.class);
 				startActivity(intent);
 			}
 		});
