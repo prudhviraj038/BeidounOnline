@@ -2,12 +2,14 @@ package com.yellowsoft.newproject;
 
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -449,11 +451,35 @@ public class CheckoutActivty extends AppCompatActivity {
 					if(reply.equals("Success")) {
 
 
-						Toast.makeText(CheckoutActivty.this,"Order has been placed successfully",Toast.LENGTH_SHORT).show();
+							Intent intent = new Intent(CheckoutActivty.this, PaymentPage.class);
+
+							String invoiceid = jsonObject.getString("invoice_id");
+
+							Log.e("invoiceid",invoiceid);
+
+
+
+							if (visa_payment){
+
+							intent.putExtra("type", "2");
+
+							}
+
+							else if (knet_payment){
+
+							intent.putExtra("type", "3");
+
+							}
+
+							intent.putExtra("order_id",jsonObject.getString("invoice_id"));
+							CheckoutActivty.this.startActivityForResult(intent, 1);
+
+
+					/*	Toast.makeText(CheckoutActivty.this,"Order has been placed successfully",Toast.LENGTH_SHORT).show();
 
 						Intent intent = new Intent(CheckoutActivty.this,HomeActivity.class);
 						intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-						startActivity(intent);
+						startActivity(intent);*/
 
 					/*	if(collect_payment){
 							//intent.putExtra("id", jsonObject.getString("invoice_id"));
@@ -548,7 +574,10 @@ public class CheckoutActivty extends AppCompatActivity {
 						jsonObject_to_send.put("payment", "2");
 						jsonObject_to_send.put("payment_method", "2");
 					}
-
+					else if (knet_payment){
+						jsonObject_to_send.put("payment","3");
+						jsonObject_to_send.put("payment_method","3");
+					}
 
 
 				} catch (JSONException e) {
@@ -613,6 +642,45 @@ public class CheckoutActivty extends AppCompatActivity {
 
 	};
 
+
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (requestCode != 1) {
+			return;
+		}
+		if (resultCode == -1) {
+			Log.e("paymentdone","paymentdone");
+			/*if (data != null && data.hasExtra("message")) {
+				msg = data.getExtras().getString("message");
+				Log.e("toast", msg);
+				if (this.msg.equals("success")) {
+					Toast.makeText(this, "Payment done Successfully", Toast.LENGTH_SHORT).show();
+					update_payment();
+					runOnUiThread(new Runnable() {
+						@Override
+						public void run() {
+
+							if (!isFinishing()){
+								new AlertDialog.Builder(CheckoutActivty.this)
+										.setMessage("Yemnak team will get back to you within 2-3 working days")
+										.setCancelable(false)
+										.setPositiveButton("ok", new DialogInterface.OnClickListener() {
+											@Override
+											public void onClick(DialogInterface dialog, int which) {
+												// Whatever...
+												dialog.dismiss();
+												CheckoutActivty.this.onBackPressed();
+											}
+										}).show();
+							}
+						}
+					});
+				} else if (this.msg.equals("failure")) {
+					Toast.makeText(this, "Please Try Again", Toast.LENGTH_SHORT).show();
+				}
+			}*/
+		} else if (resultCode != 0) {
+		}
+	}
 
 
 	public void checkVisible(){

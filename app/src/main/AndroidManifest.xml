@@ -69,6 +69,7 @@
         <activity android:name=".ShopActivity" />
         <activity android:name=".SubCategoriesActivity" />
         <activity android:name=".OrderDetailsActivity" />
+        <activity android:name=".PaymentPage" />
 
     </application>
 

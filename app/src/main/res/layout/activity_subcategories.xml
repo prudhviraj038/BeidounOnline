@@ -3,18 +3,36 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/subcategories_toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme" />
-
-    <FrameLayout
-        android:id="@+id/subcategories_framelayout"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    </FrameLayout>
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/subcategories_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="?attr/colorPrimary"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme" />
+
+        <FrameLayout
+            android:id="@+id/subcategories_framelayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/subcategories_toolbar">
+
+        </FrameLayout>
+
+        <View
+            android:id="@+id/shadow6"
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:layout_alignTop="@+id/subcategories_framelayout"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="-4dp"
+            android:background="@drawable/shadow"
+            android:visibility="visible" />
+    </RelativeLayout>
+
 </LinearLayout>

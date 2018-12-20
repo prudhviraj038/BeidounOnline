@@ -22,6 +22,7 @@ public class Session {
     static String DEVICE_ID="device_id";
     static String USER_ID="user_id";
     static String USER_mobile="user_mobile";
+    public static final String LIVE_PAYMENT_URL = "/api/process_payment.php?";
     public static final String USERNAME = "MYCOP USER";
     static String USER_IMAGE="user_image";
 
