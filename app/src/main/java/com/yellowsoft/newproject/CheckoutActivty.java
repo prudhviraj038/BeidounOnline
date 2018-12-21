@@ -472,7 +472,7 @@ public class CheckoutActivty extends AppCompatActivity {
 							}
 
 							intent.putExtra("order_id",jsonObject.getString("invoice_id"));
-							CheckoutActivty.this.startActivityForResult(intent, 1);
+							startActivityForResult(intent, 999);
 
 
 					/*	Toast.makeText(CheckoutActivty.this,"Order has been placed successfully",Toast.LENGTH_SHORT).show();
@@ -644,49 +644,48 @@ public class CheckoutActivty extends AppCompatActivity {
 
 
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		if (requestCode != 1) {
-			return;
-		}
-		if (resultCode == -1) {
+
+
 			Log.e("paymentdone","paymentdone");
-			/*if (data != null && data.hasExtra("message")) {
-				msg = data.getExtras().getString("message");
+			if (data != null && data.hasExtra("message")) {
+				final String msg = data.getExtras().getString("message");
 				Log.e("toast", msg);
-				if (this.msg.equals("success")) {
+				if (msg.equals("success")) {
 					Toast.makeText(this, "Payment done Successfully", Toast.LENGTH_SHORT).show();
-					update_payment();
+					//update_payment();
+
+
 					runOnUiThread(new Runnable() {
 						@Override
 						public void run() {
 
 							if (!isFinishing()){
 								new AlertDialog.Builder(CheckoutActivty.this)
-										.setMessage("Yemnak team will get back to you within 2-3 working days")
+										.setMessage(msg)
 										.setCancelable(false)
 										.setPositiveButton("ok", new DialogInterface.OnClickListener() {
 											@Override
 											public void onClick(DialogInterface dialog, int which) {
 												// Whatever...
 												dialog.dismiss();
-												CheckoutActivty.this.onBackPressed();
+												Intent intent = new Intent(CheckoutActivty.this,HomeActivity.class);
+
+												intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+												startActivity(intent);
+												//CheckoutActivty.this.onBackPressed();
 											}
 										}).show();
 							}
 						}
 					});
-				} else if (this.msg.equals("failure")) {
+				} else if (msg.equals("failure")) {
 					Toast.makeText(this, "Please Try Again", Toast.LENGTH_SHORT).show();
 				}
-			}*/
-		} else if (resultCode != 0) {
+			}
 		}
-	}
 
 
-	public void checkVisible(){
 
-	}
-	public void checkoffVisible(){
 
-	}
 }

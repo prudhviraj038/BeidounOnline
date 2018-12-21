@@ -82,7 +82,9 @@ public class PaymentPage extends Activity {
         @JavascriptInterface
         public void send_message(String toast,Boolean success) {
             Log.e("toast",toast);
-           /* if(toast.equals("success")){
+
+
+            if(toast.equals("success")){
                 Intent intent = new Intent();
                 intent.putExtra("message",toast);
                 Log.e("message",toast);
@@ -100,7 +102,7 @@ public class PaymentPage extends Activity {
                     setResult(Activity.RESULT_OK, intent);
                     finish();
                 }
-            }*/
+            }
         }
     }
 

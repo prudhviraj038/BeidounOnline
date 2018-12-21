@@ -153,7 +153,7 @@ public class ProductFragment extends Fragment {
 
 
 		float price = Float.valueOf(data.price) * Float.valueOf(Session.getCurrencyRate(getContext()));
-		price_product_tv.setText(String.valueOf(price));
+		price_product_tv.setText(String.valueOf(ApplicationController.getInstance().formatNumber(price)));
 
 		code_tv_product.setText(Session.getCurrencyCode(getContext()));
 
@@ -182,9 +182,9 @@ public class ProductFragment extends Fragment {
 		if (i<=j){
 
 
-			if (Session.getUserid(getContext()).equals("0")){
+			/*if (Session.getUserid(getContext()).equals("0")){
 				((HomeActivity)getActivity()).signupFragment();
-			}
+			}*/
 			Cart_Data cartData = new Cart_Data(shop_data,i);
 			Log.e("quantityproductchanged",""+i);
 

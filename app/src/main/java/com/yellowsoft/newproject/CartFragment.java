@@ -25,6 +25,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.support.v7.widget.Toolbar;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -120,10 +121,17 @@ public class CartFragment extends Fragment {
 		proceedtocheckout_ll_btn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-			//	Toast.makeText(getContext(),"checkout page",Toast.LENGTH_SHORT).show();
+				//	Toast.makeText(getContext(),"checkout page",Toast.LENGTH_SHORT).show();
 
-				((HomeActivity)getActivity()).selectAddressFragment();
+				if (!Session.getUserid(getContext()).equals("0")) {
+					((HomeActivity) getActivity()).selectAddressFragment();
+				}
+				else {
+
+					((HomeActivity)getActivity()).knowSignedIn();
+				}
 			}
+
 		});
 
 
@@ -137,13 +145,7 @@ public class CartFragment extends Fragment {
 
 
 
-	/*	cart_data.add(new Cart_Data("456","https:\\/\\/beidounonline.com\\/uploads\\/collections\\/51517215687.jpg","Gold Watch","This is a gold watch","ddd"));
-		cart_data.add(new Cart_Data("456","https:\\/\\/beidounonline.com\\/uploads\\/collections\\/51517215687.jpg","Gold Watch","This is a gold watch","ddd"));
-		cart_data.add(new Cart_Data("456","https:\\/\\/beidounonline.com\\/uploads\\/collections\\/51517215687.jpg","Gold Watch","This is a gold watch","ddd"));
-		cart_data.add(new Cart_Data("456","https:\\/\\/beidounonline.com\\/uploads\\/collections\\/51517215687.jpg","Gold Watch","This is a gold watch","ddd"));
-		cart_data.add(new Cart_Data("456","https:\\/\\/beidounonline.com\\/uploads\\/collections\\/51517215687.jpg","Gold Watch","This is a gold watch","ddd"));
 
-*/
 
 
 

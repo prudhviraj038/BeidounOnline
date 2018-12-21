@@ -662,6 +662,12 @@ public class HomeActivity extends AppCompatActivity {
 
 	}
 
+	public void knowSignedIn(){
+		mViewPager.setCurrentItem(5);
+	}
+
+
+
 	public void setCountries(String img,String rate,String code){
 
 
