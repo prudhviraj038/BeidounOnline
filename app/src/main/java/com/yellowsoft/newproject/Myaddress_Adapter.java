@@ -1,5 +1,6 @@
 package com.yellowsoft.newproject;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
@@ -12,7 +13,18 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by sriven on 6/1/2018.
@@ -20,11 +32,13 @@ import java.util.ArrayList;
 
 public class Myaddress_Adapter extends RecyclerView.Adapter<Myaddress_Adapter.MyViewHolder> {
 	Context context;
+	MyAddressFragment myAddressFragment;
 	ArrayList<AddressChechout_Data> data;
 
-	public Myaddress_Adapter(Context context, ArrayList<AddressChechout_Data> data){
+	public Myaddress_Adapter(Context context, ArrayList<AddressChechout_Data> data,MyAddressFragment myAddressFragment){
 		this.context=context;
 		this.data=data;
+		this.myAddressFragment=myAddressFragment;
 	}
 	@Override
 	public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewtype){
@@ -42,7 +56,7 @@ public class Myaddress_Adapter extends RecyclerView.Adapter<Myaddress_Adapter.My
 		holder.edit_addressitem_et.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Toast.makeText(context,"Edit",Toast.LENGTH_SHORT).show();
+			//	Toast.makeText(context,"Edit",Toast.LENGTH_SHORT).show();
 
 				((HomeActivity)context).addAddressFragment("edit",data.get(position).id,data.get(position));
 
@@ -52,7 +66,10 @@ public class Myaddress_Adapter extends RecyclerView.Adapter<Myaddress_Adapter.My
 		holder.delete_myadressitem.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Toast.makeText(context,"Deleted address at position : "+position,Toast.LENGTH_SHORT).show();
+
+				myAddressFragment.deleteAddress(data.get(position).id);
+
+				//Toast.makeText(context,"Deleted address at position : "+position,Toast.LENGTH_SHORT).show();
 			}
 		});
 
@@ -80,5 +97,7 @@ public class Myaddress_Adapter extends RecyclerView.Adapter<Myaddress_Adapter.My
 
 		}
 	}
+
+
 
 }

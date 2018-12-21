@@ -43,7 +43,7 @@ public class AddAddressFragment extends Fragment {
 
 
 	EditText firstname,lastname,address,email,phone,city;
-	EditText et_pincode_checkout;
+	EditText et_pincode_checkout,et_phonecode_checkout;
 
 
 	LinearLayout nextstep_ll,countries_popup_shipping;
@@ -67,6 +67,9 @@ public class AddAddressFragment extends Fragment {
 
 	TextView et_country_checkout,state;
 
+
+	String country_id;
+	String state_id = " ";
 
 	public static AddAddressFragment newInstance(int someInt) {
 		AddAddressFragment myFragment = new AddAddressFragment();
@@ -93,6 +96,7 @@ public class AddAddressFragment extends Fragment {
 		address = (EditText)view.findViewById(R.id.et_address_checkout);
 		email = (EditText)view.findViewById(R.id.et_email_checkout);
 		phone = (EditText)view.findViewById(R.id.et_phone_checkout);
+		et_phonecode_checkout = (EditText)view.findViewById(R.id.et_phonecode_checkout);
 		city = (EditText)view.findViewById(R.id.et_city_checkout);
 		et_pincode_checkout = (EditText) view.findViewById(R.id.et_pincode_checkout);
 
@@ -140,15 +144,15 @@ public class AddAddressFragment extends Fragment {
 					Snackbar.make(firstname, "please enter address", Snackbar.LENGTH_SHORT).show();
 				} else if (email.getText().toString().equals("") || !email.getText().toString().matches("[a-zA-Z0-9._-]+@[a-z]+.[a-z]+")) {
 					Snackbar.make(firstname, "please enter valid email", Snackbar.LENGTH_SHORT).show();
-				} else if (phone.getText().toString().equals("")) {
+				} else if (phone.getText().toString().equals("")&&et_phonecode_checkout.getText().toString().equals("")) {
 					Snackbar.make(firstname, "please enter phonenumber", Snackbar.LENGTH_SHORT).show();
 				} else if (city.getText().toString().equals("")) {
 					Snackbar.make(firstname, "please select city", Snackbar.LENGTH_SHORT).show();
 				} else if (et_country_checkout.getText().toString().equals("")) {
 					Snackbar.make(firstname, "please select country", Snackbar.LENGTH_SHORT).show();
-				} else if (state.getText().toString().equals("")) {
+				} /*else if (state.getText().toString().equals("")) {
 					Snackbar.make(firstname, "please enter state", Snackbar.LENGTH_SHORT).show();
-				} else {
+				}*/ else {
 
 
 					//sendShippingAddress();
@@ -180,6 +184,8 @@ public class AddAddressFragment extends Fragment {
 				statesData=countriesdata.get(position).states;
 				Log.e("states",""+countriesdata.get(position).states.get(position).title);
 
+				country_id = countriesdata.get(position).id;
+				Log.e("countryid",country_id);
 				statesAdapter = new StatesAdapter(getActivity(),statesData);
 
 			}
@@ -214,7 +220,9 @@ public class AddAddressFragment extends Fragment {
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
 				state.setText(statesData.get(position).title);
+				state_id = statesData.get(position).id;
 				countries_popup_shipping.setVisibility(View.GONE);
+				Log.e("stateid",state_id);
 			}
 		});
 
@@ -249,8 +257,8 @@ public class AddAddressFragment extends Fragment {
 				email.setText(data.email);
 				address.setText(data.address);
 				phone.setText(data.phone);
-				Log.e("addressIdAdd",data.id);
-				Log.e("addressId",id);
+				Log.e("addressIdAdd",data.state);
+				Log.e("addressId",data.country);
 				city.setText(data.city);
 				et_country_checkout.setText(data.country);
 				et_pincode_checkout.setText(data.pincode);
@@ -264,16 +272,16 @@ public class AddAddressFragment extends Fragment {
 				Snackbar.make(firstname, "please enter address", Snackbar.LENGTH_SHORT).show();
 			} else if (email.getText().toString().equals("") || !email.getText().toString().matches("[a-zA-Z0-9._-]+@[a-z]+.[a-z]+")) {
 				Snackbar.make(firstname, "please enter valid email", Snackbar.LENGTH_SHORT).show();
-			} else if (phone.getText().toString().equals("")) {
+			} else if (phone.getText().toString().equals("")&&et_phonecode_checkout.getText().toString().equals("")) {
 				Snackbar.make(firstname, "please enter phonenumber", Snackbar.LENGTH_SHORT).show();
 			}
 			else if (city.getText().toString().equals("")) {
-				Snackbar.make(firstname, "please select city", Snackbar.LENGTH_SHORT).show();
+				Snackbar.make(firstname, "please enter city", Snackbar.LENGTH_SHORT).show();
 			} else if (et_country_checkout.getText().toString().equals("")) {
 				Snackbar.make(firstname, "please select country", Snackbar.LENGTH_SHORT).show();
-			} else if (state.getText().toString().equals("")) {
+			}/* else if (state.getText().toString().equals("")) {
 				Snackbar.make(firstname, "please enter state", Snackbar.LENGTH_SHORT).show();
-			} else {
+			}*/ else {
 				sendShippingAddress(id);
 
 			}
@@ -353,8 +361,8 @@ public class AddAddressFragment extends Fragment {
 					parameters.put("phone",phone.getText().toString());
 					parameters.put("address",address.getText().toString());
 					parameters.put("email",email.getText().toString());
-					parameters.put("country",et_country_checkout.getText().toString());
-					parameters.put("state",state.getText().toString());
+					parameters.put("country","1");
+					parameters.put("state","1");
 					parameters.put("pincode",et_pincode_checkout.getText().toString());
 					parameters.put("city",city.getText().toString());
 					parameters.put("member_id",Session.getUserid(getActivity()));
@@ -368,8 +376,8 @@ public class AddAddressFragment extends Fragment {
 					parameters.put("phone",phone.getText().toString());
 					parameters.put("address",address.getText().toString());
 					parameters.put("email",email.getText().toString());
-					parameters.put("country",et_country_checkout.getText().toString());
-					parameters.put("state",state.getText().toString());
+					parameters.put("country","1");
+					parameters.put("state","2");
 					parameters.put("pincode",et_pincode_checkout.getText().toString());
 					parameters.put("city",city.getText().toString());
 					parameters.put("member_id",Session.getUserid(getActivity()));
@@ -437,5 +445,11 @@ public class AddAddressFragment extends Fragment {
 		ApplicationController.getInstance().addToRequestQueue(stringRequest);
 
 	}
+
+
+
+
+
+
 
 }

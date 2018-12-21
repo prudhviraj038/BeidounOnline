@@ -38,10 +38,11 @@ public class AddressChechout_Data implements Serializable {
             this.email = jsonObject.getString("email");
             this.address = jsonObject.getString("address");
 
-            this.country = jsonObject.getString("country");
+            this.country = jsonObject.getJSONObject("country").getString("title");
             this.city = jsonObject.getString("city");
-            this.state = jsonObject.getString("state");
+            this.state = jsonObject.getJSONObject("state").getString("title");
             this.pincode = jsonObject.getString("pincode");
+
 
 
 

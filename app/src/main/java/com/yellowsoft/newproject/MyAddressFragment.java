@@ -61,7 +61,7 @@ public class MyAddressFragment extends Fragment {
 
 		myaddress_rv_myadress.setLayoutManager(linearLayoutManager);
 
-		myaddress_adapter = new Myaddress_Adapter(getContext(),myaddress_data);
+		myaddress_adapter = new Myaddress_Adapter(getContext(),myaddress_data,this);
 
 		myaddress_rv_myadress.setAdapter(myaddress_adapter);
 
@@ -150,5 +150,64 @@ public class MyAddressFragment extends Fragment {
 //		slidingPageAdapter.notifyDataSetChanged();
 	}
 
+	public void deleteAddress(final String id){
 
+		final ProgressDialog progressDialog = new ProgressDialog(getContext());
+		progressDialog.setMessage("Please Wait....");
+		progressDialog.show();
+		progressDialog.setCancelable(false);
+		String URL = Session.BASE_URL + "api/del-address.php";
+
+		StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
+			@Override
+			public void onResponse(String response) {
+				Log.e("resDeleteaddress", response);
+				if (progressDialog != null && progressDialog.isShowing()) {
+					progressDialog.dismiss();
+				}
+				try {
+					JSONObject jsonObject =new JSONObject(response);
+					if (jsonObject.getString("status").equals("Success")){
+						Toast.makeText(getActivity(),""+jsonObject.getString("message"),Toast.LENGTH_SHORT).show();
+						myaddress_rv_myadress.setAdapter(myaddress_adapter);
+						myaddress_adapter.notifyDataSetChanged();
+					}
+					else
+						Toast.makeText(getActivity(),""+jsonObject.getString("message"),Toast.LENGTH_SHORT).show();
+
+
+
+
+
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+
+
+
+
+			}
+		},
+				new Response.ErrorListener() {
+					@Override
+					public void onErrorResponse(VolleyError error) {
+						Log.e("error", "" + error);
+						if (progressDialog != null)
+							progressDialog.dismiss();
+						//Snackbar.make(gmail_btn, error.toString(), Snackbar.LENGTH_SHORT).show();
+					}
+				}) {
+			@Override
+			protected Map<String, String> getParams() {
+				Map<String, String> parameters = new HashMap<String, String>();
+
+				parameters.put("address_id",id);
+				parameters.put("member_id",Session.getUserid(getActivity()));
+
+				//	parameters.put("password",password.getText().toString());
+				return parameters;
+			}
+		};
+		ApplicationController.getInstance().addToRequestQueue(stringRequest);
+	}
 }

@@ -345,26 +345,44 @@ public class HomeActivity extends AppCompatActivity {
 					mDrawerLayout.closeDrawer(GravityCompat.START);
 					if (Session.getUserid(HomeActivity.this).equals("0")){
 						mViewPager.setCurrentItem(5);
+						//changelanguage
+
 					}
 					else {
-						mViewPager.setCurrentItem(9);
+						//mViewPager.setCurrentItem(9);
+						mViewPager.setCurrentItem(14);
+
 
 					}
 
 
 				}
-				else if (position==2){mDrawerLayout.closeDrawer(GravityCompat.START);
+				else if (position==2){
+					mDrawerLayout.closeDrawer(GravityCompat.START);
 
+
+					if (Session.getUserid(HomeActivity.this).equals("0")){
+
+					    //offers
+
+					}
+					else {
+
+                        Intent intent = new Intent(HomeActivity.this,MyOrdersActivity.class);
+                        startActivity(intent);
+
+					}
 
 				}
 				else if (position==3){
+                    mDrawerLayout.closeDrawer(GravityCompat.START);
 					if (Session.getUserid(HomeActivity.this).equals("0")){
-						mDrawerLayout.closeDrawer(GravityCompat.START);
+
 						Intent intent = new Intent(HomeActivity.this,ContactusActivity.class);
 						startActivity(intent);
 					}
 					else {
-						mDrawerLayout.closeDrawer(GravityCompat.START);
+
 						Log.e("changeLang","language change");
 					}
 
