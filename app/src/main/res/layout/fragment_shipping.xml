@@ -265,16 +265,13 @@
                             android:background="@drawable/corners_grey"
                             android:orientation="vertical">
 
-                            <com.yellowsoft.newproject.CustomTextEdit
+                            <com.yellowsoft.newproject.CustomTextView
                                 android:id="@+id/et_country_checkout"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:background="@null"
-                                android:hint="Country*"
-                                android:imeOptions="actionDone"
-                                android:maxLines="1"
                                 android:padding="5dp"
                                 android:singleLine="true"
+                                android:text="Country*"
                                 android:textSize="14sp" />
                         </LinearLayout>
 
@@ -295,13 +292,11 @@
                             android:background="@drawable/corners_grey"
                             android:orientation="vertical">
 
-                            <com.yellowsoft.newproject.CustomTextEdit
+                            <com.yellowsoft.newproject.CustomTextView
                                 android:id="@+id/tv_state_checkout"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:background="@null"
-                                android:hint="State*"
-                                android:imeOptions="actionDone"
+                                android:text="State*"
                                 android:maxLines="1"
                                 android:padding="5dp"
                                 android:singleLine="true"
@@ -376,6 +371,41 @@
 
                 </LinearLayout>
             </ScrollView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/countries_popup_shipping"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/toolbar"
+            android:background="#80000000"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:background="@drawable/rounded_corners_white"
+                android:orientation="vertical">
+
+                <ListView
+                    android:id="@+id/countries_lv_shipping"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp" />
+
+                <ListView
+                    android:id="@+id/states_lv_shipping"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:visibility="gone" />
+            </LinearLayout>
 
         </LinearLayout>
 

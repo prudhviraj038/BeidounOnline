@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -22,9 +23,11 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -37,21 +40,34 @@ public class AddAddressFragment extends Fragment {
 
 
 
+
+
+	EditText firstname,lastname,address,email,phone,city;
+	EditText et_pincode_checkout;
+
+
+	LinearLayout nextstep_ll,countries_popup_shipping;
+
+	ListView countries_lv_shipping,states_lv_shipping;
+
+	Countries_Adapter countries_adapter ;
 	StatesAdapter statesAdapter;
 
-	EditText firstname,lastname,address,email,phone,city,et_country_checkout,state;
-	EditText et_pincode_checkout;
-	ListView states_lv;
-
-	LinearLayout nextstep_ll;
 	String member,name;
 	TextView title_shipping_tv,nextstepbtn_tv;
 
     AddressChechout_Data addressChechout_data;
 
+	ArrayList<CountryData> countriesdata = new ArrayList<>();
+	ArrayList<StatesData> statesData = new ArrayList<>();
     String addressType,addressid;
 
 	ImageView back;
+
+
+	TextView et_country_checkout,state;
+
+
 	public static AddAddressFragment newInstance(int someInt) {
 		AddAddressFragment myFragment = new AddAddressFragment();
 
@@ -63,9 +79,13 @@ public class AddAddressFragment extends Fragment {
 	}
 
 	@Override
-	public View onCreateView(final LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+	public View onCreateView(final LayoutInflater inflater, @Nullable final ViewGroup container, Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.fragment_shipping, container, false);
 
+		countries_popup_shipping = (LinearLayout)view.findViewById(R.id.countries_popup_shipping);
+
+		countries_lv_shipping = (ListView)view.findViewById(R.id.countries_lv_shipping);
+		states_lv_shipping = (ListView)view.findViewById(R.id.states_lv_shipping);
 
 
 		firstname = (EditText)view.findViewById(R.id.et_firstname_checkout);
@@ -75,14 +95,34 @@ public class AddAddressFragment extends Fragment {
 		phone = (EditText)view.findViewById(R.id.et_phone_checkout);
 		city = (EditText)view.findViewById(R.id.et_city_checkout);
 		et_pincode_checkout = (EditText) view.findViewById(R.id.et_pincode_checkout);
-		et_country_checkout = (EditText)view.findViewById(R.id.et_country_checkout);
 
-		state = (EditText)view. findViewById(R.id.tv_state_checkout);
+		et_country_checkout = (TextView)view.findViewById(R.id.et_country_checkout);
+
+		state = (TextView)view. findViewById(R.id.tv_state_checkout);
 
 		nextstepbtn_tv = (TextView)view.findViewById(R.id.nextstepbtn_tv);
 		title_shipping_tv = (TextView)view.findViewById(R.id.title_shipping_tv);
 		title_shipping_tv.setText("Add Address");
 
+
+
+
+		et_country_checkout.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				if (countries_popup_shipping.getVisibility() == View.VISIBLE) {
+					countries_popup_shipping.setVisibility(View.GONE);
+					states_lv_shipping.setVisibility(View.GONE);
+
+				} else {
+					states_lv_shipping.setVisibility(View.GONE);
+					countriesdata.clear();
+					getCountriesList();
+					countries_popup_shipping.setVisibility(View.VISIBLE);
+					countries_lv_shipping.setVisibility(View.VISIBLE);
+				}
+			}
+		});
 
 
 
@@ -103,9 +143,9 @@ public class AddAddressFragment extends Fragment {
 				} else if (phone.getText().toString().equals("")) {
 					Snackbar.make(firstname, "please enter phonenumber", Snackbar.LENGTH_SHORT).show();
 				} else if (city.getText().toString().equals("")) {
-					Snackbar.make(firstname, "please enter city", Snackbar.LENGTH_SHORT).show();
+					Snackbar.make(firstname, "please select city", Snackbar.LENGTH_SHORT).show();
 				} else if (et_country_checkout.getText().toString().equals("")) {
-					Snackbar.make(firstname, "please enter countryname", Snackbar.LENGTH_SHORT).show();
+					Snackbar.make(firstname, "please select country", Snackbar.LENGTH_SHORT).show();
 				} else if (state.getText().toString().equals("")) {
 					Snackbar.make(firstname, "please enter state", Snackbar.LENGTH_SHORT).show();
 				} else {
@@ -123,6 +163,61 @@ public class AddAddressFragment extends Fragment {
 
 			}
 		});
+
+
+
+
+		countries_lv_shipping.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+				countries_popup_shipping.setVisibility(View.GONE);
+
+				String title = countriesdata.get(position).name;
+
+				et_country_checkout.setText(title);
+
+				statesData=countriesdata.get(position).states;
+				Log.e("states",""+countriesdata.get(position).states.get(position).title);
+
+				statesAdapter = new StatesAdapter(getActivity(),statesData);
+
+			}
+		});
+
+
+
+
+
+		state.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+
+				if (countries_popup_shipping.getVisibility() == View.VISIBLE) {
+					countries_popup_shipping.setVisibility(View.GONE);
+					countries_lv_shipping.setVisibility(View.GONE);
+				} else {
+					countriesdata.clear();
+					///getCountriesList();
+					//countries_lv_shipping.setAdapter(statesAdapter);
+					states_lv_shipping.setAdapter(statesAdapter);
+					countries_popup_shipping.setVisibility(View.VISIBLE);
+					states_lv_shipping.setVisibility(View.VISIBLE);
+					countries_lv_shipping.setVisibility(View.GONE);
+				}
+
+			}
+		});
+
+		states_lv_shipping.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+				state.setText(statesData.get(position).title);
+				countries_popup_shipping.setVisibility(View.GONE);
+			}
+		});
+
 
 
 
@@ -173,9 +268,9 @@ public class AddAddressFragment extends Fragment {
 				Snackbar.make(firstname, "please enter phonenumber", Snackbar.LENGTH_SHORT).show();
 			}
 			else if (city.getText().toString().equals("")) {
-				Snackbar.make(firstname, "please enter city", Snackbar.LENGTH_SHORT).show();
+				Snackbar.make(firstname, "please select city", Snackbar.LENGTH_SHORT).show();
 			} else if (et_country_checkout.getText().toString().equals("")) {
-				Snackbar.make(firstname, "please enter countryname", Snackbar.LENGTH_SHORT).show();
+				Snackbar.make(firstname, "please select country", Snackbar.LENGTH_SHORT).show();
 			} else if (state.getText().toString().equals("")) {
 				Snackbar.make(firstname, "please enter state", Snackbar.LENGTH_SHORT).show();
 			} else {
@@ -286,4 +381,61 @@ public class AddAddressFragment extends Fragment {
 		};
 		ApplicationController.getInstance().addToRequestQueue(stringRequest);
 	}
+
+
+
+	public void getCountriesList(){
+
+		final ProgressDialog progressDialog = new ProgressDialog(getActivity());
+		progressDialog.setMessage("Please Wait....");
+		progressDialog.show();
+		progressDialog.setCancelable(false);
+		String URL = Session.BASE_URL+"api/countries.php";
+
+		StringRequest stringRequest = new StringRequest(Request.Method.POST, URL,new Response.Listener<String>() {
+			@Override
+			public void onResponse(String response) {
+				Log.e("resCountries",response);
+				if(progressDialog!=null) {
+					progressDialog.dismiss();
+				}
+				countries_popup_shipping.setVisibility(View.VISIBLE);
+				try {
+					JSONArray jsonArray =new JSONArray(response);
+					for (int i = 0;i<jsonArray.length();i++){
+						JSONObject jsonObject = jsonArray.getJSONObject(i);
+						CountryData temp = new CountryData(jsonObject);
+						countriesdata.add(temp);
+
+					}
+					countries_adapter = new Countries_Adapter(getActivity(),countriesdata);
+
+					countries_lv_shipping.setAdapter(countries_adapter);
+					countries_adapter.notifyDataSetChanged();
+
+
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+			}
+		},
+				new Response.ErrorListener() {
+					@Override
+					public void onErrorResponse(VolleyError error) {
+						if(progressDialog!=null)
+							progressDialog.dismiss();
+
+					}
+				}){
+			@Override
+			protected Map<String,String> getParams(){
+				Map<String,String> parameters = new HashMap<String, String>();
+
+				return parameters;
+			}
+		};
+		ApplicationController.getInstance().addToRequestQueue(stringRequest);
+
+	}
+
 }

@@ -1,6 +1,7 @@
 package com.yellowsoft.newproject;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,8 +63,9 @@ public class StatesAdapter extends BaseAdapter {
         rowView = inflater.inflate(R.layout.states_item, null);
 
         holder.states = (TextView)rowView.findViewById(R.id.states_tv);
+        Log.e("state",""+statesData.get(position).title+"   "+statesData.get(position).id);
 
-        holder.states.setText(statesData.get(position).states_);
+        holder.states.setText(statesData.get(position).title);
 
         //Picasso.with(context).load(categories.get(position).icon).into(holder.country_flag);
 
