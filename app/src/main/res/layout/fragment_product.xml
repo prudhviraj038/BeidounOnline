@@ -80,8 +80,8 @@
                                 android:id="@+id/imageView27"
                                 android:layout_width="20dp"
                                 android:layout_height="30dp"
-                                android:src="@drawable/like"
-                                android:visibility="gone" />
+                                android:src="@drawable/sharre"
+                                android:visibility="visible" />
                         </LinearLayout>
 
                     </RelativeLayout>
@@ -310,7 +310,7 @@
                     </LinearLayout>
 
                     <android.support.v7.widget.RecyclerView
-                        android:id="@+id/samebrand_rv"
+                        android:id="@+id/related_rv"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 

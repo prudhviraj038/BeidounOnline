@@ -22,6 +22,7 @@ public class Shop_Data implements Serializable {
 
     String title,subtitle,price,id,old_price,quantity,about,about_ar,category,brand,images,description,description_ar;
     String code;
+    String brand_Id,category_id;
 
 
     // Context context;
@@ -48,6 +49,8 @@ public class Shop_Data implements Serializable {
             this.description = jsonObject.getString("description");
             this.description_ar = jsonObject.getString("description_ar");
 
+            this.brand_Id = jsonObject.getJSONObject("brand").getString("id");
+            this.category_id = jsonObject.getJSONObject("category").getString("id");
 
             product_images = new ArrayList<>();
 

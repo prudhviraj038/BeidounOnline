@@ -361,8 +361,8 @@ public class AddAddressFragment extends Fragment {
 					parameters.put("phone",phone.getText().toString());
 					parameters.put("address",address.getText().toString());
 					parameters.put("email",email.getText().toString());
-					parameters.put("country","1");
-					parameters.put("state","1");
+					parameters.put("country",country_id);
+					parameters.put("state",state_id);
 					parameters.put("pincode",et_pincode_checkout.getText().toString());
 					parameters.put("city",city.getText().toString());
 					parameters.put("member_id",Session.getUserid(getActivity()));
@@ -376,8 +376,8 @@ public class AddAddressFragment extends Fragment {
 					parameters.put("phone",phone.getText().toString());
 					parameters.put("address",address.getText().toString());
 					parameters.put("email",email.getText().toString());
-					parameters.put("country","1");
-					parameters.put("state","2");
+					parameters.put("country",country_id);
+					parameters.put("state",state_id);
 					parameters.put("pincode",et_pincode_checkout.getText().toString());
 					parameters.put("city",city.getText().toString());
 					parameters.put("member_id",Session.getUserid(getActivity()));

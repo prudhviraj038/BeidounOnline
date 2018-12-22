@@ -1,11 +1,14 @@
 package com.yellowsoft.newproject;
 
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,7 +19,19 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.squareup.picasso.Picasso;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ProductFragment extends Fragment {
 
@@ -30,8 +45,13 @@ public class ProductFragment extends Fragment {
 
 	Shop_Data shop_data;
 
+	ArrayList<Shop_Data> shopData = new ArrayList<>();
+	Slider_Adapter slider_adapter;
+
 	int quantity;
     Integer i;
+
+    RecyclerView related_rv;
 
 	public static ProductFragment newInstance(int someInt) {
 		ProductFragment myFragment = new ProductFragment();
@@ -50,6 +70,12 @@ public class ProductFragment extends Fragment {
 		Log.e("shopfragment", "shopfragment");
 
 
+		related_rv = (RecyclerView)view.findViewById(R.id.related_rv);
+
+		LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+		linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+
+		related_rv.setLayoutManager(linearLayoutManager);
 
 	//	save_tv = (TextView) view.findViewById(R.id.save_tv);
 		title_tv_product = (TextView) view.findViewById(R.id.title_tv_product);
@@ -135,9 +161,20 @@ public class ProductFragment extends Fragment {
 
 		productDetails(shop_data);
 
+		relatedProductdetails();
+
+
+
+
 
 		return view;
 	}
+
+
+
+
+
+
 
 	public void productDetails(Shop_Data data){
 
@@ -146,6 +183,7 @@ public class ProductFragment extends Fragment {
 		title_tv_product.setText(data.title);
 		subtitle_product_tv.setText(data.subtitle);
 
+		Log.e("shopRelatedid",data.id);
 
 		//strikeprice_product_tv.setText(data.old_price);
 		description_tv_editor.setText(Html.fromHtml(data.description));
@@ -196,6 +234,7 @@ public class ProductFragment extends Fragment {
 			intent.putExtra("sendtoCart",true);
 			startActivity(intent);
 
+			getActivity().finish();
 			//Session.setQuantity(getContext(),String.valueOf(i));
 			//i=i-1;
             //
@@ -214,99 +253,111 @@ public class ProductFragment extends Fragment {
 
 	}
 
-	//product request
-//	public void CallProductdetails() {
-//
-//		final ProgressDialog progressDialog = new ProgressDialog(getActivity());
-//		progressDialog.setMessage("Please Wait....");
-//		progressDialog.show();
-//		progressDialog.setCancelable(false);
-//		String URL = Session.BASE_URL + "api/products.php";
-//
-//		StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
-//			@Override
-//			public void onResponse(String response) {
-//				Log.e("res", response);
-//				if (progressDialog != null && progressDialog.isShowing()) {
-//					progressDialog.dismiss();
-//				}
-//				try {
-//
-//					JSONArray jsonArray = new JSONArray(response);
-//					Log.e("jsonArray", "" + jsonArray.toString());
-//
-//					String producttitle = jsonArray.getJSONObject(0).getString("title");
-//					Log.e("pagetitletitle", "" + producttitle);
-//					title.setText(producttitle);
-//
-//
-//					String price = jsonArray.getJSONObject(0).getString("price");
-//					Log.e("price", "" + price);
-//					discount_price.setText(price);
-//					Session.setPrice(getContext(), price);
-//
-//
-//					String discount = jsonArray.getJSONObject(0).getString("discount");
-//					Log.e("discount", "" + discount);
-//					String givenprice = discount + price;
-//					int i = Integer.parseInt(discount) + Integer.parseInt(price);
-//					originalprice_tv.setText("" + i);
-//
-//					String quantitys = jsonArray.getJSONObject(0).getString("quantity");
-//					Log.e("quantity", "" + quantitys);
-//					quantity.setText(quantitys);
-//
-//
-//					String description = jsonArray.getJSONObject(0).getString("description");
-//					Log.e("description", "" + description);
-//					description_tv.setText(Html.fromHtml("<p>" + description + "</p>"));
-//
-//					String images = jsonArray.getJSONObject(0).getString("images");
-//					Log.e("images", "" + images);
-//
-//					JSONArray jsonArray1 = new JSONArray(images);
-//					Log.e("jsonarray1", "" + jsonArray1);
-//					Log.e("jsonarray1length", "" + jsonArray1.length());
-//					//	Log.e("imagessssss",""+jsonArray1.getJSONObject(0).getString("image"));
-//
-//					if (jsonArray1.length() > 1) {
-//						Log.e("length", "length");
-//						for (int j = 0; j <= jsonArray1.length(); j++) {
-//							//slidingImage_data.add(new SlidingImage_Data(jsonArray.getJSONObject(j).getString("image")));
-//							String s = jsonArray1.getString(j);
-//							Log.e("s", "" + s);
-//							slidingImage_data.add(new SlidingImage_Data(s));
-//							Log.e("imagessssss", "" + jsonArray1.getString(j));
-//
-//						}
-//
-//					}
-//
-//
-//				} catch (JSONException e) {
-//					e.printStackTrace();
-//				}
-//				slidingPageAdapter.notifyDataSetChanged();
-//			}
-//		},
-//				new Response.ErrorListener() {
-//					@Override
-//					public void onErrorResponse(VolleyError error) {
-//						Log.e("error", "" + error);
-//						if (progressDialog != null)
-//							progressDialog.dismiss();
-//						//Snackbar.make(gmail_btn, error.toString(), Snackbar.LENGTH_SHORT).show();
-//					}
-//				}) {
-//			@Override
-//			protected Map<String, String> getParams() {
-//				Map<String, String> parameters = new HashMap<String, String>();
-//				//parameters.put("email",u_name.getText().toString());
-//				//	parameters.put("password",password.getText().toString());
-//				return parameters;
-//			}
-//		};
-//		ApplicationController.getInstance().addToRequestQueue(stringRequest);
-////		slidingPageAdapter.notifyDataSetChanged();
-//	}
+	//related product
+	public void relatedProductdetails() {
+
+		final ProgressDialog progressDialog = new ProgressDialog(getActivity());
+		progressDialog.setMessage("Please Wait....");
+		progressDialog.show();
+		progressDialog.setCancelable(false);
+		String URL = Session.BASE_URL + "api/products.php";
+
+		StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
+			@Override
+			public void onResponse(String response) {
+				Log.e("resRelatedProducts", response);
+				if (progressDialog != null && progressDialog.isShowing()) {
+					progressDialog.dismiss();
+				}
+				try {
+
+					JSONArray jsonArray = new JSONArray(response);
+					Log.e("jsonArray", "" + jsonArray.toString());
+
+                    for (int i=0;i<jsonArray.length();i++) {
+                        JSONObject jsonObject2 = jsonArray.getJSONObject(i);
+                        Log.e("jsonobject",""+jsonArray.getJSONObject(i));
+                        Shop_Data temp = new Shop_Data(jsonObject2);
+                        shopData.add(temp);
+                    }
+
+                    slider_adapter = new Slider_Adapter(getActivity(),shopData);
+                    slider_adapter.notifyDataSetChanged();
+					related_rv.setAdapter(slider_adapter);
+                    /*String producttitle = jsonArray.getJSONObject(0).getString("title");
+					Log.e("pagetitletitle", "" + producttitle);
+					title.setText(producttitle);
+
+
+					String price = jsonArray.getJSONObject(0).getString("price");
+					Log.e("price", "" + price);
+					discount_price.setText(price);
+					Session.setPrice(getContext(), price);
+
+
+					String discount = jsonArray.getJSONObject(0).getString("discount");
+					Log.e("discount", "" + discount);
+					String givenprice = discount + price;
+					int i = Integer.parseInt(discount) + Integer.parseInt(price);
+					originalprice_tv.setText("" + i);
+
+					String quantitys = jsonArray.getJSONObject(0).getString("quantity");
+					Log.e("quantity", "" + quantitys);
+					quantity.setText(quantitys);
+
+
+					String description = jsonArray.getJSONObject(0).getString("description");
+					Log.e("description", "" + description);
+					description_tv.setText(Html.fromHtml("<p>" + description + "</p>"));
+
+					String images = jsonArray.getJSONObject(0).getString("images");
+					Log.e("images", "" + images);
+
+					JSONArray jsonArray1 = new JSONArray(images);
+					Log.e("jsonarray1", "" + jsonArray1);
+					Log.e("jsonarray1length", "" + jsonArray1.length());
+					//	Log.e("imagessssss",""+jsonArray1.getJSONObject(0).getString("image"));
+
+					if (jsonArray1.length() > 1) {
+						Log.e("length", "length");
+						for (int j = 0; j <= jsonArray1.length(); j++) {
+											//slidingImage_data.add(new SlidingImage_Data(jsonArray.getJSONObject(j).getString("image")));
+						String s = jsonArray1.getString(j);
+						Log.e("s", "" + s);
+						slidingImage_data.add(new SlidingImage_Data(s));
+						Log.e("imagessssss", "" + jsonArray1.getString(j));
+
+					}
+
+					}*/
+
+
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+				//slider_adapter.notifyDataSetChanged();
+			}
+		},
+				new Response.ErrorListener() {
+					@Override
+					public void onErrorResponse(VolleyError error) {
+						Log.e("error", "" + error);
+						if (progressDialog != null)
+							progressDialog.dismiss();
+						//Snackbar.make(gmail_btn, error.toString(), Snackbar.LENGTH_SHORT).show();
+					}
+				}) {
+			@Override
+			protected Map<String, String> getParams() {
+				Map<String, String> parameters = new HashMap<String, String>();
+				//Log.e("idshoprelated",shop_data.id);
+				parameters.put("brand_id",shop_data.brand_Id);
+				parameters.put("category_id",shop_data.category_id);
+				//	parameters.put("password",password.getText().toString());
+				return parameters;
+			}
+		};
+		ApplicationController.getInstance().addToRequestQueue(stringRequest);
+//		slidingPageAdapter.notifyDataSetChanged();
+	}
 }
