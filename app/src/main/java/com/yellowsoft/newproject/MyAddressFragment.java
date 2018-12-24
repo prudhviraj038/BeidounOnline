@@ -67,6 +67,8 @@ public class MyAddressFragment extends Fragment {
 
 
 
+
+
 		addaddress_myaddress_tv = (TextView)view.findViewById(R.id.addaddress_myaddress_tv);
 		addaddress_myaddress_tv.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -74,6 +76,22 @@ public class MyAddressFragment extends Fragment {
 				((HomeActivity)getActivity()).addAddressFragment("add","add",myaddress_data.get(0));
 			}
 		});
+
+
+		JSONObject jsonObjectAR = ApplicationController.getInstance().wordsAR;
+		JSONObject jsonObjectEN = ApplicationController.getInstance().wordsEN;
+
+		try {
+			if (Session.getLanguage(getContext()).equals("0")){
+				addaddress_myaddress_tv.setText(jsonObjectEN.getString("Add New Address"));
+			}else {
+				addaddress_myaddress_tv.setText(jsonObjectAR.getString("Add New Address"));
+
+			}
+
+		}catch (JSONException j){
+			j.printStackTrace();
+		}
 
 		callAddressList();
 

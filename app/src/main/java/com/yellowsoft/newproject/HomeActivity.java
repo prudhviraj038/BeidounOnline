@@ -450,12 +450,14 @@ public class HomeActivity extends AppCompatActivity {
 
 				}
 				else if (position==3){
+
                     mDrawerLayout.closeDrawer(GravityCompat.START);
 					if (Session.getUserid(HomeActivity.this).equals("0")){
 
 						Intent intent = new Intent(HomeActivity.this,ContactusActivity.class);
 						startActivity(intent);
 					}
+
 					else {
 
 						Log.e("changeLang","language change");
@@ -478,6 +480,16 @@ public class HomeActivity extends AppCompatActivity {
                             startActivity(intent);
                         }
 					}
+
+				}
+
+
+
+				else if (position==5){
+
+					mDrawerLayout.closeDrawer(GravityCompat.START);
+					Intent intent = new Intent(HomeActivity.this,ContactusActivity.class);
+					startActivity(intent);
 
 				}
 

@@ -48,7 +48,7 @@
 
 
                     <com.yellowsoft.newproject.CustomTextView
-                        android:id="@+id/customTextView75"
+                        android:id="@+id/register_title_login"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -68,7 +68,7 @@
                         android:orientation="vertical">
 
                         <com.yellowsoft.newproject.CustomTextView
-                            android:id="@+id/customTextView82"
+                            android:id="@+id/create_title_login"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="5dp"
@@ -89,7 +89,7 @@
                         android:orientation="vertical">
 
                         <com.yellowsoft.newproject.CustomTextView
-                            android:id="@+id/customTextView83"
+                            android:id="@+id/regcustomer_title_login"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center_horizontal"
@@ -98,7 +98,7 @@
                             android:textSize="16sp" />
 
                         <com.yellowsoft.newproject.CustomTextView
-                            android:id="@+id/customTextView84"
+                            android:id="@+id/email_title_login"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
@@ -129,7 +129,7 @@
                         </LinearLayout>
 
                         <com.yellowsoft.newproject.CustomTextView
-                            android:id="@+id/customTextView85"
+                            android:id="@+id/password_title_login"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"

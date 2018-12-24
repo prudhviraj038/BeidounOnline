@@ -45,6 +45,10 @@ public class CheckoutActivty extends AppCompatActivity {
 	TextView shippingcharge_tv,ordertotal_tv_checkout;
 	TextView country_code_cartsub,country_code__cartdiscount,country_code_cart_total;
 
+	TextView products_title_checkout,total_title_checkout,subtotal_title_checkout,shipping_title_checkout,discount_title_checkout,order_total_title_checkout;
+	TextView paymentmode_checkout,nextstep_checkout;
+
+
 	LinearLayout empty_cart_ll,apply_ll_btn;
 	LinearLayout menu_btn,back_btn,coupencode_ll;
 	LinearLayout cart_items_ll,payconfirm_ll_checkout;
@@ -90,6 +94,53 @@ public class CheckoutActivty extends AppCompatActivity {
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_checkout);
+
+		JSONObject jsonObjectEN = ApplicationController.getInstance().wordsEN;
+		JSONObject jsonObjectAR = ApplicationController.getInstance().wordsAR;
+
+		products_title_checkout = (TextView)findViewById(R.id.products_title_checkout);
+		total_title_checkout = (TextView)findViewById(R.id.total_title_checkout);
+		subtotal_title_checkout = (TextView)findViewById(R.id.subtotal_title_checkout);
+		shipping_title_checkout = (TextView)findViewById(R.id.shipping_title_checkout);
+		discount_title_checkout = (TextView)findViewById(R.id.discount_title_checkout);
+		order_total_title_checkout = (TextView)findViewById(R.id.order_total_title_checkout);
+		paymentmode_checkout = (TextView)findViewById(R.id.paymentmode_checkout);
+		nextstep_checkout = (TextView)findViewById(R.id.nextstep_checkout);
+
+		try {
+
+			if (Session.getLanguage(CheckoutActivty.this).equals("0")){
+				products_title_checkout.setText(jsonObjectEN.getString("Products"));
+				total_title_checkout.setText(jsonObjectEN.getString("Total"));
+				subtotal_title_checkout.setText(jsonObjectEN.getString("Sub-Total"));
+				shipping_title_checkout.setText(jsonObjectEN.getString("Shipping"));
+				discount_title_checkout.setText(jsonObjectEN.getString("Discount"));
+				order_total_title_checkout.setText(jsonObjectEN.getString("OrderTotal"));
+				paymentmode_checkout.setText(jsonObjectEN.getString("Your Payment Mode"));
+				nextstep_checkout.setText(jsonObjectEN.getString("Next Step"));
+
+			}
+			else {
+
+				products_title_checkout.setText(jsonObjectAR.getString("Products"));
+				total_title_checkout.setText(jsonObjectAR.getString("Total"));
+				subtotal_title_checkout.setText(jsonObjectAR.getString("Sub-Total"));
+				shipping_title_checkout.setText(jsonObjectAR.getString("Shipping"));
+				discount_title_checkout.setText(jsonObjectAR.getString("Discount"));
+				order_total_title_checkout.setText(jsonObjectAR.getString("OrderTotal"));
+				paymentmode_checkout.setText(jsonObjectAR.getString("Your Payment Mode"));
+				nextstep_checkout.setText(jsonObjectAR.getString("Next Step"));
+			}
+
+
+
+		}
+		catch (JSONException j){
+			j.printStackTrace();
+		}
+
+
+
 
 
 

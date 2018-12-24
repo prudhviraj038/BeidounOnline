@@ -50,6 +50,24 @@ public class Myaddress_Adapter extends RecyclerView.Adapter<Myaddress_Adapter.My
 	@Override
 	public void onBindViewHolder(MyViewHolder holder,final int position){
 
+		JSONObject jsonObjectAR = ApplicationController.getInstance().wordsAR;
+		JSONObject jsonObjectEN = ApplicationController.getInstance().wordsEN;
+try {
+
+
+	if (Session.getLanguage(context).equals("0")) {
+		holder.address_title_myaddress.setText(jsonObjectEN.getString("ADDRESSES"));
+		holder.edit_addressitem_et.setText(jsonObjectEN.getString("EDIT"));
+		holder.delete_myadressitem.setText(jsonObjectEN.getString("DELETE"));
+	} else {
+		holder.address_title_myaddress.setText(jsonObjectAR.getString("ADDRESSES"));
+		holder.edit_addressitem_et.setText(jsonObjectAR.getString("EDIT"));
+		holder.delete_myadressitem.setText(jsonObjectAR.getString("DELETE"));
+	}
+}catch (JSONException j){
+	j.printStackTrace();
+}
+
 		holder.address.setText(data.get(position).fname+data.get(position).lname+"\n"+data.get(position).address+"\n"+data.get(position).email+"\n"+data.get(position).phone);
 
 
@@ -84,12 +102,14 @@ public class Myaddress_Adapter extends RecyclerView.Adapter<Myaddress_Adapter.My
 	{
 
 		TextView  address,edit_addressitem_et,delete_myadressitem;
+		TextView address_title_myaddress;
 
 
 		public MyViewHolder(View itemView){
 			super(itemView);
 
 			address = (TextView) itemView.findViewById(R.id.address_myaddressitem);
+			address_title_myaddress = (TextView) itemView.findViewById(R.id.address_title_myaddress);
 
 			edit_addressitem_et = (TextView) itemView.findViewById(R.id.edit_addressitem_et);
 			delete_myadressitem = (TextView) itemView.findViewById(R.id.delete_myadressitem);

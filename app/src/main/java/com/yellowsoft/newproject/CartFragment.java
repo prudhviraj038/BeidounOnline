@@ -165,7 +165,7 @@ public class CartFragment extends Fragment {
 
 			} else {
 				subtotal_title_cart.setText(jsonObjectAR.getString("SubTotal"));
-				discount_title_cart.setText(jsonObjectEN.getString("Discount"));
+				discount_title_cart.setText(jsonObjectAR.getString("Discount"));
 				ordertotal_title_cart.setText(jsonObjectAR.getString("OrderTotal"));
 				apply_title_cart.setText(jsonObjectAR.getString("Apply"));
 				checkout_title_cart.setText(jsonObjectAR.getString("Check Out"));

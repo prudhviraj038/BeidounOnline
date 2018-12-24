@@ -138,7 +138,7 @@ public class ShopActivity extends AppCompatActivity {
 				shortby_tv.setText(jsonObjectAR.getString("Sort By Beidoun"));
 				new_tv.setText(jsonObjectAR.getString("Newest"));
 				low_tv.setText(jsonObjectAR.getString("Price Low"));
-				high_tv.setText(jsonObjectAR.getString("Price HIgh"));
+				high_tv.setText(jsonObjectAR.getString("Price High"));
 			}
 		}catch (JSONException j){
 			j.printStackTrace();

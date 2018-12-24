@@ -59,14 +59,14 @@
                         android:orientation="horizontal">
 
                         <com.yellowsoft.newproject.CustomTextView
-                            android:id="@+id/customTextView42"
+                            android:id="@+id/products_title_checkout"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:text="Products" />
 
                         <com.yellowsoft.newproject.CustomTextView
-                            android:id="@+id/customTextView26"
+                            android:id="@+id/total_title_checkout"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -104,6 +104,7 @@
                                 android:orientation="horizontal">
 
                                 <com.yellowsoft.newproject.CustomTextView
+                                    android:id="@+id/subtotal_title_checkout"
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
@@ -146,7 +147,7 @@
                                 android:orientation="horizontal">
 
                                 <com.yellowsoft.newproject.CustomTextView
-                                    android:id="@+id/customTextView87"
+                                    android:id="@+id/shipping_title_checkout"
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
@@ -189,7 +190,7 @@
                                 android:orientation="horizontal">
 
                                 <com.yellowsoft.newproject.CustomTextView
-                                    android:id="@+id/customTextView87"
+                                    android:id="@+id/discount_title_checkout"
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
@@ -234,7 +235,7 @@
                                 android:showDividers="beginning|end">
 
                                 <com.yellowsoft.newproject.CustomTextView
-                                    android:id="@+id/customTextView87"
+                                    android:id="@+id/order_total_title_checkout"
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
@@ -303,7 +304,7 @@
                                 android:orientation="vertical">
 
                                 <com.yellowsoft.newproject.CustomTextView
-                                    android:id="@+id/customTextView105"
+                                    android:id="@+id/paymentmode_checkout"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="5dp"
@@ -426,7 +427,7 @@
                 android:orientation="vertical">
 
                 <com.yellowsoft.newproject.CustomTextView
-                    android:id="@+id/customTextView29"
+                    android:id="@+id/nextstep_checkout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="5dp"

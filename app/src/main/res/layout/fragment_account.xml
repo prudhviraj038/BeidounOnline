@@ -27,6 +27,7 @@
                 android:src="@drawable/orderbox" />
 
             <com.yellowsoft.newproject.CustomTextView
+                android:id="@+id/orders_myaccount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="ORDERS"
@@ -34,6 +35,7 @@
                 android:textSize="13sp" />
 
             <com.yellowsoft.newproject.CustomTextView
+                android:id="@+id/orders_des_myaccount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -64,6 +66,7 @@
                 android:tint="@android:color/black" />
 
             <com.yellowsoft.newproject.CustomTextView
+                android:id="@+id/wishlist_myaccount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="WISHLIST"
@@ -71,6 +74,7 @@
                 android:textSize="13sp" />
 
             <com.yellowsoft.newproject.CustomTextView
+                android:id="@+id/wishlist_des_myaccount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -108,6 +112,7 @@
                 android:tint="@android:color/black" />
 
             <com.yellowsoft.newproject.CustomTextView
+                android:id="@+id/personalinfo_myaccount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="PERSONAL INFO"
@@ -115,6 +120,7 @@
                 android:textSize="13sp" />
 
             <com.yellowsoft.newproject.CustomTextView
+                android:id="@+id/personalinfo_des_myaccount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -146,6 +152,7 @@
                 android:tint="@android:color/black" />
 
             <com.yellowsoft.newproject.CustomTextView
+                android:id="@+id/address_myaccount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="ADDRESSES"
@@ -153,6 +160,7 @@
                 android:textSize="13sp" />
 
             <com.yellowsoft.newproject.CustomTextView
+                android:id="@+id/address_des_myaccount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -185,6 +193,7 @@
             android:tint="@android:color/black" />
 
         <com.yellowsoft.newproject.CustomTextView
+            android:id="@+id/loyality_myaccount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="LOYALITY POINTS"
@@ -192,6 +201,7 @@
             android:textSize="13sp" />
 
         <com.yellowsoft.newproject.CustomTextView
+            android:id="@+id/loyality_des_myaccount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
