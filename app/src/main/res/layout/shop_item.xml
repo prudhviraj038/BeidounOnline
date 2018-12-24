@@ -105,4 +105,13 @@
         android:layout_alignParentEnd="true"
         android:layout_margin="10dp"
         android:src="@drawable/like" />
+
+    <ImageView
+        android:id="@+id/liked_shop_img"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="10dp"
+        android:visibility="gone"
+        app:srcCompat="@drawable/liked" />
 </RelativeLayout>

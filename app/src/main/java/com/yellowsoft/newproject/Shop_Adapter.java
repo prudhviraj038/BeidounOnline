@@ -24,12 +24,14 @@ public class Shop_Adapter extends RecyclerView.Adapter<Shop_Adapter.MyViewHolder
 	ArrayList<Shop_Data> data;
 	String finalPrice;
 	float rate,prices,i;
+	int whichActivity;
 
 
 
-	public Shop_Adapter(Context context, ArrayList<Shop_Data> data){
+	public Shop_Adapter(Context context, ArrayList<Shop_Data> data,int whichActivity){
 		this.context=context;
 		this.data=data;
+		this.whichActivity = whichActivity;
 	}
 	@Override
 	public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewtype){
@@ -39,21 +41,32 @@ public class Shop_Adapter extends RecyclerView.Adapter<Shop_Adapter.MyViewHolder
 		return myViewHolder;
 	}
 	@Override
-	public void onBindViewHolder(MyViewHolder holder,final int position){
+	public void onBindViewHolder(final MyViewHolder holder, final int position){
 
-		holder.imageView.setImageResource(R.drawable.sales);
+
+		if (Session.getLanguage(context).equals("0")){
+
+			holder.title_tv.setText(data.get(position).title);
+
+		}
+		else {
+
+			holder.title_tv.setText(data.get(position).title_ar);
+			//holder.subtitle_tv.setText(data.get(position).subtitle);
+
+		}
+
+		///holder.imageView.setImageResource(R.drawable.sales);
 
 		if (data.get(position).product_images.size()>0) {
-			Picasso.get().load(data.get(position).product_images.get(0).image_url).placeholder(R.drawable.logo).into(holder.imageView);
+			Picasso.get().load(data.get(position).product_images.get(0).image_url).into(holder.imageView);
 		}
 		//Picasso.get().load(data.get(position).images).into(holder.imageView);
 
 
 		//holder.price_tv.setText(data.get(position).price);
 
-		holder.title_tv.setText(data.get(position).title);
-		holder.subtitle_tv.setText(data.get(position).subtitle);
-		holder.code.setText(data.get(position).code);
+		//holder.code.setText(data.get(position).code);
 
 
 		holder.imageView.setOnClickListener(new View.OnClickListener() {
@@ -80,9 +93,35 @@ public class Shop_Adapter extends RecyclerView.Adapter<Shop_Adapter.MyViewHolder
 
 				ApplicationController.getInstance().wishList.add(data.get(position));
 
-				Toast.makeText(context,"Added to Wishlist",Toast.LENGTH_LONG).show();
+				holder.liked.setVisibility(View.VISIBLE);
+				holder.like.setVisibility(View.GONE);
+
+				//Toast.makeText(context,"Added to Wishlist",Toast.LENGTH_LONG).show();
 			}
 		});
+
+		if (whichActivity==2){
+		    holder.like.setVisibility(View.GONE);
+		    holder.liked.setVisibility(View.VISIBLE);
+
+
+        }
+
+        holder.liked.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+            	if (whichActivity==2) {
+					holder.itemView.setVisibility(View.GONE);
+				}
+                    data.remove(position);
+                    notifyDataSetChanged();
+                    ApplicationController.getInstance().wishList.remove(position);
+
+
+            }
+        });
 
 
 		 prices = Float.valueOf(data.get(position).price);
@@ -104,8 +143,8 @@ public class Shop_Adapter extends RecyclerView.Adapter<Shop_Adapter.MyViewHolder
 	public  class MyViewHolder extends RecyclerView.ViewHolder
 	{
 
-		ImageView imageView,like;
-		TextView price_tv,strike_tv,title_tv,subtitle_tv,discount_tv,code;
+		ImageView imageView,like,liked;
+		TextView price_tv,strike_tv,title_tv,discount_tv,code;
 
 		public MyViewHolder(View itemView){
 			super(itemView);
@@ -113,10 +152,11 @@ public class Shop_Adapter extends RecyclerView.Adapter<Shop_Adapter.MyViewHolder
 			imageView = (ImageView) itemView.findViewById(R.id.shop_img_item);
 			like = (ImageView) itemView.findViewById(R.id.like_shop_img);
 
+			liked = (ImageView) itemView.findViewById(R.id.liked_shop_img);
+
 			price_tv = (TextView)itemView.findViewById(R.id.price_shop_tv);
 
 			title_tv = (TextView)itemView.findViewById(R.id.title_shop_tv);
-			subtitle_tv = (TextView)itemView.findViewById(R.id.subtitle_shop_tv);
 			code = (TextView) itemView.findViewById(R.id.code_tv);
 
 

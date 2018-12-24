@@ -18,6 +18,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
+import android.util.JsonReader;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -90,7 +91,7 @@ public class HomeActivity extends AppCompatActivity {
 
 
 
-	@Override
+/*	@Override
 	public void onBackPressed() {
 		super.onBackPressed();
 		if (mViewPager.getCurrentItem()!=0){
@@ -98,7 +99,7 @@ public class HomeActivity extends AppCompatActivity {
 		}
 		//finish();
 
-	}
+	}*/
 
 	@Override
 	protected void onDestroy() {
@@ -134,6 +135,29 @@ public class HomeActivity extends AppCompatActivity {
 		categores_tv = (TextView)findViewById(R.id.categories_tv);
 		account_tv = (TextView)findViewById(R.id.account_tv);
 
+		JSONObject jsonObjectAR = ApplicationController.getInstance().wordsAR;
+		JSONObject jsonObjectEN = ApplicationController.getInstance().wordsEN;
+
+		try {
+			if (Session.getLanguage(HomeActivity.this).equals("0")) {
+				home_tv.setText(jsonObjectEN.getString("HOME"));
+				brands_tv.setText(jsonObjectEN.getString("BRANDS"));
+				bag_tv.setText(jsonObjectEN.getString("BAG"));
+				categores_tv.setText(jsonObjectEN.getString("CATEGORIES"));
+				account_tv.setText(jsonObjectEN.getString("ACCOUNT"));
+
+			} else {
+
+				home_tv.setText(jsonObjectAR.getString("HOME"));
+				brands_tv.setText(jsonObjectAR.getString("BRANDS"));
+				bag_tv.setText(jsonObjectAR.getString("BAG"));
+				categores_tv.setText(jsonObjectAR.getString("CATEGORIES"));
+				account_tv.setText(jsonObjectAR.getString("ACCOUNT"));
+			}
+		}
+		catch (JSONException j){
+
+		}
 
 
 		countries_popup_ll = (LinearLayout)findViewById(R.id.countries_popup_ll);
@@ -292,28 +316,61 @@ public class HomeActivity extends AppCompatActivity {
 		ArrayList<MenuItem> menuItems = new ArrayList<>();
 
 
+
+
 		if (Session.getUserid(HomeActivity.this).equals("0")){
 			ll_userdetails.setVisibility(View.GONE);
 
-			menuItems.add(new MenuItem("Home", "", R.drawable.home));
-			menuItems.add(new MenuItem("Change Language", "", R.drawable.change));
-			menuItems.add(new MenuItem("Offers","",R.drawable.offers));
-			menuItems.add(new MenuItem("Customer Care","",R.drawable.contact));
-			menuItems.add(new MenuItem("About","",R.drawable.about));
+			if (Session.getLanguage(HomeActivity.this).equals("0")) {
+				menuItems.add(new MenuItem("Home", "", R.drawable.home));
+				menuItems.add(new MenuItem("Change Language", "", R.drawable.change));
+				menuItems.add(new MenuItem("Offers", "", R.drawable.offers));
+				menuItems.add(new MenuItem("Customer Care", "", R.drawable.contact));
+				menuItems.add(new MenuItem("About", "", R.drawable.about));
+			}
+			else {
 
+				try {
+					menuItems.add(new MenuItem(jsonObjectAR.getString("Home"), "", R.drawable.home));
+					menuItems.add(new MenuItem(jsonObjectAR.getString("Change Language"), "", R.drawable.change));
+					menuItems.add(new MenuItem(jsonObjectAR.getString("Offers"), "", R.drawable.offers));
+					menuItems.add(new MenuItem(jsonObjectAR.getString("Customer Care"), "", R.drawable.contact));
+					menuItems.add(new MenuItem(jsonObjectAR.getString("About"), "", R.drawable.about));
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+
+			}
 		}
 
 		else {
 
 			ll_userdetails.setVisibility(View.VISIBLE);
-			menuItems.add(new MenuItem("Home", "", R.drawable.home));
-			menuItems.add(new MenuItem("My Addresses", "", R.drawable.user1));
-			menuItems.add(new MenuItem("Past Orders", "", R.drawable.orderbox));
-			menuItems.add(new MenuItem("Change Language", "", R.drawable.change));
-			menuItems.add(new MenuItem("Offers", "", R.drawable.offers));
-			menuItems.add(new MenuItem("Customer Care", "", R.drawable.contact));
-			menuItems.add(new MenuItem("About", "", R.drawable.about));
-			menuItems.add(new MenuItem("Log Out", "", R.drawable.logout));
+			if (Session.getLanguage(HomeActivity.this).equals("0")) {
+				menuItems.add(new MenuItem("Home", "", R.drawable.home));
+				menuItems.add(new MenuItem("My Addresses", "", R.drawable.user1));
+				menuItems.add(new MenuItem("Past Orders", "", R.drawable.orderbox));
+				menuItems.add(new MenuItem("Change Language", "", R.drawable.change));
+				menuItems.add(new MenuItem("Offers", "", R.drawable.offers));
+				menuItems.add(new MenuItem("Customer Care", "", R.drawable.contact));
+				menuItems.add(new MenuItem("About", "", R.drawable.about));
+				menuItems.add(new MenuItem("Log Out", "", R.drawable.logout));
+			}
+			else {
+				try {
+					menuItems.add(new MenuItem(jsonObjectAR.getString("Home"), "", R.drawable.home));
+					menuItems.add(new MenuItem(jsonObjectAR.getString("My Addresses"), "", R.drawable.user1));
+					menuItems.add(new MenuItem(jsonObjectAR.getString("Past Orders"), "", R.drawable.orderbox));
+					menuItems.add(new MenuItem(jsonObjectAR.getString("Change Language"), "", R.drawable.change));
+					menuItems.add(new MenuItem(jsonObjectAR.getString("Offers"), "", R.drawable.offers));
+					menuItems.add(new MenuItem(jsonObjectAR.getString("Customer Care"), "", R.drawable.contact));
+					menuItems.add(new MenuItem(jsonObjectAR.getString("About"), "", R.drawable.about));
+					menuItems.add(new MenuItem(jsonObjectAR.getString("Log Out"), "", R.drawable.logout));
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+
+			}
 		}
 
 
@@ -347,6 +404,23 @@ public class HomeActivity extends AppCompatActivity {
 						mViewPager.setCurrentItem(5);
 						//changelanguage
 
+						if (Session.getLanguage(HomeActivity.this).equals("0")) {
+							Session.setLanguage(HomeActivity.this, "1");
+							Intent intent = new Intent(HomeActivity.this,HomeActivity.class);
+
+							intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+							startActivity(intent);
+						}
+						else
+						{
+							Session.setLanguage(HomeActivity.this,"0");
+							Intent intent = new Intent(HomeActivity.this,HomeActivity.class);
+
+							intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+							startActivity(intent);
+						}
 					}
 					else {
 						//mViewPager.setCurrentItem(9);
@@ -384,6 +458,24 @@ public class HomeActivity extends AppCompatActivity {
 					else {
 
 						Log.e("changeLang","language change");
+
+                        if (Session.getLanguage(HomeActivity.this).equals("0")) {
+                            Session.setLanguage(HomeActivity.this, "1");
+                            Intent intent = new Intent(HomeActivity.this,HomeActivity.class);
+
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+                            startActivity(intent);
+                        }
+                        else
+                        {
+                            Session.setLanguage(HomeActivity.this,"0");
+                            Intent intent = new Intent(HomeActivity.this,HomeActivity.class);
+
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+                            startActivity(intent);
+                        }
 					}
 
 				}

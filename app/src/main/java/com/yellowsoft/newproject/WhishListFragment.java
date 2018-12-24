@@ -199,7 +199,7 @@ return  view;
 
 		//ArrayList<Shop_Data> shop_data  = (ArrayList<Shop_Data>)(wishlistData);
 
-		shop_adapter = new Shop_Adapter(getContext(),wishlistData);
+		shop_adapter = new Shop_Adapter(getContext(),wishlistData,2);
 		shop_adapter.notifyDataSetChanged();
 
 		wishlist_rv.setAdapter(shop_adapter);

@@ -10,6 +10,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
+import android.util.JsonReader;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,7 +39,8 @@ public class ProductFragment extends Fragment {
 
 	TextView title_tv_product,subtitle_product_tv,price_product_tv;
 	TextView code_tv_product,quatity_tv_product;
-	TextView description_tv_editor;
+	TextView description_tv_editor,related_tv_title,addtobag_tv;
+
 
 	ImageView product_img,plus_img,minus_img;
 	LinearLayout addtobag_ll,minus_ll;
@@ -83,6 +85,8 @@ public class ProductFragment extends Fragment {
 		price_product_tv = (TextView) view.findViewById(R.id.price_product_tv);
 		description_tv_editor = (TextView) view.findViewById(R.id.description_tv_editor);
 		code_tv_product = (TextView) view.findViewById(R.id.code_tv_product);
+		related_tv_title = (TextView)view.findViewById(R.id.related_tv_title);
+		addtobag_tv = (TextView)view.findViewById(R.id.addtobag_tv);
 
 		quatity_tv_product = (TextView)view.findViewById(R.id.quantity_tv_product);
 
@@ -180,13 +184,30 @@ public class ProductFragment extends Fragment {
 
 		shop_data = data;
 
-		title_tv_product.setText(data.title);
-		subtitle_product_tv.setText(data.subtitle);
+		JSONObject jsonObjectEN = ApplicationController.getInstance().wordsEN;
+		JSONObject jsonObjectAR = ApplicationController.getInstance().wordsAR;
 
-		Log.e("shopRelatedid",data.id);
+		try {
+			if (Session.getLanguage(getContext()).equals("0")) {
 
-		//strikeprice_product_tv.setText(data.old_price);
-		description_tv_editor.setText(Html.fromHtml(data.description));
+				//english
+				title_tv_product.setText(data.title);
+
+				description_tv_editor.setText(Html.fromHtml(data.description));
+				related_tv_title.setText(jsonObjectEN.getString("Related List"));
+				addtobag_tv.setText(jsonObjectEN.getString("Add to Cart"));
+			} else {
+				title_tv_product.setText(data.title_ar);
+
+
+				description_tv_editor.setText(Html.fromHtml(data.description_ar));
+
+
+				related_tv_title.setText(jsonObjectAR.getString("Related List"));
+				addtobag_tv.setText(jsonObjectAR.getString("Add to Cart"));
+			}
+		}
+		catch (JSONException j){j.printStackTrace();}
 
 
 

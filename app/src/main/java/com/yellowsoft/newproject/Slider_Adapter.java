@@ -34,7 +34,7 @@ public class Slider_Adapter extends RecyclerView.Adapter<Slider_Adapter.MyViewHo
 		return myViewHolder;
 	}
 	@Override
-	public void onBindViewHolder(MyViewHolder holder,final int position){
+	public void onBindViewHolder(final MyViewHolder holder,final int position){
 
 		holder.imageView.setImageResource(R.drawable.sales);
 		Picasso.get().load(data.get(position).product_images.get(0).image_url).placeholder(R.drawable.logo).into(holder.imageView);
@@ -66,6 +66,16 @@ public class Slider_Adapter extends RecyclerView.Adapter<Slider_Adapter.MyViewHo
 			}
 		});
 
+		holder.like.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				ApplicationController.getInstance().wishList.add(data.get(position));
+
+				holder.liked.setVisibility(View.VISIBLE);
+				holder.like.setVisibility(View.GONE);
+			}
+		});
+
 	}
 	public int getItemCount(){
 		return data.size();
@@ -74,13 +84,15 @@ public class Slider_Adapter extends RecyclerView.Adapter<Slider_Adapter.MyViewHo
 	public  class MyViewHolder extends RecyclerView.ViewHolder
 	{
 
-		ImageView imageView;
+		ImageView imageView,like,liked;
 		TextView price_tv,strike_tv,title_tv,subtitle_tv,discount_tv,currency_code_slideritem;
 
 		public MyViewHolder(View itemView){
 			super(itemView);
 
 			imageView = (ImageView) itemView.findViewById(R.id.viewpagerimage);
+			like = (ImageView) itemView.findViewById(R.id.like_slider_img);
+			liked = (ImageView) itemView.findViewById(R.id.liked_slider_img);
 
 			price_tv = (TextView)itemView.findViewById(R.id.price_slider_tv);
 			strike_tv = (TextView)itemView.findViewById(R.id.strikeprice_slider_tv);

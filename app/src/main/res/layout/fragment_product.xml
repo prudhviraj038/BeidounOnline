@@ -292,7 +292,7 @@
                             android:orientation="vertical"></LinearLayout>
 
                         <com.yellowsoft.newproject.CustomTextView
-                            android:id="@+id/customTextView112"
+                            android:id="@+id/related_tv_title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="5dp"
@@ -391,7 +391,7 @@
                 android:padding="5dp">
 
                 <com.yellowsoft.newproject.CustomTextView
-                    android:id="@+id/customTextView102"
+                    android:id="@+id/addtobag_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"

@@ -23,6 +23,8 @@ public class ApplicationController extends Application {
     private RequestQueue mRequestQueue;
     public static final String TAG = "VolleyPatterns";
     JSONObject settings;
+    JSONObject wordsEN;
+    JSONObject wordsAR;
     String fbId;
     String fbEmail;
     String keywords;
@@ -41,6 +43,7 @@ public class ApplicationController extends Application {
         cartProducts = new ArrayList<Object>();
         wishList = new ArrayList<Object>();
         getCart();
+        getWishlist();
         sInstance = this;
 
     }

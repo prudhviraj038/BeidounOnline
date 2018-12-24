@@ -20,6 +20,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -36,7 +37,8 @@ import java.util.Map;
 
 public class ShopActivity extends AppCompatActivity {
 
-	TextView title, new_tv,low_tv,high_tv,noof_results_tv,shortby_tv;
+	TextView title, new_tv,low_tv,high_tv,noof_results_tv;
+	TextView filter_tv,shortby_tv;
 	RecyclerView shop_rv;
 
 	ArrayList<Shop_Data> shopData= new ArrayList<Shop_Data>();
@@ -73,6 +75,8 @@ public class ShopActivity extends AppCompatActivity {
 
 	ImageView search_img_title;
 
+	int page = 0;
+
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -94,6 +98,8 @@ public class ShopActivity extends AppCompatActivity {
 		});
 
 
+		filter_tv = (TextView)findViewById(R.id.filter_tv);
+
 		shortby_tv = (TextView)findViewById(R.id.shortby_tv);
 		shortby_tv.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -105,6 +111,33 @@ public class ShopActivity extends AppCompatActivity {
                // popup_sort_ll.setVisibility(View.GONE);
 			}
 		});
+
+
+
+		JSONObject jsonObjectAR = ApplicationController.getInstance().wordsAR;
+		JSONObject jsonObjectEN = ApplicationController.getInstance().wordsEN;
+
+		try {
+			if (Session.getLanguage(ShopActivity.this).equals("0")){
+				filter_tv.setText(jsonObjectEN.getString("Filter By"));
+				shortby_tv.setText(jsonObjectEN.getString("Sort By Beidoun"));
+				new_tv.setText(jsonObjectEN.getString("Newest"));
+				low_tv.setText(jsonObjectEN.getString("Price Low"));
+				high_tv.setText(jsonObjectEN.getString("Price HIgh"));
+
+			}
+			else {
+				filter_tv.setText(jsonObjectAR.getString("Filter By"));
+				shortby_tv.setText(jsonObjectAR.getString("Sort By Beidoun"));
+				new_tv.setText(jsonObjectAR.getString("Newest"));
+				low_tv.setText(jsonObjectAR.getString("Price Low"));
+				high_tv.setText(jsonObjectAR.getString("Price HIgh"));
+			}
+		}catch (JSONException j){
+			j.printStackTrace();
+		}
+
+
 
 		search_et = (EditText)findViewById(R.id.et_search);
 		search_ll_search = (LinearLayout) findViewById(R.id.search_ll_search);
@@ -184,9 +217,9 @@ public class ShopActivity extends AppCompatActivity {
 
 
 		shop_rv = (RecyclerView)findViewById(R.id.rv_shop);
-		shop_rv.setNestedScrollingEnabled(false);
 
-		shop_adapter = new Shop_Adapter(ShopActivity.this,shopData);
+
+		shop_adapter = new Shop_Adapter(ShopActivity.this,shopData,1);
 
 
 
@@ -366,6 +399,45 @@ public class ShopActivity extends AppCompatActivity {
 		setSupportActionBar(toolbar);
 		setupActionBar();
 		setupHeader();
+
+
+
+
+		///shop_rv.setNestedScrollingEnabled(false);
+/*
+
+		shop_rv.addOnScrollListener(new RecyclerView.OnScrollListener() {
+			@Override
+			public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+				super.onScrollStateChanged(recyclerView, newState);
+
+				Log.e("recyclerviewScrolled","scrolled");
+
+                if (!recyclerView.canScrollVertically(1)) {
+
+
+                	page = page + 1;
+
+                    Log.e("requestPagenation",""+page);
+
+                    callProducts("page",String.valueOf(page));
+
+
+                }
+
+
+                if (!recyclerView.canScrollVertically(-1)){
+
+
+
+                }
+
+			}
+
+		});
+*/
+
+
 
 	}
 
@@ -567,6 +639,9 @@ public class ShopActivity extends AppCompatActivity {
 			else if (type.equals("new")){
 				parameters.put("category_id",id);
 				parameters.put("sorting","");
+			}
+			else if (type.equals("page")){
+				parameters.put("page",id);
 			}
 
 				//	parameters.put("password",password.getText().toString());

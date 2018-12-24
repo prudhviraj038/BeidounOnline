@@ -21,7 +21,7 @@ public class Shop_Data implements Serializable {
 
 
     String title,subtitle,price,id,old_price,quantity,about,about_ar,category,brand,images,description,description_ar;
-    String code;
+    String code,title_ar;
     String brand_Id,category_id;
 
 
@@ -38,7 +38,7 @@ public class Shop_Data implements Serializable {
             //this.image = jsonObject.getString("images");
             this.title = jsonObject.getString("title");
             this.id = jsonObject.getString("id");
-            this.subtitle = jsonObject.getString("title_ar");
+            this.title_ar = jsonObject.getString("title_ar");
             this.price = jsonObject.getString("price");
             this.old_price = jsonObject.getString("old_price");
             this.quantity = jsonObject.getString("quantity");

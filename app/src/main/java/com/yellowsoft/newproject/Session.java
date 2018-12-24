@@ -234,4 +234,24 @@ public class Session {
 
 
 
+
+
+
+    //language
+
+    public static void setLanguage(Context context, String id) {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("lang", id);
+        editor.apply();
+    }
+
+
+
+    public static String getLanguage(Context context){
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return sharedPreferences.getString("lang", "0");
+    }
+
+
 }
