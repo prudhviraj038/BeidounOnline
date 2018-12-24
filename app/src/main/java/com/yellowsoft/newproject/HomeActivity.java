@@ -107,6 +107,7 @@ public class HomeActivity extends AppCompatActivity {
 
 		ApplicationController.getInstance().saveCart();
 		ApplicationController.getInstance().saveWishlist();
+
 	}
 
 	@Override

@@ -49,7 +49,7 @@
         android:orientation="vertical">
 
         <com.yellowsoft.newproject.CustomTextView
-            android:id="@+id/customTextView99"
+            android:id="@+id/chooseaddress_title_address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#ededed"
@@ -103,7 +103,7 @@
             android:tint="@android:color/black" />
 
         <com.yellowsoft.newproject.CustomTextView
-            android:id="@+id/customTextView30"
+            android:id="@+id/addnewaddress_title_checkoutaddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="7dp"
@@ -114,7 +114,7 @@
             android:textSize="15sp" />
 
         <com.yellowsoft.newproject.CustomTextView
-            android:id="@+id/customTextView103"
+            android:id="@+id/completeaddress_title_checkoutaddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"

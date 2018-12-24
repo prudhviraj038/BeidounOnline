@@ -47,7 +47,13 @@ public class Slider_Adapter extends RecyclerView.Adapter<Slider_Adapter.MyViewHo
 		holder.price_tv.setText(format);
 		holder.strike_tv.setText(data.get(position).old_price);
 		holder.strike_tv.setVisibility(View.GONE);
-		holder.title_tv.setText(data.get(position).title);
+		if (Session.getLanguage(context).equals("0")){
+			holder.title_tv.setText(data.get(position).title);
+		}
+		else {
+			holder.title_tv.setText(data.get(position).title_ar);
+		}
+
 		holder.subtitle_tv.setText(data.get(position).subtitle);
 		holder.currency_code_slideritem.setText(Session.getCurrencyCode(context));
 

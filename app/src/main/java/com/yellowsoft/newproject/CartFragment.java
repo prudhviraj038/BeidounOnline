@@ -49,6 +49,9 @@ public class CartFragment extends Fragment {
 	TextView shippingcharge_tv,ordertotal_tv_cart;
 	TextView country_code_cartsub,country_code__cartdiscount,country_code_cart_total;
 
+	TextView ordertotal_title_cart,subtotal_title_cart,discount_title_cart,apply_title_cart,checkout_title_cart;
+
+
 	LinearLayout empty_cart_ll,apply_ll_btn;
 	LinearLayout menu_btn,back_btn,coupencode_ll;
 	LinearLayout cart_items_ll,proceedtocheckout_ll_btn;
@@ -102,6 +105,13 @@ public class CartFragment extends Fragment {
 		country_code__cartdiscount = (TextView)view.findViewById(R.id.country_code__cartdiscount);
 		country_code_cart_total = (TextView)view.findViewById(R.id.country_code_cart_total);
 
+		subtotal_title_cart = (TextView)view.findViewById(R.id.subtotal_title_cart);
+		discount_title_cart = (TextView)view.findViewById(R.id.discount_title_cart);
+		ordertotal_title_cart = (TextView)view.findViewById(R.id.ordertotal_title_cart);
+		apply_title_cart = (TextView)view.findViewById(R.id.apply_title_cart);
+		checkout_title_cart= (TextView)view.findViewById(R.id.checkout_title_cart);
+
+
 		country_code_cart_total.setText(Session.getCurrencyCode(getActivity()));
 		country_code__cartdiscount.setText(Session.getCurrencyCode(getActivity()));
 		country_code_cartsub.setText(Session.getCurrencyCode(getActivity()));
@@ -133,6 +143,35 @@ public class CartFragment extends Fragment {
 			}
 
 		});
+
+
+
+
+
+		JSONObject jsonObjectAR = ApplicationController.getInstance().wordsAR;
+		JSONObject jsonObjectEN = ApplicationController.getInstance().wordsEN;
+
+		//change language
+		try {
+
+
+			if (Session.getLanguage(getContext()).equals("0")) {
+
+				subtotal_title_cart.setText(jsonObjectEN.getString("SubTotal"));
+				discount_title_cart.setText(jsonObjectEN.getString("Discount"));
+				ordertotal_title_cart.setText(jsonObjectEN.getString("OrderTotal"));
+				apply_title_cart.setText(jsonObjectEN.getString("Apply"));
+				checkout_title_cart.setText(jsonObjectEN.getString("Check Out"));
+
+			} else {
+				subtotal_title_cart.setText(jsonObjectAR.getString("SubTotal"));
+				discount_title_cart.setText(jsonObjectEN.getString("Discount"));
+				ordertotal_title_cart.setText(jsonObjectAR.getString("OrderTotal"));
+				apply_title_cart.setText(jsonObjectAR.getString("Apply"));
+				checkout_title_cart.setText(jsonObjectAR.getString("Check Out"));
+			}
+
+		}catch (JSONException j){j.printStackTrace();}
 
 
 

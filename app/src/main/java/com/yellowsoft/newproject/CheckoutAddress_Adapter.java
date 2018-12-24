@@ -11,6 +11,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 /**
@@ -34,6 +37,21 @@ public class CheckoutAddress_Adapter extends RecyclerView.Adapter<CheckoutAddres
 	}
 	@Override
 	public void onBindViewHolder(MyViewHolder holder,final int position){
+
+		JSONObject jsonObjectAR = ApplicationController.getInstance().wordsAR;
+		JSONObject jsonObjectEN = ApplicationController.getInstance().wordsEN;
+
+		try {
+
+			if (Session.getLanguage(context).equals("0")) {
+				holder.address_title_checkoutaddress_item.setText(jsonObjectEN.getString("ADDRESSES"));
+			}else {
+				holder.address_title_checkoutaddress_item.setText(jsonObjectAR.getString("ADDRESSES"));
+			}
+		}
+		catch (JSONException j){j.printStackTrace();}
+
+
 
 		holder.address.setText(data.get(position).fname+data.get(position).lname+"\n"+data.get(position).address+"\n"+data.get(position).email+"\n"+data.get(position).phone);
 
@@ -103,14 +121,14 @@ public class CheckoutAddress_Adapter extends RecyclerView.Adapter<CheckoutAddres
 	public  class MyViewHolder extends RecyclerView.ViewHolder
 	{
 
-		TextView  address;
+		TextView  address,address_title_checkoutaddress_item;
 		ImageView checkoutitem_checkoff_img,delete_ckeckoutitem;
 
 		public MyViewHolder(View itemView){
 			super(itemView);
 
 			address = (TextView) itemView.findViewById(R.id.address_checkoutitem);
-
+			address_title_checkoutaddress_item = (TextView)itemView.findViewById(R.id.address_title_checkoutaddress_item);
 			checkoutitem_checkoff_img = (ImageView) itemView.findViewById(R.id.checkoutitem_checkoff_img);
 			delete_ckeckoutitem = (ImageView) itemView.findViewById(R.id.delete_ckeckoutitem);
 

@@ -98,7 +98,7 @@
                             android:orientation="horizontal">
 
                             <com.yellowsoft.newproject.CustomTextView
-                                android:id="@+id/customTextView87"
+                                android:id="@+id/subtotal_title_cart"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -141,7 +141,7 @@
                             android:orientation="horizontal">
 
                             <com.yellowsoft.newproject.CustomTextView
-                                android:id="@+id/customTextView87"
+                                android:id="@+id/discount_title_cart"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -224,7 +224,7 @@
                                     android:orientation="vertical">
 
                                     <com.yellowsoft.newproject.CustomTextView
-                                        android:id="@+id/customTextView18"
+                                        android:id="@+id/apply_title_cart"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:layout_marginLeft="10dp"
@@ -249,7 +249,7 @@
                             android:showDividers="beginning|end">
 
                             <com.yellowsoft.newproject.CustomTextView
-                                android:id="@+id/customTextView87"
+                                android:id="@+id/ordertotal_title_cart"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -306,7 +306,7 @@
             android:orientation="vertical">
 
             <com.yellowsoft.newproject.CustomTextView
-                android:id="@+id/customTextView21"
+                android:id="@+id/checkout_title_cart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"

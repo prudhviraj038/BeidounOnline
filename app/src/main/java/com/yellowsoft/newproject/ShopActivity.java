@@ -113,6 +113,13 @@ public class ShopActivity extends AppCompatActivity {
 		});
 
 
+		new_tv = (TextView)findViewById(R.id.new_tv);
+
+
+		low_tv = (TextView)findViewById(R.id.low_tv);
+
+
+		high_tv = (TextView)findViewById(R.id.high_tv);
 
 		JSONObject jsonObjectAR = ApplicationController.getInstance().wordsAR;
 		JSONObject jsonObjectEN = ApplicationController.getInstance().wordsEN;
@@ -249,13 +256,7 @@ public class ShopActivity extends AppCompatActivity {
 		low_ll = (LinearLayout)findViewById(R.id.low_ll);
 
 
-		new_tv = (TextView)findViewById(R.id.new_tv);
 
-
-		low_tv = (TextView)findViewById(R.id.low_tv);
-
-
-		high_tv = (TextView)findViewById(R.id.high_tv);
 
 		checkoff_new = (ImageView)findViewById(R.id.checkoff_new);
 		checkon_new = (ImageView)findViewById(R.id.checkon_new);

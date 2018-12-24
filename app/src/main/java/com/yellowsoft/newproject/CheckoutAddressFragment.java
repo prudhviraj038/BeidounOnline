@@ -23,6 +23,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.google.gson.JsonIOException;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -44,6 +45,9 @@ public class CheckoutAddressFragment extends Fragment {
 	LinearLayout addnewaddress_checkout;
 
 
+	TextView addnewaddress_title_checkoutaddress,completeaddress_title_checkoutaddress,chooseaddress_title_address;
+
+
 	public static CheckoutAddressFragment newInstance(int someInt) {
 		CheckoutAddressFragment myFragment = new CheckoutAddressFragment();
 
@@ -57,6 +61,29 @@ public class CheckoutAddressFragment extends Fragment {
 	@Override
 	public View onCreateView(final LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.fragment_checkoutaddress, container, false);
+
+		addnewaddress_title_checkoutaddress = (TextView)view.findViewById(R.id.addnewaddress_title_checkoutaddress);
+		completeaddress_title_checkoutaddress = (TextView)view.findViewById(R.id.completeaddress_title_checkoutaddress);
+		chooseaddress_title_address = (TextView)view.findViewById(R.id.chooseaddress_title_address);
+
+		JSONObject jsonObjectAR = ApplicationController.getInstance().wordsAR;
+		JSONObject jsonObjectEN = ApplicationController.getInstance().wordsEN;
+		try{
+
+			if (Session.getLanguage(getContext()).equals("0")) {
+				addnewaddress_title_checkoutaddress.setText(jsonObjectEN.getString("Add New Address"));
+				chooseaddress_title_address.setText(jsonObjectEN.getString("Choose Your Delivery Address"));
+				completeaddress_title_checkoutaddress.setText(jsonObjectEN.getString("Please complete the information of your address."));
+			}
+			else {
+				addnewaddress_title_checkoutaddress.setText(jsonObjectAR.getString("Add New Address"));
+				chooseaddress_title_address.setText(jsonObjectAR.getString("Choose Your Delivery Address"));
+				completeaddress_title_checkoutaddress.setText(jsonObjectAR.getString("Please complete the information of your address."));
+
+			}
+		}catch (JSONException j){
+			j.printStackTrace();
+		}
 
 		nextstep_checkoutadddress = (TextView)view.findViewById(R.id.nextstep_checkoutadddress);
 		nextstep_checkoutadddress.setVisibility(View.GONE);

@@ -51,9 +51,18 @@ public class Cart_Adapter extends RecyclerView.Adapter<Cart_Adapter.MyViewHolder
 	public void onBindViewHolder(final MyViewHolder holder, final int position){
 
 
+		if (Session.getLanguage(context).equals("0")){
 
-		holder.producttitle_tv_cart.setText(items.get(position).shop_data.title);
-		holder.subtitle_tv_cart.setText(Html.fromHtml(items.get(position).shop_data.description));
+			holder.producttitle_tv_cart.setText(items.get(position).shop_data.title);
+			holder.subtitle_tv_cart.setText(Html.fromHtml(items.get(position).shop_data.description));
+		}
+		else {
+
+			holder.producttitle_tv_cart.setText(items.get(position).shop_data.title_ar);
+			holder.subtitle_tv_cart.setText(Html.fromHtml(items.get(position).shop_data.description_ar));
+		}
+
+
 		holder.quantity_cart.setText(items.get(position).shop_data.quantity);
 
 
