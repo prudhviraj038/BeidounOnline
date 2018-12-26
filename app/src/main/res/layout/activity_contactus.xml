@@ -41,7 +41,7 @@
                         android:orientation="vertical">
 
                         <com.yellowsoft.newproject.CustomTextView
-                            android:id="@+id/customTextView45"
+                            android:id="@+id/contactus_title"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
@@ -54,6 +54,7 @@
                             android:textSize="15sp" />
 
                         <com.yellowsoft.newproject.CustomTextView
+                            android:id="@+id/name_contact"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="3dp"
@@ -70,7 +71,7 @@
                                 android:id="@+id/et_name_contactus"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="10dp"
+                                android:layout_marginLeft="5dp"
                                 android:background="@null"
                                 android:hint="Name*"
                                 android:imeOptions="actionDone"
@@ -81,6 +82,7 @@
                         </LinearLayout>
 
                         <com.yellowsoft.newproject.CustomTextView
+                            android:id="@+id/email_contact"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="3dp"
@@ -97,7 +99,7 @@
                                 android:id="@+id/et_email_contactus"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="10dp"
+                                android:layout_marginLeft="5dp"
                                 android:background="@null"
                                 android:hint="Email Id*"
                                 android:imeOptions="actionDone"
@@ -109,6 +111,7 @@
                         </LinearLayout>
 
                         <com.yellowsoft.newproject.CustomTextView
+                            android:id="@+id/phone_contact"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="3dp"
@@ -125,7 +128,7 @@
                                 android:id="@+id/et_phone_contactus"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="10dp"
+                                android:layout_marginLeft="5dp"
                                 android:background="@null"
                                 android:hint="Phone Number*"
                                 android:imeOptions="actionDone"
@@ -136,6 +139,7 @@
                         </LinearLayout>
 
                         <com.yellowsoft.newproject.CustomTextView
+                            android:id="@+id/assistyou_contact"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="3dp"
@@ -151,7 +155,7 @@
                                 android:id="@+id/et_message_contactus"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="10dp"
+                                android:layout_marginLeft="5dp"
                                 android:layout_marginTop="5dp"
                                 android:layout_marginRight="5dp"
                                 android:layout_marginBottom="5dp"

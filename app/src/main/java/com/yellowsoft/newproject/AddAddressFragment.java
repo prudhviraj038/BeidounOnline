@@ -260,6 +260,10 @@ public class AddAddressFragment extends Fragment {
 
 
 			if (Session.getLanguage(getContext()).equals("0")){
+
+				title_shipping_tv.setText(jsonObjectEN.getString("Add New Address"));
+				nextstepbtn_tv.setText(jsonObjectEN.getString("Add New Address"));
+
 				fname_address_tv.setText(jsonObjectEN.getString("Create An Account"));
 				//tv_submit_signup.setText(jsonObjectEN.getString("Registered Customer"));
 				lname_address_tv.setText(jsonObjectEN.getString("Have an account? Sign In"));
@@ -299,17 +303,23 @@ public class AddAddressFragment extends Fragment {
 			}
 			else
 			{
+				//Add New Address
+
+				title_shipping_tv.setText(jsonObjectEN.getString("Add New Address"));
+				nextstepbtn_tv.setText(jsonObjectEN.getString("Add New Address"));
+
+
 				fname_address_tv.setText(jsonObjectAR.getString("Create An Account"));
 				//tv_submit_signup.setText(jsonObjectEN.getString("Registered Customer"));
 				lname_address_tv.setText(jsonObjectAR.getString("Have an account? Sign In"));
 				phone_address_tv.setText(jsonObjectAR.getString("Sign In"));
 				email_address_tv.setText(jsonObjectAR.getString("By creating your account, you agree to our"));
 
-				city_address_tv.setText(jsonObjectAR.getString("By creating your account, you agree to our"));
-				pincode_address_tv.setText(jsonObjectAR.getString("By creating your account, you agree to our"));
-				country_address_tv.setText(jsonObjectAR.getString("By creating your account, you agree to our"));
-				state_address_tv.setText(jsonObjectAR.getString("By creating your account, you agree to our"));
-				address_address_tv.setText(jsonObjectAR.getString("By creating your account, you agree to our"));
+				city_address_tv.setText(jsonObjectAR.getString("City"));
+				pincode_address_tv.setText(jsonObjectAR.getString("Pincode"));
+				country_address_tv.setText(jsonObjectAR.getString("Country"));
+				state_address_tv.setText(jsonObjectAR.getString("State"));
+				address_address_tv.setText(jsonObjectAR.getString("ADDRESSES"));
 
 				firstname.setHint(jsonObjectAR.getString("First Name"));
 				lastname.setHint(jsonObjectAR.getString("Last Name"));
@@ -373,8 +383,8 @@ public class AddAddressFragment extends Fragment {
 					title_shipping_tv.setText(jsonObjectEN.getString("EDIT"));
 					nextstepbtn_tv.setText(jsonObjectEN.getString("EDIT"));
 				} else {
-					title_shipping_tv.setText(jsonObjectEN.getString("EDIT"));
-					nextstepbtn_tv.setText(jsonObjectEN.getString("EDIT"));
+					title_shipping_tv.setText(jsonObjectAR.getString("EDIT"));
+					nextstepbtn_tv.setText(jsonObjectAR.getString("EDIT"));
 				}
 			}
 			catch (JSONException j){

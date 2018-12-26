@@ -48,6 +48,8 @@ public class MyProfileFragment extends Fragment {
 	EditText old_password,password,new_password;
 	LinearLayout submit_cp;
 
+	String enter_fname,enter_lname,enter_email,enter_mobilenumb;
+
 
 
 	LinearLayout update_ll;
@@ -109,19 +111,19 @@ public class MyProfileFragment extends Fragment {
 
 				if(ed_fname.getText().toString().equals("")){
 
-					Snackbar.make(update_ll,"Enter First Name",Snackbar.LENGTH_SHORT).show();
+					Snackbar.make(update_ll,""+enter_fname,Snackbar.LENGTH_SHORT).show();
 
 				}else if(ed_lname.getText().toString().equals("")){
 
-					Snackbar.make(update_ll,"Enter Last Name",Snackbar.LENGTH_SHORT).show();
+					Snackbar.make(update_ll,""+enter_lname,Snackbar.LENGTH_SHORT).show();
 
 				}else if(ed_phone.getText().toString().length()!=10){
 
-					Snackbar.make(update_ll,"Enter Phone Number",Snackbar.LENGTH_SHORT).show();
+					Snackbar.make(update_ll,""+ed_phone,Snackbar.LENGTH_SHORT).show();
 
 				}else if(ed_email.getText().toString().equals("")||!ed_email.getText().toString().matches("[a-zA-Z0-9._-]+@[a-z]+.[a-z]+")){
 
-					Snackbar.make(update_ll,"Enter Valid Email Address",Snackbar.LENGTH_SHORT).show();
+					Snackbar.make(update_ll,""+enter_email,Snackbar.LENGTH_SHORT).show();
 
 				}
 
@@ -178,6 +180,41 @@ public class MyProfileFragment extends Fragment {
 		});
 
 
+
+		JSONObject jsonObjectEN = ApplicationController.getInstance().wordsEN;
+		JSONObject jsonObjectAR = ApplicationController.getInstance().wordsAR;
+
+
+		try {
+
+			if (Session.getLanguage(getActivity()).equals("0")){
+				ed_fname.setHint(jsonObjectEN.getString("First Name"));
+				ed_lname.setHint(jsonObjectEN.getString("First Name"));
+				ed_phone.setHint(jsonObjectEN.getString("First Name"));
+				ed_email.setHint(jsonObjectEN.getString("First Name"));
+
+				enter_fname = jsonObjectEN.getString("Please enter your first name.");
+				enter_lname = jsonObjectEN.getString("Please enter your last name.");
+				enter_email = jsonObjectEN.getString("Please enter valid email");
+				enter_mobilenumb = jsonObjectEN.getString("Please enter your mobile number.");
+			}
+			else {
+				ed_fname.setHint(jsonObjectEN.getString("First Name"));
+				ed_lname.setHint(jsonObjectEN.getString("First Name"));
+				ed_phone.setHint(jsonObjectEN.getString("First Name"));
+				ed_email.setHint(jsonObjectEN.getString("First Name"));
+
+				enter_fname = jsonObjectEN.getString("Please enter your first name.");
+				enter_lname = jsonObjectEN.getString("Please enter your last name.");
+				enter_email = jsonObjectEN.getString("Please enter valid email");
+				enter_mobilenumb = jsonObjectEN.getString("Please enter your mobile number.");
+			}
+
+		}catch (JSONException j){
+			j.printStackTrace();
+		}
+		getProfileDetails();
+
 		return view;
 	}
 
@@ -212,31 +249,13 @@ public class MyProfileFragment extends Fragment {
 
 						ed_fname.setText(jsonObject.getString("fname"));
 						ed_lname.setText(jsonObject.getString("lname"));
-						Session.setUserid(getActivity(),Session.getUserid(getActivity()),jsonObject.getString("fname")+jsonObject.getString("lname"));
+						//Session.setUserid(getActivity(),Session.getUserid(getActivity()),jsonObject.getString("fname")+jsonObject.getString("lname"));
 
-						if (jsonObject.getString("phone").equals("")){
-
-						}
-						else {
-							ed_phone.setText(jsonObject.getString("phone"));
-							ed_phone.setEnabled(false);
-						}
-
+						ed_phone.setText(jsonObject.getString("phone"));
+						//ed_phone.setEnabled(false);
 
 
 						ed_email.setText(jsonObject.getString("email"));
-
-						dojoining_tv.setText(jsonObject.getString("scheme_amount_date"));
-						referedby_tv.setText(jsonObject.getString("referred_code"));
-					referredbyname_tv_myprofile.setText(jsonObject.getString("referred_name"));
-						//+"-"+jsonObject.getString("referred_name")
-
-						ed_acc_name.setText(jsonObject.getString("bank"));
-						ed_acc_number.setText(jsonObject.getString("acno"));
-					ed_bankaccnumber_confirm.setText(jsonObject.getString("acno"));
-						ed_ifsc_code.setText(jsonObject.getString("ifsc"));
-						ed_acc_email.setText(jsonObject.getString("upid"));
-
 
 
 

@@ -33,17 +33,21 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ContactusActivity extends AppCompatActivity{
-	TextView page_title,topic_select_tv_dropdown;
-	TextView mycopphone_tv,mycop_email;
-	ImageView back,location_mycop,fbbtn,gmbtn,twbtn;
+	TextView page_title,name_contact,contactus_title;
+	TextView email_contact,phone_contact,assistyou_contact;
 
-	ImageView youtube_img_contactus;
+
+	ImageView back,search_img_title;
+
+
 
 	EditText et_phone_contactus,et_name_contactus,et_email_contactus,et_message_contactus;
 	LinearLayout back_btn,menu_btn;
-	LinearLayout topselect_popup,topic_bg,submit_ll_contact;
+	LinearLayout submit_ll_contact;
 
-	ListView lv_topselect;
+
+	String enter_name,enter_email,enter_phone,enter_message;
+
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -56,17 +60,57 @@ public class ContactusActivity extends AppCompatActivity{
 
 
 
+		name_contact = (TextView)findViewById(R.id.name_contact) ;
+		email_contact = (TextView)findViewById(R.id.email_contact) ;
+		phone_contact = (TextView)findViewById(R.id.phone_contact) ;
+		assistyou_contact = (TextView)findViewById(R.id.assistyou_contact) ;
+
+		contactus_title = (TextView)findViewById(R.id.contactus_title);
 
 
 
 
+		JSONObject jsonObjectAR = ApplicationController.getInstance().wordsAR;
+		JSONObject jsonObjectEN = ApplicationController.getInstance().wordsEN;
 
+		try {
+			if (Session.getLanguage(ContactusActivity.this).equals("0")) {
+				name_contact.setText(jsonObjectEN.getString("First Name"));
+				email_contact.setText(jsonObjectEN.getString("Email Address"));
+				phone_contact.setText(jsonObjectEN.getString("Mobile Number"));
+				assistyou_contact.setText(jsonObjectEN.getString("How may we assist you?"));
 
+				et_message_contactus.setHint(jsonObjectEN.getString("Please enter your message here"));
+				contactus_title.setText(jsonObjectEN.getString("Contact Us"));
 
+				enter_name = jsonObjectEN.getString("Please enter your first name.");
+				enter_email = jsonObjectEN.getString("Please enter a valid email address.");
+				enter_phone= jsonObjectEN.getString("Please enter a valid mobile number.");
+				enter_message= jsonObjectEN.getString("Please enter your message here");
 
+				et_name_contactus.setHint(jsonObjectEN.getString("First Name"));
+				et_email_contactus.setHint(jsonObjectEN.getString("Email Address"));
+				et_phone_contactus.setHint(jsonObjectEN.getString("Mobile Number"));
 
+			} else {
 
+				name_contact.setText(jsonObjectAR.getString("First Name"));
+				email_contact.setText(jsonObjectAR.getString("Email Address"));
+				phone_contact.setText(jsonObjectAR.getString("Mobile Number"));
+				assistyou_contact.setText(jsonObjectAR.getString("How may we assist you?"));
+				et_message_contactus.setHint(jsonObjectAR.getString("Please enter your message here"));
+				contactus_title.setText(jsonObjectAR.getString("Contact Us"));
 
+				enter_name = jsonObjectAR.getString("Please enter your first name.");
+				enter_email = jsonObjectAR.getString("Please enter a valid email address.");
+				enter_phone= jsonObjectAR.getString("Please enter a valid mobile number.");
+				enter_message= jsonObjectAR.getString("Please enter your message here");
+
+			}
+		}
+		catch (JSONException j){
+
+		}
 
 
 
@@ -77,22 +121,22 @@ public class ContactusActivity extends AppCompatActivity{
 			public void onClick(View v) {
 
 				if(et_name_contactus.getText().toString().equals("")){
-					Snackbar.make(et_phone_contactus,"Please enter name",Snackbar.LENGTH_SHORT).show();
+					Snackbar.make(et_phone_contactus,""+enter_name,Snackbar.LENGTH_SHORT).show();
 
 				}
 				else if(et_email_contactus.getText().toString().equals("")){
 
-					Snackbar.make(et_phone_contactus,"Please enter email",Snackbar.LENGTH_SHORT).show();
+					Snackbar.make(et_phone_contactus,""+enter_email,Snackbar.LENGTH_SHORT).show();
 
 
 				}
 				else if(et_phone_contactus.getText().toString().equals("")){
-					Snackbar.make(et_phone_contactus,"Please enter phonenumber",Snackbar.LENGTH_SHORT).show();
+					Snackbar.make(et_phone_contactus,""+enter_phone,Snackbar.LENGTH_SHORT).show();
 
 
 				}
 				else if(et_message_contactus.getText().toString().equals("")){
-					Snackbar.make(et_phone_contactus,"Please enter message",Snackbar.LENGTH_SHORT).show();
+					Snackbar.make(et_phone_contactus,""+enter_message,Snackbar.LENGTH_SHORT).show();
 
 
 				}
@@ -125,6 +169,12 @@ public class ContactusActivity extends AppCompatActivity{
 
 		page_title = (TextView) v.findViewById(R.id.page_title);
 		back_btn = (LinearLayout)v.findViewById(R.id.btn_back_container);
+
+
+
+		search_img_title = (ImageView)v.findViewById(R.id.search_img_title);
+		search_img_title.setVisibility(View.GONE);
+
 
 		back = (ImageView)v.findViewById(R.id.btn_back);
 		back.setOnClickListener(new View.OnClickListener() {
