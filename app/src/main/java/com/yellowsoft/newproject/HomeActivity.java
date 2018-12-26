@@ -896,7 +896,7 @@ int resume_count = 0;
 */
 
 
-/*	@Override
+	/*@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 
@@ -906,7 +906,7 @@ int resume_count = 0;
 
 			if(resultCode==RESULT_OK){
 
-				buyGPStracker();
+
 				//shop_btn.performClick();
 				Log.e("buygpsclicke","frag");
 

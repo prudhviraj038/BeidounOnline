@@ -125,7 +125,7 @@ public class ApplicationController extends Application {
 
     public void getWishlist(){
         TinyDB tinydb = new TinyDB(this);
-        cartProducts =    tinydb.getListObject("wishlistProducts",Cart_Data.class);
+        cartProducts =    tinydb.getListObject("wishlistProducts",WishlistData.class);
 
     }
 

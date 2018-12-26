@@ -45,6 +45,8 @@ public class AddAddressFragment extends Fragment {
 	EditText firstname,lastname,address,email,phone,city;
 	EditText et_pincode_checkout,et_phonecode_checkout;
 
+	String enter_address,enter_fname,enter_lname,enter_email,enter_mobilenumb,select_country,enter_pincode;
+
 
 	LinearLayout nextstep_ll,countries_popup_shipping;
 
@@ -54,7 +56,7 @@ public class AddAddressFragment extends Fragment {
 	StatesAdapter statesAdapter;
 
 	String member,name;
-	TextView title_shipping_tv,nextstepbtn_tv;
+	TextView nextstepbtn_tv;
 
     AddressChechout_Data addressChechout_data;
 
@@ -70,6 +72,13 @@ public class AddAddressFragment extends Fragment {
 
 	String country_id;
 	String state_id = " ";
+
+
+
+
+
+	TextView title_shipping_tv,fname_address_tv,lname_address_tv,pincode_address_tv,state_address_tv;
+	TextView phone_address_tv,email_address_tv,city_address_tv,country_address_tv,address_address_tv;
 
 	public static AddAddressFragment newInstance(int someInt) {
 		AddAddressFragment myFragment = new AddAddressFragment();
@@ -143,16 +152,18 @@ public class AddAddressFragment extends Fragment {
 				} else if (address.getText().toString().equals("")) {
 					Snackbar.make(firstname, "please enter address", Snackbar.LENGTH_SHORT).show();
 				} else if (email.getText().toString().equals("") || !email.getText().toString().matches("[a-zA-Z0-9._-]+@[a-z]+.[a-z]+")) {
-					Snackbar.make(firstname, "please enter valid email", Snackbar.LENGTH_SHORT).show();
+					Snackbar.make(firstname, "", Snackbar.LENGTH_SHORT).show();
 				} else if (phone.getText().toString().equals("")&&et_phonecode_checkout.getText().toString().equals("")) {
-					Snackbar.make(firstname, "please enter phonenumber", Snackbar.LENGTH_SHORT).show();
-				} else if (city.getText().toString().equals("")) {
-					Snackbar.make(firstname, "please select city", Snackbar.LENGTH_SHORT).show();
-				} else if (et_country_checkout.getText().toString().equals("")) {
-					Snackbar.make(firstname, "please select country", Snackbar.LENGTH_SHORT).show();
-				} /*else if (state.getText().toString().equals("")) {
-					Snackbar.make(firstname, "please enter state", Snackbar.LENGTH_SHORT).show();
-				}*/ else {
+					Snackbar.make(firstname, ""+enter_mobilenumb, Snackbar.LENGTH_SHORT).show();
+				}
+				else if (et_pincode_checkout.getText().toString().equals("")) {
+					Snackbar.make(firstname, ""+enter_pincode, Snackbar.LENGTH_SHORT).show();
+				}else if (et_country_checkout.getText().toString().equals("")) {
+					Snackbar.make(firstname, ""+select_country, Snackbar.LENGTH_SHORT).show();
+				}
+				else if (address.getText().toString().equals("")) {
+					Snackbar.make(firstname, ""+enter_address, Snackbar.LENGTH_SHORT).show();
+				}else {
 
 
 					//sendShippingAddress();
@@ -231,6 +242,111 @@ public class AddAddressFragment extends Fragment {
 
 
 
+		fname_address_tv = (TextView)view.findViewById(R.id.fname_address_tv);
+		lname_address_tv = (TextView)view.findViewById(R.id.lname_address_tv);
+		phone_address_tv = (TextView)view.findViewById(R.id.phone_address_tv);
+		email_address_tv = (TextView)view.findViewById(R.id.email_address_tv);
+		city_address_tv = (TextView)view.findViewById(R.id.city_address_tv);
+		pincode_address_tv = (TextView)view.findViewById(R.id.pincode_address_tv);
+		country_address_tv = (TextView)view.findViewById(R.id.country_address_tv);
+		state_address_tv = (TextView)view.findViewById(R.id.state_address_tv);
+		address_address_tv = (TextView)view.findViewById(R.id.address_address_tv);
+
+
+		JSONObject jsonObjectEN = ApplicationController.getInstance().wordsEN;
+		JSONObject jsonObjectAR = ApplicationController.getInstance().wordsAR;
+
+		try {
+
+
+			if (Session.getLanguage(getContext()).equals("0")){
+				fname_address_tv.setText(jsonObjectEN.getString("Create An Account"));
+				//tv_submit_signup.setText(jsonObjectEN.getString("Registered Customer"));
+				lname_address_tv.setText(jsonObjectEN.getString("Have an account? Sign In"));
+				phone_address_tv.setText(jsonObjectEN.getString("Sign In"));
+				email_address_tv.setText(jsonObjectEN.getString("By creating your account, you agree to our"));
+
+				city_address_tv.setText(jsonObjectEN.getString("By creating your account, you agree to our"));
+				pincode_address_tv.setText(jsonObjectEN.getString("By creating your account, you agree to our"));
+				country_address_tv.setText(jsonObjectEN.getString("By creating your account, you agree to our"));
+				state_address_tv.setText(jsonObjectEN.getString("By creating your account, you agree to our"));
+				address_address_tv.setText(jsonObjectEN.getString("By creating your account, you agree to our"));
+
+				firstname.setHint(jsonObjectEN.getString("First Name"));
+				lastname.setHint(jsonObjectEN.getString("Last Name"));
+				phone.setHint(jsonObjectEN.getString("Mobile Number"));
+				email.setHint(jsonObjectEN.getString("Email Address"));
+				city.setHint(jsonObjectEN.getString("Password"));
+				et_pincode_checkout.setHint(jsonObjectEN.getString("Confirm Password"));
+
+				et_country_checkout.setHint(jsonObjectEN.getString("Password"));
+				state.setText(jsonObjectEN.getString("Password"));
+				city.setText(jsonObjectEN.getString("Password"));
+				address.setHint(jsonObjectEN.getString("Password"));
+
+
+
+
+
+				//select_city = jsonObjectEN.getString("Please confirm your password");
+				enter_address = jsonObjectEN.getString("Please enter the address.");
+				enter_fname = jsonObjectEN.getString("Please enter your first name.");
+				enter_lname = jsonObjectEN.getString("Please enter your last name.");
+				enter_email = jsonObjectEN.getString("Please enter valid email");
+				enter_mobilenumb = jsonObjectEN.getString("Please enter your mobile number.");
+				select_country = jsonObjectEN.getString("Please select country");
+				enter_pincode = jsonObjectEN.getString("Please enter the pincode.");
+			}
+			else
+			{
+				fname_address_tv.setText(jsonObjectAR.getString("Create An Account"));
+				//tv_submit_signup.setText(jsonObjectEN.getString("Registered Customer"));
+				lname_address_tv.setText(jsonObjectAR.getString("Have an account? Sign In"));
+				phone_address_tv.setText(jsonObjectAR.getString("Sign In"));
+				email_address_tv.setText(jsonObjectAR.getString("By creating your account, you agree to our"));
+
+				city_address_tv.setText(jsonObjectAR.getString("By creating your account, you agree to our"));
+				pincode_address_tv.setText(jsonObjectAR.getString("By creating your account, you agree to our"));
+				country_address_tv.setText(jsonObjectAR.getString("By creating your account, you agree to our"));
+				state_address_tv.setText(jsonObjectAR.getString("By creating your account, you agree to our"));
+				address_address_tv.setText(jsonObjectAR.getString("By creating your account, you agree to our"));
+
+				firstname.setHint(jsonObjectAR.getString("First Name"));
+				lastname.setHint(jsonObjectAR.getString("Last Name"));
+				phone.setHint(jsonObjectAR.getString("Mobile Number"));
+				email.setHint(jsonObjectAR.getString("Email Address"));
+				city.setHint(jsonObjectAR.getString("Password"));
+				et_pincode_checkout.setHint(jsonObjectAR.getString("Confirm Password"));
+
+				et_country_checkout.setHint(jsonObjectAR.getString("Password"));
+				state.setText(jsonObjectAR.getString("Password"));
+				city.setText(jsonObjectAR.getString("Password"));
+				address.setHint(jsonObjectAR.getString("Password"));
+
+
+
+
+
+				//select_city = jsonObjectEN.getString("Please confirm your password");
+				enter_address = jsonObjectAR.getString("Please enter the address.");
+				enter_fname = jsonObjectAR.getString("Please enter your first name.");
+				enter_lname = jsonObjectAR.getString("Please enter your last name.");
+				enter_email = jsonObjectAR.getString("Please enter valid email");
+				enter_mobilenumb = jsonObjectAR.getString("Please enter your mobile number.");
+				select_country = jsonObjectAR.getString("Please select country");
+			}
+
+
+
+
+
+
+		}
+		catch (JSONException j){j.printStackTrace();}
+
+
+
+
 
 		return view;
 	}
@@ -244,11 +360,26 @@ public class AddAddressFragment extends Fragment {
 
 		addressChechout_data = data;
 
+		JSONObject jsonObjectEN = ApplicationController.getInstance().wordsEN;
+		JSONObject jsonObjectAR = ApplicationController.getInstance().wordsAR;
+
 		if (type.equals("edit")) {
 			Log.e("address","edit");
-			title_shipping_tv.setText("Edit Address");
-			nextstepbtn_tv.setText("Edit");
 
+			try {
+
+
+				if (Session.getLanguage(getContext()).equals(0)) {
+					title_shipping_tv.setText(jsonObjectEN.getString("EDIT"));
+					nextstepbtn_tv.setText(jsonObjectEN.getString("EDIT"));
+				} else {
+					title_shipping_tv.setText(jsonObjectEN.getString("EDIT"));
+					nextstepbtn_tv.setText(jsonObjectEN.getString("EDIT"));
+				}
+			}
+			catch (JSONException j){
+				j.printStackTrace();
+			}
 			if (!data.equals(null)){
 
 
@@ -265,15 +396,15 @@ public class AddAddressFragment extends Fragment {
 				state.setText(data.state);
 
 			}else if (firstname.getText().toString().equals("")) {
-				Snackbar.make(firstname, "please enter firstname", Snackbar.LENGTH_SHORT).show();
+				Snackbar.make(firstname, ""+enter_fname, Snackbar.LENGTH_SHORT).show();
 			} else if (lastname.getText().toString().equals("")) {
-				Snackbar.make(firstname, "please enter lastname", Snackbar.LENGTH_SHORT).show();
+				Snackbar.make(firstname, ""+enter_lname, Snackbar.LENGTH_SHORT).show();
 			} else if (address.getText().toString().equals("")) {
-				Snackbar.make(firstname, "please enter address", Snackbar.LENGTH_SHORT).show();
+				Snackbar.make(firstname, ""+address, Snackbar.LENGTH_SHORT).show();
 			} else if (email.getText().toString().equals("") || !email.getText().toString().matches("[a-zA-Z0-9._-]+@[a-z]+.[a-z]+")) {
-				Snackbar.make(firstname, "please enter valid email", Snackbar.LENGTH_SHORT).show();
+				Snackbar.make(firstname, ""+enter_email, Snackbar.LENGTH_SHORT).show();
 			} else if (phone.getText().toString().equals("")&&et_phonecode_checkout.getText().toString().equals("")) {
-				Snackbar.make(firstname, "please enter phonenumber", Snackbar.LENGTH_SHORT).show();
+				Snackbar.make(firstname, ""+enter_mobilenumb, Snackbar.LENGTH_SHORT).show();
 			}
 			else if (city.getText().toString().equals("")) {
 				Snackbar.make(firstname, "please enter city", Snackbar.LENGTH_SHORT).show();

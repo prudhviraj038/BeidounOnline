@@ -34,12 +34,19 @@ import java.util.Map;
 
 public class SignupFragment  extends Fragment {
 	TextView page_title,btn_edit,logout,login_btn;
-	LinearLayout menu_btn,back_btn,submit_btn;
+	LinearLayout menu_btn,back_btn,submit_btn,signin_signup_ll;
 	ImageView back;
 
 	EditText et_fname,et_lname,et_phnumber,et_password,et_email,et_confirm_password;
 
 	ProgressBar progressBar;
+
+	TextView creatingacct_title_signup,tv_submit_signup,tv_haveacct_signup;
+	TextView tv_signin_signup,agree_signup,terms_tv_signup;
+
+	String confirm_pass,enter_password,enter_fname,enter_lname,enter_valid_email;
+	String enter_mobilenumb,enter_valid_mobilenumb,enter_same_pass;
+
 
 	public static SignupFragment newInstance(int someInt) {
 		SignupFragment myFragment = new SignupFragment();
@@ -64,7 +71,82 @@ public class SignupFragment  extends Fragment {
 		et_confirm_password = (EditText)view.findViewById(R.id.et_confirm_pd);
 
 
+		creatingacct_title_signup = (TextView)view.findViewById(R.id.creatingacct_title_signup);
+		tv_submit_signup = (TextView)view.findViewById(R.id.tv_submit_signup);
+		tv_haveacct_signup = (TextView)view.findViewById(R.id.tv_haveacct_signup);
+		tv_signin_signup = (TextView)view.findViewById(R.id.tv_signin_signup);
+		agree_signup = (TextView)view.findViewById(R.id.agree_signup);
+		terms_tv_signup = (TextView)view.findViewById(R.id.terms_tv_signup);
 
+		JSONObject jsonObjectEN = ApplicationController.getInstance().wordsEN;
+		JSONObject jsonObjectAR = ApplicationController.getInstance().wordsAR;
+
+		try {
+
+
+			if (Session.getLanguage(getContext()).equals("0")){
+				creatingacct_title_signup.setText(jsonObjectEN.getString("Create An Account"));
+				//tv_submit_signup.setText(jsonObjectEN.getString("Registered Customer"));
+				tv_haveacct_signup.setText(jsonObjectEN.getString("Have an account? Sign In"));
+				tv_signin_signup.setText(jsonObjectEN.getString("Sign In"));
+				agree_signup.setText(jsonObjectEN.getString("By creating your account, you agree to our"));
+
+				et_fname.setHint(jsonObjectEN.getString("First Name"));
+				et_lname.setHint(jsonObjectEN.getString("Last Name"));
+				et_phnumber.setHint(jsonObjectEN.getString("Mobile Number"));
+				et_email.setHint(jsonObjectEN.getString("Email Address"));
+				et_password.setHint(jsonObjectEN.getString("Password"));
+				et_confirm_password.setHint(jsonObjectEN.getString("Confirm Password"));
+
+
+				terms_tv_signup.setText(jsonObjectEN.getString("Terms And Conditions"));
+
+
+				confirm_pass = jsonObjectEN.getString("Please confirm your password");
+				enter_password = jsonObjectEN.getString("Please Enter Password");
+				enter_fname = jsonObjectEN.getString("Please Enter First Name");
+				enter_lname = jsonObjectEN.getString("Please enter last name");
+				enter_valid_email = jsonObjectEN.getString("Please enter valid email");
+				enter_mobilenumb = jsonObjectEN.getString("Please Enter Mobile Number");
+				enter_valid_mobilenumb = jsonObjectEN.getString("Please enter  Valid Phone No");
+				enter_same_pass= jsonObjectEN.getString("The new passwords entered do not match");
+			}
+			else
+			{
+				creatingacct_title_signup.setText(jsonObjectAR.getString("Create An Account"));
+				//tv_submit_signup.setText(jsonObjectEN.getString("Registered Customer"));
+				tv_haveacct_signup.setText(jsonObjectAR.getString("Have an account? Sign In"));
+				tv_signin_signup.setText(jsonObjectAR.getString("Sign In"));
+				agree_signup.setText(jsonObjectAR.getString("By creating your account, you agree to our"));
+
+				et_fname.setHint(jsonObjectAR.getString("First Name"));
+				et_lname.setHint(jsonObjectAR.getString("Last Name"));
+				et_phnumber.setHint(jsonObjectAR.getString("Mobile Number"));
+				et_email.setHint(jsonObjectAR.getString("Email Address"));
+				et_password.setHint(jsonObjectAR.getString("Password"));
+				et_confirm_password.setHint(jsonObjectAR.getString("Confirm Password"));
+
+
+				terms_tv_signup.setText(jsonObjectAR.getString("Terms And Conditions"));
+
+
+				confirm_pass = jsonObjectAR.getString("Please confirm your password");
+				enter_password = jsonObjectAR.getString("Please Enter Password");
+				enter_fname = jsonObjectAR.getString("Please Enter First Name");
+				enter_lname = jsonObjectAR.getString("Please enter last name");
+				enter_valid_email = jsonObjectAR.getString("Please enter valid email");
+				enter_mobilenumb = jsonObjectAR.getString("Please Enter Mobile Number");
+				enter_valid_mobilenumb = jsonObjectAR.getString("Please enter  Valid Phone No");
+				enter_same_pass= jsonObjectAR.getString("The new passwords entered do not match");
+			}
+
+
+
+
+
+
+		}
+		catch (JSONException j){j.printStackTrace();}
 
 
 
@@ -73,37 +155,38 @@ public class SignupFragment  extends Fragment {
 			@Override
 			public void onClick(View v) {
 				if(et_fname.getText().toString().length()==0){
-					Snackbar.make(et_fname,"Please enter firstname",Snackbar.LENGTH_SHORT).show();
+					Snackbar.make(et_fname,""+enter_fname,Snackbar.LENGTH_SHORT).show();
 					//showAlert("Error","Please enter firstname");
 				}
 				else if(et_lname.getText().toString().length()==0){
 
-					Snackbar.make(et_fname,"Please enter lastname",Snackbar.LENGTH_SHORT).show();
+					Snackbar.make(et_fname,""+enter_lname,Snackbar.LENGTH_SHORT).show();
 					//showAlert("Error","Please enter lastname");
 
 				}
-				else if(et_email.getText().toString().length()==0||!et_email.getText().toString().matches("[a-zA-Z0-9._-]+@[a-z]+.[a-z]+")){
-					Snackbar.make(et_fname,"Please enter valid email",Snackbar.LENGTH_SHORT).show();
-					//showAlert("Error","Please enter email");
-
-				}
 				else if(et_phnumber.getText().toString().length()!=10){
-					Snackbar.make(et_fname,"Please enter valid mobile number",Snackbar.LENGTH_SHORT).show();
+					Snackbar.make(et_fname,""+enter_valid_mobilenumb,Snackbar.LENGTH_SHORT).show();
 					//showAlert("Error","Please enter mobile");
 
 				}
+				else if(et_email.getText().toString().length()==0||!et_email.getText().toString().matches("[a-zA-Z0-9._-]+@[a-z]+.[a-z]+")){
+					Snackbar.make(et_fname,""+enter_valid_email,Snackbar.LENGTH_SHORT).show();
+					//showAlert("Error","Please enter email");
+
+				}
+
 				else if(et_password.getText().toString().length()!=6){
-					Snackbar.make(et_fname,"Please enter password of length 6 characters",Snackbar.LENGTH_SHORT).show();
+					Snackbar.make(et_fname,""+enter_password,Snackbar.LENGTH_SHORT).show();
 				//	showAlert("Error","Please enter password");
 
 				}
 				else if(et_confirm_password.getText().toString().length()==0){
-					Snackbar.make(et_fname,"Please enter confirm password",Snackbar.LENGTH_SHORT).show();
+					Snackbar.make(et_fname,""+confirm_pass,Snackbar.LENGTH_SHORT).show();
 				//	showAlert("Error","Please enter confirm password");
 
 				}
 				else if(!et_confirm_password.getText().toString().equals(et_password.getText().toString())){
-					Snackbar.make(et_fname,"Please enter same password",Snackbar.LENGTH_SHORT).show();
+					Snackbar.make(et_fname,""+enter_same_pass,Snackbar.LENGTH_SHORT).show();
 				//	showAlert("Error","Please enter same password");
 				}else {
 
@@ -115,11 +198,12 @@ public class SignupFragment  extends Fragment {
 				finish();*/
 			}
 		});
-		login_btn = (TextView)view.findViewById(R.id.tv_login_signup);
-		login_btn.setOnClickListener(new View.OnClickListener() {
+		signin_signup_ll = (LinearLayout)view.findViewById(R.id.signin_signup_ll);
+		signin_signup_ll.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 
+				((HomeActivity)getActivity()).knowSignedIn();
 			}
 		});
 

@@ -47,7 +47,7 @@
                         android:orientation="vertical">
 
                         <com.yellowsoft.newproject.CustomTextView
-                            android:id="@+id/customTextView94"
+                            android:id="@+id/fname_address_tv"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
@@ -79,7 +79,7 @@
                         </LinearLayout>
 
                         <com.yellowsoft.newproject.CustomTextView
-                            android:id="@+id/customTextView92"
+                            android:id="@+id/lname_address_tv"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
@@ -112,7 +112,7 @@
                         </LinearLayout>
 
                         <com.yellowsoft.newproject.CustomTextView
-                            android:id="@+id/customTextView90"
+                            android:id="@+id/phone_address_tv"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="5dp"
@@ -156,7 +156,7 @@
                         </LinearLayout>
 
                         <com.yellowsoft.newproject.CustomTextView
-                            android:id="@+id/customTextView89"
+                            android:id="@+id/email_address_tv"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="5dp"
@@ -187,7 +187,7 @@
                         </LinearLayout>
 
                         <com.yellowsoft.newproject.CustomTextView
-                            android:id="@+id/customTextView88"
+                            android:id="@+id/city_address_tv"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="5dp"
@@ -219,6 +219,7 @@
 
                         <com.yellowsoft.newproject.CustomTextView
 
+                            android:id="@+id/pincode_address_tv"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="5dp"
@@ -249,6 +250,7 @@
 
 
                         <com.yellowsoft.newproject.CustomTextView
+                            android:id="@+id/country_address_tv"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="5dp"
@@ -276,7 +278,7 @@
                         </LinearLayout>
 
                         <com.yellowsoft.newproject.CustomTextView
-                            android:id="@+id/customTextView97"
+                            android:id="@+id/state_address_tv"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="5dp"
@@ -296,15 +298,15 @@
                                 android:id="@+id/tv_state_checkout"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="State*"
                                 android:maxLines="1"
                                 android:padding="5dp"
                                 android:singleLine="true"
+                                android:text="State*"
                                 android:textSize="14sp" />
                         </LinearLayout>
 
                         <com.yellowsoft.newproject.CustomTextView
-                            android:id="@+id/customTextView100"
+                            android:id="@+id/address_address_tv"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="5dp"

@@ -57,12 +57,75 @@ public class SplashScreen extends AppCompatActivity {
         if(getSupportActionBar()!=null)
             getSupportActionBar().hide();
         callSettings();
-        callWords();
+      //  callWords();
 
 
 
     }
 
+    public void callSettings(){
+
+       /* final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Please Wait....");
+        progressDialog.show();
+        progressDialog.setCancelable(false);*/
+        String URL = Session.BASE_URL+"api/settings.php";
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL,new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.e("resWords",response);
+
+                callWords();
+
+               /* if(progressDialog!=null) {
+                    progressDialog.dismiss();
+
+                }*/
+
+
+                try {
+                    JSONObject jsonObject=new JSONObject(response);
+
+                    ApplicationController.getInstance().settings = jsonObject;
+
+
+
+
+
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    Log.e("errorOne",""+e.getMessage().toString());
+                    Toast.makeText(SplashScreen.this,""+e.getMessage().toString(),Toast.LENGTH_LONG).show();
+                    Intent j = new Intent(SplashScreen.this, HomeActivity.class);
+                    startActivity(j);
+                }
+            }
+        },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("errorTwo",""+error.getMessage().toString());
+                        Toast.makeText(SplashScreen.this,"Network issue",Toast.LENGTH_LONG).show();
+                        Intent i = new Intent(SplashScreen.this, HomeActivity.class);
+                        startActivity(i);
+                      /*  if(progressDialog!=null)
+                            progressDialog.dismiss();*/
+                        //  Snackbar.make(gmail_btn, error.toString(), Snackbar.LENGTH_SHORT).show();
+                    }
+                }){
+            @Override
+            protected Map<String,String> getParams(){
+                Map<String,String> parameters = new HashMap<String, String>();
+
+                return parameters;
+            }
+        };
+        ApplicationController.getInstance().addToRequestQueue(stringRequest);
+
+    }
     //call settings api
     public void callWords(){
 
@@ -76,32 +139,13 @@ public class SplashScreen extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 Log.e("resWords",response);
-                Intent i = new Intent(SplashScreen.this, HomeActivity.class);
-                startActivity(i);
+
                /* if(progressDialog!=null) {
                     progressDialog.dismiss();
 
                 }*/
-
-                new Handler().postDelayed(new Runnable() {
-
-                    /*
-                     * Showing splash screen with a timer. This will be useful when you
-                     * want to show case your app logo / company
-                     */
-
-                    @Override
-                    public void run() {
-                        // This method will be executed once the timer is over
-                        // Start your app main activity
-
-                        Intent i = new Intent(SplashScreen.this, HomeActivity.class);
-                        startActivity(i);
-
-                        // close this activity
-                        finish();
-                    }
-                }, SPLASH_TIME_OUT);
+                Intent i = new Intent(SplashScreen.this, HomeActivity.class);
+                startActivity(i);
                 try {
                     JSONObject jsonObject=new JSONObject(response);
 
@@ -147,84 +191,5 @@ public class SplashScreen extends AppCompatActivity {
 
     }
 
-    public void callSettings(){
 
-       /* final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Please Wait....");
-        progressDialog.show();
-        progressDialog.setCancelable(false);*/
-        String URL = Session.BASE_URL+"api/settings.php";
-
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL,new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Log.e("resWords",response);
-                Intent i = new Intent(SplashScreen.this, HomeActivity.class);
-                startActivity(i);
-               /* if(progressDialog!=null) {
-                    progressDialog.dismiss();
-
-                }*/
-
-                new Handler().postDelayed(new Runnable() {
-
-                    /*
-                     * Showing splash screen with a timer. This will be useful when you
-                     * want to show case your app logo / company
-                     */
-
-                    @Override
-                    public void run() {
-                        // This method will be executed once the timer is over
-                        // Start your app main activity
-
-                        Intent i = new Intent(SplashScreen.this, HomeActivity.class);
-                        startActivity(i);
-
-                        // close this activity
-                        finish();
-                    }
-                }, SPLASH_TIME_OUT);
-                try {
-                    JSONObject jsonObject=new JSONObject(response);
-
-                    ApplicationController.getInstance().settings = jsonObject;
-
-
-
-
-
-
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                    Log.e("errorOne",""+e.getMessage().toString());
-                    Toast.makeText(SplashScreen.this,""+e.getMessage().toString(),Toast.LENGTH_LONG).show();
-                    Intent j = new Intent(SplashScreen.this, HomeActivity.class);
-                    startActivity(j);
-                }
-            }
-        },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.e("errorTwo",""+error.getMessage().toString());
-                        Toast.makeText(SplashScreen.this,"Network issue",Toast.LENGTH_LONG).show();
-                        Intent i = new Intent(SplashScreen.this, HomeActivity.class);
-                        startActivity(i);
-                      /*  if(progressDialog!=null)
-                            progressDialog.dismiss();*/
-                        //  Snackbar.make(gmail_btn, error.toString(), Snackbar.LENGTH_SHORT).show();
-                    }
-                }){
-            @Override
-            protected Map<String,String> getParams(){
-                Map<String,String> parameters = new HashMap<String, String>();
-
-                return parameters;
-            }
-        };
-        ApplicationController.getInstance().addToRequestQueue(stringRequest);
-
-    }
 }

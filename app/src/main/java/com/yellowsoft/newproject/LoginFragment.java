@@ -49,58 +49,6 @@ public class LoginFragment extends Fragment {
 	public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.fragment_login, container, false);
 
-		JSONObject jsonObjectEN = ApplicationController.getInstance().wordsEN;
-		JSONObject jsonObjectAR = ApplicationController.getInstance().wordsAR;
-
-
-
-		register_title_login = (TextView)view.findViewById(R.id.register_title_login);
-		create_title_login = (TextView)view.findViewById(R.id.create_title_login);
-		regcustomer_title_login = (TextView)view.findViewById(R.id.regcustomer_title_login);
-		email_title_login = (TextView)view.findViewById(R.id.email_title_login);
-		password_title_login = (TextView)view.findViewById(R.id.password_title_login);
-
-		tv_signin_login= (TextView)view.findViewById(R.id.tv_signin_login);
-		tv_forget= (TextView)view.findViewById(R.id.tv_forget);
-
-
-		try {
-
-			if (Session.getLanguage(getContext()).equals("0")){
-				regcustomer_title_login.setText(jsonObjectEN.getString("Registered Customer"));
-				create_title_login.setText(jsonObjectEN.getString("Registered Customer"));
-				regcustomer_title_login.setText(jsonObjectEN.getString("Registered Customer"));
-				email_title_login.setText(jsonObjectEN.getString("Registered Customer"));
-				password_title_login.setText(jsonObjectEN.getString("Registered Customer"));
-
-				tv_signin_login.setText(jsonObjectEN.getString("Registered Customer"));
-				tv_forget.setText(jsonObjectEN.getString("Registered Customer"));
-
-				enter_uname = jsonObjectEN.getString("Please Enter email address");
-				enter_password = jsonObjectEN.getString("Please Enter Password");
-			}
-			else
-			{
-				regcustomer_title_login.setText(jsonObjectAR.getString("Registered Customer"));
-				create_title_login.setText(jsonObjectAR.getString("Registered Customer"));
-				regcustomer_title_login.setText(jsonObjectAR.getString("Registered Customer"));
-				email_title_login.setText(jsonObjectAR.getString("Registered Customer"));
-				password_title_login.setText(jsonObjectAR.getString("Registered Customer"));
-
-				tv_signin_login.setText(jsonObjectAR.getString("Registered Customer"));
-				tv_forget.setText(jsonObjectAR.getString("Registered Customer"));
-
-				enter_uname = jsonObjectAR.getString("Please Enter email address");
-				enter_password = jsonObjectAR.getString("Please Enter Password");
-			}
-
-
-
-
-
-
-		}
-		catch (JSONException j){j.printStackTrace();}
 
 
 
@@ -137,6 +85,65 @@ public class LoginFragment extends Fragment {
 
 
 
+		JSONObject jsonObjectEN = ApplicationController.getInstance().wordsEN;
+		JSONObject jsonObjectAR = ApplicationController.getInstance().wordsAR;
+
+
+
+		register_title_login = (TextView)view.findViewById(R.id.register_title_login);
+		create_title_login = (TextView)view.findViewById(R.id.create_title_login);
+		regcustomer_title_login = (TextView)view.findViewById(R.id.regcustomer_title_login);
+		email_title_login = (TextView)view.findViewById(R.id.email_title_login);
+		password_title_login = (TextView)view.findViewById(R.id.password_title_login);
+
+		tv_signin_login= (TextView)view.findViewById(R.id.tv_signin_login);
+		tv_forget= (TextView)view.findViewById(R.id.tv_forget);
+
+
+		try {
+
+			if (Session.getLanguage(getContext()).equals("0")){
+				regcustomer_title_login.setText(jsonObjectEN.getString("Registered Customer"));
+				create_title_login.setText(jsonObjectEN.getString("Registered Customer"));
+				regcustomer_title_login.setText(jsonObjectEN.getString("Registered Customer"));
+				email_title_login.setText(jsonObjectEN.getString("Registered Customer"));
+				password_title_login.setText(jsonObjectEN.getString("Registered Customer"));
+
+				et_usrnmane_login.setHint(jsonObjectEN.getString("Email Address"));
+				et_password_login.setHint(jsonObjectEN.getString("Password"));
+
+
+				tv_signin_login.setText(jsonObjectEN.getString("Registered Customer"));
+				tv_forget.setText(jsonObjectEN.getString("Registered Customer"));
+
+				enter_uname = jsonObjectEN.getString("Please Enter email address");
+				enter_password = jsonObjectEN.getString("Please Enter Password");
+			}
+			else
+			{
+				regcustomer_title_login.setText(jsonObjectAR.getString("Registered Customer"));
+				create_title_login.setText(jsonObjectAR.getString("Registered Customer"));
+				regcustomer_title_login.setText(jsonObjectAR.getString("Registered Customer"));
+				email_title_login.setText(jsonObjectAR.getString("Registered Customer"));
+				password_title_login.setText(jsonObjectAR.getString("Registered Customer"));
+
+				et_usrnmane_login.setHint(jsonObjectAR.getString("Email Address"));
+				et_password_login.setHint(jsonObjectAR.getString("Password"));
+
+				tv_signin_login.setText(jsonObjectAR.getString("Registered Customer"));
+				tv_forget.setText(jsonObjectAR.getString("Registered Customer"));
+
+				enter_uname = jsonObjectAR.getString("Please Enter email address");
+				enter_password = jsonObjectAR.getString("Please Enter Password");
+			}
+
+
+
+
+
+
+		}
+		catch (JSONException j){j.printStackTrace();}
 
 
 

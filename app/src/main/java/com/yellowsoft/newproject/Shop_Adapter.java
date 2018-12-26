@@ -114,10 +114,13 @@ public class Shop_Adapter extends RecyclerView.Adapter<Shop_Adapter.MyViewHolder
 
             	if (whichActivity==2) {
 					holder.itemView.setVisibility(View.GONE);
+					data.remove(position);
+					notifyDataSetChanged();
+					ApplicationController.getInstance().wishList.remove(position);
+
+
 				}
-                    data.remove(position);
-                    notifyDataSetChanged();
-                    ApplicationController.getInstance().wishList.remove(position);
+
 
 
             }

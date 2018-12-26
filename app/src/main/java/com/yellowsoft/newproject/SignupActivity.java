@@ -113,7 +113,7 @@ public class SignupActivity extends AppCompatActivity {
 				finish();*/
 			}
 		});
-		login_btn = (TextView)findViewById(R.id.tv_login_signup);
+		/*login_btn = (TextView)findViewById(R.id.tv_login_signup);
 		login_btn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -121,7 +121,7 @@ public class SignupActivity extends AppCompatActivity {
 				startActivity(intent);
 				finish();
 			}
-		});
+		});*/
 
 
 	}
