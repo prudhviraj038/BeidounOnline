@@ -483,6 +483,21 @@ public class HomeActivity extends AppCompatActivity {
 
 				}
 
+				else if (position==4){
+					if (Session.getUserid(HomeActivity.this).equals("0")){
+
+						//aboutus
+						mDrawerLayout.closeDrawer(GravityCompat.START);
+						Intent intent = new Intent(HomeActivity.this,AboutusActivity.class);
+						startActivity(intent);
+
+
+					}else {//offers
+
+
+					}
+				}
+
 
 
 				else if (position==5){
@@ -493,6 +508,11 @@ public class HomeActivity extends AppCompatActivity {
 
 				}
 
+				else if (position==6){
+					mDrawerLayout.closeDrawer(GravityCompat.START);
+					Intent intent = new Intent(HomeActivity.this,AboutusActivity.class);
+					startActivity(intent);
+				}
 
 
 				else if (position==7)
