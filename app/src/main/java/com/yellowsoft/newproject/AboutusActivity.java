@@ -42,7 +42,7 @@ public class AboutusActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 try {
-                    msg = ApplicationController.getInstance().settings.getString("about");
+                    msg = ApplicationController.getInstance().settings.getString("returns");
                     showAlert(msg);
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -57,7 +57,7 @@ public class AboutusActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 try {
-                    msg = ApplicationController.getInstance().settings.getString("returns");
+                    msg = ApplicationController.getInstance().settings.getString("about");
                     showAlert(msg);
                 } catch (JSONException e) {
                     e.printStackTrace();
