@@ -101,6 +101,7 @@ public class SplashScreen extends AppCompatActivity {
                     Toast.makeText(SplashScreen.this,""+e.getMessage().toString(),Toast.LENGTH_LONG).show();
                     Intent j = new Intent(SplashScreen.this, HomeActivity.class);
                     startActivity(j);
+
                 }
             }
         },
@@ -111,6 +112,7 @@ public class SplashScreen extends AppCompatActivity {
                         Toast.makeText(SplashScreen.this,"Network issue",Toast.LENGTH_LONG).show();
                         Intent i = new Intent(SplashScreen.this, HomeActivity.class);
                         startActivity(i);
+                        finish();
                       /*  if(progressDialog!=null)
                             progressDialog.dismiss();*/
                         //  Snackbar.make(gmail_btn, error.toString(), Snackbar.LENGTH_SHORT).show();
@@ -146,6 +148,7 @@ public class SplashScreen extends AppCompatActivity {
                 }*/
                 Intent i = new Intent(SplashScreen.this, HomeActivity.class);
                 startActivity(i);
+                finish();
                 try {
                     JSONObject jsonObject=new JSONObject(response);
 
@@ -165,6 +168,7 @@ public class SplashScreen extends AppCompatActivity {
                     Toast.makeText(SplashScreen.this,""+e.getMessage().toString(),Toast.LENGTH_LONG).show();
                     Intent j = new Intent(SplashScreen.this, HomeActivity.class);
                     startActivity(j);
+                    finish();
                     }
             }
         },
@@ -175,6 +179,7 @@ public class SplashScreen extends AppCompatActivity {
                         Toast.makeText(SplashScreen.this,"Network issue",Toast.LENGTH_LONG).show();
                         Intent i = new Intent(SplashScreen.this, HomeActivity.class);
                         startActivity(i);
+                        finish();
                       /*  if(progressDialog!=null)
                             progressDialog.dismiss();*/
                       //  Snackbar.make(gmail_btn, error.toString(), Snackbar.LENGTH_SHORT).show();

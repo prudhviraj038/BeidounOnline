@@ -3,6 +3,7 @@ package com.yellowsoft.newproject;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,6 +48,8 @@ public class Brands_Adapter extends RecyclerView.Adapter<Brands_Adapter.MyViewHo
 
 				Intent intent = new Intent(context,ShopActivity.class);
 				intent.putExtra("brands",data.get(position).id);
+				intent.putExtra("Category",data.get(position).categoryid);
+				Log.e("title",""+data.get(position).title);
 				context.startActivity(intent);
 
 

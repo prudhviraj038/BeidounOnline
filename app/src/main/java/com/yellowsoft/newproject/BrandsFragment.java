@@ -109,8 +109,8 @@ public class BrandsFragment extends Fragment {
 					Log.e("jsonArray",""+jsonArray.toString());
 					for (int i = 0;i<jsonArray.length();i++){
 						JSONObject jsonObject = jsonArray.getJSONObject(i);
-						Log.e("jsonobject",""+jsonObject.getString("image"));
-						Log.e("jsonobjectLength",""+jsonObject.length());
+						//Log.e("jsonobject",""+jsonObject.getString("image"));
+						//Log.e("jsonobjectLength",""+jsonObject.length());
 						Brands_Data temp = new Brands_Data(jsonObject);
 						brands_data.add(temp);
 						//productsData.add(products_Data);

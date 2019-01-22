@@ -271,9 +271,15 @@ public class ShopActivity extends AppCompatActivity {
 
 
 
+		//getting category id from category brandsadapter and category fragment
 
 		categories = getIntent().getStringExtra("Category");
+
+		//getting brand id from category brandsadapter and brands fragment
+
 		brands = getIntent().getStringExtra("brands");
+
+
 
 
 
@@ -310,9 +316,12 @@ public class ShopActivity extends AppCompatActivity {
 				newSelected = true;
 				*/
 				shopData.clear();
+				shop_adapter.notifyDataSetChanged();
 				popup_sort_ll.setVisibility(View.GONE);
-				callProducts("new",categories);
+				callProducts("new",categoryid);
 				Log.e("New","newselected");
+
+
 
 
 
@@ -333,7 +342,8 @@ public class ShopActivity extends AppCompatActivity {
 				newSelected = false;
 */
 				shopData.clear();
-				callProducts("LtoH",categories);
+				shop_adapter.notifyDataSetChanged();
+				callProducts("LtoH",categoryid);
 
 				popup_sort_ll.setVisibility(View.GONE);
 
@@ -355,7 +365,8 @@ public class ShopActivity extends AppCompatActivity {
 
 			*/
 				shopData.clear();
-				callProducts("HtoL",categories);
+				shop_adapter.notifyDataSetChanged();
+				callProducts("HtoL",categoryid);
 				popup_sort_ll.setVisibility(View.GONE);
 				Log.e("high","highselected");
 
@@ -584,6 +595,10 @@ public class ShopActivity extends AppCompatActivity {
 					Log.e("jsonarraryLength",""+jsonArray.length());
 					Log.e("jsonArray", "" + jsonArray.toString());
 
+					categoryid = jsonArray.getJSONObject(0).getJSONObject("category").getString("id");
+
+					Log.e("categoryid",""+categoryid);
+
 					//noof_results_tv.setText(""+jsonArray.length()+" ");
 
 
@@ -639,7 +654,7 @@ public class ShopActivity extends AppCompatActivity {
 			}
 			else if (type.equals("new")){
 				parameters.put("category_id",id);
-				parameters.put("sorting","");
+				parameters.put("sorting"," ");
 			}
 			else if (type.equals("page")){
 				parameters.put("page",id);

@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -103,35 +104,36 @@ public class LoginFragment extends Fragment {
 		try {
 
 			if (Session.getLanguage(getContext()).equals("0")){
+				regcustomer_title_login.setText(jsonObjectEN.getString("Register"));
+				create_title_login.setText(jsonObjectEN.getString("CREATE NEW ACCOUNT"));
 				regcustomer_title_login.setText(jsonObjectEN.getString("Registered Customer"));
-				create_title_login.setText(jsonObjectEN.getString("Registered Customer"));
-				regcustomer_title_login.setText(jsonObjectEN.getString("Registered Customer"));
-				email_title_login.setText(jsonObjectEN.getString("Registered Customer"));
-				password_title_login.setText(jsonObjectEN.getString("Registered Customer"));
+				email_title_login.setText(jsonObjectEN.getString("Email Address"));
+				password_title_login.setText(jsonObjectEN.getString("Password"));
 
 				et_usrnmane_login.setHint(jsonObjectEN.getString("Email Address"));
 				et_password_login.setHint(jsonObjectEN.getString("Password"));
 
 
-				tv_signin_login.setText(jsonObjectEN.getString("Registered Customer"));
-				tv_forget.setText(jsonObjectEN.getString("Registered Customer"));
+				tv_signin_login.setText(jsonObjectEN.getString("Sign In"));
+				tv_forget.setText(jsonObjectEN.getString("Forgot Password"));
 
 				enter_uname = jsonObjectEN.getString("Please Enter email address");
 				enter_password = jsonObjectEN.getString("Please Enter Password");
 			}
 			else
 			{
+				regcustomer_title_login.setText(jsonObjectAR.getString("Register"));
+				create_title_login.setText(jsonObjectAR.getString("CREATE NEW ACCOUNT"));
 				regcustomer_title_login.setText(jsonObjectAR.getString("Registered Customer"));
-				create_title_login.setText(jsonObjectAR.getString("Registered Customer"));
-				regcustomer_title_login.setText(jsonObjectAR.getString("Registered Customer"));
-				email_title_login.setText(jsonObjectAR.getString("Registered Customer"));
-				password_title_login.setText(jsonObjectAR.getString("Registered Customer"));
+				email_title_login.setText(jsonObjectAR.getString("Email Address"));
+				password_title_login.setText(jsonObjectAR.getString("Password"));
 
 				et_usrnmane_login.setHint(jsonObjectAR.getString("Email Address"));
 				et_password_login.setHint(jsonObjectAR.getString("Password"));
 
-				tv_signin_login.setText(jsonObjectAR.getString("Registered Customer"));
-				tv_forget.setText(jsonObjectAR.getString("Registered Customer"));
+
+				tv_signin_login.setText(jsonObjectAR.getString("Sign In"));
+				tv_forget.setText(jsonObjectAR.getString("Forgot Password"));
 
 				enter_uname = jsonObjectAR.getString("Please Enter email address");
 				enter_password = jsonObjectAR.getString("Please Enter Password");
@@ -203,11 +205,14 @@ public class LoginFragment extends Fragment {
 					else {
 
 						String msg = jsonObject.getString("message");
+						Toast.makeText(getActivity(),""+msg,Toast.LENGTH_LONG).show();
 						Log.e("message",""+msg);
 
 					}
 
 				} catch (JSONException e) {
+
+					Toast.makeText(getActivity(),""+e.getMessage(),Toast.LENGTH_LONG).show();
 					e.printStackTrace();
 				}
 			}
@@ -215,6 +220,7 @@ public class LoginFragment extends Fragment {
 				new Response.ErrorListener() {
 					@Override
 					public void onErrorResponse(VolleyError error) {
+						Toast.makeText(getActivity(),""+error.getMessage(),Toast.LENGTH_LONG).show();
 						if(progressDialog!=null)
 							progressDialog.dismiss();
 

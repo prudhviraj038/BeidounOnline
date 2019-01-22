@@ -1,5 +1,7 @@
 package com.yellowsoft.newproject;
 
+import android.util.Log;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -11,6 +13,7 @@ public class Brands_Data {
 
 
     String images,id,title,title_ar;
+    String categoryid;
 
 
     // Context context;
@@ -26,6 +29,13 @@ public class Brands_Data {
             this.id = jsonObject.getString("id");
             this.title = jsonObject.getString("title");
             this.title_ar = jsonObject.getString("title_ar");
+
+            Log.e("title",""+title);
+
+            this.categoryid = jsonObject.getString("price");
+
+
+
 
         } catch (JSONException e) {
             e.printStackTrace();
