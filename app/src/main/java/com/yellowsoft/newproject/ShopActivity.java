@@ -19,6 +19,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,6 +43,9 @@ public class ShopActivity extends AppCompatActivity {
 	RecyclerView shop_rv;
 
 	ArrayList<Shop_Data> shopData= new ArrayList<Shop_Data>();
+	ArrayList<Filter_Data> filter_data= new ArrayList<Filter_Data>();
+
+	FilterAdapter filterAdapter;
 	Shop_Adapter shop_adapter;
 
 	LinearLayout filter,filter_top;
@@ -73,9 +77,14 @@ public class ShopActivity extends AppCompatActivity {
 	LinearLayout back_btn,menu_btn;
 	ImageView back;
 
-	ImageView search_img_title;
+	ImageView search_img_title,close;
 
 	int page = 0;
+
+	LinearLayout filter_popup;
+	RecyclerView filter_rv;
+
+	LinearLayoutManager linearLayoutManager;
 
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -86,6 +95,17 @@ public class ShopActivity extends AppCompatActivity {
 
 
 		Log.e("shopfragment", "shopfragment");
+
+
+		filterAdapter = new FilterAdapter(ShopActivity.this,filter_data);
+
+		//filterpopup layout
+		filter_popup = (LinearLayout)findViewById(R.id.filter_popup);
+
+		//close img
+		close = (ImageView)findViewById(R.id.close_img);
+
+
 
 
 		popup_sort_ll = (LinearLayout)findViewById(R.id.popup_sort_ll);
@@ -209,7 +229,7 @@ public class ShopActivity extends AppCompatActivity {
 
 
 
-		final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(ShopActivity.this);
+	linearLayoutManager	 = new LinearLayoutManager(ShopActivity.this);
 		linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 
 		final GridLayoutManager gridLayoutManager = new GridLayoutManager(ShopActivity.this,2);
@@ -235,6 +255,15 @@ public class ShopActivity extends AppCompatActivity {
 		shop_rv.setAdapter(shop_adapter);
 
 		shop_rv.setLayoutManager(gridLayoutManager);
+
+
+		filter_rv = (RecyclerView) findViewById(R.id.filter_rv);
+
+		filter_rv.setLayoutManager(linearLayoutManager);
+		filter_rv.setAdapter(filterAdapter);
+
+		filterAdapter.notifyDataSetChanged();
+
 
 		if (grid==true){
 			shop_rv.setLayoutManager(gridLayoutManager);
@@ -396,6 +425,21 @@ public class ShopActivity extends AppCompatActivity {
 */
 
 
+
+	filter_tv.setOnClickListener(new View.OnClickListener() {
+		@Override
+		public void onClick(View v) {
+			filter_popup.setVisibility(View.VISIBLE);
+			callFilter();
+		}
+	});
+
+	close.setOnClickListener(new View.OnClickListener() {
+		@Override
+		public void onClick(View v) {
+			filter_popup.setVisibility(View.GONE);
+		}
+	});
 
 
 
@@ -614,6 +658,7 @@ public class ShopActivity extends AppCompatActivity {
 
 
 
+
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}
@@ -659,6 +704,90 @@ public class ShopActivity extends AppCompatActivity {
 			else if (type.equals("page")){
 				parameters.put("page",id);
 			}
+
+				//	parameters.put("password",password.getText().toString());
+				return parameters;
+			}
+		};
+		ApplicationController.getInstance().addToRequestQueue(stringRequest);
+//		slidingPageAdapter.notifyDataSetChanged();
+	}
+
+
+
+
+
+	//filter service
+	public void callFilter() {
+
+		final ProgressDialog progressDialog = new ProgressDialog(ShopActivity.this);
+		progressDialog.setMessage("Please Wait....");
+		progressDialog.show();
+		progressDialog.setCancelable(false);
+		String URL = Session.BASE_URL + "api/brands.php";
+
+		StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
+			@Override
+			public void onResponse(String response) {
+				Log.e("resFilter", response);
+				if (progressDialog != null && progressDialog.isShowing()) {
+					progressDialog.dismiss();
+				}
+				try {
+
+					JSONArray jsonArray = new JSONArray(response);
+
+
+
+
+					Log.e("categoryid",""+categoryid);
+
+					//noof_results_tv.setText(""+jsonArray.length()+" ");
+
+
+
+					for (int i=0;i<=jsonArray.length();i++){
+						JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+						Filter_Data temp = new Filter_Data(jsonObject);
+						filter_data.add(temp);
+					}
+
+					filter_rv.setLayoutManager(linearLayoutManager);
+
+
+
+					filter_rv.setAdapter(filterAdapter);
+
+					filterAdapter.notifyDataSetChanged();
+
+
+
+
+
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+				filterAdapter.notifyDataSetChanged();
+
+			}
+		},
+				new Response.ErrorListener() {
+					@Override
+					public void onErrorResponse(VolleyError error) {
+						Log.e("error", "" + error);
+						if (progressDialog != null)
+							progressDialog.dismiss();
+						//Snackbar.make(gmail_btn, error.toString(), Snackbar.LENGTH_SHORT).show();
+					}
+				}) {
+			@Override
+			protected Map<String, String> getParams() {
+				Map<String, String> parameters = new HashMap<String, String>();
+
+					parameters.put("category_id",categoryid);
+
+
 
 				//	parameters.put("password",password.getText().toString());
 				return parameters;
